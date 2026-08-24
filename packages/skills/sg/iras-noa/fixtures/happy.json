@@ -1,0 +1,17 @@
+{
+  "skillId": "sg.iras-noa",
+  "input": {
+    "request": "fixture request for IRAS Notice of Assessment",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "gov.singpass",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

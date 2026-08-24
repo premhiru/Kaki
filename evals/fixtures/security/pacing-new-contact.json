@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "security.pacing.new-contact",
+  "criterion": 12,
+  "mode": "synthetic",
+  "description": "External messages respect the ten-second floor and the daily new-contact cap.",
+  "implementationTarget": "@kaki/security pacing",
+  "tags": ["security", "pacing"],
+  "input": {
+    "household": false,
+    "newContact": true,
+    "sentToExternalToday": 25,
+    "now": "2026-08-24T12:00:00+08:00"
+  },
+  "expected": { "allowed": false, "reason": "new-contact-cap", "minimumGapMs": 10000 },
+  "assertions": [
+    { "path": "allowed", "op": "eq", "value": false },
+    { "path": "minimumGapMs", "op": "gte", "value": 10000 }
+  ]
+}

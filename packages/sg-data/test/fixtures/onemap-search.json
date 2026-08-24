@@ -1,0 +1,17 @@
+{
+  "found": 1,
+  "totalNumPages": 1,
+  "pageNum": 1,
+  "results": [
+    {
+      "SEARCHVAL": "640 ROWELL ROAD SINGAPORE 200640",
+      "BLK_NO": "640",
+      "ROAD_NAME": "ROWELL ROAD",
+      "BUILDING": "NIL",
+      "ADDRESS": "640 ROWELL ROAD SINGAPORE 200640",
+      "POSTAL": "200640",
+      "LATITUDE": "1.30743547948389",
+      "LONGITUDE": "103.854713903431"
+    }
+  ]
+}

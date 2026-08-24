@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "dod09.sg-monitors",
+  "criterion": 9,
+  "mode": "synthetic",
+  "description": "All five required Singapore monitors fire once at their threshold and suppress duplicates.",
+  "implementationTarget": "sg-data monitor engine",
+  "tags": ["e2e", "monitors", "sg-data"],
+  "input": { "clock": "2026-08-24T06:45:00+08:00", "feed": "monitor-thresholds.json" },
+  "expected": {
+    "fired": ["rain-before-commute", "mrt-disruption", "cpf-deadline", "hawker-closure", "haze"],
+    "duplicateNotifications": 0
+  },
+  "assertions": [
+    { "path": "fired", "op": "includes", "value": "rain-before-commute" },
+    { "path": "fired", "op": "includes", "value": "mrt-disruption" },
+    { "path": "fired", "op": "includes", "value": "cpf-deadline" },
+    { "path": "fired", "op": "includes", "value": "hawker-closure" },
+    { "path": "fired", "op": "includes", "value": "haze" },
+    { "path": "duplicateNotifications", "op": "eq", "value": 0 }
+  ]
+}

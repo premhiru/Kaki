@@ -1,0 +1,5 @@
+{
+  "goal": "open an app and find this month's statement",
+  "screens": ["home", "statements", "August statement"],
+  "expect": { "terminal": "done", "risk": "none", "maxSteps": 40 }
+}

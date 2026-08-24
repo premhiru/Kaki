@@ -1,0 +1,17 @@
+{
+  "skillId": "sg.klook",
+  "input": {
+    "request": "fixture request for Klook",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "booking",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

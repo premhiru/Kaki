@@ -1,0 +1,5 @@
+{
+  "goal": "check enough TNG for JB tomorrow",
+  "screens": ["wallet", "balance MYR 42.30"],
+  "expect": { "terminal": "done", "risk": "none", "masked": true }
+}

@@ -1,0 +1,17 @@
+{
+  "skillId": "sea.language-bridge",
+  "input": {
+    "request": "fixture request for Mixed-language family bridge",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "data.share",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

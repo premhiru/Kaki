@@ -1,0 +1,17 @@
+{
+  "skillId": "th.bts-mrt",
+  "input": {
+    "request": "fixture request for Bangkok BTS and MRT",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "th",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "evidence": ["redacted-trace", "verified-result"]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "goal": "số dư MoMo của tôi",
+  "screens": ["wallet balance VND 420000"],
+  "expect": { "terminal": "done", "risk": "none", "masked": true }
+}

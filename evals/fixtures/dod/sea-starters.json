@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "dod13.sea-starters",
+  "criterion": 13,
+  "mode": "synthetic",
+  "description": "Each starter country exposes five fixture-passing skills and its locally preferred channel.",
+  "implementationTarget": "sea-data + skills country packs + channels-extra",
+  "tags": ["e2e", "sea", "channels", "skills"],
+  "input": { "countries": ["my", "id", "th", "vn", "ph"] },
+  "expected": {
+    "my": { "skills": 5, "channel": "whatsapp" },
+    "id": { "skills": 5, "channel": "whatsapp" },
+    "th": { "skills": 5, "channel": "line" },
+    "vn": { "skills": 5, "channel": "zalo" },
+    "ph": { "skills": 5, "channel": "messenger" }
+  },
+  "assertions": [
+    { "path": "my.skills", "op": "gte", "value": 5 },
+    { "path": "id.skills", "op": "gte", "value": 5 },
+    { "path": "th.skills", "op": "gte", "value": 5 },
+    { "path": "vn.skills", "op": "gte", "value": 5 },
+    { "path": "ph.skills", "op": "gte", "value": 5 }
+  ]
+}

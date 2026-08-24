@@ -1,0 +1,17 @@
+[Unit]
+Description=Kaki household agent gateway
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/kaki
+ExecStart=/usr/bin/corepack pnpm kaki status --deep
+Restart=on-failure
+RestartSec=5
+EnvironmentFile=/opt/kaki/.env
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/kaki
+
+[Install]
+WantedBy=multi-user.target

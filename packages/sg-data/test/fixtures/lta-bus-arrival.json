@@ -1,0 +1,16 @@
+{
+  "Services": [
+    {
+      "ServiceNo": "166",
+      "Operator": "SBST",
+      "NextBus": {
+        "EstimatedArrival": "2026-08-24T12:03:00+08:00",
+        "Latitude": "1.3001",
+        "Longitude": "103.8001",
+        "Load": "SEA"
+      },
+      "NextBus2": {},
+      "NextBus3": {}
+    }
+  ]
+}

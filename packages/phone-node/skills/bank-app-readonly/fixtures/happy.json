@@ -1,0 +1,5 @@
+{
+  "goal": "what did I spend at FairPrice this month",
+  "screens": ["accounts", "transactions", "FairPrice entries"],
+  "expect": { "terminal": "done", "risk": "none", "masked": true }
+}

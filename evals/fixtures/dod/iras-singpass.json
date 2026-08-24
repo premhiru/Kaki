@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "dod04.iras-noa",
+  "criterion": 4,
+  "mode": "recorded",
+  "description": "IRAS NOA retrieval pauses at Singpass QR and summarizes only after handoff completes.",
+  "implementationTarget": "browser-node iras-noa + approval-node Singpass handoff",
+  "tags": ["e2e", "browser", "singpass"],
+  "input": { "text": "check my IRAS NOA", "singpass": "approved" },
+  "expected": {
+    "singpassApprovalRequested": true,
+    "qrPresented": true,
+    "resumed": true,
+    "summary": { "year": 2026, "assessableIncome": "REDACTED", "taxPayable": "REDACTED" }
+  },
+  "assertions": [
+    { "path": "singpassApprovalRequested", "op": "eq", "value": true },
+    { "path": "qrPresented", "op": "eq", "value": true },
+    { "path": "resumed", "op": "eq", "value": true }
+  ],
+  "redactions": ["nric", "singpass-qr", "income", "tax-payable"],
+  "liveCheck": "Run against the user's IRAS account and verify the Singpass QR is ephemeral and absent from retained logs."
+}

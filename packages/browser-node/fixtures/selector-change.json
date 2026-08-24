@@ -1,0 +1,21 @@
+{
+  "name": "portal button changed",
+  "steps": [
+    {
+      "action": "click",
+      "selector": "button[data-testid='continue']",
+      "alternatives": ["button:has-text('Continue')"],
+      "description": "Continue button"
+    }
+  ],
+  "page": {
+    "url": "https://example.gov.sg/form",
+    "text": "Application form",
+    "workingSelectors": ["button:has-text('Continue')"]
+  },
+  "expect": {
+    "status": "ok",
+    "resolution": "alternative",
+    "annotation": true
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kaki.local/schema/fixture.schema.json",
+  "title": "Kaki deterministic end-to-end fixture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "criterion",
+    "mode",
+    "description",
+    "implementationTarget",
+    "input",
+    "expected",
+    "assertions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]+$" },
+    "criterion": { "type": "integer", "minimum": 1, "maximum": 14 },
+    "mode": { "enum": ["recorded", "synthetic", "live"] },
+    "description": { "type": "string", "minLength": 10 },
+    "implementationTarget": { "type": "string", "minLength": 3 },
+    "tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "input": { "type": "object" },
+    "expected": { "type": "object" },
+    "assertions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "op"],
+        "properties": {
+          "path": { "type": "string" },
+          "op": {
+            "enum": [
+              "eq",
+              "oneOf",
+              "gte",
+              "lte",
+              "lengthGte",
+              "matches",
+              "absent",
+              "notContains",
+              "includes"
+            ]
+          },
+          "value": {},
+          "flags": { "type": "string" }
+        }
+      }
+    },
+    "redactions": { "type": "array", "items": { "type": "string" } },
+    "liveCheck": { "type": "string" }
+  }
+}

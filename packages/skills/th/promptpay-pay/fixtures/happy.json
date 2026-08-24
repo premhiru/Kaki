@@ -1,0 +1,17 @@
+{
+  "skillId": "th.promptpay-pay",
+  "input": {
+    "request": "fixture request for PromptPay payment",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "th",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.transfer",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

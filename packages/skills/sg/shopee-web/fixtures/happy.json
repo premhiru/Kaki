@@ -1,0 +1,17 @@
+{
+  "skillId": "sg.shopee-web",
+  "input": {
+    "request": "fixture request for Shopee Singapore",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

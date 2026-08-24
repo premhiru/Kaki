@@ -1,0 +1,17 @@
+node_modules/
+node_modules.stale/
+dist/
+coverage/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.db
+*.db-shm
+*.db-wal
+.kaki/
+traces/
+artifacts/live/
+evals/results/

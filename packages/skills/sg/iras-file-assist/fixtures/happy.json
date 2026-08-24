@@ -1,0 +1,17 @@
+{
+  "skillId": "sg.iras-file-assist",
+  "input": {
+    "request": "fixture request for IRAS filing assistant",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "gov.singpass",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

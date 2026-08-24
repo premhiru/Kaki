@@ -1,0 +1,5 @@
+{
+  "goal": "check my GCash balance",
+  "screens": ["wallet balance PHP 1250"],
+  "expect": { "terminal": "done", "risk": "none", "masked": true }
+}

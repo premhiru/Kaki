@@ -1,0 +1,18 @@
+{
+  "locale": "kh",
+  "timezone": "Asia/Phnom_Penh",
+  "events": [
+    {
+      "id": "kh-holiday-1",
+      "name": "Khmer New Year",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "kh-holiday-2",
+      "name": "Pchum Ben",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    }
+  ]
+}

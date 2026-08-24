@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "dod10.learning-loop",
+  "criterion": 10,
+  "mode": "synthetic",
+  "description": "A successful novel browser trace becomes a learned skill and the replay uses fewer steps.",
+  "implementationTarget": "core learning loop + skills/learned",
+  "tags": ["e2e", "learning", "browser"],
+  "input": { "goal": "download fixture utility bill", "firstTraceSteps": 12 },
+  "expected": {
+    "skillCreated": true,
+    "skillPath": "skills/learned/download-fixture-utility-bill/SKILL.md",
+    "firstRunSteps": 12,
+    "reusedRunSteps": 7,
+    "successful": true
+  },
+  "assertions": [
+    { "path": "skillCreated", "op": "eq", "value": true },
+    { "path": "successful", "op": "eq", "value": true },
+    { "path": "reusedRunSteps", "op": "lte", "value": 11 }
+  ]
+}

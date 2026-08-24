@@ -1,0 +1,7 @@
+{
+  "locale": "vn",
+  "priority": ["zalo", "telegram"],
+  "languages": ["vi", "en"],
+  "dataTools": ["vn-public-data", "regional-holidays", "currency-remittance"],
+  "fixtureModeAvailable": true
+}

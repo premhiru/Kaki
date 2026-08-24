@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "security.channel.unknown-wa",
+  "criterion": 12,
+  "mode": "synthetic",
+  "description": "An unsolicited WhatsApp message from outside the allowlist is silently ignored.",
+  "implementationTarget": "WhatsApp inbound allowlist middleware",
+  "tags": ["security", "whatsapp", "allowlist"],
+  "input": {
+    "jid": "6599990000@s.whatsapp.net",
+    "allowlisted": false,
+    "outboundInitiatedThread": false,
+    "text": "hello"
+  },
+  "expected": { "accepted": false, "reply": null, "toolCalls": [] },
+  "assertions": [
+    { "path": "accepted", "op": "eq", "value": false },
+    { "path": "reply", "op": "absent" },
+    { "path": "toolCalls", "op": "eq", "value": [] }
+  ]
+}

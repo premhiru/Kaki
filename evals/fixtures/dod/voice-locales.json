@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "dod05.voice-kopitiam",
+  "criterion": 5,
+  "mode": "recorded",
+  "description": "Code-switched kopitiam speech preserves modifiers and creates the exact household order.",
+  "implementationTarget": "models ASR + normaliser + locale + reminder tool",
+  "tags": ["e2e", "voice", "locale", "register"],
+  "input": {
+    "speaker": "Wei Ling",
+    "audio": "kopi-order.ogg",
+    "transcript": "kopi-C siew dai peng and teh-o kosong for ma"
+  },
+  "expected": { "orders": ["kopi-C siew dai peng", "teh-o kosong"], "posted": true },
+  "assertions": [
+    { "path": "orders", "op": "lengthGte", "value": 2 },
+    { "path": "posted", "op": "eq", "value": true }
+  ]
+}

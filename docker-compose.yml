@@ -1,0 +1,23 @@
+services:
+  gateway:
+    image: node:22-bookworm
+    working_dir: /app
+    command: ["corepack", "pnpm", "kaki", "status", "--deep"]
+    env_file: [.env]
+    volumes:
+      - ./:/app
+      - kaki-data:/root/.kaki
+    depends_on: [chrome, asr]
+  chrome:
+    image: mcr.microsoft.com/playwright:v1.55.0-noble
+    command: ["sleep", "infinity"]
+    shm_size: 1gb
+  asr:
+    image: python:3.11-slim
+    command: ["python", "-m", "http.server", "8080"]
+  ollama:
+    image: ollama/ollama:latest
+    volumes: ["ollama:/root/.ollama"]
+volumes:
+  kaki-data:
+  ollama:
