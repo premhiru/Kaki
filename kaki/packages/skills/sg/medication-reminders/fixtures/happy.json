@@ -1,0 +1,17 @@
+{
+  "skillId": "sg.medication-reminders",
+  "input": {
+    "request": "fixture request for Medication reminders",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "data.share",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

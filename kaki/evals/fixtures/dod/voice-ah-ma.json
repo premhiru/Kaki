@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "dod06.voice-ah-ma",
+  "criterion": 6,
+  "mode": "recorded",
+  "description": "Ah Ma's Mandarin polyclinic voice note receives a short Mandarin reply and reminder.",
+  "implementationTarget": "models ASR + normaliser + locale + reminder tool",
+  "tags": ["e2e", "voice", "locale", "register"],
+  "input": {
+    "speaker": "Ah Ma",
+    "audio": "ah-ma-polyclinic.ogg",
+    "transcript": "明天下午三点去综合诊疗所，提醒我。"
+  },
+  "expected": {
+    "reply": "好，明天下午三点去综合诊疗所。我会提前提醒您。",
+    "replyLanguage": "zh",
+    "replyCharacters": 24,
+    "reminderCreated": true
+  },
+  "assertions": [
+    { "path": "replyLanguage", "op": "eq", "value": "zh" },
+    { "path": "replyCharacters", "op": "lte", "value": 40 },
+    { "path": "reminderCreated", "op": "eq", "value": true }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "locale": "id",
+  "priority": ["whatsapp", "telegram"],
+  "languages": ["id", "jv", "en"],
+  "dataTools": ["id-public-data", "regional-holidays", "currency-remittance"],
+  "fixtureModeAvailable": true
+}

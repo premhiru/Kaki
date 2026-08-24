@@ -7,19 +7,20 @@
       "agent": 17
     }
   },
-  "description": "Multi-channel AI gateway with extensible messaging integrations",
+  "description": "Kaki household AI agent, powered by the complete OpenClaw runtime",
   "keywords": [],
-  "homepage": "https://github.com/openclaw/openclaw#readme",
+  "homepage": "https://github.com/premhiru/Kaki#readme",
   "bugs": {
-    "url": "https://github.com/openclaw/openclaw/issues"
+    "url": "https://github.com/premhiru/Kaki/issues"
   },
   "license": "MIT",
-  "author": "OpenClaw Foundation (https://openclaw.org)",
+  "author": "Kaki contributors; based on OpenClaw Foundation work",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openclaw/openclaw.git"
+    "url": "git+https://github.com/premhiru/Kaki.git"
   },
   "bin": {
+    "kaki": "kaki.mjs",
     "openclaw": "openclaw.mjs"
   },
   "directories": {
@@ -29,6 +30,9 @@
   "files": [
     "CHANGELOG.md",
     "LICENSE",
+    "KAKI.md",
+    "UPSTREAM.md",
+    "kaki.mjs",
     "node-version.mjs",
     "openclaw.mjs",
     "pnpm-workspace.yaml",
@@ -1709,6 +1713,7 @@
     "mobile:release:preflight": "node --import tsx scripts/mobile-release-ref.ts preflight",
     "mobile:release:record": "node --import tsx scripts/mobile-release-ref.ts record",
     "mobile:release:resolve": "node --import tsx scripts/mobile-release-ref.ts resolve",
+    "kaki": "node kaki.mjs",
     "openclaw": "node scripts/run-node.mjs",
     "openclaw:rpc": "node scripts/run-node.mjs agent --mode rpc --json",
     "perf:web-fetch": "node --import tsx scripts/bench-web-fetch.ts",

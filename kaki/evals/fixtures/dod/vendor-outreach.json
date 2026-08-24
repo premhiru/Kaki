@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "dod07.vendor-outreach",
+  "criterion": 7,
+  "mode": "synthetic",
+  "description": "Aircon outreach contacts at least five fixture vendors, compares quotes, and waits for booking approval.",
+  "implementationTarget": "vendor-outreach skill + channels + approval-node",
+  "tags": ["e2e", "vendor", "approval"],
+  "input": {
+    "text": "find someone to service 3 aircons this Sat under $150",
+    "vendorDirectory": "aircon-vendors.json",
+    "clock": "2026-08-24T09:00:00+08:00"
+  },
+  "expected": {
+    "vendorsMessaged": 5,
+    "quotesReturned": 5,
+    "elapsedMinutes": 35,
+    "withinBudgetQuotes": 3,
+    "bookedBeforeApproval": false,
+    "approvalRequested": true
+  },
+  "assertions": [
+    { "path": "vendorsMessaged", "op": "gte", "value": 5 },
+    { "path": "elapsedMinutes", "op": "lte", "value": 120 },
+    { "path": "bookedBeforeApproval", "op": "eq", "value": false },
+    { "path": "approvalRequested", "op": "eq", "value": true }
+  ]
+}

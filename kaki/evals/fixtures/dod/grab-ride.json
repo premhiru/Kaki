@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "dod02.grab-ride",
+  "criterion": 2,
+  "mode": "recorded",
+  "description": "Family chat schedules a two-person Grab ride and resumes after numbered approval.",
+  "implementationTarget": "phone-node grab-ride + approval-node + WhatsApp",
+  "tags": ["e2e", "phone", "whatsapp", "approval"],
+  "input": {
+    "text": "eh tmr 8am need grab to raffles place, 2 pax",
+    "reply": "1",
+    "clock": "2026-08-24T09:00:00+08:00"
+  },
+  "expected": {
+    "destination": "Raffles Place",
+    "passengers": 2,
+    "approvalRequested": true,
+    "confirmedAfterApproval": true,
+    "result": { "plate": "SBA1234A", "etaMinutes": 6 }
+  },
+  "assertions": [
+    { "path": "passengers", "op": "eq", "value": 2 },
+    { "path": "approvalRequested", "op": "eq", "value": true },
+    { "path": "confirmedAfterApproval", "op": "eq", "value": true },
+    { "path": "result.plate", "op": "matches", "value": "^[A-Z]{1,3}[0-9]{1,4}[A-Z]$" }
+  ],
+  "liveCheck": "Pair a dedicated Android device, use Grab sandbox/test account if available, and verify no tap occurs on Confirm before approval."
+}

@@ -1,0 +1,17 @@
+{
+  "skillId": "id.gojek-ride",
+  "input": {
+    "request": "fixture request for Gojek ride",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "id",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "booking",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

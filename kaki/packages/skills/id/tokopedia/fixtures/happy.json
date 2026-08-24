@@ -1,0 +1,17 @@
+{
+  "skillId": "id.tokopedia",
+  "input": {
+    "request": "fixture request for Tokopedia",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "id",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

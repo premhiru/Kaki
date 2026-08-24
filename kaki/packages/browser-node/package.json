@@ -1,0 +1,27 @@
+{
+  "name": "@kaki/browser-node",
+  "version": "0.5.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./managed": "./src/managed.ts",
+    "./artifacts": "./src/artifacts.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "vitest run test/fixtures.test.ts"
+  },
+  "dependencies": {
+    "@kaki/approval-node": "workspace:*",
+    "@kaki/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}

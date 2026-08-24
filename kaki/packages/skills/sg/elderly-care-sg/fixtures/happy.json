@@ -1,0 +1,17 @@
+{
+  "skillId": "sg.elderly-care-sg",
+  "input": {
+    "request": "fixture request for Elderly care Singapore",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "evidence": ["redacted-trace", "verified-result"]
+  }
+}

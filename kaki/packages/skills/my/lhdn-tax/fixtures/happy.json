@@ -1,0 +1,17 @@
+{
+  "skillId": "my.lhdn-tax",
+  "input": {
+    "request": "fixture request for LHDN tax",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "my",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "gov.singpass",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

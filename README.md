@@ -1,3 +1,13 @@
+# Kaki — your Southeast Asian household agent, powered by OpenClaw
+
+This repository is the Kaki hard fork of OpenClaw. It retains OpenClaw's complete
+gateway, plugin SDK, messaging channels, browser, schedules, skills, Control UI,
+and companion apps, then adds Kaki's household safety, approvals, locale, data,
+memory, phone-node, and regional skill work under [`kaki/`](kaki/). Start with
+[`KAKI.md`](KAKI.md); the upstream README follows for runtime documentation.
+
+---
+
 # OpenClaw 🦞 — Your assistant, on your devices, in your chats
 
 <p align="center">

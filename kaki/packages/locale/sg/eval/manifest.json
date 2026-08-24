@@ -1,0 +1,12 @@
+{
+  "locale": "sg",
+  "generatedBy": "scripts/locale/generate.mjs",
+  "datasets": [
+    "../../../../evals/locales/sg-en.jsonl",
+    "../../../../evals/locales/sg-singlish.jsonl",
+    "../../../../evals/locales/sg-zh.jsonl",
+    "../../../../evals/locales/sg-ms.jsonl",
+    "../../../../evals/locales/sg-ta.jsonl"
+  ],
+  "contract": "expected labels are template truth; actual labels are independently produced by the deterministic locale normaliser rules"
+}

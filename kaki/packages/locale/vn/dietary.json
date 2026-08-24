@@ -1,0 +1,6 @@
+{
+  "locale": "vn",
+  "neverInfer": true,
+  "flags": ["halal", "vegetarian", "vegan", "no-pork", "no-beef", "allergy"],
+  "localTerms": ["halal", "ăn chay", "không thịt heo"]
+}

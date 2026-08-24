@@ -1,0 +1,6 @@
+{
+  "locale": "mm",
+  "generatedBy": "scripts/locale/generate.mjs",
+  "datasets": [],
+  "contract": "expected labels are template truth; actual labels are independently produced by the deterministic locale normaliser rules"
+}

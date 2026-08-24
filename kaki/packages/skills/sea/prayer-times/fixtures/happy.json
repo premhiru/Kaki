@@ -1,0 +1,17 @@
+{
+  "skillId": "sea.prayer-times",
+  "input": {
+    "request": "fixture request for Prayer times",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "evidence": ["redacted-trace", "verified-result"]
+  }
+}

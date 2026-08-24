@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "dod03.paynow-2fa",
+  "criterion": 3,
+  "mode": "recorded",
+  "description": "An SGQR image is decoded, approved, handed to bank 2FA, and yields a redacted receipt.",
+  "implementationTarget": "sg-data SGQR + approval-node bank handoff",
+  "tags": ["e2e", "money", "sgqr", "approval"],
+  "input": { "fixtureImage": "sgqr-paynow-editable.png", "approved": true, "bank2fa": "approved" },
+  "expected": {
+    "rail": "PayNow",
+    "merchant": "KAKI FIXTURE MERCHANT",
+    "amountEditable": true,
+    "approvalRequested": true,
+    "bank2faRequested": true,
+    "receipt": { "status": "paid", "reference": "FIXTURE-REDACTED" }
+  },
+  "assertions": [
+    { "path": "rail", "op": "eq", "value": "PayNow" },
+    { "path": "approvalRequested", "op": "eq", "value": true },
+    { "path": "bank2faRequested", "op": "eq", "value": true },
+    { "path": "receipt.status", "op": "eq", "value": "paid" }
+  ],
+  "liveCheck": "Use a S$0.01 test merchant QR and a dedicated capped account; verify the receipt and audit event after digital-token approval."
+}

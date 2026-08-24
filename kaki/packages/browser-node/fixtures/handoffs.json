@@ -1,0 +1,22 @@
+[
+  {
+    "name": "singpass",
+    "pageText": "Scan this QR with your Singpass app",
+    "expect": "singpass"
+  },
+  {
+    "name": "bank token",
+    "pageText": "Approve in your bank app with digital token",
+    "expect": "bank-2fa"
+  },
+  {
+    "name": "captcha",
+    "pageText": "Verify you are human with CAPTCHA",
+    "expect": "captcha"
+  },
+  {
+    "name": "generic otp",
+    "pageText": "Enter one-time code sent to your phone",
+    "expect": "otp"
+  }
+]

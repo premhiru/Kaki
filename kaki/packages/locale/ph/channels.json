@@ -1,0 +1,7 @@
+{
+  "locale": "ph",
+  "priority": ["messenger", "viber", "whatsapp", "telegram"],
+  "languages": ["fil", "en"],
+  "dataTools": ["ph-public-data", "regional-holidays", "currency-remittance"],
+  "fixtureModeAvailable": true
+}

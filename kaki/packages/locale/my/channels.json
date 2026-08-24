@@ -1,0 +1,7 @@
+{
+  "locale": "my",
+  "priority": ["whatsapp", "telegram", "wechat"],
+  "languages": ["ms", "en", "zh", "ta"],
+  "dataTools": ["my-public-data", "regional-holidays", "currency-remittance"],
+  "fixtureModeAvailable": true
+}

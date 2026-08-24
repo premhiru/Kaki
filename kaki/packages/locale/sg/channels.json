@@ -1,0 +1,7 @@
+{
+  "locale": "sg",
+  "priority": ["whatsapp", "telegram", "webchat"],
+  "languages": ["en", "singlish", "zh", "ms", "ta"],
+  "dataTools": ["sg-public-data", "regional-holidays", "currency-remittance"],
+  "fixtureModeAvailable": true
+}

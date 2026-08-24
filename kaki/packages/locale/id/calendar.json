@@ -1,0 +1,42 @@
+{
+  "locale": "id",
+  "timezone": "Asia/Jakarta",
+  "events": [
+    {
+      "id": "id-holiday-1",
+      "name": "Hari Kemerdekaan",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "id-holiday-2",
+      "name": "Idul Fitri",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "id-holiday-3",
+      "name": "Nyepi",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "id-holiday-4",
+      "name": "Waisak",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "id-mudik",
+      "name": "Lebaran mudik period",
+      "type": "cultural",
+      "rule": "Refresh from national transport guidance"
+    },
+    {
+      "id": "id-ramadan",
+      "name": "Ramadan timings",
+      "type": "religious",
+      "rule": "Refresh by city"
+    }
+  ]
+}

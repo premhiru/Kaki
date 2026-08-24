@@ -1,0 +1,17 @@
+{
+  "skillId": "sg.carousell-buy-sell",
+  "input": {
+    "request": "fixture request for Carousell buying and selling",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "message.external",
+    "evidence": ["redacted-trace", "final-step-summary"]
+  }
+}

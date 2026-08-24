@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kaki Companion</string>
+    <string name="accessibility_description">Lets your self-hosted Kaki phone node inspect and control this dedicated assistant device.</string>
+</resources>

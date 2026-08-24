@@ -1,0 +1,36 @@
+{
+  "locale": "th",
+  "timezone": "Asia/Bangkok",
+  "events": [
+    {
+      "id": "th-holiday-1",
+      "name": "Songkran",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "th-holiday-2",
+      "name": "Visakha Bucha",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "th-holiday-3",
+      "name": "Constitution Day",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "th-holiday-4",
+      "name": "King's Birthday",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "th-buddhist-days",
+      "name": "Buddhist holy and alcohol-ban days",
+      "type": "religious",
+      "rule": "Refresh annually from Thai authorities"
+    }
+  ]
+}

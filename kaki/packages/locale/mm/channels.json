@@ -1,0 +1,7 @@
+{
+  "locale": "mm",
+  "priority": ["viber", "telegram"],
+  "languages": ["my"],
+  "dataTools": ["mm-public-data", "regional-holidays", "currency-remittance"],
+  "fixtureModeAvailable": true
+}

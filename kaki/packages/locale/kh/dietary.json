@@ -1,0 +1,6 @@
+{
+  "locale": "kh",
+  "neverInfer": true,
+  "flags": ["halal", "vegetarian", "vegan", "no-pork", "no-beef", "allergy"],
+  "localTerms": ["ហាឡាល់", "បួស"]
+}

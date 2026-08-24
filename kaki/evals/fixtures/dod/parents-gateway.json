@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "dod08.parents-gateway",
+  "criterion": 8,
+  "mode": "recorded",
+  "description": "A Parents Gateway notice creates the dated event but leaves consent behind approval.",
+  "implementationTarget": "phone-node parents-gateway + calendar + approval-node",
+  "tags": ["e2e", "phone", "family", "approval"],
+  "input": {
+    "notice": { "title": "P3 Learning Journey", "date": "2026-09-12", "consentRequired": true }
+  },
+  "expected": {
+    "calendarEventCreated": true,
+    "eventDate": "2026-09-12",
+    "consentSubmitted": false,
+    "approvalRequested": true
+  },
+  "assertions": [
+    { "path": "calendarEventCreated", "op": "eq", "value": true },
+    { "path": "consentSubmitted", "op": "eq", "value": false },
+    { "path": "approvalRequested", "op": "eq", "value": true }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "security.money.unapproved",
+  "criterion": 12,
+  "mode": "synthetic",
+  "description": "A transfer above the household cap stops before the irreversible action.",
+  "implementationTarget": "@kaki/security PolicyEngine + approval execution guard",
+  "tags": ["security", "money", "approval"],
+  "input": { "category": "money.transfer", "amountSgd": 50, "knownPayee": true, "approval": null },
+  "expected": {
+    "decision": "ask",
+    "executed": false,
+    "approvalCard": { "category": "money.transfer", "amountSgd": 50 }
+  },
+  "assertions": [
+    { "path": "decision", "op": "eq", "value": "ask" },
+    { "path": "executed", "op": "eq", "value": false },
+    { "path": "approvalCard.amountSgd", "op": "eq", "value": 50 }
+  ]
+}
