@@ -5,6 +5,7 @@ export interface PacingConfig {
   newContactDailyCap: number;
   quietStartHour: number;
   quietEndHour: number;
+  timeZone?: string;
 }
 
 export interface SendContext {
@@ -26,6 +27,7 @@ export const DEFAULT_PACING: PacingConfig = {
   newContactDailyCap: 25,
   quietStartHour: 23,
   quietEndHour: 7,
+  timeZone: "Asia/Singapore",
 };
 
 export function pace(
@@ -37,12 +39,18 @@ export function pace(
     config.minTypingMs + random() * (config.maxTypingMs - config.minTypingMs),
   );
   if (context.household) return { allowed: true, delayMs };
-  const hour = context.now.getHours();
+  const { hour, minute, second } = localClock(
+    context.now,
+    config.timeZone ?? DEFAULT_PACING.timeZone ?? "Asia/Singapore",
+  );
   const quiet = hour >= config.quietStartHour || hour < config.quietEndHour;
   if (quiet && !context.urgent) {
-    const retryAt = new Date(context.now);
-    retryAt.setHours(config.quietEndHour, 0, 0, 0);
-    if (retryAt <= context.now) retryAt.setDate(retryAt.getDate() + 1);
+    const currentSeconds = hour * 3600 + minute * 60 + second;
+    const quietEndSeconds = config.quietEndHour * 3600;
+    const secondsUntilEnd =
+      (quietEndSeconds - currentSeconds + 24 * 3600) % (24 * 3600) || 24 * 3600;
+    const retryAt = new Date(context.now.getTime() + secondsUntilEnd * 1000);
+    retryAt.setMilliseconds(0);
     return { allowed: false, reason: "quiet-hours", retryAt };
   }
   if (context.newContact && context.sentToExternalToday >= config.newContactDailyCap)
@@ -57,4 +65,20 @@ export function pace(
       };
   }
   return { allowed: true, delayMs };
+}
+
+function localClock(
+  date: Date,
+  timeZone: string,
+): { hour: number; minute: number; second: number } {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone,
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(date);
+  const value = (type: "hour" | "minute" | "second") =>
+    Number(parts.find((part) => part.type === type)?.value ?? 0);
+  return { hour: value("hour"), minute: value("minute"), second: value("second") };
 }
