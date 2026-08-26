@@ -329,6 +329,10 @@ describe("Kaki host-backed owner graph", () => {
       expect.objectContaining({ id: "learned", source: "learned" }),
       expect.objectContaining({ id: "phone", source: "phone" }),
     ]);
+    await expect(owners.skills.list(signal)).resolves.toHaveLength(3);
+    expect(
+      fixture.gatewayRequest.mock.calls.filter(([method]) => method === "skills.status"),
+    ).toHaveLength(1);
     await expect(owners.skills.saveDraft("draft", "instructions", signal)).resolves.toMatchObject({
       ok: true,
     });

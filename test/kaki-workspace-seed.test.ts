@@ -392,12 +392,14 @@ describe("Kaki launcher ownership", () => {
   it("makes deep status fail when an authenticated Kaki owner probe is unavailable", async () => {
     const stdout = memoryWriter();
     const stderr = memoryWriter();
+    const calls: string[][] = [];
     const runOpenClaw = async (args: string[]) => {
-      if (args[0] === "status") {
+      calls.push(args);
+      if (args[0] === "gateway") {
         return {
           code: 0,
           signal: null,
-          stdout: JSON.stringify({ ok: true, channels: { whatsapp: "linked" } }),
+          stdout: JSON.stringify({ rpc: { ok: true } }),
           stderr: "",
         };
       }
@@ -426,6 +428,7 @@ describe("Kaki launcher ownership", () => {
     });
 
     expect(result.code).toBe(1);
+    expect(calls[0]).toEqual(["gateway", "status", "--deep", "--require-rpc", "--json"]);
     const report = JSON.parse(stdout.text());
     expect(report.openclaw.ok).toBe(true);
     expect(report.kaki).toMatchObject({

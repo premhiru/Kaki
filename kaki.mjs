@@ -535,7 +535,14 @@ export async function runKakiLauncher(options) {
 
   if (isDeepStatusInvocation(args)) {
     const json = args.includes("--json");
-    const upstream = await runOpenClaw(args, { capture: json });
+    const upstreamArgs = [
+      "gateway",
+      "status",
+      "--deep",
+      "--require-rpc",
+      ...(json ? ["--json"] : []),
+    ];
+    const upstream = await runOpenClaw(upstreamArgs, { capture: json });
     if (!json && upstream.signal) {
       return upstream;
     }
@@ -547,7 +554,8 @@ export async function runKakiLauncher(options) {
     if (json) {
       let openclaw;
       try {
-        openclaw = JSON.parse(upstream.stdout);
+        const status = JSON.parse(upstream.stdout);
+        openclaw = { ...status, ok: upstream.code === 0 };
       } catch {
         openclaw = { ok: false, reason: "OpenClaw status did not return valid JSON." };
       }

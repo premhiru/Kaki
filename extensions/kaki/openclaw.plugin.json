@@ -21,6 +21,9 @@
       "cost"
     ]
   },
+  "contracts": {
+    "tools": ["kaki_skill"]
+  },
   "commandAliases": [
     { "name": "deny", "kind": "runtime-slash" },
     { "name": "relink-wa", "kind": "runtime-slash" },

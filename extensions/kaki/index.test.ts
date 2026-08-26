@@ -52,6 +52,7 @@ describe("Kaki plugin entry", () => {
     expect(manifest.enabledByDefault).toBe(false);
     expect(manifest.activation.onStartup).toBe(false);
     expect(manifest.activation.onConfigPaths).toEqual(["plugins.entries.kaki"]);
+    expect(manifest.contracts.tools).toEqual(["kaki_skill"]);
     expect(manifest.configSchema.additionalProperties).toBe(false);
     const fullConfigBranch = manifest.configSchema.oneOf.find(
       (branch): branch is { required: string[] } => "required" in branch,

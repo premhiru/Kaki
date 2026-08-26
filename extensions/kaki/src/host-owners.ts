@@ -148,6 +148,38 @@ function parseCronRows(value: unknown): readonly Record<string, unknown>[] {
   if (!isRecord(value) || !Array.isArray(value.jobs)) throw new Error("cron-list-invalid");
   return value.jobs.filter(isRecord).slice(0, 200);
 }
+type KakiSkillSummary = {
+  id: string;
+  source: "learned" | "maintained" | "phone";
+  instructions: string;
+};
+function parseSkillSummaries(value: unknown): readonly KakiSkillSummary[] {
+  if (!isRecord(value) || !Array.isArray(value.skills)) throw new Error("skills-status-invalid");
+  return value.skills
+    .filter(isRecord)
+    .slice(0, 200)
+    .map((skill) => {
+      const id =
+        typeof skill.name === "string"
+          ? skill.name
+          : typeof skill.skillKey === "string"
+            ? skill.skillKey
+            : "unknown";
+      const sourceText = typeof skill.source === "string" ? skill.source.toLowerCase() : "";
+      return {
+        id,
+        source: sourceText.includes("learned")
+          ? "learned"
+          : sourceText.includes("phone")
+            ? "phone"
+            : "maintained",
+        instructions:
+          typeof skill.description === "string"
+            ? skill.description
+            : "No description provided by the installed skill.",
+      };
+    });
+}
 function nextRun(row: Record<string, unknown>): string {
   const state = isRecord(row.state) ? row.state : undefined;
   return typeof state?.nextRunAtMs === "number" && Number.isFinite(state.nextRunAtMs)
@@ -276,6 +308,20 @@ export async function createHostBackedKakiOwners(
     maxEntries: MONITORS.length,
     overflowPolicy: "reject-new",
   });
+  let skillSummaries: Promise<readonly KakiSkillSummary[]> | undefined;
+  const listSkillSummaries = () => {
+    if (skillSummaries) return skillSummaries;
+    // Skill metadata is process-stable and a 90-skill cold scan can exceed the HTTP owner deadline.
+    // Keep the lifecycle-owned scan warm so a retry reads the same prepared registry snapshot.
+    const pending = runtime.gateway
+      .request<unknown>("skills.status", {}, { timeoutMs: 30_000, scopes: ["operator.read"] })
+      .then(parseSkillSummaries);
+    skillSummaries = pending;
+    void pending.catch(() => {
+      if (skillSummaries === pending) skillSummaries = undefined;
+    });
+    return pending;
+  };
 
   return {
     system: {
@@ -453,37 +499,7 @@ export async function createHostBackedKakiOwners(
     skills: {
       async list(signal) {
         abort(signal);
-        const result = await runtime.gateway.request<unknown>(
-          "skills.status",
-          {},
-          { timeoutMs: 10_000, scopes: ["operator.read"] },
-        );
-        if (!isRecord(result) || !Array.isArray(result.skills))
-          throw new Error("skills-status-invalid");
-        return result.skills
-          .filter(isRecord)
-          .slice(0, 200)
-          .map((skill) => {
-            const id =
-              typeof skill.name === "string"
-                ? skill.name
-                : typeof skill.skillKey === "string"
-                  ? skill.skillKey
-                  : "unknown";
-            const sourceText = typeof skill.source === "string" ? skill.source.toLowerCase() : "";
-            return {
-              id,
-              source: sourceText.includes("learned")
-                ? "learned"
-                : sourceText.includes("phone")
-                  ? "phone"
-                  : "maintained",
-              instructions:
-                typeof skill.description === "string"
-                  ? skill.description
-                  : "No description provided by the installed skill.",
-            };
-          });
+        return await listSkillSummaries();
       },
       async saveDraft(id, instructions, signal) {
         abort(signal);
