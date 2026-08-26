@@ -206,8 +206,12 @@ jobs:
       - name: Check Kaki container definition
         run: docker build --check --build-arg OPENCLAW_EXTENSIONS=kaki .
 
-      - name: Build Kaki packages
-        run: pnpm --dir kaki build
+      - name: Build OpenClaw runtime and Kaki packages
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
+        run: |
+          pnpm build:ci-artifacts
+          pnpm --dir kaki build
 
       - name: Check formatting
         run: pnpm --dir kaki format:check
