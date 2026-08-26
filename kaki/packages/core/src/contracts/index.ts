@@ -313,7 +313,11 @@ export interface ApprovalGrant {
 }
 
 export type ExecutionStepOutcome =
-  "success" | "need_approval" | "blocked" | "failure" | "cancelled";
+  | "success"
+  | "need_approval"
+  | "blocked"
+  | "failure"
+  | "cancelled";
 
 export interface ExecutionTraceStep {
   readonly id: string;
