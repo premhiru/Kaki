@@ -3,6 +3,7 @@ import {
   ApprovalEngine,
   MemoryApprovalLedger,
   buildHandoff,
+  buildPaymentHandoff,
   detectHandoff,
   hashMaterialFacts,
   renderTelegram,
@@ -16,18 +17,22 @@ describe("approval cards", () => {
     const card = await engine.create({
       taskId: "t1",
       householdId: "h1",
+      requestedByPersonId: "wei",
       title: "Pay Ah Seng",
       summary: "Aircon service",
       category: "money.purchase",
-      amount: { currency: "SGD", value: 120 },
+      amount: { currency: "SGD", minorUnits: 12000 },
       choices: [
         { id: "1", label: "Approve", action: "approve" },
         { id: "2", label: "Deny", action: "deny" },
       ],
-      policy: { action: "ask", reason: "over cap", ruleId: "money-ask" },
     });
     expect(renderWhatsApp(card)).toContain("1. Approve");
-    const response = await engine.respond(card.id, "1");
+    const response = await engine.respond(card.id, {
+      choiceId: "1",
+      personId: "wei",
+      factsHash: card.factsHash,
+    });
     expect(response.status).toBe("approved");
     expect(response.amount).toEqual({ currency: "SGD", minorUnits: 12000 });
     expect(response.grant?.singleUse).toBe(true);
@@ -82,6 +87,74 @@ describe("approval cards", () => {
     ).rejects.toThrow("replayed");
   });
 
+  it("records and consumes a policy-authorized grant below the household cap", async () => {
+    const ledger = new MemoryApprovalLedger();
+    let sequence = 0;
+    const engine = new ApprovalEngine(ledger, { id: () => `auto-${++sequence}` });
+    const authorization = await engine.authorize({
+      taskId: "buy",
+      stepId: "purchase",
+      householdId: "home",
+      requestedByPersonId: "wei",
+      title: "Buy groceries",
+      summary: "Known grocer",
+      category: "money.purchase",
+      knownPayee: true,
+      amount: { currency: "SGD", minorUnits: 1200 },
+      materialFacts: { payee: "grocer-1" },
+    });
+
+    expect(authorization.status).toBe("authorized");
+    if (authorization.status !== "authorized") throw new Error("expected automatic grant");
+    expect(authorization.card).toMatchObject({
+      status: "approved",
+      policy: { action: "auto", reasonCode: "money_known_under_cap" },
+    });
+    expect(await ledger.pending("home")).toHaveLength(0);
+    await expect(
+      engine.consumeGrant(authorization.grant.id, {
+        householdId: "home",
+        taskId: "buy",
+        stepId: "purchase",
+        materialFacts: authorization.card.materialFacts,
+      }),
+    ).resolves.toEqual(authorization.grant);
+    expect((await ledger.audit(authorization.card.id)).map((event) => event.action)).toEqual([
+      "created",
+      "approved",
+      "grant_consumed",
+    ]);
+  });
+
+  it("authorizes the household actor and resolves provider-native replies at the engine", async () => {
+    const ledger = new MemoryApprovalLedger();
+    const engine = new ApprovalEngine(ledger, {
+      id: () => "card-1",
+      authorizeDecision: ({ card, personId }) =>
+        card.householdId === "home" && personId === "household-owner",
+    });
+    const card = await engine.create({
+      taskId: "task",
+      householdId: "home",
+      requestedByPersonId: "household-owner",
+      title: "Book ride",
+      summary: "S$18.20 to Raffles Place",
+      category: "booking",
+    });
+    await expect(
+      engine.respondFromTelegramCallback(
+        renderTelegram(card).inlineKeyboard[0]?.[0]?.callbackData ?? "",
+        "stranger",
+      ),
+    ).rejects.toThrow("actor-unauthorized");
+    await expect(
+      engine.respondFromWhatsAppReply(card.id, "1", "household-owner"),
+    ).resolves.toMatchObject({ status: "approved", decidedByPersonId: "household-owner" });
+    expect((await ledger.audit(card.id)).map((event) => event.action)).toContain(
+      "unauthorized_rejected",
+    );
+  });
+
   it("rejects mutation and decision replay and audits both", async () => {
     const ledger = new MemoryApprovalLedger();
     const engine = new ApprovalEngine(ledger);
@@ -114,12 +187,13 @@ describe("approval cards", () => {
 
   it("repings once, expires, and renders Telegram/UI models", async () => {
     const ledger = new MemoryApprovalLedger();
-    const engine = new ApprovalEngine(ledger, 1000);
+    const engine = new ApprovalEngine(ledger, { defaultExpiryMs: 1000 });
     const start = new Date("2026-08-24T00:00:00Z");
     const card = await engine.create(
       {
         taskId: "task",
         householdId: "home",
+        requestedByPersonId: "wei",
         title: "Book",
         summary: "Clinic",
         category: "booking",
@@ -133,5 +207,16 @@ describe("approval cards", () => {
       "not-allowed",
     );
     expect(await engine.expireDue(new Date(start.getTime() + 1001))).toBe(1);
+  });
+
+  it("keeps every Southeast Asian QR rail behind approval and bank confirmation", () => {
+    for (const rail of ["paynow", "duitnow", "promptpay", "qris", "vietqr", "qrph"] as const) {
+      expect(buildPaymentHandoff(rail)).toMatchObject({
+        rail,
+        requiresApproval: true,
+        requiresBankConfirmation: true,
+        receiptRequired: true,
+      });
+    }
   });
 });

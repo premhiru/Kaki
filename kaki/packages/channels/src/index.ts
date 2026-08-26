@@ -1,5 +1,6 @@
 export * from "./boundary.js";
 export * from "./directory.js";
+export * from "./local-qr.js";
 export * from "./session-guard.js";
 export * from "./telegram.js";
 export * from "./types.js";

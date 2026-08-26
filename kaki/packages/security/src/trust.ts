@@ -39,3 +39,28 @@ export function enforceTrustBoundary(
   if (!hasIndependentUserIntent || assessment.injectionDetected)
     throw new Error(`untrusted-content-side-effect-denied:${assessment.source}`);
 }
+
+export interface TrustedLocalQrSurface {
+  readonly transport: "loopback" | "tailnet";
+  readonly authenticated: boolean;
+  readonly audience: "local-terminal" | "operator-control-ui";
+}
+
+/** Raw channel-link QR data is credential material and may only reach a trusted local operator. */
+export function assertTrustedLocalQrSurface(
+  surface: unknown,
+): asserts surface is TrustedLocalQrSurface {
+  if (
+    typeof surface !== "object" ||
+    surface === null ||
+    Array.isArray(surface) ||
+    !("authenticated" in surface) ||
+    surface.authenticated !== true ||
+    !("transport" in surface) ||
+    (surface.transport !== "loopback" && surface.transport !== "tailnet") ||
+    !("audience" in surface) ||
+    (surface.audience !== "local-terminal" && surface.audience !== "operator-control-ui")
+  ) {
+    throw new Error("channel-link-qr-trusted-local-only");
+  }
+}

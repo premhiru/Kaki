@@ -1,6 +1,6 @@
 import {
   asArray,
-  asRecord,
+  requireApiRecord,
   CachedHttpClient,
   type CachedHttpClientOptions,
   SingaporeApiError,
@@ -36,6 +36,56 @@ export interface LtaTrainAlert {
   readonly status: number;
   readonly affectedSegments: readonly unknown[];
   readonly message: readonly unknown[];
+}
+
+export interface LtaBusRoute {
+  readonly serviceNo: string;
+  readonly operator: string;
+  readonly direction: number;
+  readonly stopSequence: number;
+  readonly busStopCode: string;
+  readonly distanceKm?: number;
+  readonly schedule: Readonly<Record<string, string>>;
+}
+
+export interface LtaCarParkAvailability {
+  readonly carParkId: string;
+  readonly area: string;
+  readonly development: string;
+  readonly location: string;
+  readonly availableLots: number;
+  readonly lotType: string;
+}
+
+export interface LtaErpRate {
+  readonly vehicleType: string;
+  readonly dayType: string;
+  readonly startTime: string;
+  readonly endTime: string;
+  readonly zoneId: string;
+  readonly chargeAmount: number;
+}
+
+export interface LtaCoordinate {
+  readonly latitude: number;
+  readonly longitude: number;
+}
+
+export interface LtaTrafficIncident extends LtaCoordinate {
+  readonly type: string;
+  readonly message: string;
+}
+
+export interface LtaEstimatedTravelTime {
+  readonly name: string;
+  readonly direction: string;
+  readonly farEndPoint: string;
+  readonly estimatedTimeMinutes: number;
+}
+
+export interface LtaTrafficImage extends LtaCoordinate {
+  readonly cameraId: string;
+  readonly imageUrl: string;
 }
 
 type LtaDataset =
@@ -85,7 +135,7 @@ export class LtaDatamallClient extends CachedHttpClient {
     if (serviceNo) url.searchParams.set("ServiceNo", serviceNo);
     const body = await this.get(url, 15_000, signal);
     return asArray(body.Services, "LTA Services").map((value) => {
-      const service = asRecord(value, "LTA service");
+      const service = requireApiRecord(value, "LTA service");
       const buses = [service.NextBus, service.NextBus2, service.NextBus3]
         .filter((bus): bus is Record<string, unknown> =>
           Boolean(
@@ -123,9 +173,82 @@ export class LtaDatamallClient extends CachedHttpClient {
     }));
   }
 
+  async busRoutes(skip = 0, signal?: AbortSignal): Promise<readonly LtaBusRoute[]> {
+    const rows = await this.dataset("BusRoutes", skip, 24 * 60 * 60_000, signal);
+    return rows.map((row) => ({
+      serviceNo: string(row, "ServiceNo"),
+      operator: string(row, "Operator"),
+      direction: number(row, "Direction"),
+      stopSequence: number(row, "StopSequence"),
+      busStopCode: string(row, "BusStopCode"),
+      ...(Number.isFinite(Number(row.Distance)) ? { distanceKm: Number(row.Distance) } : {}),
+      schedule: Object.fromEntries(
+        Object.entries(row).flatMap(([key, value]) =>
+          /^(?:WD|SAT|SUN)_/u.test(key) && typeof value === "string" ? [[key, value]] : [],
+        ),
+      ),
+    }));
+  }
+
+  async carParkAvailability(signal?: AbortSignal): Promise<readonly LtaCarParkAvailability[]> {
+    return (await this.dataset("CarParkAvailabilityv2", 0, 60_000, signal)).map((row) => ({
+      carParkId: string(row, "CarParkID"),
+      area: string(row, "Area"),
+      development: string(row, "Development"),
+      location: string(row, "Location"),
+      availableLots: number(row, "AvailableLots"),
+      lotType: string(row, "LotType"),
+    }));
+  }
+
+  async erpRates(signal?: AbortSignal): Promise<readonly LtaErpRate[]> {
+    return (await this.dataset("ERPRates", 0, 15 * 60_000, signal)).map((row) => ({
+      vehicleType: string(row, "VehicleType"),
+      dayType: string(row, "DayType"),
+      startTime: string(row, "StartTime"),
+      endTime: string(row, "EndTime"),
+      zoneId: string(row, "ZoneID"),
+      chargeAmount: number(row, "ChargeAmount"),
+    }));
+  }
+
+  async taxiAvailability(signal?: AbortSignal): Promise<readonly LtaCoordinate[]> {
+    return (await this.dataset("Taxi-Availability", 0, 30_000, signal)).map((row) => ({
+      latitude: number(row, "Latitude"),
+      longitude: number(row, "Longitude"),
+    }));
+  }
+
+  async trafficIncidents(signal?: AbortSignal): Promise<readonly LtaTrafficIncident[]> {
+    return (await this.dataset("TrafficIncidents", 0, 30_000, signal)).map((row) => ({
+      type: string(row, "Type"),
+      latitude: number(row, "Latitude"),
+      longitude: number(row, "Longitude"),
+      message: string(row, "Message"),
+    }));
+  }
+
+  async estimatedTravelTimes(signal?: AbortSignal): Promise<readonly LtaEstimatedTravelTime[]> {
+    return (await this.dataset("EstTravelTimes", 0, 60_000, signal)).map((row) => ({
+      name: string(row, "Name"),
+      direction: string(row, "Direction"),
+      farEndPoint: string(row, "FarEndPoint"),
+      estimatedTimeMinutes: number(row, "EstTime"),
+    }));
+  }
+
+  async trafficImages(signal?: AbortSignal): Promise<readonly LtaTrafficImage[]> {
+    return (await this.dataset("Traffic-Imagesv2", 0, 60_000, signal)).map((row) => ({
+      cameraId: string(row, "CameraID"),
+      latitude: number(row, "Latitude"),
+      longitude: number(row, "Longitude"),
+      imageUrl: string(row, "ImageLink"),
+    }));
+  }
+
   async trainServiceAlerts(signal?: AbortSignal): Promise<LtaTrainAlert> {
     const body = await this.get(this.url("TrainServiceAlerts"), 30_000, signal);
-    const value = asRecord(body.value, "LTA train alert value");
+    const value = requireApiRecord(body.value, "LTA train alert value");
     return {
       status: Number(value.Status),
       affectedSegments: Array.isArray(value.AffectedSegments) ? value.AffectedSegments : [],
@@ -145,7 +268,7 @@ export class LtaDatamallClient extends CachedHttpClient {
     url.searchParams.set("$skip", String(skip));
     const body = await this.get(url, ttlMs, signal);
     return asArray(body.value, `LTA ${name} value`).map((item) =>
-      asRecord(item, `LTA ${name} item`),
+      requireApiRecord(item, `LTA ${name} item`),
     );
   }
 
@@ -158,7 +281,7 @@ export class LtaDatamallClient extends CachedHttpClient {
       headers: { AccountKey: this.accountKey, Accept: "application/json" },
       ttlMs,
       ...(signal ? { signal } : {}),
-      validate: (value) => asRecord(value, "LTA response"),
+      validate: (value) => requireApiRecord(value, "LTA response"),
     });
   }
 }

@@ -1,5 +1,6 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import {
+  type HouseholdDirectory,
   REACTION_EMOJI,
   type Channel,
   type ChannelName,
@@ -33,17 +34,26 @@ export interface RawWebhook {
   location?: { latitude: number; longitude: number; name?: string; address?: string };
 }
 
+export interface SignedRegionalWebhook {
+  readonly signature: string;
+  readonly body: string;
+  readonly webhook: RawWebhook;
+}
+
 export interface RegionalTransport {
-  start(onWebhook: (webhook: RawWebhook) => Promise<void>): Promise<void>;
+  start(onWebhook: (webhook: SignedRegionalWebhook) => Promise<void>): Promise<void>;
   stop(): Promise<void>;
   send(chatId: string, message: OutboundMessage): Promise<{ messageId: string }>;
   react?(chatId: string, messageId: string, emoji: string): Promise<void>;
 }
 
 export interface RegionalChannelOptions {
+  enabled: boolean;
   transport: RegionalTransport;
   onInbound: InboundHandler;
   verifyWebhook: (signature: string, body: string) => boolean;
+  directory: HouseholdDirectory;
+  onIgnored?: (input: { channel: ExtraChannelName; webhookId: string; reason: string }) => void;
 }
 
 export abstract class RegionalWebhookChannel implements Channel {
@@ -55,23 +65,36 @@ export abstract class RegionalWebhookChannel implements Channel {
   }
 
   async start(): Promise<void> {
-    await this.options.transport.start(async (webhook) =>
-      this.options.onInbound(this.normalise(webhook)),
-    );
+    if (!this.options.enabled) return;
+    await this.options.transport.start(async (envelope) => {
+      if (!this.verify(envelope.signature, envelope.body))
+        throw new Error(`${this.name}-webhook-signature-invalid`);
+      const raw = envelope.webhook;
+      const identity = this.options.directory.resolve(raw.senderId, raw.chatId);
+      if (!identity.accepted) {
+        this.options.onIgnored?.({
+          channel: this.name,
+          webhookId: raw.id,
+          reason: identity.reason ?? "unknown-sender",
+        });
+        return;
+      }
+      await this.options.onInbound(this.normalise(raw, identity.personId));
+    });
   }
 
   async stop(): Promise<void> {
     await this.options.transport.stop();
   }
 
-  normalise(webhook: RawWebhook): NormalisedInbound {
+  normalise(webhook: RawWebhook, personId?: string): NormalisedInbound {
     const image = attachment(webhook, "image", "image/jpeg");
     const audio = attachment(webhook, "audio", "audio/ogg");
     const doc = attachment(webhook, "document", "application/octet-stream");
     return {
       id: webhook.id,
       channel: this.name,
-      from: { jid: webhook.senderId },
+      from: { jid: webhook.senderId, ...(personId ? { personId } : {}) },
       chat: { id: webhook.chatId, isGroup: webhook.isGroup ?? webhook.chatId !== webhook.senderId },
       ...(webhook.text ? { text: webhook.text } : {}),
       ...(image ? { image } : {}),
@@ -113,21 +136,6 @@ export class MessengerChannel extends RegionalWebhookChannel {
 }
 export class WeChatChannel extends RegionalWebhookChannel {
   readonly name = "wechat" as const;
-}
-
-export function createFixtureTransport(): RegionalTransport & {
-  sent: Array<{ chatId: string; message: OutboundMessage }>;
-} {
-  const sent: Array<{ chatId: string; message: OutboundMessage }> = [];
-  return {
-    sent,
-    async start() {},
-    async stop() {},
-    async send(chatId, message) {
-      sent.push({ chatId, message });
-      return { messageId: `fixture:${chatId}:${sent.length}` };
-    },
-  };
 }
 
 /** LINE-compatible HMAC-SHA256 verifier. Use hex-prefixed for Meta's sha256= signature. */

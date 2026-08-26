@@ -1,9 +1,10 @@
 {
   "skillId": "sg.town-council-scc",
   "input": {
-    "request": "fixture request for Town Council S&CC",
+    "request": "Town Council S&CC: home",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "property_alias": "home"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.purchase",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["town-council-scc.source", "town-council-scc.prepare"],
+    "evidence": [
+      "browser:open:owning Town Council portal source state",
+      "browser:prepare:the S&CC status or receipt preparation"
+    ]
   }
 }

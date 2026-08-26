@@ -1,6 +1,12 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import type { CalendarEvent, LexiconFile, LocaleCode, LocalePack } from "./types.js";
+import type {
+  CalendarEvent,
+  LexiconFile,
+  LocaleChannelConfig,
+  LocaleCode,
+  LocalePack,
+} from "./types.js";
 
 export async function loadLocalePack(
   code: LocaleCode,
@@ -15,11 +21,14 @@ export async function loadLocalePack(
     ),
     readJson<Record<string, unknown>>(path.join(directory, "formats.json")),
     readJson<Record<string, unknown>>(path.join(directory, "dietary.json")),
-    readJson<Record<string, unknown>>(path.join(directory, "channels.json")),
+    readJson<LocaleChannelConfig>(path.join(directory, "channels.json")),
   ]);
   if (lexicon.locale !== code || calendar.locale !== code)
     throw new Error(`locale-pack-code-mismatch:${code}`);
   if (!Array.isArray(lexicon.entries)) throw new Error(`locale-pack-invalid-lexicon:${code}`);
+  if (channels.locale !== code) throw new Error(`locale-pack-channel-code-mismatch:${code}`);
+  if (channels.languages.length === 0 || Object.keys(channels.defaultModels).length === 0)
+    throw new Error(`locale-pack-invalid-channels:${code}`);
   return { code, persona, lexicon, calendar, formats, dietary, channels };
 }
 

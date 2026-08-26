@@ -1,9 +1,10 @@
 {
   "skillId": "sg.airline-sq",
   "input": {
-    "request": "fixture request for Singapore Airlines",
+    "request": "Singapore Airlines: SIN to BKK 2026-11-05 two adults",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "flight_request": "SIN to BKK 2026-11-05 two adults"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "booking",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["airline-sq.source", "airline-sq.prepare"],
+    "evidence": [
+      "browser:open:Singapore Airlines source state",
+      "browser:prepare:the SQ booking reference preparation"
+    ]
   }
 }

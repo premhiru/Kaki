@@ -305,3 +305,5 @@ function delay(milliseconds: number): Promise<void> {
 export * from "./managed.js";
 export * from "./artifacts.js";
 export * from "./surface.js";
+export * from "./playwright-adapter.js";
+export * from "./openclaw-adapter.js";

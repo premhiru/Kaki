@@ -1,9 +1,10 @@
 {
   "skillId": "sg.activesg",
   "input": {
-    "request": "fixture request for ActiveSG",
+    "request": "ActiveSG: badminton Bishan Saturday 10am",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "sport_facility_slot": "badminton Bishan Saturday 10am"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "booking",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["activesg.source", "activesg.prepare"],
+    "evidence": [
+      "browser:open:MyActiveSG+ source state",
+      "browser:prepare:the facility booking reference preparation"
+    ]
   }
 }

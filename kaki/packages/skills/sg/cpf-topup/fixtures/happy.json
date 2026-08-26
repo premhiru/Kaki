@@ -1,9 +1,10 @@
 {
   "skillId": "sg.cpf-topup",
   "input": {
-    "request": "fixture request for CPF top-up",
+    "request": "CPF top-up: 250.00 SGD",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "topup_amount": "250.00 SGD"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.transfer",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["cpf-topup.source", "cpf-topup.prepare"],
+    "evidence": [
+      "browser:open:CPF e-Cashier source state",
+      "browser:prepare:the CPF receipt and transaction reference preparation"
+    ]
   }
 }

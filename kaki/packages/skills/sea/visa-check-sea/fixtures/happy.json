@@ -1,9 +1,10 @@
 {
   "skillId": "sea.visa-check-sea",
   "input": {
-    "request": "fixture request for Southeast Asia visa check",
+    "request": "Southeast Asia visa check: Singapore passport to Vietnam 2026-12-01 for 9 days",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "passport_route_dates": "Singapore passport to Vietnam 2026-12-01 for 9 days"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "data.share",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["visa-check-sea.source", "visa-check-sea.prepare"],
+    "evidence": [
+      "browser:open:official immigration and foreign ministry sites source state",
+      "browser:prepare:a cited visa and entry checklist preparation"
+    ]
   }
 }

@@ -1,9 +1,10 @@
 {
   "skillId": "sg.vendor-outreach",
   "input": {
-    "request": "fixture request for Vendor outreach",
+    "request": "Vendor outreach: service 3 aircons Saturday under 150 SGD",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "job_date_budget": "service 3 aircons Saturday under 150 SGD"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "message.external",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["vendor-outreach.source", "vendor-outreach.prepare"],
+    "evidence": [
+      "browser:open:Maps, Carousell, Facebook, and vendor channels source state",
+      "browser:prepare:a comparable quote table and booking status preparation"
+    ]
   }
 }

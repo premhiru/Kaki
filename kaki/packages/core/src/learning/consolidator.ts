@@ -11,8 +11,10 @@ export class NightlyConsolidator {
     slugFor: (trace: LearningTrace) => string,
   ): ConsolidationResult {
     const groups = new Map<string, LearningTrace[]>();
-    for (const trace of traces)
-      groups.set(slugFor(trace), [...(groups.get(slugFor(trace)) ?? []), trace]);
+    for (const trace of traces) {
+      const slug = slugFor(trace);
+      groups.set(slug, [...(groups.get(slug) ?? []), trace]);
+    }
     const skills: LearnedSkill[] = [];
     for (const [slug, grouped] of [...groups.entries()].sort(([a], [b]) => a.localeCompare(b))) {
       const ordered = grouped.toSorted(

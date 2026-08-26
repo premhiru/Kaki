@@ -1,5 +1,17 @@
+import { createHash } from "node:crypto";
 import { countryForRail, type SeaCountry } from "./profiles.js";
 import type { QrPayment } from "./qr.js";
+
+export interface CrossBorderCapabilityEvidence {
+  readonly bankId: string;
+  readonly checkedAt: string;
+  readonly sourceCountry: "sg" | SeaCountry;
+  readonly destinationCountry: SeaCountry;
+  readonly rail: QrPayment["rail"];
+  readonly supported: boolean;
+  readonly fxRate?: number;
+  readonly feeMinor?: number;
+}
 
 export interface CrossBorderApprovalHandoff {
   readonly action: "bank-handoff" | "regenerate-qr";
@@ -14,24 +26,43 @@ export interface CrossBorderApprovalHandoff {
     readonly merchant?: string;
     readonly reference?: string;
     readonly payloadHash: string;
+    readonly bankId?: string;
+    readonly capabilityCheckedAt?: string;
+    readonly fxRate?: number;
+    readonly feeMinor?: number;
   };
   readonly message: string;
-}
-function fnv1a(value: string): string {
-  let hash = 0x811c9dc5;
-  for (const character of value) {
-    hash ^= character.charCodeAt(0);
-    hash = Math.imul(hash, 0x01000193);
-  }
-  return (hash >>> 0).toString(16).padStart(8, "0");
 }
 export function crossBorderHandoff(
   payment: QrPayment,
   sourceCountry: "sg" | SeaCountry,
-  supportedByBank = true,
+  evidence?: CrossBorderCapabilityEvidence,
+  now = Date.now(),
 ): CrossBorderApprovalHandoff {
   if (!payment.crcValid) throw new Error("cross-border-qr-crc-invalid");
   const destinationCountry = countryForRail(payment.rail);
+  const evidenceTime = evidence ? Date.parse(evidence.checkedAt) : Number.NaN;
+  if (
+    evidence &&
+    (!/^[A-Za-z0-9._-]{2,64}$/u.test(evidence.bankId) ||
+      (evidence.fxRate !== undefined &&
+        (!Number.isFinite(evidence.fxRate) || evidence.fxRate <= 0)) ||
+      (evidence.feeMinor !== undefined &&
+        (!Number.isSafeInteger(evidence.feeMinor) || evidence.feeMinor < 0)))
+  ) {
+    throw new Error("cross-border-capability-evidence-invalid");
+  }
+  const evidenceMatches = Boolean(
+    evidence &&
+    evidence.sourceCountry === sourceCountry &&
+    evidence.destinationCountry === destinationCountry &&
+    evidence.rail === payment.rail &&
+    Number.isFinite(evidenceTime) &&
+    evidenceTime <= now &&
+    now - evidenceTime <= 5 * 60_000,
+  );
+  if (evidence && !evidenceMatches) throw new Error("cross-border-capability-evidence-invalid");
+  const supportedByBank = evidenceMatches && evidence?.supported === true;
   const amountLabel =
     payment.amount === undefined
       ? "merchant-entered amount"
@@ -48,7 +79,15 @@ export function crossBorderHandoff(
       ...(payment.amountMinor !== undefined ? { amountMinor: payment.amountMinor } : {}),
       ...(payment.merchant ? { merchant: payment.merchant } : {}),
       ...(payment.reference ? { reference: payment.reference } : {}),
-      payloadHash: fnv1a(payment.raw),
+      payloadHash: createHash("sha256").update(payment.raw, "utf8").digest("hex"),
+      ...(evidenceMatches && evidence
+        ? {
+            bankId: evidence.bankId,
+            capabilityCheckedAt: evidence.checkedAt,
+            ...(evidence.fxRate !== undefined ? { fxRate: evidence.fxRate } : {}),
+            ...(evidence.feeMinor !== undefined ? { feeMinor: evidence.feeMinor } : {}),
+          }
+        : {}),
     },
     message: supportedByBank
       ? `Approve ${amountLabel} to ${payment.merchant ?? destinationCountry.toUpperCase() + " recipient"} in your ${sourceCountry.toUpperCase()} bank app.`

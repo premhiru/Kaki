@@ -1,9 +1,10 @@
 {
   "skillId": "sg.mom-helper-levy-wp",
   "input": {
-    "request": "fixture request for MOM helper levy and work permit",
+    "request": "MOM helper levy and work permit: levy bill for helper alias",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "helper_service": "levy bill for helper alias"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "gov.singpass",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["mom-helper-levy-wp.source", "mom-helper-levy-wp.prepare"],
+    "evidence": [
+      "browser:open:MOM FDW eServices source state",
+      "browser:prepare:the MOM status or submission reference preparation"
+    ]
   }
 }

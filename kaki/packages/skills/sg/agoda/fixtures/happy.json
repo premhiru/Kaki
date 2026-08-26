@@ -1,9 +1,10 @@
 {
   "skillId": "sg.agoda",
   "input": {
-    "request": "fixture request for Agoda",
+    "request": "Agoda: Bangkok 2026-12-02 to 2026-12-05 under 450 SGD",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "stay_request": "Bangkok 2026-12-02 to 2026-12-05 under 450 SGD"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "booking",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["agoda.source", "agoda.prepare"],
+    "evidence": [
+      "browser:open:Agoda source state",
+      "browser:prepare:the accommodation confirmation preparation"
+    ]
   }
 }

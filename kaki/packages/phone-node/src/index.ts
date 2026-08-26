@@ -42,22 +42,31 @@ export class PhoneAgent {
     private readonly stepBudget = 40,
   ) {}
 
-  async execute(taskId: string, goal: string): Promise<VisionDecision> {
+  async execute(
+    taskId: string,
+    goal: string,
+    assertCurrent: () => void = () => {},
+  ): Promise<VisionDecision> {
     const history: VisionDecision[] = [];
     let lastSignature = "";
     let previousScreenshot: Uint8Array | undefined;
     let stalls = 0;
     for (let step = 0; step < this.stepBudget; step += 1) {
+      assertCurrent();
       const screenshot = await this.driver.screenshot();
+      assertCurrent();
       const accessibilityTree = await this.driver.dumpUi();
+      assertCurrent();
       const snapshot: PhoneSnapshot = {
         screenshot,
         capturedAt: new Date().toISOString(),
         ...(accessibilityTree ? { accessibilityTree } : {}),
       };
       const decision = await this.planner.decide({ snapshot, goal, history });
-      validateDecision(decision);
+      assertCurrent();
+      validateDecision(decision, accessibilityTree);
       await this.traces.append(taskId, snapshot, decision);
+      assertCurrent();
       history.push(decision);
       if (["done", "need_approval", "fail"].includes(decision.action.type)) return decision;
       const signature = `${decision.observation}:${decision.action.type}:${String(decision.action.target)}`;
@@ -69,8 +78,15 @@ export class PhoneAgent {
       previousScreenshot = screenshot;
       if (stalls >= 2) {
         await this.driver.act({ type: "key", target: "BACK" });
+        assertCurrent();
+        const lastLaunch = history.findLast((item) => item.action.type === "launch");
+        if (lastLaunch) await this.driver.act(lastLaunch.action);
+        assertCurrent();
         stalls = 0;
-      } else await this.driver.act(decision.action);
+      } else {
+        await this.driver.act(decision.action);
+        assertCurrent();
+      }
     }
     return {
       observation: "Step budget exhausted",
@@ -81,11 +97,11 @@ export class PhoneAgent {
   }
 }
 
-export function validateDecision(decision: VisionDecision): void {
+export function validateDecision(decision: VisionDecision, observedScreen = ""): void {
   if (!Number.isFinite(decision.confidence) || decision.confidence < 0 || decision.confidence > 1)
     throw new Error("invalid-confidence");
   if (!decision.observation || !decision.progress) throw new Error("invalid-vision-decision");
-  const approvalSurface = `${decision.observation} ${decision.progress} ${String(decision.action.target)}`;
+  const approvalSurface = `${observedScreen} ${decision.observation} ${decision.progress} ${String(decision.action.target)}`;
   if (
     /\b(pay|confirm|book|order|submit|transfer|top[ -]?up|consent)\b/iu.test(approvalSurface) &&
     decision.action.type === "tap"
@@ -94,24 +110,80 @@ export function validateDecision(decision: VisionDecision): void {
 }
 
 export function parseVisionDecision(value: unknown): VisionDecision {
-  if (!value || typeof value !== "object") throw new Error("invalid-vision-json");
-  const decision = value as VisionDecision;
+  if (typeof value !== "object" || value === null) throw new Error("invalid-vision-json");
+  if (
+    !("observation" in value) ||
+    typeof value.observation !== "string" ||
+    !("progress" in value) ||
+    typeof value.progress !== "string" ||
+    !("confidence" in value) ||
+    typeof value.confidence !== "number" ||
+    !("action" in value)
+  )
+    throw new Error("invalid-vision-decision");
+  const decision: VisionDecision = {
+    observation: value.observation,
+    progress: value.progress,
+    confidence: value.confidence,
+    action: parsePhoneAction(value.action),
+  };
   validateDecision(decision);
-  const allowed = new Set([
-    "tap",
-    "long_press",
-    "swipe",
-    "type",
-    "key",
-    "launch",
-    "wait",
-    "scroll_to",
-    "done",
-    "need_approval",
-    "fail",
-  ]);
-  if (!allowed.has(decision.action.type)) throw new Error("invalid-action-type");
   return decision;
+}
+
+function parsePhoneAction(value: unknown): PhoneAction {
+  if (
+    typeof value !== "object" ||
+    value === null ||
+    !("type" in value) ||
+    typeof value.type !== "string" ||
+    !("target" in value)
+  )
+    throw new Error("invalid-action");
+
+  if (value.type === "swipe") {
+    if (!isSwipeTarget(value.target)) throw new Error("invalid-swipe-target");
+    return { type: value.type, target: value.target };
+  }
+  if (value.type === "tap" || value.type === "long_press") {
+    if (typeof value.target !== "string" && !isPointTarget(value.target))
+      throw new Error("invalid-point-target");
+    return { type: value.type, target: value.target };
+  }
+  if (typeof value.target !== "string" || !value.target.trim())
+    throw new Error("invalid-action-target");
+  if (value.type === "type") {
+    if (!("value" in value) || typeof value.value !== "string")
+      throw new Error("invalid-type-value");
+    return { type: value.type, target: value.target, value: value.value };
+  }
+  if (
+    value.type === "key" ||
+    value.type === "launch" ||
+    value.type === "wait" ||
+    value.type === "scroll_to" ||
+    value.type === "done" ||
+    value.type === "need_approval" ||
+    value.type === "fail"
+  )
+    return { type: value.type, target: value.target };
+  throw new Error("invalid-action-type");
+}
+
+function isPointTarget(value: unknown): value is [number, number] {
+  return (
+    Array.isArray(value) &&
+    value.length === 2 &&
+    value.every((item: unknown) => typeof item === "number" && Number.isFinite(item))
+  );
+}
+
+function isSwipeTarget(value: unknown): value is [number, number, number, number] {
+  return (
+    Array.isArray(value) &&
+    value.length === 4 &&
+    value.every((item: unknown) => typeof item === "number" && Number.isFinite(item))
+  );
 }
 
 function screenshotDifference(previous: Uint8Array, current: Uint8Array): number {
@@ -124,6 +196,7 @@ function screenshotDifference(previous: Uint8Array, current: Uint8Array): number
 }
 
 export * from "./adb-transport.js";
+export * from "./companion-transport.js";
 export * from "./daemon.js";
 export * from "./trace-store.js";
 export * from "./surface.js";

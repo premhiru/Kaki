@@ -195,6 +195,15 @@ RUN --mount=type=cache,id=openclaw-pnpm-store,target=/root/.local/share/pnpm/sto
     node --input-type=module -e 'await import("grammy")' && \
     node scripts/check-package-dist-imports.mjs /app
 
+# Kaki onboarding reads the exact product soul and maintained playbooks at runtime.
+# Stage only those named artifacts so package sources, fixtures, and dev links do not
+# leak into the minimal image.
+RUN mkdir -p /app/kaki-seed && \
+    cd /app && \
+    { printf '%s\0' kaki/SOUL.md; \
+      find kaki/packages/skills kaki/packages/phone-node/skills -type f -name SKILL.md -print0; \
+    } | tar --null --files-from=- --create | tar --directory=/app/kaki-seed --extract
+
 # ── Runtime base image ──────────────────────────────────────────
 FROM ${OPENCLAW_NODE_BOOKWORM_SLIM_IMAGE} AS base-runtime
 ARG OPENCLAW_NODE_BOOKWORM_SLIM_DIGEST
@@ -253,6 +262,8 @@ COPY --from=runtime-assets --chown=node:node /app/pnpm-workspace.yaml .
 COPY --from=runtime-assets --chown=node:node /app/patches ./patches
 COPY --from=runtime-assets --chown=node:node /app/node-version.mjs .
 COPY --from=runtime-assets --chown=node:node /app/openclaw.mjs .
+COPY --from=runtime-assets --chown=node:node /app/kaki.mjs .
+COPY --from=runtime-assets --chown=node:node /app/kaki-seed/kaki ./kaki
 COPY --from=runtime-assets --chown=node:node /app/src/agents/templates ./src/agents/templates
 COPY --from=runtime-assets --chown=node:node /app/${OPENCLAW_BUNDLED_PLUGIN_DIR} ./${OPENCLAW_BUNDLED_PLUGIN_DIR}
 COPY --from=runtime-assets --chown=node:node /app/skills ./skills
@@ -361,7 +372,8 @@ RUN --mount=type=cache,id=openclaw-bookworm-apt-cache,target=/var/cache/apt,shar
 
 # Expose the CLI binary without requiring npm global writes as non-root.
 RUN ln -sf /app/openclaw.mjs /usr/local/bin/openclaw \
- && chmod 755 /app/openclaw.mjs
+ && ln -sf /app/kaki.mjs /usr/local/bin/kaki \
+ && chmod 755 /app/openclaw.mjs /app/kaki.mjs
 
 # Pre-create default named-volume mount points so first-run Docker volumes copy
 # node ownership from the image instead of starting as root-owned directories.

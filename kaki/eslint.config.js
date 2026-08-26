@@ -8,6 +8,7 @@ export default tseslint.config(
       "**/coverage/**",
       "**/node_modules/**",
       "**/node_modules.stale/**",
+      "**/.venv/**",
       "**/.next/**",
       "**/.vinext/**",
       "**/.wrangler/**",
@@ -41,6 +42,10 @@ export default tseslint.config(
         },
       ],
     },
+  },
+  {
+    files: ["**/vitest*.config.ts"],
+    ...tseslint.configs.disableTypeChecked,
   },
   {
     files: ["**/*.js", "**/*.mjs"],

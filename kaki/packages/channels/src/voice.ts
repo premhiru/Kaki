@@ -9,10 +9,69 @@ export interface AsrResult {
   language: string;
   codeSwitch: string[];
   confidence: number;
+  provider?: string;
+  model?: string;
 }
 
 export interface VoiceAsr {
   transcribe(input: { audio: Uint8Array; mimeType: string; channel: string }): Promise<AsrResult>;
+}
+
+export interface NamedVoiceAsr extends VoiceAsr {
+  readonly provider: string;
+  readonly model: string;
+}
+
+/** MERaLiON-first routing with an explicit Whisper fallback and no silent transcript fabrication. */
+export class FallbackVoiceAsr implements VoiceAsr {
+  constructor(
+    private readonly primary: NamedVoiceAsr,
+    private readonly fallback: NamedVoiceAsr,
+  ) {}
+
+  async transcribe(input: {
+    audio: Uint8Array;
+    mimeType: string;
+    channel: string;
+  }): Promise<AsrResult> {
+    try {
+      return withOwner(await this.primary.transcribe(input), this.primary);
+    } catch (primaryError) {
+      try {
+        return withOwner(await this.fallback.transcribe(input), this.fallback);
+      } catch (fallbackError) {
+        throw new AggregateError(
+          [primaryError, fallbackError],
+          `voice-asr-failed:${this.primary.provider}/${this.primary.model},${this.fallback.provider}/${this.fallback.model}`,
+        );
+      }
+    }
+  }
+}
+
+export interface VoiceTts {
+  synthesize(input: { text: string; locale: string; voice: string }): Promise<MediaRef>;
+}
+
+export class VoiceReplyPipeline {
+  constructor(
+    private readonly tts: VoiceTts,
+    private readonly options: {
+      enabled: boolean;
+      voices: Readonly<Record<string, string>>;
+      defaultVoice: string;
+    },
+  ) {}
+
+  async render(text: string, locale: string): Promise<MediaRef | undefined> {
+    if (!this.options.enabled) return undefined;
+    if (!text.trim()) throw new Error("empty-tts-text");
+    return this.tts.synthesize({
+      text,
+      locale,
+      voice: this.options.voices[locale] ?? this.options.defaultVoice,
+    });
+  }
 }
 
 export interface VoiceNoteResult extends AsrResult {
@@ -48,4 +107,9 @@ export function isSupportedVoiceMime(mimeType: string): boolean {
     normalised === "audio/mpeg" ||
     normalised === "audio/mp4"
   );
+}
+
+function withOwner(result: AsrResult, owner: NamedVoiceAsr): AsrResult {
+  if (!result.text.trim()) throw new Error(`empty-asr-transcript:${owner.provider}/${owner.model}`);
+  return { ...result, provider: owner.provider, model: owner.model };
 }

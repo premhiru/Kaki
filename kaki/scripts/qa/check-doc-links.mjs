@@ -15,6 +15,9 @@ const required = [
   "docs/LOCALE.md",
   "docs/ONBOARDING.md",
   "docs/DEPLOYMENT.md",
+  "docs/PROGRESS.md",
+  "docs/REQUIREMENTS.md",
+  "docs/agents/DEPLOYMENT.md",
   "CONTRIBUTING.md",
 ];
 let errors = 0;
@@ -34,7 +37,14 @@ const files = await walk(
     !path
       .relative(root, file)
       .split(path.sep)
-      .some((part) => part.startsWith("node_modules") || part === ".pnpm"),
+      .some(
+        (part) =>
+          part.startsWith("node_modules") ||
+          part === ".pnpm" ||
+          part === ".venv" ||
+          part === ".artifacts" ||
+          part === "dist",
+      ),
 );
 const linkPattern = /\[[^\]]*\]\(([^)]+)\)/gu;
 for (const file of files) {

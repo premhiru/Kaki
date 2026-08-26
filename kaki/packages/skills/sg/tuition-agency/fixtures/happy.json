@@ -1,9 +1,10 @@
 {
   "skillId": "sg.tuition-agency",
   "input": {
-    "request": "fixture request for Tuition agency",
+    "request": "Tuition agency: Sec 2 maths Tuesday evening under 50 SGD hourly",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "student_subject_schedule": "Sec 2 maths Tuesday evening under 50 SGD hourly"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "message.external",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["tuition-agency.source", "tuition-agency.prepare"],
+    "evidence": [
+      "browser:open:Singapore tuition agencies source state",
+      "browser:prepare:a tutor comparison and outreach status preparation"
+    ]
   }
 }

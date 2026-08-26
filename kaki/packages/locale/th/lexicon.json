@@ -20,42 +20,22 @@
       "category": "local",
       "languages": ["th"]
     },
-    {
-      "term": "MRT",
-      "normalised": "metropolitan rail",
-      "category": "local",
-      "languages": ["th"]
-    },
+    { "term": "MRT", "normalised": "metropolitan rail", "category": "local", "languages": ["th"] },
     {
       "term": "TMD",
       "normalised": "meteorological department",
       "category": "local",
       "languages": ["th"]
     },
-    {
-      "term": "ThaID",
-      "normalised": "digital identity",
-      "category": "local",
-      "languages": ["th"]
-    },
-    {
-      "term": "Songkran",
-      "normalised": "Thai New Year",
-      "category": "local",
-      "languages": ["th"]
-    },
+    { "term": "ThaID", "normalised": "digital identity", "category": "local", "languages": ["th"] },
+    { "term": "Songkran", "normalised": "Thai New Year", "category": "local", "languages": ["th"] },
     {
       "term": "วันพระ",
       "normalised": "Buddhist holy day",
       "category": "local",
       "languages": ["th"]
     },
-    {
-      "term": "เจ",
-      "normalised": "Thai vegan diet",
-      "category": "local",
-      "languages": ["th"]
-    },
+    { "term": "เจ", "normalised": "Thai vegan diet", "category": "local", "languages": ["th"] },
     {
       "term": "วินมอเตอร์ไซค์",
       "normalised": "motorcycle taxi",
@@ -122,12 +102,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "ฝน ตอนนี้",
-      "normalised": "ฝน: ตอนนี้",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "ฝน ตอนนี้", "normalised": "ฝน: ตอนนี้", "category": "phrase", "languages": ["th"] },
     {
       "term": "ฝน พรุ่งนี้",
       "normalised": "ฝน: พรุ่งนี้",
@@ -152,12 +127,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "ฝน ฮาลาล",
-      "normalised": "ฝน: ฮาลาล",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "ฝน ฮาลาล", "normalised": "ฝน: ฮาลาล", "category": "phrase", "languages": ["th"] },
     {
       "term": "ฝน สุดสัปดาห์",
       "normalised": "ฝน: สุดสัปดาห์",
@@ -176,18 +146,8 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "ฝน ด่วน",
-      "normalised": "ฝน: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    },
-    {
-      "term": "รถ ตอนนี้",
-      "normalised": "รถ: ตอนนี้",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "ฝน ด่วน", "normalised": "ฝน: ด่วน", "category": "phrase", "languages": ["th"] },
+    { "term": "รถ ตอนนี้", "normalised": "รถ: ตอนนี้", "category": "phrase", "languages": ["th"] },
     {
       "term": "รถ พรุ่งนี้",
       "normalised": "รถ: พรุ่งนี้",
@@ -212,12 +172,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "รถ ฮาลาล",
-      "normalised": "รถ: ฮาลาล",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "รถ ฮาลาล", "normalised": "รถ: ฮาลาล", "category": "phrase", "languages": ["th"] },
     {
       "term": "รถ สุดสัปดาห์",
       "normalised": "รถ: สุดสัปดาห์",
@@ -236,12 +191,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "รถ ด่วน",
-      "normalised": "รถ: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "รถ ด่วน", "normalised": "รถ: ด่วน", "category": "phrase", "languages": ["th"] },
     {
       "term": "รถไฟ ตอนนี้",
       "normalised": "รถไฟ: ตอนนี้",
@@ -296,12 +246,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "รถไฟ ด่วน",
-      "normalised": "รถไฟ: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "รถไฟ ด่วน", "normalised": "รถไฟ: ด่วน", "category": "phrase", "languages": ["th"] },
     {
       "term": "อาหาร ตอนนี้",
       "normalised": "อาหาร: ตอนนี้",
@@ -392,12 +337,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "จอง ฮาลาล",
-      "normalised": "จอง: ฮาลาล",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "จอง ฮาลาล", "normalised": "จอง: ฮาลาล", "category": "phrase", "languages": ["th"] },
     {
       "term": "จอง สุดสัปดาห์",
       "normalised": "จอง: สุดสัปดาห์",
@@ -416,12 +356,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "จอง ด่วน",
-      "normalised": "จอง: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "จอง ด่วน", "normalised": "จอง: ด่วน", "category": "phrase", "languages": ["th"] },
     {
       "term": "ภาษี ตอนนี้",
       "normalised": "ภาษี: ตอนนี้",
@@ -476,12 +411,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "ภาษี ด่วน",
-      "normalised": "ภาษี: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "ภาษี ด่วน", "normalised": "ภาษี: ด่วน", "category": "phrase", "languages": ["th"] },
     {
       "term": "จ่าย ตอนนี้",
       "normalised": "จ่าย: ตอนนี้",
@@ -536,12 +466,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "จ่าย ด่วน",
-      "normalised": "จ่าย: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "จ่าย ด่วน", "normalised": "จ่าย: ด่วน", "category": "phrase", "languages": ["th"] },
     {
       "term": "เตือน ตอนนี้",
       "normalised": "เตือน: ตอนนี้",
@@ -656,12 +581,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "ช่าง ด่วน",
-      "normalised": "ช่าง: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "ช่าง ด่วน", "normalised": "ช่าง: ด่วน", "category": "phrase", "languages": ["th"] },
     {
       "term": "คลินิก ตอนนี้",
       "normalised": "คลินิก: ตอนนี้",
@@ -812,12 +732,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "ถนน ฮาลาล",
-      "normalised": "ถนน: ฮาลาล",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "ถนน ฮาลาล", "normalised": "ถนน: ฮาลาล", "category": "phrase", "languages": ["th"] },
     {
       "term": "ถนน สุดสัปดาห์",
       "normalised": "ถนน: สุดสัปดาห์",
@@ -836,12 +751,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "ถนน ด่วน",
-      "normalised": "ถนน: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "ถนน ด่วน", "normalised": "ถนน: ด่วน", "category": "phrase", "languages": ["th"] },
     {
       "term": "โรงเรียน ตอนนี้",
       "normalised": "โรงเรียน: ตอนนี้",
@@ -1016,12 +926,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "ตลาด ด่วน",
-      "normalised": "ตลาด: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "ตลาด ด่วน", "normalised": "ตลาด: ด่วน", "category": "phrase", "languages": ["th"] },
     {
       "term": "มัสยิด ตอนนี้",
       "normalised": "มัสยิด: ตอนนี้",
@@ -1232,12 +1137,7 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "หมอ ฮาลาล",
-      "normalised": "หมอ: ฮาลาล",
-      "category": "phrase",
-      "languages": ["th"]
-    },
+    { "term": "หมอ ฮาลาล", "normalised": "หมอ: ฮาลาล", "category": "phrase", "languages": ["th"] },
     {
       "term": "หมอ สุดสัปดาห์",
       "normalised": "หมอ: สุดสัปดาห์",
@@ -1256,11 +1156,6 @@
       "category": "phrase",
       "languages": ["th"]
     },
-    {
-      "term": "หมอ ด่วน",
-      "normalised": "หมอ: ด่วน",
-      "category": "phrase",
-      "languages": ["th"]
-    }
+    { "term": "หมอ ด่วน", "normalised": "หมอ: ด่วน", "category": "phrase", "languages": ["th"] }
   ]
 }

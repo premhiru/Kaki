@@ -1,9 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 import {
   ChannelSessionGuard,
+  FallbackVoiceAsr,
   HouseholdDirectory,
   TelegramChannel,
+  TrustedLocalQrSurface,
   VoiceNotePipeline,
+  VoiceReplyPipeline,
   WebChatChannel,
   WhatsAppChannel,
   renderWhatsAppButtons,
@@ -39,6 +42,42 @@ describe("household identity boundary", () => {
 });
 
 describe("WhatsApp", () => {
+  it("keeps pairing QR material out of alerts and serves it only to authenticated loopback", async () => {
+    const transport = new FakeWhatsAppTransport();
+    const alert = vi.fn();
+    const surface = new TrustedLocalQrSurface(
+      (request) => request.sessionId === "trusted-session",
+      60_000,
+      () => "qr-ref",
+    );
+    const channel = new WhatsAppChannel({
+      transport,
+      authDirectory: "/fixture/.kaki/wa",
+      directory: new HouseholdDirectory(),
+      onInbound: vi.fn(),
+      alerts: { alert },
+      qrSink: surface,
+    });
+    await channel.start();
+    await transport.emitQr("raw-secret-pairing-payload");
+
+    const alertPayload = JSON.stringify(alert.mock.calls);
+    expect(alertPayload).not.toContain("raw-secret-pairing-payload");
+    expect(alert).toHaveBeenCalledWith(
+      expect.stringContaining("local relink wizard"),
+      expect.objectContaining({ localPath: "/local/whatsapp/qr/qr-ref" }),
+    );
+    expect(() =>
+      surface.read("qr-ref", { remoteAddress: "192.168.1.2", sessionId: "trusted-session" }),
+    ).toThrow("access-denied");
+    expect(() =>
+      surface.read("qr-ref", { remoteAddress: "127.0.0.1", sessionId: "wrong-session" }),
+    ).toThrow("access-denied");
+    expect(surface.read("qr-ref", { remoteAddress: "::1", sessionId: "trusted-session" })).toBe(
+      "raw-secret-pairing-payload",
+    );
+  });
+
   it("normalises an allowlisted group message and emulates approval buttons", async () => {
     const transport = new FakeWhatsAppTransport();
     const inbound = vi.fn();
@@ -145,6 +184,42 @@ it("transcribes OGG voice notes while retaining code-switch metadata", async () 
   expect(result?.codeSwitch).toContain("siew dai");
 });
 
+it("falls back from MERaLiON to Whisper and leaves outbound TTS off by default", async () => {
+  const asr = new FallbackVoiceAsr(
+    {
+      provider: "self-hosted",
+      model: "MERaLiON-2",
+      transcribe: async () => {
+        throw new Error("model-unavailable");
+      },
+    },
+    {
+      provider: "configured-fallback",
+      model: "whisper-large-v3-turbo",
+      transcribe: async () => ({
+        text: "阿嬷 wants kopi kosong",
+        language: "en-SG",
+        codeSwitch: ["阿嬷", "kopi kosong"],
+        confidence: 0.91,
+      }),
+    },
+  );
+  await expect(
+    asr.transcribe({ audio: new Uint8Array([1]), mimeType: "audio/ogg", channel: "whatsapp" }),
+  ).resolves.toMatchObject({
+    model: "whisper-large-v3-turbo",
+    codeSwitch: ["阿嬷", "kopi kosong"],
+  });
+
+  const synthesize = vi.fn();
+  const tts = new VoiceReplyPipeline(
+    { synthesize },
+    { enabled: false, voices: { "zh-SG": "mandarin" }, defaultVoice: "singapore-english" },
+  );
+  await expect(tts.render("Done", "en-SG")).resolves.toBeUndefined();
+  expect(synthesize).not.toHaveBeenCalled();
+});
+
 it("routes allowlisted Telegram commands and approval callbacks", async () => {
   const transport = new FakeTelegramTransport();
   const inbound = vi.fn();
@@ -212,10 +287,12 @@ class FakeWhatsAppTransport implements WhatsAppTransport {
   typing: boolean[] = [];
   private onMessage?: (message: WhatsAppRawMessage) => Promise<void>;
   private onConnection?: (event: WhatsAppConnectionEvent) => Promise<void>;
+  private onQr?: (qr: string) => Promise<void>;
   async connect(options: Parameters<WhatsAppTransport["connect"]>[0]) {
     this.connections += 1;
     this.onMessage = options.onMessage;
     this.onConnection = options.onConnection;
+    this.onQr = options.onQr;
     await options.onConnection({ state: "open" });
   }
   async disconnect() {}
@@ -234,6 +311,9 @@ class FakeWhatsAppTransport implements WhatsAppTransport {
   }
   async emitConnection(event: WhatsAppConnectionEvent) {
     await this.onConnection?.(event);
+  }
+  async emitQr(qr: string) {
+    await this.onQr?.(qr);
   }
 }
 

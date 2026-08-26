@@ -15,17 +15,39 @@ export function routeModel(
   const override = config.overrides?.[`${task}:${locale}`] ?? config.overrides?.[task];
   if (override) return cap(override, task, config);
   let route: ModelRoute;
+  const hostRoute = (maxCostUsd: number): ModelRoute => ({
+    provider: "openclaw",
+    model: "configured-default",
+    maxCostUsd,
+    local: false,
+  });
   if (task === "normalise")
     route = {
-      provider: available.has("ollama") ? "ollama" : "openrouter",
-      model: available.has("ollama") ? "qwen3:8b" : "qwen/qwen3-8b",
+      provider: available.has("ollama")
+        ? "ollama"
+        : available.has("openclaw")
+          ? "openclaw"
+          : "openrouter",
+      model: available.has("ollama")
+        ? "qwen3:8b"
+        : available.has("openclaw")
+          ? "configured-default"
+          : "qwen/qwen3-8b",
       maxCostUsd: 0.002,
       local: available.has("ollama"),
     };
   else if (task === "heartbeat")
     route = {
-      provider: available.has("ollama") ? "ollama" : "openai",
-      model: available.has("ollama") ? "qwen3:4b" : "gpt-5-nano",
+      provider: available.has("ollama")
+        ? "ollama"
+        : available.has("openclaw")
+          ? "openclaw"
+          : "openai",
+      model: available.has("ollama")
+        ? "qwen3:4b"
+        : available.has("openclaw")
+          ? "configured-default"
+          : "gpt-5-nano",
       maxCostUsd: 0.001,
       local: available.has("ollama"),
     };
@@ -50,7 +72,7 @@ export function routeModel(
       maxCostUsd: 0.03,
       local: available.has("meralion"),
     };
-  else if (task === "generate" && locale === "th")
+  else if (task === "generate" && locale === "th" && available.has("typhoon"))
     route = {
       provider: "typhoon",
       model: "typhoon-v2.5",
@@ -58,7 +80,7 @@ export function routeModel(
       local: false,
       fallback: { provider: "sea-lion", model: "SEA-LION-v4.5", maxCostUsd: 0.03, local: false },
     };
-  else if (task === "generate" && locale === "id")
+  else if (task === "generate" && locale === "id" && available.has("sahabat-ai"))
     route = {
       provider: "sahabat-ai",
       model: "sahabat-70b",
@@ -66,7 +88,27 @@ export function routeModel(
       local: false,
       fallback: { provider: "sea-lion", model: "SEA-LION-v4.5", maxCostUsd: 0.03, local: false },
     };
-  else if (task === "generate" && ["sg", "my", "vn", "ph"].includes(locale))
+  else if (task === "generate" && locale === "my" && available.has("mallam"))
+    route = {
+      provider: "mallam",
+      model: "MaLLaM",
+      maxCostUsd: 0.03,
+      local: false,
+      fallback: { provider: "sea-lion", model: "SEA-LION-v4.5", maxCostUsd: 0.03, local: false },
+    };
+  else if (task === "generate" && locale === "my" && available.has("ilmu"))
+    route = {
+      provider: "ilmu",
+      model: "ILMU",
+      maxCostUsd: 0.03,
+      local: false,
+      fallback: { provider: "sea-lion", model: "SEA-LION-v4.5", maxCostUsd: 0.03, local: false },
+    };
+  else if (
+    task === "generate" &&
+    ["sg", "my", "vn", "ph"].includes(locale) &&
+    available.has("sea-lion")
+  )
     route = {
       provider: "sea-lion",
       model: "SEA-LION-v4.5",
@@ -74,6 +116,7 @@ export function routeModel(
       local: false,
       fallback: { provider: "openai", model: "gpt-5-mini", maxCostUsd: 0.03, local: false },
     };
+  else if (available.has("openclaw")) route = hostRoute(0.15);
   else
     route = {
       provider: "anthropic",

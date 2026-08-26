@@ -1,9 +1,10 @@
 {
   "skillId": "vn.zalo-ops",
   "input": {
-    "request": "fixture request for Zalo operations",
+    "request": "Zalo operations: vendor alias ask availability Friday",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "recipient_and_message": "vendor alias ask availability Friday"
   },
   "context": {
     "locale": "vn",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "message.external",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["zalo-ops.source", "zalo-ops.prepare"],
+    "evidence": [
+      "data:query:Zalo OA or approved personal channel source state",
+      "data:normalize:the Zalo delivery status preparation"
+    ]
   }
 }

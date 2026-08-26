@@ -1,4 +1,5 @@
 import type { HouseholdDirectory } from "./directory.js";
+import type { TrustedLocalQrSink } from "./local-qr.js";
 import { ChannelSessionGuard, type SessionFailure } from "./session-guard.js";
 import {
   REACTION_EMOJI,
@@ -45,6 +46,8 @@ export interface WhatsAppTransport {
   send(chatId: string, message: OutboundMessage): Promise<{ messageId: string }>;
   react(chatId: string, messageId: string, emoji: string): Promise<void>;
   setTyping(chatId: string, active: boolean): Promise<void>;
+  markRead?(chatId: string, messageId: string): Promise<void>;
+  setPresence?(presence: "available" | "unavailable"): Promise<void>;
 }
 
 export interface OutboundGate {
@@ -60,6 +63,7 @@ export interface WhatsAppOptions {
   directory: HouseholdDirectory;
   onInbound: InboundHandler;
   alerts: AlertSink;
+  qrSink?: TrustedLocalQrSink;
   assistantJid?: string;
   requireMentionInGroups?: boolean;
   outboundGate?: OutboundGate;
@@ -115,9 +119,13 @@ export class WhatsAppChannel implements Channel {
         }
       },
       onQr: async (qr) => {
-        await this.options.alerts.alert("WhatsApp QR ready; run `kaki wa relink` to scan", {
+        const published = await this.options.qrSink?.publish(qr);
+        await this.options.alerts.alert("WhatsApp QR ready; open the local relink wizard", {
           channel: "whatsapp",
-          qr,
+          command: "kaki wa relink",
+          ...(published
+            ? { localPath: published.localPath, expiresAt: published.expiresAt }
+            : { reason: "trusted-local-qr-surface-unavailable" }),
         });
       },
     });
@@ -156,6 +164,7 @@ export class WhatsAppChannel implements Channel {
       ...(raw.receivedAt ? { receivedAt: raw.receivedAt } : {}),
     };
     await this.options.onInbound(message);
+    await this.options.transport.markRead?.(raw.chatId, raw.id);
     return true;
   }
 
@@ -169,6 +178,7 @@ export class WhatsAppChannel implements Channel {
     if (decision && !decision.allowed)
       throw new Error(`whatsapp-send-denied:${decision.reason ?? "policy"}`);
     if (decision?.delayMs) {
+      await this.options.transport.setPresence?.("available");
       await this.options.transport.setTyping(chatId, true);
       await this.#sleep(decision.delayMs);
       await this.options.transport.setTyping(chatId, false);

@@ -1,0 +1,13 @@
+{
+  "WeatherForecast": [
+    {
+      "location": { "province": "กรุงเทพมหานคร", "lat": 13.7563, "lon": 100.5018 },
+      "forecasts": [
+        {
+          "time": "2026-08-26T08:00:00+07:00",
+          "data": { "tc": 29.1, "rh": 78, "rain": 0.2, "ws10m": 2.5, "cond": "Rain" }
+        }
+      ]
+    }
+  ]
+}

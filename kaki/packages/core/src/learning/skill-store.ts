@@ -9,7 +9,8 @@ import {
 } from "node:fs";
 import { dirname, join } from "node:path";
 import { mineTrace } from "./miner.js";
-import type { LearnedSkill, LearningTrace, TimingProfile } from "./types.js";
+import { parseLearnedSkill, parseLearningTrace } from "./types.js";
+import type { LearnedSkill, TimingProfile } from "./types.js";
 
 export class LearnedSkillStore {
   public constructor(
@@ -17,8 +18,9 @@ export class LearnedSkillStore {
     private readonly clock: () => Date = () => new Date(),
   ) {}
 
-  public learn(slug: string, trace: LearningTrace): LearnedSkill {
+  public learn(slug: string, input: unknown): LearnedSkill {
     validateSlug(slug);
+    const trace = parseLearningTrace(input);
     const directory = join(this.root, slug);
     mkdirSync(directory, { recursive: true });
     const lock = join(directory, ".learning.lock");
@@ -78,7 +80,7 @@ export class LearnedSkillStore {
   public load(slug: string): LearnedSkill | undefined {
     validateSlug(slug);
     try {
-      return JSON.parse(readFileSync(this.jsonPath(slug), "utf8")) as LearnedSkill;
+      return parseLearnedSkill(JSON.parse(readFileSync(this.jsonPath(slug), "utf8")) as unknown);
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code === "ENOENT") return undefined;
       throw error;

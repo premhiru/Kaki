@@ -16,22 +16,30 @@ export interface SgqrPayload {
   warnings: string[];
 }
 
+export interface QrImageDecoder {
+  /** Decode one QR payload from image bytes. Implementations may use ZXing or host vision. */
+  decode(image: Uint8Array, mediaType: "image/png" | "image/jpeg" | "image/webp"): Promise<string>;
+}
+
 function parseFields(value: string): EmvField[] {
   const fields: EmvField[] = [];
+  const bytes = new TextEncoder().encode(value);
+  const decoder = new TextDecoder("utf-8", { fatal: true });
   let offset = 0;
-  while (offset + 4 <= value.length) {
-    const tag = value.slice(offset, offset + 2);
-    if (!/^\d{2}$/.test(tag) || !/^\d{2}$/.test(value.slice(offset + 2, offset + 4))) {
+  while (offset + 4 <= bytes.length) {
+    const tag = decoder.decode(bytes.subarray(offset, offset + 2));
+    const lengthText = decoder.decode(bytes.subarray(offset + 2, offset + 4));
+    if (!/^\d{2}$/.test(tag) || !/^\d{2}$/.test(lengthText)) {
       throw new Error(`invalid-emv-header-at-${offset}`);
     }
-    const length = Number(value.slice(offset + 2, offset + 4));
-    if (!Number.isInteger(length) || length < 0 || offset + 4 + length > value.length)
+    const length = Number(lengthText);
+    if (!Number.isInteger(length) || length < 0 || offset + 4 + length > bytes.length)
       throw new Error(`invalid-emv-field-${tag}`);
-    const data = value.slice(offset + 4, offset + 4 + length);
+    const data = decoder.decode(bytes.subarray(offset + 4, offset + 4 + length));
     fields.push({ tag, value: data });
     offset += 4 + length;
   }
-  if (offset !== value.length) throw new Error("invalid-emv-trailing-data");
+  if (offset !== bytes.length) throw new Error("invalid-emv-trailing-data");
   return fields;
 }
 
@@ -107,9 +115,22 @@ export function decodeSgqr(raw: string): SgqrPayload {
   };
 }
 
+export async function decodeSgqrImage(
+  image: Uint8Array,
+  mediaType: "image/png" | "image/jpeg" | "image/webp",
+  decoder: QrImageDecoder,
+): Promise<SgqrPayload> {
+  if (!(image instanceof Uint8Array) || image.byteLength === 0) throw new Error("empty-sgqr-image");
+  if (image.byteLength > 20 * 1024 * 1024) throw new Error("sgqr-image-too-large");
+  const raw = await decoder.decode(image, mediaType);
+  if (!raw.trim()) throw new Error("sgqr-image-has-no-qr");
+  return decodeSgqr(raw);
+}
+
 function field(tag: string, value: string): string {
-  if (!/^\d{2}$/.test(tag) || value.length > 99) throw new Error("invalid-emv-field");
-  return `${tag}${value.length.toString().padStart(2, "0")}${value}`;
+  const byteLength = new TextEncoder().encode(value).byteLength;
+  if (!/^\d{2}$/.test(tag) || byteLength > 99) throw new Error("invalid-emv-field");
+  return `${tag}${byteLength.toString().padStart(2, "0")}${value}`;
 }
 
 export function encodePayNow(input: {
@@ -144,8 +165,22 @@ export function encodePayNow(input: {
     field("53", "702");
   if (input.amount !== undefined) payload += field("54", input.amount.toFixed(2));
   payload +=
-    field("58", "SG") + field("59", input.merchantName.slice(0, 25)) + field("60", "SINGAPORE");
+    field("58", "SG") +
+    field("59", truncateUtf8(input.merchantName.trim(), 25)) +
+    field("60", "SINGAPORE");
   if (input.reference) payload += field("62", field("01", input.reference));
   payload += "6304";
   return payload + crc16(payload);
+}
+
+function truncateUtf8(value: string, maxBytes: number): string {
+  let output = "";
+  let bytes = 0;
+  for (const character of value) {
+    const width = new TextEncoder().encode(character).byteLength;
+    if (bytes + width > maxBytes) break;
+    output += character;
+    bytes += width;
+  }
+  return output;
 }

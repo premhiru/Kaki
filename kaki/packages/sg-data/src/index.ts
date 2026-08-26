@@ -6,3 +6,6 @@ export * from "./sgqr.js";
 export * from "./monitors.js";
 export * from "./nea.js";
 export * from "./onemap.js";
+export * from "./public-datasets.js";
+export * from "./public-services.js";
+export * from "./monitor-registry.js";

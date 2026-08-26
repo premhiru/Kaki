@@ -9,6 +9,29 @@ export type Register =
   | "bank"
   | "employer";
 
+export type LocaleModelPurpose =
+  | "planner"
+  | "tool"
+  | "vision"
+  | "normalise"
+  | "generate"
+  | "safety"
+  | "embedding"
+  | "heartbeat"
+  | "asr"
+  | "tts";
+
+export type ModelReference = `${string}/${string}`;
+
+export interface LocaleChannelConfig {
+  locale: LocaleCode;
+  priority: string[];
+  languages: string[];
+  dataTools: string[];
+  defaultModels: Partial<Record<LocaleModelPurpose, ModelReference[]>>;
+  fixtureModeAvailable: boolean;
+}
+
 export interface LexiconEntry {
   term: string;
   normalised: string;
@@ -38,7 +61,7 @@ export interface LocalePack {
   calendar: { locale: LocaleCode; timezone: string; events: CalendarEvent[] };
   formats: Record<string, unknown>;
   dietary: Record<string, unknown>;
-  channels: Record<string, unknown>;
+  channels: LocaleChannelConfig;
 }
 
 export interface NormalisedLocaleMessage {

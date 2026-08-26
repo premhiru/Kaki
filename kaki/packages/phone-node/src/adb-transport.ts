@@ -154,8 +154,12 @@ export class AdbTransport implements PhoneDriver {
 
   public async health(): Promise<AdbHealth> {
     try {
-      const state = text((await this.adb(["get-state"], false)).stdout).trim();
-      const battery = text((await this.shell(["dumpsys", "battery"], false)).stdout);
+      const stateResult = await this.adb(["get-state"], false);
+      if (stateResult.exitCode !== 0)
+        throw new Error(`adb get-state failed: ${stateResult.stderr.trim()}`);
+      const state = text(stateResult.stdout).trim();
+      const batteryResult = await this.shell(["dumpsys", "battery"], false);
+      const battery = batteryResult.exitCode === 0 ? text(batteryResult.stdout) : "";
       const match = /^\s*level:\s*(\d+)/mu.exec(battery);
       return {
         connected: state === "device",

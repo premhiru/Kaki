@@ -1,9 +1,10 @@
 {
   "skillId": "sea.prayer-times",
   "input": {
-    "request": "fixture request for Prayer times",
+    "request": "Prayer times: Johor Bahru 2026-08-27",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "location_and_date": "Johor Bahru 2026-08-27"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,11 @@
   "expect": {
     "status": "completed",
     "approval": "none",
-    "evidence": ["redacted-trace", "verified-result"]
+    "actionIds": ["prayer-times.source", "prayer-times.prepare", "prayer-times.verify"],
+    "evidence": [
+      "data:query:JAKIM and regional official prayer feeds source state",
+      "data:normalize:an official-source prayer timetable preparation",
+      "data:verify:an official-source prayer timetable"
+    ]
   }
 }

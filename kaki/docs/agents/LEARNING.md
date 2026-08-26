@@ -1,31 +1,44 @@
-# Learning agent handoff
+# Learning owner contract
 
-## Built
+Kaki learning turns a redacted successful or failed browser/phone trajectory into a versioned household skill. The package owns trace validation, deterministic mining, immutable revisions, failure refinement, consolidation, and replay planning. Runtime scheduling and trace collection remain host responsibilities.
 
-- Successful browser/phone traces are compacted into reusable steps while preserving approval boundaries, stable selectors, screen fingerprints, and action timing profiles.
-- Failure traces append structured annotations with the failed action/target and redacted screenshot reference without replacing the last successful plan.
-- Every update carries SHA-256 trace provenance, locale, timestamps, and monotonically increasing versions. Reprocessing the same trace is idempotent.
-- Writes are concurrency-guarded and atomic. Immutable `revisions/vN/{skill.json,SKILL.md}` files retain history; `CURRENT`, root `skill.json`, and root `SKILL.md` are atomically replaced.
-- Nightly consolidation groups related traces deterministically, selects the shortest successful path, and then applies failures as refinements.
-- Replay planning exposes expected step reduction and a test proves repeat execution uses fewer steps.
+## Ingest a trace
 
-## Production wiring
+Submit every trajectory through `LearnedSkillStore.learn(slug, value)`. The write boundary validates a closed schema, bounds all arrays and strings, rejects inherited/accessor-backed values and credential patterns, masks NRIC/FIN/passport/payment identifiers, and permits only bounded artifact, fixture, or SHA-256 screenshot references. Raw screenshot paths and inline image data are not learned.
 
-After a reconciled success or failure, submit a redacted `LearningTrace` to `LearnedSkillStore.learn`. Never mine raw OTP, QR, receipt, medical, financial, or identifier screens. The nightly job feeds only traces not already listed in provenance. The skill runtime loads the root `skill.json`; the UI can browse immutable revisions.
+Successful traces compact redundant waits and screenshots while retaining approval steps, stable selectors, screen fingerprints, and action timings. A failure adds a structured annotation without replacing the shortest successful plan. Every accepted trace records a SHA-256 provenance entry.
 
-Selectors should prefer role, label, text, test-id, and accessibility identifiers. Coordinates are retained only as low-confidence fallback. A learned skill never bypasses the original tool risk category or approval checkpoint.
+## Preserve revisions
 
-## Test
+Each accepted new trace creates immutable `revisions/vN/skill.json` and `revisions/vN/SKILL.md` files with exclusive-create semantics. The root `skill.json`, `SKILL.md`, and `CURRENT` pointer update atomically. Reprocessing a trace ID is idempotent. Loading after restart validates the complete stored schema before the skill can be replayed.
 
-```sh
+Learned skill artifacts are named product artifacts, not a runtime state sidecar. The runtime should place them under the configured `skills/learned/<slug>/` root and continue to enforce the original tool risk category and approval checkpoint.
+
+## Run nightly consolidation
+
+`NightlyConsolidator` groups traces by a caller-supplied slug in deterministic order. It learns the shortest successful path first and then applies failures as refinements. The scheduler must supply only redacted traces and may replay an already-seen trace safely because provenance makes the update idempotent.
+
+`planReplay` returns the selected immutable version and expected step reduction. `repeatUsesFewerSteps` is the release gate for the prompt's repeat-task requirement: a learned success must use fewer steps than the original novel trace.
+
+`memoryNudge` bounds the query and at most eight recalled facts before adding model-visible context. It rejects credential-shaped text and reminds the model to apply the current speaker's privacy scope.
+
+## Verification
+
+Run from the repository root:
+
+```powershell
 pnpm --filter @kaki/core typecheck
 pnpm --filter @kaki/core test
 ```
 
-Tests cover compaction, failure refinement, selector/screen/timing mining, provenance, immutable versions, idempotent consolidation, and fewer-step replay.
+Tests cover selector/screen/timing mining, immutable revisions, failure refinement, deterministic idempotent nightly consolidation, fewer-step replay, secret and accessor rejection, screenshot-reference policy, restart loading, and corrupt-file rejection.
 
-## Open issues
+## Required runtime and live gates
 
-- Screenshot fingerprints are supplied by browser/phone nodes; perceptual hashing and retention enforcement remain node responsibilities.
-- Multi-process lock contention currently fails fast for the scheduler to retry instead of blocking.
-- Semantic grouping beyond the supplied slug function requires the embedding/router layer and evaluation against false merges.
+The following are not proven by the package suite:
+
+1. Browser and phone nodes must emit redacted `LearningTrace` values after reconciled terminal outcomes. OTP, QR, receipt, medical, financial, and identifier screenshots must never reach the learner.
+2. The host scheduler must run nightly consolidation and record a visible result or intentional non-outcome.
+3. The skill registry must activate the new root `skill.json` on the documented deferred cache boundary; this package does not mutate an active session's prompt state.
+4. A live novel browser or phone task must create `skills/learned/<slug>/`, then a second run must complete in fewer steps while preserving every approval boundary.
+5. Screenshot fingerprints and artifact retention require browser/phone-node proof. Semantic grouping beyond the supplied slug requires the configured embedding/router and false-merge evaluation.

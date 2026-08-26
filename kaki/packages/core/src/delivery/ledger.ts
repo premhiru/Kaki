@@ -1,5 +1,3 @@
-import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
-import { dirname } from "node:path";
 import { randomUUID } from "node:crypto";
 
 export type DeliveryStatus = "pending" | "running" | "completed" | "failed" | "acknowledged";
@@ -16,25 +14,57 @@ export interface DeliveryRecord<T = unknown> {
   readonly updatedAt: string;
 }
 
-interface LedgerEvent<T = unknown> {
-  readonly record: DeliveryRecord<T>;
+export interface DeliveryLedgerStore {
+  get<T = unknown>(id: string): Promise<DeliveryRecord<T> | undefined>;
+  create<T = unknown>(record: DeliveryRecord<T>): Promise<boolean>;
+  compareAndSwap<T = unknown>(
+    id: string,
+    expected: DeliveryStatus,
+    record: DeliveryRecord<T>,
+  ): Promise<boolean>;
+  values<T = unknown>(): Promise<readonly DeliveryRecord<T>[]>;
+}
+
+export class MemoryDeliveryLedgerStore implements DeliveryLedgerStore {
+  readonly #records = new Map<string, DeliveryRecord>();
+  async get<T = unknown>(id: string): Promise<DeliveryRecord<T> | undefined> {
+    const record = this.#records.get(id);
+    return record ? (structuredClone(record) as DeliveryRecord<T>) : undefined;
+  }
+  async create<T = unknown>(record: DeliveryRecord<T>): Promise<boolean> {
+    if (this.#records.has(record.id)) return false;
+    this.#records.set(record.id, structuredClone(record));
+    return true;
+  }
+  async compareAndSwap<T = unknown>(
+    id: string,
+    expected: DeliveryStatus,
+    record: DeliveryRecord<T>,
+  ): Promise<boolean> {
+    if (this.#records.get(id)?.status !== expected) return false;
+    this.#records.set(id, structuredClone(record));
+    return true;
+  }
+  async values<T = unknown>(): Promise<readonly DeliveryRecord<T>[]> {
+    return [...this.#records.values()].map(
+      (record) => structuredClone(record) as DeliveryRecord<T>,
+    );
+  }
 }
 
 /**
- * Append-only result ledger. A completed result is persisted before channel delivery, so a
- * restarted gateway can replay unacknowledged work without recomputing the task.
+ * Delivery state machine over a host-owned durable store. Production wires this to OpenClaw's
+ * SQLite delivery queue; this package never creates a parallel file or database.
  */
 export class DeliveryLedger {
-  public constructor(private readonly file: string) {
-    mkdirSync(dirname(file), { recursive: true });
-  }
+  public constructor(private readonly store: DeliveryLedgerStore) {}
 
-  public create(input: {
+  public async create(input: {
     taskId: string;
     channel: string;
     recipient: string;
     id?: string;
-  }): DeliveryRecord {
+  }): Promise<DeliveryRecord> {
     const now = new Date().toISOString();
     const record: DeliveryRecord = {
       id: input.id ?? randomUUID(),
@@ -45,16 +75,17 @@ export class DeliveryLedger {
       createdAt: now,
       updatedAt: now,
     };
-    this.append(record);
+    if (!(await this.store.create(record)))
+      throw new Error(`Duplicate delivery record: ${record.id}`);
     return record;
   }
 
-  public transition<T>(
+  public async transition<T>(
     id: string,
     status: Exclude<DeliveryStatus, "pending">,
     details: { payload?: T; error?: string } = {},
-  ): DeliveryRecord<T> {
-    const current = this.get<T>(id);
+  ): Promise<DeliveryRecord<T>> {
+    const current = await this.get<T>(id);
     if (!current) throw new Error(`Unknown delivery record: ${id}`);
     assertTransition(current.status, status);
     const record: DeliveryRecord<T> = {
@@ -63,34 +94,18 @@ export class DeliveryLedger {
       status,
       updatedAt: new Date().toISOString(),
     };
-    this.append(record);
+    if (!(await this.store.compareAndSwap(id, current.status, record))) {
+      throw new Error(`Concurrent delivery transition: ${id}`);
+    }
     return record;
   }
 
-  public get<T = unknown>(id: string): DeliveryRecord<T> | undefined {
-    return this.read<T>().get(id);
+  public get<T = unknown>(id: string): Promise<DeliveryRecord<T> | undefined> {
+    return this.store.get<T>(id);
   }
 
-  public undelivered<T = unknown>(): DeliveryRecord<T>[] {
-    return [...this.read<T>().values()].filter((record) => record.status === "completed");
-  }
-
-  private append<T>(record: DeliveryRecord<T>): void {
-    appendFileSync(this.file, `${JSON.stringify({ record } satisfies LedgerEvent<T>)}\n`, {
-      encoding: "utf8",
-      flush: true,
-    });
-  }
-
-  private read<T>(): Map<string, DeliveryRecord<T>> {
-    const records = new Map<string, DeliveryRecord<T>>();
-    if (!existsSync(this.file)) return records;
-    for (const line of readFileSync(this.file, "utf8").split("\n")) {
-      if (!line.trim()) continue;
-      const event = JSON.parse(line) as LedgerEvent<T>;
-      records.set(event.record.id, event.record);
-    }
-    return records;
+  public async undelivered<T = unknown>(): Promise<readonly DeliveryRecord<T>[]> {
+    return (await this.store.values<T>()).filter((record) => record.status === "completed");
   }
 }
 

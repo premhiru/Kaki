@@ -16,6 +16,7 @@ export interface PolicyContext {
   /** Compatibility input; canonical callers use integer minor units in `amount`. */
   readonly amountSgd?: number;
   readonly knownPayee?: boolean;
+  readonly paymentRail?: "bank" | "card" | "wallet";
   readonly allowlisted?: boolean;
   readonly threadApproved?: boolean;
   readonly materialFacts?: JsonObject;
@@ -26,9 +27,11 @@ export interface PolicyContext {
 export interface PolicyConfig {
   readonly moneyAutoCapMinor?: number;
   readonly denyMoneyAboveMinor?: number;
+  readonly walletCapMinor?: number;
   /** Compatibility options, converted to cents once at construction. */
   readonly moneyAutoCapSgd?: number;
   readonly denyMoneyAboveSgd?: number;
+  readonly walletCapSgd?: number;
   readonly quietHours: { readonly start: number; readonly end: number };
 }
 
@@ -66,6 +69,7 @@ export function hashMaterialFacts(facts: JsonObject): string {
 export class PolicyEngine {
   private readonly autoCapMinor: number;
   private readonly denyAboveMinor: number | undefined;
+  private readonly walletCapMinor: number;
 
   constructor(private readonly config: PolicyConfig = defaults) {
     this.autoCapMinor =
@@ -75,7 +79,13 @@ export class PolicyEngine {
       (config.denyMoneyAboveSgd === undefined
         ? undefined
         : Math.round(config.denyMoneyAboveSgd * 100));
-    if (!Number.isSafeInteger(this.autoCapMinor) || this.autoCapMinor < 0)
+    this.walletCapMinor = config.walletCapMinor ?? Math.round((config.walletCapSgd ?? 200) * 100);
+    if (
+      !Number.isSafeInteger(this.autoCapMinor) ||
+      this.autoCapMinor < 0 ||
+      !Number.isSafeInteger(this.walletCapMinor) ||
+      this.walletCapMinor < 0
+    )
       throw new Error("invalid-money-auto-cap");
   }
 
@@ -155,6 +165,13 @@ export class PolicyEngine {
         "money_invalid",
         "Amount must be non-negative integer minor units",
         "money-invalid",
+      );
+    if (context.paymentRail === "wallet" && amount > this.walletCapMinor)
+      return result(
+        "deny",
+        "wallet_hard_limit",
+        "Amount exceeds the household wallet cap",
+        "wallet-hard-limit",
       );
     if (context.knownPayee && amount < this.autoCapMinor)
       return result(

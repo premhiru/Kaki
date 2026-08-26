@@ -35,6 +35,7 @@ export interface BrowserTask {
 }
 
 export class ManagedBrowserNode {
+  private readonly activeHouseholds = new Set<string>();
   public constructor(
     private readonly adapter: ManagedBrowserAdapter,
     private readonly vision: VisionSelector,
@@ -63,15 +64,24 @@ export class ManagedBrowserNode {
   }
 
   public async run(task: BrowserTask): Promise<BrowserRunResult> {
-    const session = await this.open(task.householdId);
+    if (this.activeHouseholds.has(task.householdId)) {
+      throw new Error("household-browser-profile-already-active");
+    }
+    this.activeHouseholds.add(task.householdId);
+    let session: ManagedBrowserSession | undefined;
     try {
+      session = await this.open(task.householdId);
       return await new BrowserRuntime(session.page, this.vision, {
         ...this.options.runtime,
         taskId: task.taskId,
         dryRun: task.dryRun ?? false,
       }).run(task.steps);
     } finally {
-      await session.close();
+      try {
+        await session?.close();
+      } finally {
+        this.activeHouseholds.delete(task.householdId);
+      }
     }
   }
 }

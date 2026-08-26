@@ -2,7 +2,11 @@
 
 Kaki is a self-hosted household agent for Southeast Asia, starting with Singapore. It is designed to receive work from WhatsApp, Telegram, or WebChat and advance browser, Android-phone, API, and human-approval workflows to the last safe step.
 
-This repository is an early implementation with broad deterministic fixture coverage. It is **not yet a claim of live WhatsApp, Grab, Singpass, bank, or government-portal readiness**. Live release evidence is tracked separately in [Verification](docs/VERIFY.md).
+Kaki is integrated into the canonical OpenClaw workspace as the `@openclaw/kaki`
+plugin and is launched through the root `kaki` entry point. Deterministic fixture
+coverage is broad, but it is **not a claim of live WhatsApp, Grab, Singpass, bank,
+or government-portal readiness**. Live release evidence is tracked separately in
+[Verification](docs/VERIFY.md).
 
 ## Requirements
 
@@ -19,16 +23,20 @@ Ubuntu 24.04 and macOS are the intended installation targets. Windows is support
 ```sh
 git clone <your-kaki-repository> kaki
 cd kaki
-cp .env.example .env
-./scripts/install.sh
-pnpm kaki onboard --non-interactive
-pnpm test:qa
-pnpm test:e2e
-pnpm evals
-pnpm acceptance
+cp kaki/.env.example .env
+./kaki/scripts/install.sh
+pnpm kaki onboard
+pnpm --dir kaki test:qa
+pnpm --dir kaki test:e2e
+pnpm --dir kaki evals
+pnpm --dir kaki acceptance
 ```
 
-`pnpm acceptance` reports deterministic CI evidence and pending live checks. It is expected to list live work until real evidence exists. `pnpm acceptance:release` is stricter and must not pass without non-fixture evidence.
+The installer always resolves and builds the repository root, even when invoked
+from another directory. `pnpm --dir kaki acceptance` reports deterministic CI
+evidence and pending live checks. It is expected to list live work until real
+evidence exists. `pnpm --dir kaki acceptance:release` is stricter and must not
+pass without non-fixture evidence for the exact build.
 
 For an interactive household name and locale prompt, run:
 
@@ -36,19 +44,23 @@ For an interactive household name and locale prompt, run:
 pnpm kaki onboard
 ```
 
-The current alpha onboarding command creates `~/.kaki/config.json`, WhatsApp auth, Chrome profile, and trace directories. It reads provider/channel settings from environment variables. Channel linking, Android pairing, household-person mapping, addresses, dietary preferences, and provider secrets still require the production transports and setup described in [Onboarding](docs/ONBOARDING.md).
+Before OpenClaw onboarding starts, the `kaki` launcher prepares the same workspace OpenClaw resolves from `OPENCLAW_WORKSPACE_DIR` (default `~/.kaki/workspace`). It installs the Singapore `SOUL.md` and all maintained and phone skill playbooks under `workspace/skills/`. Existing destination files are preserved byte-for-byte on later runs. Pass `--workspace <dir>` to seed and configure another workspace explicitly.
 
 ## Development checks
 
 ```sh
-pnpm format:check
-pnpm lint
-pnpm typecheck
-pnpm test
-pnpm test:qa
-pnpm test:e2e
-pnpm evals
-pnpm security:scan
+pnpm --dir kaki format:check
+pnpm --dir kaki lint
+pnpm --dir kaki typecheck
+pnpm --filter @openclaw/kaki typecheck
+pnpm --dir kaki test
+pnpm --filter @openclaw/kaki test
+pnpm --dir kaki coverage
+pnpm --dir kaki test:qa
+pnpm --dir kaki test:e2e
+pnpm --dir kaki evals
+pnpm --dir kaki security:scan
+pnpm --dir kaki docs:check
 pnpm audit --audit-level high
 ```
 
@@ -67,6 +79,8 @@ Fixture replay checks recorded contracts unless a runtime adapter is explicitly 
 - [Skill catalogue](docs/SKILLS.md)
 - [Locale guide](docs/LOCALE.md)
 - [Progress](docs/PROGRESS.md)
+- [Master-prompt requirements ledger](docs/REQUIREMENTS.md)
+- [Deployment implementation handoff](docs/agents/DEPLOYMENT.md)
 - [Contributing](CONTRIBUTING.md)
 
 ## Safety defaults

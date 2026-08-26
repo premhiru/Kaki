@@ -19,8 +19,11 @@ export type ProviderName =
   | "sea-lion"
   | "typhoon"
   | "sahabat-ai"
+  | "mallam"
+  | "ilmu"
   | "sea-guard"
-  | "meralion";
+  | "meralion"
+  | "openclaw";
 
 export interface ModelRoute {
   provider: ProviderName;
@@ -41,7 +44,10 @@ export interface ModelRequest {
   maxOutputTokens?: number;
   temperature?: number;
   jsonSchema?: Record<string, unknown>;
+  signal?: AbortSignal;
   cacheable?: boolean;
+  /** Cache writes require an explicit public classification; omission fails closed. */
+  dataClass?: "public" | "household" | "personal" | "secret";
   metadata?: Record<string, string>;
 }
 export interface TokenUsage {
@@ -53,6 +59,9 @@ export interface ModelResponse {
   model: string;
   provider: ProviderName;
   usage: TokenUsage;
+  /** Host-accounted cost when the provider runtime owns pricing. */
+  costUsd?: number;
+  sourceProvider?: string;
   finishReason?: string;
 }
 export interface ModelProvider {

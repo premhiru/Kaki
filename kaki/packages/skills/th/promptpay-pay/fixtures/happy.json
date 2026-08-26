@@ -1,9 +1,10 @@
 {
   "skillId": "th.promptpay-pay",
   "input": {
-    "request": "fixture request for PromptPay payment",
+    "request": "PromptPay payment: fixture PromptPay 350 THB",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "qr_payload_and_amount": "fixture PromptPay 350 THB"
   },
   "context": {
     "locale": "th",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.transfer",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["promptpay-pay.source", "promptpay-pay.prepare"],
+    "evidence": [
+      "data:query:PromptPay and configured bank source state",
+      "data:normalize:the PromptPay receipt preparation"
+    ]
   }
 }

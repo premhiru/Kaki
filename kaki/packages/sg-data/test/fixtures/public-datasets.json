@@ -1,0 +1,48 @@
+{
+  "dengue": [{ "locality": "Ang Mo Kio", "cases": "8", "updated_at": "2026-08-25" }],
+  "hdb": [
+    {
+      "month": "2026-07",
+      "town": "ANG MO KIO",
+      "flat_type": "4 ROOM",
+      "block": "123",
+      "street_name": "ANG MO KIO AVE 3",
+      "resale_price": "650000"
+    }
+  ],
+  "hawker": [
+    {
+      "name": "Old Airport Road Food Centre",
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-02",
+      "reason": "Cleaning"
+    }
+  ],
+  "school": [{ "date": "2026-09-05", "name": "Term break" }],
+  "public": [{ "date": "2026-08-09", "name": "National Day" }],
+  "coe": [
+    {
+      "exercise": "2026-08-2",
+      "category": "A",
+      "quota": "1000",
+      "bids_received": "1400",
+      "premium": "95000"
+    }
+  ],
+  "moh": [
+    {
+      "clinic_name": "AMK Polyclinic",
+      "address": "21 Ang Mo Kio Central 2",
+      "Telephone": "6355 3000",
+      "Opening Hours": "Mon-Fri 08:00-16:30"
+    }
+  ],
+  "nea": [
+    {
+      "title": "Heavy rain warning",
+      "severity": "moderate",
+      "issued_at": "2026-08-26T09:00:00+08:00",
+      "detail": "Flash flood risk"
+    }
+  ]
+}

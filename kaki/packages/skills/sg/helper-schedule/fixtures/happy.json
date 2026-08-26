@@ -1,9 +1,10 @@
 {
   "skillId": "sg.helper-schedule",
   "input": {
-    "request": "fixture request for Helper schedule",
+    "request": "Helper schedule: helper alias weekly off-day and chores",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "helper_task_plan": "helper alias weekly off-day and chores"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "data.share",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["helper-schedule.source", "helper-schedule.prepare"],
+    "evidence": [
+      "data:query:household calendar source state",
+      "data:normalize:a shared schedule with conflict warnings preparation"
+    ]
   }
 }

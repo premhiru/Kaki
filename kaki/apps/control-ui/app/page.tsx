@@ -1,6 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  currentKakiGatewayClient,
+  resolveTrustedPhoneFrameUrl,
+  type ApprovalDecision,
+  type ApprovalItem,
+  type KakiControlAction,
+  type KakiControlSnapshot,
+} from "./gateway";
 
 const tabs = [
   "Today",
@@ -16,100 +24,86 @@ const tabs = [
 ] as const;
 type Tab = (typeof tabs)[number];
 
-const approvals = [
-  {
-    id: "grab",
-    title: "Grab to Raffles Place",
-    detail: "Tomorrow, 8:00 am · 2 pax",
-    amount: "$18.20",
-    evidence: "Standard ride · no surge · pickup at Blk 432 lobby",
-  },
-  {
-    id: "aircon",
-    title: "Aircon servicing",
-    detail: "CoolCare · Saturday, 10:00 am",
-    amount: "$138.00",
-    evidence: "4.8 stars · 90-day warranty · 3 fan coils",
-  },
-];
-
-const people = [
-  {
-    initials: "WL",
-    name: "Wei Ling",
-    relation: "You",
-    language: "Singlish · English",
-    detail: "School run · North-South Line",
-  },
-  {
-    initials: "AM",
-    name: "Ah Ma",
-    relation: "Mother",
-    language: "中文 · Hokkien",
-    detail: "Short sentences · medical private",
-  },
-  {
-    initials: "F",
-    name: "Farid",
-    relation: "Family",
-    language: "Bahasa Melayu",
-    detail: "JB commute · halal",
-  },
-  {
-    initials: "P",
-    name: "Priya",
-    relation: "Family",
-    language: "தமிழ் · English",
-    detail: "Yishun · parents’ support",
-  },
-];
-
-const journey = [
-  {
-    time: "09:42",
-    title: "Parents Gateway notice handled",
-    detail: "Sports Day added to family calendar · consent waiting",
-  },
-  { time: "09:18", title: "Rain monitor fired", detail: "School-run alert sent once to Wei Ling" },
-  {
-    time: "Yesterday",
-    title: "Aircon vendors contacted",
-    detail: "6 messaged · 4 replies · no booking made",
-  },
-];
-
-const skillOptions = ["vendor-outreach", "weather-commute", "polyclinic-booking", "grab-ride"];
-
 export default function Home() {
   const [activeTab, setActiveTab] = useState<Tab>("Today");
-  const [paused, setPaused] = useState(false);
-  const [weatherVisible, setWeatherVisible] = useState(true);
-  const [approvalState, setApprovalState] = useState<
-    Record<string, "pending" | "approved" | "denied">
-  >({ grab: "pending", aircon: "pending" });
-  const [phoneAction, setPhoneAction] = useState("Connected · Pixel 7a · 84% battery");
-  const [selectedSkill, setSelectedSkill] = useState(skillOptions[0]);
-  const [skillText, setSkillText] = useState(
-    "Stop before contacting a new vendor or confirming a booking.\nReturn price, availability, warranty, and evidence.",
+  const [snapshot, setSnapshot] = useState<KakiControlSnapshot>();
+  const [connection, setConnection] = useState("Connecting to the authenticated Gateway…");
+  const [outcome, setOutcome] = useState("No action requested.");
+  const [busy, setBusy] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState("");
+  const [skillText, setSkillText] = useState("");
+  const [tracePositions, setTracePositions] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1).toLowerCase();
+    const requested = tabs.find((tab) => tab.toLowerCase() === hash);
+    if (requested) queueMicrotask(() => setActiveTab(requested));
+    const client = currentKakiGatewayClient();
+    if (!client) {
+      queueMicrotask(() =>
+        setConnection(
+          "Gateway client unavailable. Open Kaki from the authenticated OpenClaw Control UI.",
+        ),
+      );
+      return;
+    }
+    let active = true;
+    client
+      .snapshot()
+      .then((next) => {
+        if (!active) return;
+        setSnapshot(next);
+        setConnection("Connected to the household Gateway.");
+        const firstSkill = next.skills[0];
+        if (firstSkill) {
+          setSelectedSkill(firstSkill.id);
+          setSkillText(firstSkill.instructions);
+        }
+      })
+      .catch((error: unknown) => {
+        if (active) setConnection(`Gateway connection failed: ${errorMessage(error)}`);
+      });
+    const unsubscribe = client.subscribe?.((next) => {
+      if (active) setSnapshot(next);
+    });
+    return () => {
+      active = false;
+      unsubscribe?.();
+    };
+  }, []);
+
+  const pendingCount = snapshot?.approvals.filter((item) => item.state === "pending").length ?? 0;
+  const selectedSkillItem = useMemo(
+    () => snapshot?.skills.find((skill) => skill.id === selectedSkill) ?? snapshot?.skills[0],
+    [selectedSkill, snapshot],
   );
-  const [skillSaved, setSkillSaved] = useState(false);
-  const [locale, setLocale] = useState("Singapore · en-SG");
-  const [traceStep, setTraceStep] = useState(2);
-  const [journeyStatus, setJourneyStatus] = useState("Journey is editable by household admins.");
-  const [monitors, setMonitors] = useState({
-    rain: true,
-    train: true,
-    haze: true,
-    cpf: false,
-    hawker: true,
-  });
-  const pendingCount = approvals.filter(
-    (approval) => approvalState[approval.id] === "pending",
-  ).length;
+  const phoneFrameUrl = resolveTrustedPhoneFrameUrl(
+    snapshot?.phone.frameUrl,
+    typeof window === "undefined" ? "http://localhost/" : window.location.href,
+  );
 
   function chooseTab(tab: Tab) {
     setActiveTab(tab);
     window.history.replaceState(null, "", `#${tab.toLowerCase()}`);
+  }
+
+  async function perform(action: KakiControlAction) {
+    const client = currentKakiGatewayClient();
+    if (!client) {
+      setOutcome("Action not sent: connect through the authenticated Gateway and retry.");
+      return;
+    }
+    setBusy(true);
+    setOutcome("Waiting for Gateway outcome…");
+    try {
+      const result = await client.perform(action);
+      setOutcome(result.message);
+      setSnapshot(result.snapshot ?? (await client.snapshot()));
+    } catch (error) {
+      setOutcome(`Action failed: ${errorMessage(error)}. Check Gateway status and retry.`);
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
@@ -121,7 +115,7 @@ export default function Home() {
           </span>
           <div>
             <strong>Kaki</strong>
-            <small>Wei Ling&apos;s household</small>
+            <small>{snapshot?.householdName ?? "Household control centre"}</small>
           </div>
         </div>
         <div className="nav" aria-label="Control centre" role="tablist" aria-orientation="vertical">
@@ -140,102 +134,92 @@ export default function Home() {
             </button>
           ))}
         </div>
-        <div className="system">
+        <div className="system" role="status">
           <i aria-hidden="true" />
-          All systems steady<small>Last checked 20s ago</small>
+          {connection}
         </div>
       </aside>
 
       <section className="workspace">
         <header className="topbar">
           <div>
-            <p className="eyebrow">MONDAY, 24 AUGUST</p>
-            <h1>{activeTab === "Today" ? "Good morning, Wei Ling." : activeTab}</h1>
-            <p className="lede">
+            <p className="eyebrow">LIVE HOUSEHOLD GATEWAY</p>
+            <h1>
               {activeTab === "Today"
-                ? "Two things need you. The rest I’ve got."
-                : sectionDescription(activeTab)}
-            </p>
+                ? `Hello${snapshot?.operatorName ? `, ${snapshot.operatorName}` : ""}.`
+                : activeTab}
+            </h1>
+            <p className="lede">{sectionDescription(activeTab)}</p>
           </div>
           <button
-            aria-pressed={paused}
-            className={paused ? "pause paused" : "pause"}
-            onClick={() => setPaused((value) => !value)}
+            aria-pressed={snapshot?.paused ?? false}
+            className={snapshot?.paused ? "pause paused" : "pause"}
+            disabled={!snapshot || busy}
+            onClick={() => void perform({ type: "system.pause", paused: !snapshot?.paused })}
           >
-            {paused ? "Resume Kaki" : "Pause Kaki"}
+            {snapshot?.paused ? "Resume Kaki" : "Pause Kaki"}
           </button>
         </header>
 
+        {!snapshot && (
+          <div className="privacyNote" role="status">
+            <strong>Live data is not loaded.</strong>
+            <span>{connection}</span>
+          </div>
+        )}
+        <p className="statusLine" aria-live="polite">
+          {outcome}
+        </p>
+
         <TabPanel active={activeTab === "Today"} id="today">
-          {weatherVisible && (
-            <div className="weather" role="status">
-              <div className="weatherIcon" aria-hidden="true">
-                ☂
-              </div>
-              <div>
-                <strong>Rain near school run</strong>
-                <p>Likely 7:35–8:20 am around Ang Mo Kio. Leave 10 minutes earlier.</p>
-              </div>
-              <button onClick={() => setWeatherVisible(false)}>Got it</button>
-            </div>
-          )}
           <SectionHeading
             eyebrow="NEEDS YOUR TAP"
             title="Approvals"
             meta={`${pendingCount} pending`}
           />
           <div className="approvalGrid">
-            {approvals.map((approval) => (
+            {snapshot?.approvals.map((approval) => (
               <ApprovalCard
                 approval={approval}
+                busy={busy}
                 key={approval.id}
-                state={approvalState[approval.id] ?? "pending"}
-                onDecision={(state) =>
-                  setApprovalState((current) => ({ ...current, [approval.id]: state }))
+                onDecision={(decision) =>
+                  void perform({
+                    type: "approval.decide",
+                    id: approval.id,
+                    decision,
+                    factsHash: approval.factsHash,
+                  })
                 }
               />
             ))}
           </div>
           <div className="lowerGrid">
-            <section className="panel">
-              <SectionHeading eyebrow="QUIETLY WORKING" title="In progress" />
-              <Task
-                state="working"
-                title="Aircon quotes"
-                detail="4 of 6 vendors replied · comparing warranty"
-                meta="12 min"
-              />
-              <Task
-                state="done"
-                title="Parents Gateway"
-                detail="Sports Day added to family calendar"
-                meta="Done"
-              />
-            </section>
             <section className="panel householdSummary">
-              <SectionHeading eyebrow="HOUSEHOLD" title="Everyone’s day" />
-              <div className="people" aria-label="Household members">
-                {people.map((person) => (
-                  <span key={person.initials}>{person.initials}</span>
+              <SectionHeading eyebrow="HOUSEHOLD" title="People and privacy" />
+              <div className="people">
+                {snapshot?.household.map((person) => (
+                  <span key={person.id}>{person.initials}</span>
                 ))}
               </div>
-              <p>Ah Ma&apos;s polyclinic reminder goes out at 2:00 pm in Mandarin.</p>
               <button className="textButton" onClick={() => chooseTab("Household")}>
                 View household →
               </button>
+            </section>
+            <section className="panel">
+              <SectionHeading eyebrow="MONITORS" title="Quietly watching" />
+              <p>
+                {snapshot?.monitors.filter((monitor) => monitor.enabled).length ?? 0} active
+                monitors
+              </p>
             </section>
           </div>
         </TabPanel>
 
         <TabPanel active={activeTab === "Household"} id="household">
-          <div className="summaryStrip">
-            <Summary value="4" label="people" />
-            <Summary value="3" label="shared places" />
-            <Summary value="2" label="private scopes" />
-          </div>
           <div className="memberGrid">
-            {people.map((person) => (
-              <article className="panel member" key={person.name}>
+            {snapshot?.household.map((person) => (
+              <article className="panel member" key={person.id}>
                 <span className="avatar">{person.initials}</span>
                 <div>
                   <p className="eyebrow">{person.relation}</p>
@@ -243,40 +227,35 @@ export default function Home() {
                   <p>{person.language}</p>
                   <small>{person.detail}</small>
                 </div>
-                <button aria-label={`Edit ${person.name}`}>Edit</button>
+                <button
+                  disabled={busy}
+                  onClick={() => void perform({ type: "household.edit", id: person.id })}
+                >
+                  Edit
+                </button>
               </article>
             ))}
           </div>
           <div className="privacyNote">
-            <strong>Privacy walls are on.</strong>
-            <span>
-              Medical and money memories stay with their owner unless they choose to share.
-            </span>
+            <strong>Privacy walls are enforced by the Gateway.</strong>
+            <span>Edits return a visible policy or approval outcome.</span>
           </div>
         </TabPanel>
 
         <TabPanel active={activeTab === "Approvals"} id="approvals">
-          <div className="approvalToolbar">
-            <div>
-              <strong>{pendingCount} waiting</strong>
-              <span>Approvals expire in 2 hours and re-ping once.</span>
-            </div>
-            <label>
-              Show{" "}
-              <select defaultValue="pending">
-                <option value="pending">Pending</option>
-                <option value="all">All decisions</option>
-              </select>
-            </label>
-          </div>
           <div className="approvalGrid">
-            {approvals.map((approval) => (
+            {snapshot?.approvals.map((approval) => (
               <ApprovalCard
                 approval={approval}
+                busy={busy}
                 key={approval.id}
-                state={approvalState[approval.id] ?? "pending"}
-                onDecision={(state) =>
-                  setApprovalState((current) => ({ ...current, [approval.id]: state }))
+                onDecision={(decision) =>
+                  void perform({
+                    type: "approval.decide",
+                    id: approval.id,
+                    decision,
+                    factsHash: approval.factsHash,
+                  })
                 }
               />
             ))}
@@ -285,50 +264,53 @@ export default function Home() {
 
         <TabPanel active={activeTab === "Phone"} id="phone">
           <div className="phoneLayout">
-            <section className="phoneFrame" aria-label="Live phone preview">
+            <section className="phoneFrame" aria-label="Live phone view">
               <div className="phoneTop">
-                <span>10:28</span>
-                <span>84% · Wi-Fi</span>
+                <span>{snapshot?.phone.name ?? "Phone"}</span>
+                <span>
+                  {snapshot?.phone.batteryPercent === undefined
+                    ? "—"
+                    : `${snapshot.phone.batteryPercent}%`}
+                </span>
               </div>
               <div className="phoneScreen">
-                <span className="appIcon">G</span>
-                <h2>Grab</h2>
-                <p>Fare review</p>
-                <strong>Raffles Place · $18.20</strong>
-                <div className="phoneCheckpoint">Waiting for household approval</div>
+                {phoneFrameUrl ? (
+                  // A short-lived authenticated frame URL must remain byte-exact; image optimization would detach auth.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    alt="Latest redacted assistant phone frame"
+                    className="phoneImage"
+                    referrerPolicy="no-referrer"
+                    src={phoneFrameUrl}
+                  />
+                ) : (
+                  <p>No live frame available.</p>
+                )}
+                <strong>{snapshot?.phone.summary}</strong>
               </div>
             </section>
             <section className="panel manual">
               <p className="eyebrow">DEDICATED ASSISTANT PHONE</p>
               <h2>Live and manual control</h2>
-              <p className="statusLine" aria-live="polite">
-                {phoneAction}
-              </p>
+              <p>{snapshot?.phone.connected ? "Connected" : "Disconnected"}</p>
               <div className="manualGrid">
-                <button onClick={() => setPhoneAction("Fresh screenshot captured")}>
-                  Screenshot
-                </button>
-                <button onClick={() => setPhoneAction("Sent Back safely")}>Back</button>
-                <button onClick={() => setPhoneAction("Returned to Home")}>Home</button>
-                <button onClick={() => setPhoneAction("Tapped the highlighted target")}>
-                  Tap target
-                </button>
-                <button onClick={() => setPhoneAction("Accessibility tree refreshed")}>
-                  Refresh tree
-                </button>
-                <button onClick={() => setPhoneAction("Phone relaunch requested")}>
-                  Relaunch app
-                </button>
+                {(
+                  ["screenshot", "back", "home", "tap-target", "refresh-tree", "relaunch"] as const
+                ).map((command) => (
+                  <button
+                    disabled={!snapshot?.phone.connected || busy}
+                    key={command}
+                    onClick={() => void perform({ type: "phone.command", command })}
+                  >
+                    {command.replace("-", " ")}
+                  </button>
+                ))}
               </div>
-              <div className="deviceFacts">
+              <div className="privacyNote">
+                <strong>Channel-link QR hidden.</strong>
                 <span>
-                  <b>ADB</b> connected
-                </span>
-                <span>
-                  <b>Companion</b> enabled
-                </span>
-                <span>
-                  <b>Last trace</b> 18 sec ago
+                  Raw WhatsApp QR credentials are available only on an authenticated loopback or
+                  Tailnet operator surface.
                 </span>
               </div>
             </section>
@@ -337,22 +319,24 @@ export default function Home() {
 
         <TabPanel active={activeTab === "Journey"} id="journey">
           <div className="journeyList">
-            {journey.map((item, index) => (
-              <article className="journeyItem" key={item.title}>
-                <div className="journeyDot" aria-hidden="true">
-                  {index + 1}
-                </div>
+            {snapshot?.journey.map((item, index) => (
+              <article className="journeyItem" key={item.id}>
+                <div className="journeyDot">{index + 1}</div>
                 <time>{item.time}</time>
                 <div>
                   <h2>{item.title}</h2>
                   <p>{item.detail}</p>
                 </div>
                 <div className="rowActions">
-                  <button onClick={() => setJourneyStatus(`${item.title} ready to edit`)}>
+                  <button
+                    disabled={busy}
+                    onClick={() => void perform({ type: "journey.edit", id: item.id })}
+                  >
                     Edit
                   </button>
                   <button
-                    onClick={() => setJourneyStatus(`${item.title} deletion requires confirmation`)}
+                    disabled={busy}
+                    onClick={() => void perform({ type: "journey.delete", id: item.id })}
                   >
                     Delete
                   </button>
@@ -360,26 +344,23 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <p className="statusLine" aria-live="polite">
-            {journeyStatus}
-          </p>
         </TabPanel>
 
         <TabPanel active={activeTab === "Skills"} id="skills">
           <div className="editorLayout">
             <aside className="skillList" aria-label="Installed skills">
-              {skillOptions.map((skill) => (
+              {snapshot?.skills.map((skill) => (
                 <button
-                  aria-pressed={selectedSkill === skill}
-                  className={selectedSkill === skill ? "selected" : ""}
-                  key={skill}
+                  aria-pressed={selectedSkillItem?.id === skill.id}
+                  className={selectedSkillItem?.id === skill.id ? "selected" : ""}
+                  key={skill.id}
                   onClick={() => {
-                    setSelectedSkill(skill);
-                    setSkillSaved(false);
+                    setSelectedSkill(skill.id);
+                    setSkillText(skill.instructions);
                   }}
                 >
-                  {skill}
-                  <small>{skill === "grab-ride" ? "phone" : "maintained"}</small>
+                  {skill.id}
+                  <small>{skill.source}</small>
                 </button>
               ))}
             </aside>
@@ -387,25 +368,31 @@ export default function Home() {
               <div className="editorHead">
                 <div>
                   <p className="eyebrow">SKILL.MD</p>
-                  <h2>{selectedSkill}</h2>
+                  <h2>{selectedSkillItem?.id ?? "Select a skill"}</h2>
                 </div>
-                <span>v1 · reviewed</span>
               </div>
               <label htmlFor="skill-instructions">Safe execution notes</label>
               <textarea
                 id="skill-instructions"
-                onChange={(event) => {
-                  setSkillText(event.target.value);
-                  setSkillSaved(false);
-                }}
-                rows={10}
+                maxLength={64_000}
+                onChange={(event) => setSkillText(event.target.value)}
+                rows={12}
                 value={skillText}
               />
               <div className="editorFooter">
-                <span aria-live="polite">
-                  {skillSaved ? "Saved locally · fixture review required" : "Unsaved local changes"}
-                </span>
-                <button className="primary" onClick={() => setSkillSaved(true)}>
+                <span>Drafts require Gateway authorization.</span>
+                <button
+                  className="primary"
+                  disabled={!selectedSkillItem || busy}
+                  onClick={() =>
+                    selectedSkillItem &&
+                    void perform({
+                      type: "skill.save-draft",
+                      id: selectedSkillItem.id,
+                      instructions: skillText,
+                    })
+                  }
+                >
                   Save draft
                 </button>
               </div>
@@ -417,155 +404,105 @@ export default function Home() {
           <div className="localeGrid">
             <section className="panel">
               <p className="eyebrow">ACTIVE HOUSEHOLD LOCALE</p>
-              <h2>{locale}</h2>
+              <h2>{snapshot?.locale.active ?? "Not loaded"}</h2>
               <label htmlFor="locale-select">Regional pack</label>
               <select
+                disabled={!snapshot || busy}
                 id="locale-select"
-                onChange={(event) => setLocale(event.target.value)}
-                value={locale}
+                onChange={(event) =>
+                  void perform({ type: "locale.set", locale: event.target.value })
+                }
+                value={snapshot?.locale.active ?? ""}
               >
-                <option>Singapore · en-SG</option>
-                <option>Malaysia · ms-MY</option>
-                <option>Indonesia · id-ID</option>
-                <option>Thailand · th-TH</option>
-                <option>Vietnam · vi-VN</option>
-                <option>Philippines · fil-PH</option>
+                <option disabled value="">
+                  Choose a locale
+                </option>
+                {snapshot?.locale.available.map((locale) => (
+                  <option key={locale}>{locale}</option>
+                ))}
               </select>
               <div className="localeFacts">
                 <span>
-                  Currency <b>SGD</b>
+                  Currency <b>{snapshot?.locale.currency}</b>
                 </span>
                 <span>
-                  Timezone <b>Asia/Singapore</b>
-                </span>
-                <span>
-                  Channels <b>WhatsApp · Telegram</b>
+                  Timezone <b>{snapshot?.locale.timeZone}</b>
                 </span>
               </div>
             </section>
             <section className="panel">
               <p className="eyebrow">REGISTER PREVIEW</p>
-              <h2>Warm, quick, local</h2>
-              <blockquote>
-                “Can. I checked the rain and train status—leave 10 minutes earlier, should be
-                steady.”
-              </blockquote>
-              <p className="muted">
-                Mirrors each member’s language without caricature. Formal for schools, government
-                and banks.
-              </p>
+              <blockquote>{snapshot?.locale.preview ?? "Locale preview unavailable."}</blockquote>
             </section>
           </div>
         </TabPanel>
 
         <TabPanel active={activeTab === "Cost"} id="cost">
           <div className="summaryStrip">
-            <Summary value="$8.42" label="this month" />
-            <Summary value="$0.31" label="today" />
-            <Summary value="72%" label="local model share" />
+            <Summary value={snapshot?.cost.month ?? "—"} label="this month" />
+            <Summary value={snapshot?.cost.today ?? "—"} label="today" />
+            <Summary value={snapshot?.cost.localShare ?? "—"} label="local model share" />
           </div>
           <section className="panel costPanel">
-            <div className="costRow">
-              <span>Planning and tools</span>
-              <b>$4.92</b>
-              <i style={{ width: "58%" }} />
-            </div>
-            <div className="costRow">
-              <span>Vision and browser fallback</span>
-              <b>$2.10</b>
-              <i style={{ width: "25%" }} />
-            </div>
-            <div className="costRow">
-              <span>Voice transcription</span>
-              <b>$1.40</b>
-              <i style={{ width: "17%" }} />
-            </div>
             <div className="budget">
-              <span>Monthly alert at $20</span>
-              <strong>$11.58 remaining</strong>
+              <span>Budget remaining</span>
+              <strong>{snapshot?.cost.budgetRemaining ?? "Unavailable"}</strong>
             </div>
           </section>
         </TabPanel>
 
         <TabPanel active={activeTab === "Traces"} id="traces">
-          <div className="traceLayout">
-            <section className="traceScreen" aria-label={`Trace replay step ${traceStep} of 4`}>
-              <div className="browserBar">
-                <i />
-                <i />
-                <i />
-                <span>iras.gov.sg/mytax</span>
-              </div>
-              <div className="traceContent">
-                <p className="eyebrow">STEP {traceStep} OF 4</p>
-                <h2>
-                  {
-                    ["Portal opened", "NOA located", "Singpass handoff", "Summary ready"][
-                      traceStep - 1
-                    ]
-                  }
-                </h2>
-                <div className="selectorBox">
-                  {traceStep === 3
-                    ? "Paused safely · QR evidence attached"
-                    : "Selector matched · confidence 0.97"}
-                </div>
-              </div>
-            </section>
-            <section className="panel replay">
-              <p className="eyebrow">TRACE REPLAY</p>
-              <h2>IRAS NOA check</h2>
-              <p>Today, 8:54 am · browser · 4 steps</p>
-              <label htmlFor="trace-step">Replay position</label>
-              <input
-                id="trace-step"
-                max="4"
-                min="1"
-                onChange={(event) => setTraceStep(Number(event.target.value))}
-                type="range"
-                value={traceStep}
-              />
-              <div className="replayButtons">
-                <button
-                  disabled={traceStep === 1}
-                  onClick={() => setTraceStep((step) => Math.max(1, step - 1))}
-                >
-                  Previous
-                </button>
-                <button
-                  disabled={traceStep === 4}
-                  onClick={() => setTraceStep((step) => Math.min(4, step + 1))}
-                >
-                  Next step
-                </button>
-              </div>
-              <div className="traceMeta">
-                <span>No secrets recorded</span>
-                <span>Selector chain: reviewed</span>
-              </div>
-            </section>
+          <div className="monitorGrid">
+            {snapshot?.traces.map((trace) => {
+              const position = Math.min(
+                tracePositions[trace.id] ?? 1,
+                Math.max(trace.steps.length, 1),
+              );
+              const step = trace.steps[position - 1];
+              return (
+                <section className="panel replay" key={trace.id}>
+                  <p className="eyebrow">TRACE REPLAY</p>
+                  <h2>{trace.title}</h2>
+                  <p>{step?.title ?? "No replayable steps"}</p>
+                  <div className="selectorBox">
+                    {step?.evidence ?? "No secret-bearing evidence retained."}
+                  </div>
+                  <label htmlFor={`trace-${trace.id}`}>Replay position</label>
+                  <input
+                    disabled={trace.steps.length < 2}
+                    id={`trace-${trace.id}`}
+                    max={Math.max(trace.steps.length, 1)}
+                    min="1"
+                    onChange={(event) => {
+                      const next = Number(event.target.value);
+                      setTracePositions((current) => ({ ...current, [trace.id]: next }));
+                      void perform({ type: "trace.position", id: trace.id, step: next });
+                    }}
+                    type="range"
+                    value={position}
+                  />
+                </section>
+              );
+            })}
           </div>
         </TabPanel>
 
         <TabPanel active={activeTab === "Monitors"} id="monitors">
           <div className="monitorGrid">
-            {(
-              [
-                ["rain", "Rain before commute", "School run · 7:15–8:30 am", "Checked 2 min ago"],
-                ["train", "MRT disruption", "North-South and Circle lines", "Checked 1 min ago"],
-                ["haze", "Haze ≥ 100", "Home and school", "PSI 42 · normal"],
-                ["cpf", "CPF year-end", "One reminder in December", "Paused"],
-                ["hawker", "Favourite hawker closures", "AMK · Toa Payoh", "Checked 3 h ago"],
-              ] as const
-            ).map(([key, title, detail, status]) => (
-              <article className="panel monitor" key={key}>
+            {snapshot?.monitors.map((monitor) => (
+              <article className="panel monitor" key={monitor.id}>
                 <span className="switch">
                   <input
-                    aria-label={`Enable ${title}`}
-                    checked={monitors[key]}
-                    id={`monitor-${key}`}
+                    aria-label={`Enable ${monitor.title}`}
+                    checked={monitor.enabled}
+                    disabled={busy}
+                    id={`monitor-${monitor.id}`}
                     onChange={(event) =>
-                      setMonitors((current) => ({ ...current, [key]: event.target.checked }))
+                      void perform({
+                        type: "monitor.set",
+                        id: monitor.id,
+                        enabled: event.target.checked,
+                      })
                     }
                     type="checkbox"
                   />
@@ -573,17 +510,17 @@ export default function Home() {
                 </span>
                 <div>
                   <h2>
-                    <label htmlFor={`monitor-${key}`}>{title}</label>
+                    <label htmlFor={`monitor-${monitor.id}`}>{monitor.title}</label>
                   </h2>
-                  <p>{detail}</p>
-                  <small>{status}</small>
+                  <p>{monitor.detail}</p>
+                  <small>{monitor.status}</small>
                 </div>
               </article>
             ))}
           </div>
           <div className="privacyNote">
-            <strong>Quiet hours 23:00–07:00.</strong>
-            <span>Only urgent safety and transport disruption alerts break through.</span>
+            <strong>Quiet hours are policy-owned.</strong>
+            <span>Every change returns an audited Gateway outcome.</span>
           </div>
         </TabPanel>
       </section>
@@ -636,59 +573,35 @@ function SectionHeading({
 
 function ApprovalCard({
   approval,
-  state,
+  busy,
   onDecision,
 }: {
-  approval: (typeof approvals)[number];
-  state: "pending" | "approved" | "denied";
-  onDecision: (state: "approved" | "denied") => void;
+  approval: ApprovalItem;
+  busy: boolean;
+  onDecision: (decision: ApprovalDecision) => void;
 }) {
   return (
-    <article className={`approvalCard ${state}`}>
+    <article className={`approvalCard ${approval.state}`}>
       <div className="cardTop">
-        <span>{state === "pending" ? "Needs approval" : state}</span>
+        <span>{approval.state === "pending" ? "Needs approval" : approval.state}</span>
         <strong>{approval.amount}</strong>
       </div>
       <h3>{approval.title}</h3>
       <p>{approval.detail}</p>
       <div className="evidence">{approval.evidence}</div>
-      {state === "pending" ? (
+      {approval.state === "pending" ? (
         <div className="actions">
-          <button className="approve" onClick={() => onDecision("approved")}>
+          <button className="approve" disabled={busy} onClick={() => onDecision("approved")}>
             Approve
           </button>
-          <button onClick={() => onDecision("denied")}>Deny</button>
-          <button>Review</button>
+          <button disabled={busy} onClick={() => onDecision("denied")}>
+            Deny
+          </button>
         </div>
       ) : (
-        <p className="decision" aria-live="polite">
-          Decision recorded: {state}
-        </p>
+        <p className="decision">Decision recorded: {approval.state}</p>
       )}
     </article>
-  );
-}
-
-function Task({
-  state,
-  title,
-  detail,
-  meta,
-}: {
-  state: "working" | "done";
-  title: string;
-  detail: string;
-  meta: string;
-}) {
-  return (
-    <div className="task">
-      <i className={state === "done" ? "done" : "spin"}>{state === "done" ? "✓" : ""}</i>
-      <div>
-        <strong>{title}</strong>
-        <p>{detail}</p>
-      </div>
-      <span>{meta}</span>
-    </div>
   );
 }
 
@@ -701,18 +614,23 @@ function Summary({ value, label }: { value: string; label: string }) {
   );
 }
 
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
 function sectionDescription(tab: Tab): string {
-  const descriptions: Record<Tab, string> = {
-    Today: "Two things need you. The rest I’ve got.",
-    Household: "People, preferences and privacy walls.",
-    Approvals: "One tap for every irreversible step.",
-    Phone: "The dedicated assistant phone, live and traceable.",
-    Journey: "What Kaki did, in household time.",
-    Skills: "Reviewed playbooks and learned improvements.",
-    Locale: "Language, register and regional defaults.",
-    Cost: "Clear spend, budgets and model mix.",
-    Traces: "Replay every browser and phone step.",
-    Monitors: "Useful heads-ups, never noise.",
-  };
-  return descriptions[tab];
+  return (
+    {
+      Today: "Live household status and decisions.",
+      Household: "People, preferences and privacy walls.",
+      Approvals: "One audited outcome for every irreversible step.",
+      Phone: "The dedicated assistant phone, live and traceable.",
+      Journey: "What Kaki did, in household time.",
+      Skills: "Reviewed playbooks and learned improvements.",
+      Locale: "Language, register and regional defaults.",
+      Cost: "Gateway-reported spend, budgets and model mix.",
+      Traces: "Replay redacted browser and phone steps.",
+      Monitors: "Useful heads-ups, never noise.",
+    } satisfies Record<Tab, string>
+  )[tab];
 }

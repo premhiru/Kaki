@@ -99,6 +99,20 @@ describe("data.gov.sg and NEA public client", () => {
       "https://data.gov.sg/api/action/datastore_search?resource_id=d_fixture&limit=20&offset=40",
     );
   });
+
+  it("refuses a poll response that points downloads outside official blob hosts", async () => {
+    const requests: HttpRequest[] = [];
+    const dataGov = new DataGovSgClient({
+      transport: fixtureTransport(
+        { code: 0, data: { url: "https://127.0.0.1/internal" } },
+        requests,
+      ),
+    });
+    await expect(dataGov.datasetGeoJson("d_fixture")).rejects.toThrow(
+      "data-gov-download-url-denied",
+    );
+    expect(requests).toHaveLength(1);
+  });
 });
 
 describe("OneMap client", () => {

@@ -19,17 +19,12 @@ test("server-renders the Kaki household control centre", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /<title>Kaki · Household control centre<\/title>/i);
-  assert.match(html, /Good morning, Wei Ling/);
-  assert.match(html, /Rain near school run/);
-  assert.match(html, /Grab to Raffles Place/);
-  assert.match(html, /Aircon servicing/);
-  assert.match(html, /Privacy walls are on/);
-  assert.match(html, /Live and manual control/);
-  assert.match(html, /Journey is editable/);
-  assert.match(html, /SKILL\.MD/);
-  assert.match(html, /Monthly alert at \$20/);
-  assert.match(html, /TRACE REPLAY/);
-  assert.match(html, /Quiet hours 23:00–07:00/);
+  assert.match(html, /Household control centre/);
+  assert.match(html, /LIVE HOUSEHOLD GATEWAY/);
+  assert.match(html, /Connecting to the authenticated Gateway/);
+  assert.match(html, /Live data is not loaded/);
+  assert.match(html, /No action requested/);
+  assert.doesNotMatch(html, /Grab to Raffles Place|Aircon servicing|Wei Ling/);
   assert.match(html, /og\.png/);
 });
 
@@ -51,5 +46,6 @@ test("keeps all requested control surfaces discoverable", async () => {
   assert.match(page, /role="tablist"/);
   assert.match(page, /role="tabpanel"/);
   assert.match(page, /aria-live="polite"/);
+  assert.match(page, /Gateway client unavailable|authenticated Gateway/);
   await access(new URL("../public/og.png", import.meta.url));
 });

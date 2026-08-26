@@ -14,36 +14,11 @@
       "category": "local",
       "languages": ["vi"]
     },
-    {
-      "term": "MoMo",
-      "normalised": "mobile wallet",
-      "category": "local",
-      "languages": ["vi"]
-    },
-    {
-      "term": "VNeID",
-      "normalised": "digital identity",
-      "category": "local",
-      "languages": ["vi"]
-    },
-    {
-      "term": "Tết",
-      "normalised": "Lunar New Year",
-      "category": "local",
-      "languages": ["vi"]
-    },
-    {
-      "term": "xe ôm",
-      "normalised": "motorcycle taxi",
-      "category": "local",
-      "languages": ["vi"]
-    },
-    {
-      "term": "quán cơm",
-      "normalised": "rice eatery",
-      "category": "local",
-      "languages": ["vi"]
-    },
+    { "term": "MoMo", "normalised": "mobile wallet", "category": "local", "languages": ["vi"] },
+    { "term": "VNeID", "normalised": "digital identity", "category": "local", "languages": ["vi"] },
+    { "term": "Tết", "normalised": "Lunar New Year", "category": "local", "languages": ["vi"] },
+    { "term": "xe ôm", "normalised": "motorcycle taxi", "category": "local", "languages": ["vi"] },
+    { "term": "quán cơm", "normalised": "rice eatery", "category": "local", "languages": ["vi"] },
     {
       "term": "ăn chay",
       "normalised": "vegetarian eating",
@@ -56,12 +31,7 @@
       "category": "local",
       "languages": ["vi"]
     },
-    {
-      "term": "phường",
-      "normalised": "urban ward",
-      "category": "local",
-      "languages": ["vi"]
-    },
+    { "term": "phường", "normalised": "urban ward", "category": "local", "languages": ["vi"] },
     {
       "term": "thời tiết bây giờ",
       "normalised": "thời tiết: bây giờ",
@@ -152,12 +122,7 @@
       "category": "phrase",
       "languages": ["vi"]
     },
-    {
-      "term": "mưa halal",
-      "normalised": "mưa: halal",
-      "category": "phrase",
-      "languages": ["vi"]
-    },
+    { "term": "mưa halal", "normalised": "mưa: halal", "category": "phrase", "languages": ["vi"] },
     {
       "term": "mưa cuối tuần",
       "normalised": "mưa: cuối tuần",
@@ -272,12 +237,7 @@
       "category": "phrase",
       "languages": ["vi"]
     },
-    {
-      "term": "tàu halal",
-      "normalised": "tàu: halal",
-      "category": "phrase",
-      "languages": ["vi"]
-    },
+    { "term": "tàu halal", "normalised": "tàu: halal", "category": "phrase", "languages": ["vi"] },
     {
       "term": "tàu cuối tuần",
       "normalised": "tàu: cuối tuần",
@@ -632,12 +592,7 @@
       "category": "phrase",
       "languages": ["vi"]
     },
-    {
-      "term": "sửa halal",
-      "normalised": "sửa: halal",
-      "category": "phrase",
-      "languages": ["vi"]
-    },
+    { "term": "sửa halal", "normalised": "sửa: halal", "category": "phrase", "languages": ["vi"] },
     {
       "term": "sửa cuối tuần",
       "normalised": "sửa: cuối tuần",
@@ -992,12 +947,7 @@
       "category": "phrase",
       "languages": ["vi"]
     },
-    {
-      "term": "chợ halal",
-      "normalised": "chợ: halal",
-      "category": "phrase",
-      "languages": ["vi"]
-    },
+    { "term": "chợ halal", "normalised": "chợ: halal", "category": "phrase", "languages": ["vi"] },
     {
       "term": "chợ cuối tuần",
       "normalised": "chợ: cuối tuần",

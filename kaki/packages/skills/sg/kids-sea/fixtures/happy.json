@@ -1,9 +1,10 @@
 {
   "skillId": "sg.kids-sea",
   "input": {
-    "request": "fixture request for Singapore school milestones",
+    "request": "Singapore school milestones: P6 PSLE 2026",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "cohort_and_exam": "P6 PSLE 2026"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,11 @@
   "expect": {
     "status": "completed",
     "approval": "none",
-    "evidence": ["redacted-trace", "verified-result"]
+    "actionIds": ["kids-sea.source", "kids-sea.prepare", "kids-sea.verify"],
+    "evidence": [
+      "data:query:MOE and SEAB calendars source state",
+      "data:normalize:a milestone timeline with source links preparation",
+      "data:verify:a milestone timeline with source links"
+    ]
   }
 }

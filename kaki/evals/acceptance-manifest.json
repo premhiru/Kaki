@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "liveEvidenceMaxAgeHours": 168,
   "definition": "CODEX MASTER PROMPT v2 section 20",
   "criteria": [
     {

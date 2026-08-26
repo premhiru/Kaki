@@ -1,14 +1,18 @@
 import { randomUUID } from "node:crypto";
-import { mkdirSync } from "node:fs";
-import { dirname } from "node:path";
-import { DatabaseSync } from "node:sqlite";
 import type { PrivacyScope } from "@kaki/core";
+import type { HouseholdFieldCipher } from "./field-cipher.js";
+import type {
+  HouseholdMemoryRepository,
+  StoredJourneyRow,
+  StoredMemoryRow,
+} from "./persistence.js";
 import {
   assertNoSecrets,
   canAccess,
   householdPrivacy,
   maskSensitiveIdentifiers,
 } from "./privacy.js";
+import { parsePrivacyScope } from "./validation.js";
 
 export interface MemoryEntry {
   readonly id: string;
@@ -31,208 +35,167 @@ export interface JourneyEvent {
   readonly updatedAt: string;
 }
 
-type SqlRow = Record<string, unknown>;
+export interface MemoryWriteInput {
+  readonly householdId: string;
+  readonly kind: string;
+  readonly text: string;
+  readonly scopePersonId?: string;
+  readonly privacy?: PrivacyScope;
+  readonly id?: string;
+}
 
-export class HouseholdMemoryStore implements Disposable {
-  private readonly db: DatabaseSync;
+export class HouseholdMemoryStore {
+  public constructor(
+    private readonly repository: HouseholdMemoryRepository,
+    private readonly cipher: HouseholdFieldCipher,
+    private readonly clock: () => Date = () => new Date(),
+  ) {}
 
-  public constructor(file: string) {
-    if (file !== ":memory:") mkdirSync(dirname(file), { recursive: true });
-    this.db = new DatabaseSync(file);
-    this.db.exec("PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;");
-    this.migrate();
-  }
-
-  public addMemory(input: {
-    householdId: string;
-    kind: string;
-    text: string;
-    scopePersonId?: string;
-    privacy?: PrivacyScope;
-    id?: string;
-  }): MemoryEntry {
-    assertNoSecrets(input.text);
-    const text = maskSensitiveIdentifiers(input.text);
+  public async addMemory(input: unknown): Promise<MemoryEntry> {
+    const parsed = parseMemoryInput(input);
+    assertNoSecrets(parsed.text);
+    const text = maskSensitiveIdentifiers(parsed.text);
     const privacy =
-      input.privacy ??
-      (input.scopePersonId
-        ? {
-            ownerPersonId: input.scopePersonId,
-            audience: { kind: "owner" as const, personId: input.scopePersonId },
+      parsed.privacy ??
+      (parsed.scopePersonId
+        ? ({
+            ownerPersonId: parsed.scopePersonId,
+            audience: { kind: "owner", personId: parsed.scopePersonId },
             sensitivity:
-              input.kind === "medical"
-                ? ("medical" as const)
-                : input.kind === "financial"
-                  ? ("financial" as const)
-                  : ("private" as const),
-          }
+              parsed.kind === "medical"
+                ? "medical"
+                : parsed.kind === "financial"
+                  ? "financial"
+                  : "private",
+          } satisfies PrivacyScope)
         : householdPrivacy);
-    const id = input.id ?? randomUUID();
-    const now = new Date().toISOString();
-    this.db
-      .prepare(
-        `INSERT INTO memory_entries
-         (id, household_id, kind, text, scope_person_id, audience_json, sensitivity, purposes_json, created_at, updated_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      )
-      .run(
-        id,
-        input.householdId,
-        input.kind,
-        text,
-        input.scopePersonId ?? null,
-        JSON.stringify(privacy.audience),
-        privacy.sensitivity,
-        JSON.stringify(privacy.purposes ?? []),
-        now,
-        now,
-      );
-    return {
+    const id = parsed.id ?? randomUUID();
+    const now = this.clock().toISOString();
+    const payloadCiphertext = await this.cipher.encrypt(
+      parsed.householdId,
+      memoryContext(id),
+      JSON.stringify({ text, privacy }),
+    );
+    const searchTokens = await this.cipher.searchTokens(parsed.householdId, text);
+    const row: StoredMemoryRow = {
       id,
-      householdId: input.householdId,
-      kind: input.kind,
-      text,
-      ...(input.scopePersonId ? { scopePersonId: input.scopePersonId } : {}),
-      privacy,
+      householdId: parsed.householdId,
+      kind: parsed.kind,
+      ...(parsed.scopePersonId ? { scopePersonId: parsed.scopePersonId } : {}),
+      payloadCiphertext,
+      searchTokens,
       createdAt: now,
       updatedAt: now,
     };
+    await this.repository.insertMemory(row);
+    return entryFromPayload(row, { text, privacy });
   }
 
-  /** FTS5 recall constrained to the requesting household and speaker privacy wall. */
-  public recall(
+  /** FTS recall constrained to the requesting household and speaker privacy wall. */
+  public async recall(
     query: string,
     householdId: string,
     requesterPersonId?: string,
     limit = 10,
     options: { purpose?: string; childSafe?: boolean } = {},
-  ): MemoryEntry[] {
-    const safeQuery = ftsQuery(query);
-    if (!safeQuery) return [];
-    const requested = Math.max(1, Math.min(100, Math.floor(limit)));
-    const rows = this.db
-      .prepare(
-        `SELECT m.*
-         FROM memory_fts AS f
-         JOIN memory_entries AS m ON m.rowid = f.rowid
-         WHERE memory_fts MATCH ?
-           AND m.household_id = ?
-         ORDER BY bm25(memory_fts), m.updated_at DESC
-         LIMIT ?`,
-      )
-      .all(safeQuery, householdId, Math.min(1000, requested * 10)) as SqlRow[];
-    return rows
-      .map(memoryFromRow)
+  ): Promise<MemoryEntry[]> {
+    const searchTokens = await this.cipher.searchTokens(householdId, query);
+    if (!searchTokens) return [];
+    const requested = boundedLimit(limit, 100);
+    const rows = await this.repository.searchMemory(
+      householdId,
+      searchTokens,
+      Math.min(1000, requested * 10),
+    );
+    const entries = await Promise.all(rows.map((row) => this.decryptMemory(row)));
+    return entries
       .filter((entry) =>
         canAccess(entry.privacy, requesterPersonId, options.purpose, options.childSafe),
       )
       .slice(0, requested);
   }
 
-  public getMemory(
+  public async getMemory(
     id: string,
     householdId: string,
     requesterPersonId?: string,
     options: { purpose?: string; childSafe?: boolean } = {},
-  ): MemoryEntry | undefined {
-    const row = this.db
-      .prepare("SELECT * FROM memory_entries WHERE id = ? AND household_id = ?")
-      .get(id, householdId) as SqlRow | undefined;
+  ): Promise<MemoryEntry | undefined> {
+    const row = await this.repository.findMemory(id, householdId);
     if (!row) return undefined;
-    const entry = memoryFromRow(row);
+    const entry = await this.decryptMemory(row);
     return canAccess(entry.privacy, requesterPersonId, options.purpose, options.childSafe)
       ? entry
       : undefined;
   }
 
-  public deleteMemory(id: string, householdId: string): boolean {
-    return (
-      this.db
-        .prepare("DELETE FROM memory_entries WHERE id = ? AND household_id = ?")
-        .run(id, householdId).changes > 0
-    );
+  public deleteMemory(id: string, householdId: string): Promise<boolean> {
+    return this.repository.deleteMemory(id, householdId);
   }
 
-  public addJourney(input: {
-    householdId: string;
-    taskId: string;
-    title: string;
-    detail: string;
-    id?: string;
-  }): JourneyEvent {
-    assertNoSecrets(input.title);
-    assertNoSecrets(input.detail);
-    const id = input.id ?? randomUUID();
-    const now = new Date().toISOString();
-    this.db
-      .prepare(
-        `INSERT INTO journey_events
-         (id, household_id, task_id, title, detail, created_at, updated_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      )
-      .run(
-        id,
-        input.householdId,
-        input.taskId,
-        maskSensitiveIdentifiers(input.title),
-        maskSensitiveIdentifiers(input.detail),
-        now,
-        now,
-      );
-    return {
-      ...input,
-      title: maskSensitiveIdentifiers(input.title),
-      detail: maskSensitiveIdentifiers(input.detail),
+  public async addJourney(input: unknown): Promise<JourneyEvent> {
+    const parsed = parseJourneyInput(input);
+    assertNoSecrets(parsed.title);
+    assertNoSecrets(parsed.detail);
+    const id = parsed.id ?? randomUUID();
+    const now = this.clock().toISOString();
+    const title = maskSensitiveIdentifiers(parsed.title);
+    const detail = maskSensitiveIdentifiers(parsed.detail);
+    const row: StoredJourneyRow = {
       id,
+      householdId: parsed.householdId,
+      taskId: parsed.taskId,
+      version: 1,
+      payloadCiphertext: await this.cipher.encrypt(
+        parsed.householdId,
+        journeyContext(id),
+        JSON.stringify({ title, detail }),
+      ),
+      createdAt: now,
+      updatedAt: now,
+    };
+    await this.repository.insertJourney(row);
+    return {
+      id,
+      householdId: parsed.householdId,
+      taskId: parsed.taskId,
+      title,
+      detail,
       createdAt: now,
       updatedAt: now,
     };
   }
 
-  public journey(householdId: string, limit = 100): JourneyEvent[] {
-    const rows = this.db
-      .prepare(
-        `SELECT * FROM journey_events WHERE household_id = ?
-         ORDER BY created_at DESC LIMIT ?`,
-      )
-      .all(householdId, Math.max(1, Math.floor(limit))) as SqlRow[];
-    return rows.map(journeyFromRow);
+  public async journey(householdId: string, limit = 100): Promise<JourneyEvent[]> {
+    const rows = await this.repository.listJourney(householdId, boundedLimit(limit, 1000));
+    return Promise.all(rows.map((row) => this.decryptJourney(row)));
   }
 
-  public editJourney(
-    id: string,
-    householdId: string,
-    patch: { title?: string; detail?: string },
-  ): boolean {
-    if (patch.title) assertNoSecrets(patch.title);
-    if (patch.detail) assertNoSecrets(patch.detail);
-    const result = this.db
-      .prepare(
-        `UPDATE journey_events SET
-           title = COALESCE(?, title), detail = COALESCE(?, detail), updated_at = ?
-         WHERE id = ? AND household_id = ?`,
-      )
-      .run(
-        patch.title ? maskSensitiveIdentifiers(patch.title) : null,
-        patch.detail ? maskSensitiveIdentifiers(patch.detail) : null,
-        new Date().toISOString(),
-        id,
-        householdId,
-      );
-    return result.changes > 0;
-  }
-
-  public deleteJourney(id: string, householdId: string): boolean {
-    return (
-      this.db
-        .prepare("DELETE FROM journey_events WHERE id = ? AND household_id = ?")
-        .run(id, householdId).changes > 0
+  public async editJourney(id: string, householdId: string, patch: unknown): Promise<boolean> {
+    const parsed = parseJourneyPatch(patch);
+    const currentRow = await this.repository.findJourney(id, householdId);
+    if (!currentRow) return false;
+    const current = await this.decryptJourney(currentRow);
+    if (parsed.title !== undefined) assertNoSecrets(parsed.title);
+    if (parsed.detail !== undefined) assertNoSecrets(parsed.detail);
+    const title = maskSensitiveIdentifiers(parsed.title ?? current.title);
+    const detail = maskSensitiveIdentifiers(parsed.detail ?? current.detail);
+    const updatedAt = this.clock().toISOString();
+    const payload = await this.cipher.encrypt(
+      householdId,
+      journeyContext(id),
+      JSON.stringify({ title, detail }),
     );
+    return this.repository.updateJourney(id, householdId, payload, updatedAt, currentRow.version);
   }
 
-  public exportJourneyMarkdown(householdId: string, limit = 1000): string {
+  public deleteJourney(id: string, householdId: string): Promise<boolean> {
+    return this.repository.deleteJourney(id, householdId);
+  }
+
+  public async exportJourneyMarkdown(householdId: string, limit = 1000): Promise<string> {
     const lines = ["# Journey", ""];
-    for (const event of this.journey(householdId, Math.min(1000, limit)))
+    for (const event of await this.journey(householdId, Math.min(1000, limit)))
       lines.push(
         `## ${maskSensitiveIdentifiers(event.title)}`,
         "",
@@ -245,114 +208,159 @@ export class HouseholdMemoryStore implements Disposable {
     return lines.join("\n");
   }
 
-  public close(): void {
-    this.db.close();
+  private async decryptMemory(row: StoredMemoryRow): Promise<MemoryEntry> {
+    const plaintext = await this.cipher.decrypt(
+      row.householdId,
+      memoryContext(row.id),
+      row.payloadCiphertext,
+    );
+    return entryFromPayload(row, parseMemoryPayload(plaintext));
   }
 
-  public [Symbol.dispose](): void {
-    this.close();
-  }
-
-  private migrate(): void {
-    this.db.exec(`
-      CREATE TABLE IF NOT EXISTS memory_entries (
-        id TEXT PRIMARY KEY,
-        household_id TEXT NOT NULL,
-        kind TEXT NOT NULL,
-        text TEXT NOT NULL,
-        scope_person_id TEXT,
-        audience_json TEXT,
-        sensitivity TEXT,
-        purposes_json TEXT,
-        created_at TEXT NOT NULL,
-        updated_at TEXT NOT NULL
-      );
-      CREATE INDEX IF NOT EXISTS memory_household_scope
-        ON memory_entries(household_id, scope_person_id);
-      CREATE VIRTUAL TABLE IF NOT EXISTS memory_fts USING fts5(
-        text, content='memory_entries', content_rowid='rowid', tokenize='unicode61'
-      );
-      CREATE TRIGGER IF NOT EXISTS memory_ai AFTER INSERT ON memory_entries BEGIN
-        INSERT INTO memory_fts(rowid, text) VALUES (new.rowid, new.text);
-      END;
-      CREATE TRIGGER IF NOT EXISTS memory_ad AFTER DELETE ON memory_entries BEGIN
-        INSERT INTO memory_fts(memory_fts, rowid, text) VALUES ('delete', old.rowid, old.text);
-      END;
-      CREATE TRIGGER IF NOT EXISTS memory_au AFTER UPDATE ON memory_entries BEGIN
-        INSERT INTO memory_fts(memory_fts, rowid, text) VALUES ('delete', old.rowid, old.text);
-        INSERT INTO memory_fts(rowid, text) VALUES (new.rowid, new.text);
-      END;
-      CREATE TABLE IF NOT EXISTS journey_events (
-        id TEXT PRIMARY KEY,
-        household_id TEXT NOT NULL,
-        task_id TEXT NOT NULL,
-        title TEXT NOT NULL,
-        detail TEXT NOT NULL,
-        created_at TEXT NOT NULL,
-        updated_at TEXT NOT NULL
-      );
-      CREATE INDEX IF NOT EXISTS journey_household_created
-        ON journey_events(household_id, created_at DESC);
-    `);
-    this.ensureColumn("memory_entries", "audience_json", "TEXT");
-    this.ensureColumn("memory_entries", "sensitivity", "TEXT");
-    this.ensureColumn("memory_entries", "purposes_json", "TEXT");
-  }
-
-  private ensureColumn(table: string, column: string, type: string): void {
-    const columns = this.db.prepare(`PRAGMA table_info(${table})`).all() as SqlRow[];
-    if (!columns.some((item) => item.name === column))
-      this.db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${type}`);
+  private async decryptJourney(row: StoredJourneyRow): Promise<JourneyEvent> {
+    const plaintext = await this.cipher.decrypt(
+      row.householdId,
+      journeyContext(row.id),
+      row.payloadCiphertext,
+    );
+    const payload = parseJsonRecord(plaintext, "memory-journey-payload-invalid");
+    if (Object.keys(payload).some((key) => key !== "title" && key !== "detail"))
+      throw new Error("memory-journey-payload-invalid");
+    return {
+      id: row.id,
+      householdId: row.householdId,
+      taskId: row.taskId,
+      title: requiredText(payload.title, "memory-journey-title-invalid", 512),
+      detail: requiredText(payload.detail, "memory-journey-detail-invalid", 16_384),
+      createdAt: row.createdAt,
+      updatedAt: row.updatedAt,
+    };
   }
 }
 
-function memoryFromRow(row: SqlRow): MemoryEntry {
-  const scopePersonId = row.scope_person_id;
-  const audience =
-    typeof row.audience_json === "string"
-      ? (JSON.parse(row.audience_json) as PrivacyScope["audience"])
-      : typeof scopePersonId === "string"
-        ? { kind: "owner" as const, personId: scopePersonId }
-        : { kind: "household" as const };
-  const purposes =
-    typeof row.purposes_json === "string" ? (JSON.parse(row.purposes_json) as string[]) : [];
-  const privacy: PrivacyScope = {
-    ...(typeof scopePersonId === "string" ? { ownerPersonId: scopePersonId } : {}),
-    audience,
-    sensitivity:
-      typeof row.sensitivity === "string"
-        ? (row.sensitivity as PrivacyScope["sensitivity"])
-        : typeof scopePersonId === "string"
-          ? "private"
-          : "household",
-    ...(purposes.length ? { purposes } : {}),
-  };
+function entryFromPayload(
+  row: StoredMemoryRow,
+  payload: { text: string; privacy: PrivacyScope },
+): MemoryEntry {
   return {
-    id: String(row.id),
-    householdId: String(row.household_id),
-    kind: String(row.kind),
-    text: String(row.text),
-    ...(typeof scopePersonId === "string" ? { scopePersonId } : {}),
-    privacy,
-    createdAt: String(row.created_at),
-    updatedAt: String(row.updated_at),
+    id: row.id,
+    householdId: row.householdId,
+    kind: row.kind,
+    text: payload.text,
+    ...(row.scopePersonId ? { scopePersonId: row.scopePersonId } : {}),
+    privacy: payload.privacy,
+    createdAt: row.createdAt,
+    updatedAt: row.updatedAt,
   };
 }
 
-function ftsQuery(query: string): string {
-  return [...query.normalize("NFKC").matchAll(/[\p{L}\p{N}]+/gu)]
-    .map((match) => `"${match[0].replaceAll('"', '""')}"`)
-    .join(" AND ");
-}
-
-function journeyFromRow(row: SqlRow): JourneyEvent {
+function parseMemoryInput(value: unknown): MemoryWriteInput {
+  const record = inputRecord(value, "memory-input-invalid", [
+    "householdId",
+    "kind",
+    "text",
+    "scopePersonId",
+    "privacy",
+    "id",
+  ]);
   return {
-    id: String(row.id),
-    householdId: String(row.household_id),
-    taskId: String(row.task_id),
-    title: String(row.title),
-    detail: String(row.detail),
-    createdAt: String(row.created_at),
-    updatedAt: String(row.updated_at),
+    householdId: requiredText(record.householdId, "memory-household-invalid", 128),
+    kind: requiredText(record.kind, "memory-kind-invalid", 128),
+    text: requiredText(record.text, "memory-text-invalid", 16_384),
+    ...(record.scopePersonId === undefined
+      ? {}
+      : { scopePersonId: requiredText(record.scopePersonId, "memory-person-invalid", 128) }),
+    ...(record.privacy === undefined ? {} : { privacy: parsePrivacyScope(record.privacy) }),
+    ...(record.id === undefined ? {} : { id: requiredText(record.id, "memory-id-invalid", 128) }),
   };
+}
+
+function parseMemoryPayload(plaintext: string): { text: string; privacy: PrivacyScope } {
+  const record = parseJsonRecord(plaintext, "memory-payload-invalid");
+  if (Object.keys(record).some((key) => key !== "text" && key !== "privacy"))
+    throw new Error("memory-payload-invalid");
+  return {
+    text: requiredText(record.text, "memory-text-invalid", 16_384),
+    privacy: parsePrivacyScope(record.privacy),
+  };
+}
+
+function parseJourneyInput(value: unknown): {
+  householdId: string;
+  taskId: string;
+  title: string;
+  detail: string;
+  id?: string;
+} {
+  const record = inputRecord(value, "memory-journey-input-invalid", [
+    "householdId",
+    "taskId",
+    "title",
+    "detail",
+    "id",
+  ]);
+  return {
+    householdId: requiredText(record.householdId, "memory-household-invalid", 128),
+    taskId: requiredText(record.taskId, "memory-task-invalid", 128),
+    title: requiredText(record.title, "memory-journey-title-invalid", 512),
+    detail: requiredText(record.detail, "memory-journey-detail-invalid", 16_384),
+    ...(record.id === undefined ? {} : { id: requiredText(record.id, "memory-id-invalid", 128) }),
+  };
+}
+
+function parseJourneyPatch(value: unknown): { title?: string; detail?: string } {
+  const record = inputRecord(value, "memory-journey-patch-invalid", ["title", "detail"]);
+  if (record.title === undefined && record.detail === undefined)
+    throw new Error("memory-journey-patch-empty");
+  return {
+    ...(record.title === undefined
+      ? {}
+      : { title: requiredText(record.title, "memory-journey-title-invalid", 512) }),
+    ...(record.detail === undefined
+      ? {}
+      : { detail: requiredText(record.detail, "memory-journey-detail-invalid", 16_384) }),
+  };
+}
+
+function inputRecord(
+  value: unknown,
+  code: string,
+  allowed: readonly string[],
+): Record<string, unknown> {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) throw new Error(code);
+  const prototype = Object.getPrototypeOf(value) as unknown;
+  if (prototype !== Object.prototype && prototype !== null) throw new Error(code);
+  const result: Record<string, unknown> = {};
+  for (const [key, descriptor] of Object.entries(Object.getOwnPropertyDescriptors(value))) {
+    if (!("value" in descriptor) || !descriptor.enumerable || !allowed.includes(key))
+      throw new Error(`${code}:${key}`);
+    result[key] = descriptor.value;
+  }
+  return result;
+}
+
+function parseJsonRecord(json: string, code: string): Record<string, unknown> {
+  try {
+    return inputRecord(JSON.parse(json) as unknown, code, ["text", "privacy", "title", "detail"]);
+  } catch (error) {
+    if (error instanceof Error && error.message.startsWith(code)) throw error;
+    throw new Error(code);
+  }
+}
+
+function requiredText(value: unknown, code: string, max: number): string {
+  if (typeof value !== "string" || !value.trim() || value.length > max) throw new Error(code);
+  return value;
+}
+
+function boundedLimit(limit: number, max: number): number {
+  return Math.max(1, Math.min(max, Math.floor(Number.isFinite(limit) ? limit : 1)));
+}
+
+function memoryContext(id: string): string {
+  return `memory:${id}:payload`;
+}
+
+function journeyContext(id: string): string {
+  return `journey:${id}:payload`;
 }

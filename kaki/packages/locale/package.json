@@ -6,6 +6,7 @@
   "scripts": {
     "generate": "node ../../scripts/locale/generate.mjs",
     "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
   "devDependencies": {

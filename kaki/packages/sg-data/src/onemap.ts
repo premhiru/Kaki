@@ -1,6 +1,6 @@
 import {
   asArray,
-  asRecord,
+  requireApiRecord,
   CachedHttpClient,
   type CachedHttpClientOptions,
   SingaporeApiError,
@@ -31,6 +31,13 @@ export interface OneMapRoute {
   readonly raw: Record<string, unknown>;
 }
 
+export interface OneMapPlanningArea {
+  readonly name: string;
+  readonly latitude?: number;
+  readonly longitude?: number;
+  readonly raw: Record<string, unknown>;
+}
+
 export class OneMapClient extends CachedHttpClient {
   private readonly token: string;
   private readonly baseUrl: string;
@@ -55,11 +62,19 @@ export class OneMapClient extends CachedHttpClient {
     url.searchParams.set("returnGeom", "Y");
     url.searchParams.set("getAddrDetails", "Y");
     url.searchParams.set("pageNum", String(page));
-    const body = await this.get(url, 24 * 60 * 60_000, signal);
+    const body = await this.get(url, 24 * 60 * 60_000, true, signal);
     if (typeof body.error === "string") throw new SingaporeApiError("authentication", body.error);
     return asArray(body.results, "OneMap results").map((item) =>
-      this.mapSearchResult(asRecord(item, "OneMap result")),
+      this.mapSearchResult(requireApiRecord(item, "OneMap result")),
     );
+  }
+
+  async resolvePostalCode(
+    postalCode: string,
+    signal?: AbortSignal,
+  ): Promise<OneMapSearchResult | undefined> {
+    if (!/^\d{6}$/u.test(postalCode.trim())) throw new Error("invalid-singapore-postal-code");
+    return (await this.search(postalCode.trim(), 1, signal))[0];
   }
 
   async reverse(
@@ -73,10 +88,10 @@ export class OneMapClient extends CachedHttpClient {
     url.searchParams.set("buffer", "40");
     url.searchParams.set("addressType", "All");
     url.searchParams.set("otherFeatures", "N");
-    const body = await this.get(url, 24 * 60 * 60_000, signal);
+    const body = await this.get(url, 24 * 60 * 60_000, true, signal);
     const results = body.GeocodeInfo ?? body.results ?? [];
     return asArray(results, "OneMap reverse results").map((item) =>
-      this.mapSearchResult(asRecord(item, "OneMap result")),
+      this.mapSearchResult(requireApiRecord(item, "OneMap result")),
     );
   }
 
@@ -108,10 +123,10 @@ export class OneMapClient extends CachedHttpClient {
       url.searchParams.set("maxWalkDistance", String(options.maxWalkDistance));
     if (options.numItineraries !== undefined)
       url.searchParams.set("numItineraries", String(options.numItineraries));
-    const raw = await this.get(url, 5 * 60_000, signal);
+    const raw = await this.get(url, 5 * 60_000, true, signal);
     const summary =
       raw.route_summary && typeof raw.route_summary === "object"
-        ? asRecord(raw.route_summary)
+        ? requireApiRecord(raw.route_summary)
         : undefined;
     return {
       status: Number(raw.status),
@@ -127,22 +142,67 @@ export class OneMapClient extends CachedHttpClient {
     };
   }
 
+  async planningArea(
+    latitude: number,
+    longitude: number,
+    year?: number,
+    signal?: AbortSignal,
+  ): Promise<readonly OneMapPlanningArea[]> {
+    this.assertPoint(latitude, longitude);
+    if (year !== undefined && (!Number.isInteger(year) || year < 1998 || year > 2100)) {
+      throw new Error("invalid-onemap-planning-year");
+    }
+    const url = this.url("/api/public/popapi/getPlanningarea");
+    url.searchParams.set("lat", String(latitude));
+    url.searchParams.set("lng", String(longitude));
+    if (year !== undefined) url.searchParams.set("year", String(year));
+    const raw = await this.getJson(url, {
+      headers: this.authHeaders(),
+      ttlMs: 24 * 60 * 60_000,
+      ...(signal ? { signal } : {}),
+      validate: (value) => value,
+    });
+    const rows = Array.isArray(raw) ? raw : [raw];
+    return rows.map((item) => {
+      const record = requireApiRecord(item, "OneMap planning area");
+      const name = scalar(record.pln_area_n ?? record.PLN_AREA_N ?? record.name);
+      if (!name) throw new SingaporeApiError("invalid-response", "Planning area name is missing");
+      const lat = Number(record.lat ?? record.latitude);
+      const lng = Number(record.lng ?? record.longitude);
+      return {
+        name,
+        ...(Number.isFinite(lat) ? { latitude: lat } : {}),
+        ...(Number.isFinite(lng) ? { longitude: lng } : {}),
+        raw: record,
+      };
+    });
+  }
+
   private url(path: string): URL {
     return new URL(path, this.baseUrl);
   }
 
-  private get(url: URL, ttlMs: number, signal?: AbortSignal): Promise<Record<string, unknown>> {
+  private get(
+    url: URL,
+    ttlMs: number,
+    authenticated: boolean,
+    signal?: AbortSignal,
+  ): Promise<Record<string, unknown>> {
     return this.getJson(url, {
-      headers: { Authorization: this.token, Accept: "application/json" },
+      headers: authenticated ? this.authHeaders() : { Accept: "application/json" },
       ttlMs,
       ...(signal ? { signal } : {}),
-      validate: (value) => asRecord(value, "OneMap response"),
+      validate: (value) => requireApiRecord(value, "OneMap response"),
     });
+  }
+
+  private authHeaders(): Readonly<Record<string, string>> {
+    return { Authorization: this.token, Accept: "application/json" };
   }
 
   private mapSearchResult(record: Record<string, unknown>): OneMapSearchResult {
     const latitude = Number(record.LATITUDE ?? record.LAT ?? record.latitude);
-    const longitude = Number(record.LONGITUDE ?? record.LONGITUDE ?? record.longitude);
+    const longitude = Number(record.LONGITUDE ?? record.LON ?? record.longitude);
     if (!Number.isFinite(latitude) || !Number.isFinite(longitude))
       throw new SingaporeApiError("invalid-response", "OneMap result coordinates are invalid");
     return {

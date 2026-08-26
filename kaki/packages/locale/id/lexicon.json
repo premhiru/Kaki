@@ -8,30 +8,10 @@
       "category": "local",
       "languages": ["id"]
     },
-    {
-      "term": "Gojek",
-      "normalised": "super-app",
-      "category": "local",
-      "languages": ["id"]
-    },
-    {
-      "term": "Tokopedia",
-      "normalised": "marketplace",
-      "category": "local",
-      "languages": ["id"]
-    },
-    {
-      "term": "BMKG",
-      "normalised": "weather agency",
-      "category": "local",
-      "languages": ["id"]
-    },
-    {
-      "term": "KRL",
-      "normalised": "commuter rail",
-      "category": "local",
-      "languages": ["id"]
-    },
+    { "term": "Gojek", "normalised": "super-app", "category": "local", "languages": ["id"] },
+    { "term": "Tokopedia", "normalised": "marketplace", "category": "local", "languages": ["id"] },
+    { "term": "BMKG", "normalised": "weather agency", "category": "local", "languages": ["id"] },
+    { "term": "KRL", "normalised": "commuter rail", "category": "local", "languages": ["id"] },
     {
       "term": "TransJakarta",
       "normalised": "bus rapid transit",
@@ -56,12 +36,7 @@
       "category": "local",
       "languages": ["id"]
     },
-    {
-      "term": "warung",
-      "normalised": "small eatery",
-      "category": "local",
-      "languages": ["id"]
-    },
+    { "term": "warung", "normalised": "small eatery", "category": "local", "languages": ["id"] },
     {
       "term": "cuaca sekarang",
       "normalised": "cuaca: sekarang",
@@ -188,12 +163,7 @@
       "category": "phrase",
       "languages": ["id"]
     },
-    {
-      "term": "bus besok",
-      "normalised": "bus: besok",
-      "category": "phrase",
-      "languages": ["id"]
-    },
+    { "term": "bus besok", "normalised": "bus: besok", "category": "phrase", "languages": ["id"] },
     {
       "term": "bus dekat sini",
       "normalised": "bus: dekat sini",
@@ -206,36 +176,16 @@
       "category": "phrase",
       "languages": ["id"]
     },
-    {
-      "term": "bus murah",
-      "normalised": "bus: murah",
-      "category": "phrase",
-      "languages": ["id"]
-    },
-    {
-      "term": "bus halal",
-      "normalised": "bus: halal",
-      "category": "phrase",
-      "languages": ["id"]
-    },
+    { "term": "bus murah", "normalised": "bus: murah", "category": "phrase", "languages": ["id"] },
+    { "term": "bus halal", "normalised": "bus: halal", "category": "phrase", "languages": ["id"] },
     {
       "term": "bus akhir pekan",
       "normalised": "bus: akhir pekan",
       "category": "phrase",
       "languages": ["id"]
     },
-    {
-      "term": "bus pagi",
-      "normalised": "bus: pagi",
-      "category": "phrase",
-      "languages": ["id"]
-    },
-    {
-      "term": "bus malam",
-      "normalised": "bus: malam",
-      "category": "phrase",
-      "languages": ["id"]
-    },
+    { "term": "bus pagi", "normalised": "bus: pagi", "category": "phrase", "languages": ["id"] },
+    { "term": "bus malam", "normalised": "bus: malam", "category": "phrase", "languages": ["id"] },
     {
       "term": "bus segera",
       "normalised": "bus: segera",
@@ -944,12 +894,7 @@
       "category": "phrase",
       "languages": ["id"]
     },
-    {
-      "term": "bank pagi",
-      "normalised": "bank: pagi",
-      "category": "phrase",
-      "languages": ["id"]
-    },
+    { "term": "bank pagi", "normalised": "bank: pagi", "category": "phrase", "languages": ["id"] },
     {
       "term": "bank malam",
       "normalised": "bank: malam",
@@ -1088,12 +1033,7 @@
       "category": "phrase",
       "languages": ["id"]
     },
-    {
-      "term": "tol besok",
-      "normalised": "tol: besok",
-      "category": "phrase",
-      "languages": ["id"]
-    },
+    { "term": "tol besok", "normalised": "tol: besok", "category": "phrase", "languages": ["id"] },
     {
       "term": "tol dekat sini",
       "normalised": "tol: dekat sini",
@@ -1106,36 +1046,16 @@
       "category": "phrase",
       "languages": ["id"]
     },
-    {
-      "term": "tol murah",
-      "normalised": "tol: murah",
-      "category": "phrase",
-      "languages": ["id"]
-    },
-    {
-      "term": "tol halal",
-      "normalised": "tol: halal",
-      "category": "phrase",
-      "languages": ["id"]
-    },
+    { "term": "tol murah", "normalised": "tol: murah", "category": "phrase", "languages": ["id"] },
+    { "term": "tol halal", "normalised": "tol: halal", "category": "phrase", "languages": ["id"] },
     {
       "term": "tol akhir pekan",
       "normalised": "tol: akhir pekan",
       "category": "phrase",
       "languages": ["id"]
     },
-    {
-      "term": "tol pagi",
-      "normalised": "tol: pagi",
-      "category": "phrase",
-      "languages": ["id"]
-    },
-    {
-      "term": "tol malam",
-      "normalised": "tol: malam",
-      "category": "phrase",
-      "languages": ["id"]
-    },
+    { "term": "tol pagi", "normalised": "tol: pagi", "category": "phrase", "languages": ["id"] },
+    { "term": "tol malam", "normalised": "tol: malam", "category": "phrase", "languages": ["id"] },
     {
       "term": "tol segera",
       "normalised": "tol: segera",

@@ -3,6 +3,6 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["scripts/**/*.ts"],
+  "include": ["scripts/**/*.ts", "evals/**/*.ts", "vitest.coverage.config.ts"],
   "exclude": ["apps", "node_modules", "packages"]
 }

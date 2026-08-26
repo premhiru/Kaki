@@ -1,9 +1,10 @@
 {
   "skillId": "sea.currency-remittance",
   "input": {
-    "request": "fixture request for Currency and remittance",
+    "request": "Currency and remittance: 1000 SGD to MYR",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "currency_amount_corridor": "1000 SGD to MYR"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.transfer",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["currency-remittance.source", "currency-remittance.prepare"],
+    "evidence": [
+      "data:query:MAS-licensed rate and remittance sources source state",
+      "data:normalize:the remittance receipt and delivered amount preparation"
+    ]
   }
 }

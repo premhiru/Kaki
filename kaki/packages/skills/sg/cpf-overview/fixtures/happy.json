@@ -1,9 +1,10 @@
 {
   "skillId": "sg.cpf-overview",
   "input": {
-    "request": "fixture request for CPF overview",
+    "request": "CPF overview: 2026-08-01",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "as_of_date": "2026-08-01"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "gov.singpass",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["cpf-overview.source", "cpf-overview.prepare"],
+    "evidence": [
+      "browser:open:CPF Board member portal source state",
+      "browser:prepare:a compartment-by-compartment CPF balance summary preparation"
+    ]
   }
 }

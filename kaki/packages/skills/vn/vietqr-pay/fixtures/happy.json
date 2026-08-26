@@ -1,9 +1,10 @@
 {
   "skillId": "vn.vietqr-pay",
   "input": {
-    "request": "fixture request for VietQR payment",
+    "request": "VietQR payment: fixture VietQR 200000 VND",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "qr_payload_and_amount": "fixture VietQR 200000 VND"
   },
   "context": {
     "locale": "vn",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.transfer",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["vietqr-pay.source", "vietqr-pay.prepare"],
+    "evidence": [
+      "data:query:VietQR and configured bank source state",
+      "data:normalize:the VietQR transfer receipt preparation"
+    ]
   }
 }

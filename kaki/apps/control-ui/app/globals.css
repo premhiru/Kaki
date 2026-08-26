@@ -35,6 +35,13 @@ button,
 select {
   cursor: pointer;
 }
+button:disabled,
+select:disabled,
+textarea:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
@@ -540,6 +547,14 @@ select {
   min-height: 460px;
   padding: 72px 24px 24px;
   text-align: center;
+}
+.phoneImage {
+  display: block;
+  width: 100%;
+  max-height: 330px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 16px;
 }
 .phoneScreen .appIcon {
   margin: auto;

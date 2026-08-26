@@ -8,12 +8,7 @@
       "category": "local",
       "languages": ["fil"]
     },
-    {
-      "term": "GCash",
-      "normalised": "mobile wallet",
-      "category": "local",
-      "languages": ["fil"]
-    },
+    { "term": "GCash", "normalised": "mobile wallet", "category": "local", "languages": ["fil"] },
     {
       "term": "Maya",
       "normalised": "digital wallet and bank",
@@ -26,12 +21,7 @@
       "category": "local",
       "languages": ["fil"]
     },
-    {
-      "term": "PAGASA",
-      "normalised": "weather agency",
-      "category": "local",
-      "languages": ["fil"]
-    },
+    { "term": "PAGASA", "normalised": "weather agency", "category": "local", "languages": ["fil"] },
     {
       "term": "jeepney",
       "normalised": "public utility vehicle",
@@ -146,12 +136,7 @@
       "category": "phrase",
       "languages": ["fil"]
     },
-    {
-      "term": "ulan mura",
-      "normalised": "ulan: mura",
-      "category": "phrase",
-      "languages": ["fil"]
-    },
+    { "term": "ulan mura", "normalised": "ulan: mura", "category": "phrase", "languages": ["fil"] },
     {
       "term": "ulan halal",
       "normalised": "ulan: halal",
@@ -170,12 +155,7 @@
       "category": "phrase",
       "languages": ["fil"]
     },
-    {
-      "term": "ulan gabi",
-      "normalised": "ulan: gabi",
-      "category": "phrase",
-      "languages": ["fil"]
-    },
+    { "term": "ulan gabi", "normalised": "ulan: gabi", "category": "phrase", "languages": ["fil"] },
     {
       "term": "ulan kagyat",
       "normalised": "ulan: kagyat",
@@ -266,12 +246,7 @@
       "category": "phrase",
       "languages": ["fil"]
     },
-    {
-      "term": "tren mura",
-      "normalised": "tren: mura",
-      "category": "phrase",
-      "languages": ["fil"]
-    },
+    { "term": "tren mura", "normalised": "tren: mura", "category": "phrase", "languages": ["fil"] },
     {
       "term": "tren halal",
       "normalised": "tren: halal",
@@ -290,12 +265,7 @@
       "category": "phrase",
       "languages": ["fil"]
     },
-    {
-      "term": "tren gabi",
-      "normalised": "tren: gabi",
-      "category": "phrase",
-      "languages": ["fil"]
-    },
+    { "term": "tren gabi", "normalised": "tren: gabi", "category": "phrase", "languages": ["fil"] },
     {
       "term": "tren kagyat",
       "normalised": "tren: kagyat",
@@ -626,12 +596,7 @@
       "category": "phrase",
       "languages": ["fil"]
     },
-    {
-      "term": "ayos mura",
-      "normalised": "ayos: mura",
-      "category": "phrase",
-      "languages": ["fil"]
-    },
+    { "term": "ayos mura", "normalised": "ayos: mura", "category": "phrase", "languages": ["fil"] },
     {
       "term": "ayos halal",
       "normalised": "ayos: halal",
@@ -650,12 +615,7 @@
       "category": "phrase",
       "languages": ["fil"]
     },
-    {
-      "term": "ayos gabi",
-      "normalised": "ayos: gabi",
-      "category": "phrase",
-      "languages": ["fil"]
-    },
+    { "term": "ayos gabi", "normalised": "ayos: gabi", "category": "phrase", "languages": ["fil"] },
     {
       "term": "ayos kagyat",
       "normalised": "ayos: kagyat",

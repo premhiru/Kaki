@@ -38,6 +38,15 @@ describe("Singapore primitives", () => {
     const tampered = `${raw.slice(0, -1)}${raw.endsWith("0") ? "1" : "0"}`;
     expect(decodeSgqr(tampered)).toMatchObject({ crcValid: false, warnings: ["crc-invalid"] });
   });
+
+  it("uses EMV byte lengths for Unicode merchant names", () => {
+    const raw = encodePayNow({
+      proxyType: "0",
+      proxyValue: "+6591234567",
+      merchantName: "Kaki 家",
+    });
+    expect(decodeSgqr(raw)).toMatchObject({ merchantName: "Kaki 家", crcValid: true });
+  });
   it("fires threshold monitors", () => {
     expect(evaluateMonitor("haze", { psi: 101 }).shouldNotify).toBe(true);
     expect(evaluateMonitor("rain-before-commute", { probability: 20 }).shouldNotify).toBe(false);

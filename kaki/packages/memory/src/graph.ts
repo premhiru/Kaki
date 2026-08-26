@@ -1,7 +1,4 @@
 import { randomUUID } from "node:crypto";
-import { mkdirSync } from "node:fs";
-import { dirname } from "node:path";
-import { DatabaseSync } from "node:sqlite";
 import type {
   Account,
   ChannelKind,
@@ -12,7 +9,10 @@ import type {
   PrivacyScope,
   Vendor,
 } from "@kaki/core";
+import type { HouseholdFieldCipher } from "./field-cipher.js";
+import type { HouseholdMemoryRepository, StoredEntityRow } from "./persistence.js";
 import { assertNoSecrets, canAccess, maskSensitiveIdentifiers } from "./privacy.js";
+import { parseGraphEntity } from "./validation.js";
 
 export interface Routine extends MemoryEntity {
   readonly kind: "routine";
@@ -42,114 +42,99 @@ export type HouseholdGraphEntity =
   | Routine
   | Preference
   | HouseholdEvent;
-type Row = Record<string, unknown>;
 
-export class HouseholdGraphStore implements Disposable {
-  private readonly db: DatabaseSync;
-  constructor(file: string) {
-    if (file !== ":memory:") mkdirSync(dirname(file), { recursive: true });
-    this.db = new DatabaseSync(file);
-    this.db.exec("PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;");
-    this.migrate();
-  }
+export class HouseholdGraphStore {
+  public constructor(
+    private readonly repository: HouseholdMemoryRepository,
+    private readonly cipher: HouseholdFieldCipher,
+  ) {}
 
-  upsert(entity: HouseholdGraphEntity): void {
-    validateEntity(entity);
+  public async upsert(input: unknown): Promise<void> {
+    const entity = parseGraphEntity(input);
+    validateNoSecrets(entity);
     const safe = sanitiseEntity(entity);
-    this.db
-      .prepare(
-        `INSERT INTO household_entities (id, household_id, kind, privacy_json, entity_json, updated_at) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET household_id=excluded.household_id, kind=excluded.kind, privacy_json=excluded.privacy_json, entity_json=excluded.entity_json, updated_at=excluded.updated_at`,
-      )
-      .run(
-        safe.id,
+    const row: StoredEntityRow = {
+      id: safe.id,
+      householdId: safe.householdId,
+      kind: safe.kind,
+      version: safe.version,
+      payloadCiphertext: await this.cipher.encrypt(
         safe.householdId,
-        safe.kind,
-        JSON.stringify(safe.privacy),
+        entityContext(safe.id),
         JSON.stringify(safe),
-        safe.updatedAt,
-      );
+      ),
+      updatedAt: safe.updatedAt,
+    };
+    const expectedPreviousVersion = safe.version === 1 ? null : safe.version - 1;
+    if (!(await this.repository.putEntity(row, expectedPreviousVersion)))
+      throw new Error("memory-entity-version-conflict");
   }
 
-  get(
+  public async get(
     id: string,
     householdId: string,
     requesterPersonId?: string,
     purpose?: string,
     childSafe = false,
-  ): HouseholdGraphEntity | undefined {
-    const row = this.db
-      .prepare(
-        "SELECT entity_json, privacy_json FROM household_entities WHERE id = ? AND household_id = ?",
-      )
-      .get(id, householdId) as Row | undefined;
+  ): Promise<HouseholdGraphEntity | undefined> {
+    const row = await this.repository.findEntity(id, householdId);
     if (!row) return undefined;
-    const privacy = JSON.parse(String(row.privacy_json)) as PrivacyScope;
-    if (!canAccess(privacy, requesterPersonId, purpose, childSafe)) return undefined;
-    return JSON.parse(String(row.entity_json)) as HouseholdGraphEntity;
+    const entity = await this.decryptEntity(row);
+    return canAccess(entity.privacy, requesterPersonId, purpose, childSafe) ? entity : undefined;
   }
 
-  list(
+  public async list(
     householdId: string,
     requesterPersonId?: string,
     purpose?: string,
     childSafe = false,
-  ): HouseholdGraphEntity[] {
-    const rows = this.db
-      .prepare(
-        "SELECT entity_json, privacy_json FROM household_entities WHERE household_id = ? ORDER BY updated_at DESC",
-      )
-      .all(householdId) as Row[];
-    return rows
-      .filter((row) =>
-        canAccess(
-          JSON.parse(String(row.privacy_json)) as PrivacyScope,
-          requesterPersonId,
-          purpose,
-          childSafe,
-        ),
-      )
-      .map((row) => JSON.parse(String(row.entity_json)) as HouseholdGraphEntity);
-  }
-
-  delete(id: string, householdId: string): boolean {
-    return (
-      this.db
-        .prepare("DELETE FROM household_entities WHERE id = ? AND household_id = ?")
-        .run(id, householdId).changes > 0
+  ): Promise<HouseholdGraphEntity[]> {
+    const rows = await this.repository.listEntities(householdId);
+    const entities = await Promise.all(rows.map((row) => this.decryptEntity(row)));
+    return entities.filter((entity) =>
+      canAccess(entity.privacy, requesterPersonId, purpose, childSafe),
     );
   }
 
-  bindSpeaker(householdId: string, personId: string, channel: ChannelKind, jid: string): void {
+  public delete(id: string, householdId: string): Promise<boolean> {
+    return this.repository.deleteEntity(id, householdId);
+  }
+
+  public async bindSpeaker(
+    householdId: string,
+    personId: string,
+    channel: ChannelKind,
+    jid: string,
+  ): Promise<void> {
     if (!jid.trim()) throw new Error("speaker-jid-required");
-    const person = this.db
-      .prepare("SELECT kind FROM household_entities WHERE id = ? AND household_id = ?")
-      .get(personId, householdId) as Row | undefined;
+    const person = await this.get(personId, householdId, personId);
     if (!person || person.kind !== "person") throw new Error("speaker-person-not-found");
-    const existing = this.db
-      .prepare(
-        "SELECT person_id FROM speaker_identities WHERE household_id = ? AND channel = ? AND jid = ?",
-      )
-      .get(householdId, channel, jid) as Row | undefined;
-    if (existing && existing.person_id !== personId) throw new Error("speaker-identity-conflict");
-    this.db
-      .prepare(
-        "INSERT INTO speaker_identities (household_id, person_id, channel, jid, created_at) VALUES (?, ?, ?, ?, ?) ON CONFLICT(household_id, channel, jid) DO NOTHING",
-      )
-      .run(householdId, personId, channel, jid, new Date().toISOString());
+    const jidFingerprint = await this.cipher.speakerFingerprint(householdId, channel, jid);
+    const outcome = await this.repository.bindSpeaker({
+      householdId,
+      personId,
+      channel,
+      jidFingerprint,
+      createdAt: new Date().toISOString(),
+    });
+    if (outcome === "conflict") throw new Error("speaker-identity-conflict");
   }
 
-  resolveSpeaker(householdId: string, channel: ChannelKind, jid: string): Person | undefined {
-    const row = this.db
-      .prepare(
-        `SELECT e.entity_json FROM speaker_identities s JOIN household_entities e ON e.id=s.person_id AND e.household_id=s.household_id WHERE s.household_id=? AND s.channel=? AND s.jid=?`,
-      )
-      .get(householdId, channel, jid) as Row | undefined;
-    return row ? (JSON.parse(String(row.entity_json)) as Person) : undefined;
+  public async resolveSpeaker(
+    householdId: string,
+    channel: ChannelKind,
+    jid: string,
+  ): Promise<Person | undefined> {
+    const fingerprint = await this.cipher.speakerFingerprint(householdId, channel, jid);
+    const personId = await this.repository.findSpeaker(householdId, channel, fingerprint);
+    if (!personId) return undefined;
+    const entity = await this.get(personId, householdId, personId);
+    return entity?.kind === "person" ? entity : undefined;
   }
 
-  exportMarkdown(householdId: string, requesterPersonId?: string): string {
+  public async exportMarkdown(householdId: string, requesterPersonId?: string): Promise<string> {
     const lines = ["# MEMORY.md", "", `Household: ${householdId}`, ""];
-    for (const entity of this.list(householdId, requesterPersonId)) {
+    for (const entity of await this.list(householdId, requesterPersonId)) {
       const exportable = { ...entity } as Record<string, unknown>;
       delete exportable.secretHandle;
       delete exportable.encryptionKeyRef;
@@ -165,54 +150,46 @@ export class HouseholdGraphStore implements Disposable {
     return lines.join("\n");
   }
 
-  close(): void {
-    this.db.close();
-  }
-  [Symbol.dispose](): void {
-    this.close();
-  }
-  private migrate(): void {
-    this.db.exec(
-      `CREATE TABLE IF NOT EXISTS household_entities (id TEXT PRIMARY KEY, household_id TEXT NOT NULL, kind TEXT NOT NULL, privacy_json TEXT NOT NULL, entity_json TEXT NOT NULL, updated_at TEXT NOT NULL); CREATE INDEX IF NOT EXISTS entity_household_kind ON household_entities(household_id, kind); CREATE TABLE IF NOT EXISTS speaker_identities (household_id TEXT NOT NULL, person_id TEXT NOT NULL, channel TEXT NOT NULL, jid TEXT NOT NULL, created_at TEXT NOT NULL, PRIMARY KEY(household_id, channel, jid)); CREATE INDEX IF NOT EXISTS speaker_person ON speaker_identities(household_id, person_id);`,
+  private async decryptEntity(row: StoredEntityRow): Promise<HouseholdGraphEntity> {
+    const plaintext = await this.cipher.decrypt(
+      row.householdId,
+      entityContext(row.id),
+      row.payloadCiphertext,
     );
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(plaintext) as unknown;
+    } catch {
+      throw new Error("memory-entity-payload-invalid");
+    }
+    const entity = parseGraphEntity(parsed);
+    if (
+      entity.id !== row.id ||
+      entity.householdId !== row.householdId ||
+      entity.kind !== row.kind ||
+      entity.version !== row.version
+    )
+      throw new Error("memory-entity-row-mismatch");
+    return entity;
   }
 }
 
-const allowedAccountKeys = new Set([
-  "id",
-  "householdId",
-  "createdAt",
-  "updatedAt",
-  "version",
-  "privacy",
-  "tags",
-  "kind",
-  "provider",
-  "displayLabel",
-  "ownerPersonId",
-  "capabilities",
-  "secretHandle",
-]);
-function validateEntity(entity: HouseholdGraphEntity): void {
-  if (!entity.id || !entity.householdId) throw new Error("memory-entity-invalid");
-  const valuesForSecretScan = { ...entity } as Record<string, unknown>;
-  delete valuesForSecretScan.encryptionKeyRef;
-  delete valuesForSecretScan.secretHandle;
-  assertNoSecrets(valuesForSecretScan);
-  if (entity.kind === "household") {
-    if (entity.id !== entity.householdId) throw new Error("household-id-mismatch");
-    if (!/^(?:keychain|secret|kms):\/\//.test(entity.encryptionKeyRef))
-      throw new Error("household-key-reference-invalid");
-  }
-  if (entity.kind === "account")
-    for (const key of Object.keys(entity))
-      if (!allowedAccountKeys.has(key)) throw new Error(`account-secret-field-rejected:${key}`);
+function validateNoSecrets(entity: HouseholdGraphEntity): void {
+  const values = { ...entity } as Record<string, unknown>;
+  delete values.encryptionKeyRef;
+  delete values.secretHandle;
+  assertNoSecrets(values);
 }
+
 function sanitiseEntity(entity: HouseholdGraphEntity): HouseholdGraphEntity {
   const clone = structuredClone(entity);
   if (clone.kind === "preference")
     return { ...clone, value: maskSensitiveIdentifiers(clone.value) };
   return clone;
+}
+
+function entityContext(id: string): string {
+  return `entity:${id}:payload`;
 }
 
 export function newEntityBase(

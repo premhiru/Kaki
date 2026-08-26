@@ -4412,12 +4412,7 @@
       "category": "place",
       "languages": ["en", "singlish"]
     },
-    {
-      "term": "ulu",
-      "normalised": "remote",
-      "category": "place",
-      "languages": ["en", "singlish"]
-    },
+    { "term": "ulu", "normalised": "remote", "category": "place", "languages": ["en", "singlish"] },
     {
       "term": "town area",
       "normalised": "central Singapore",

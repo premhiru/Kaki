@@ -1,9 +1,10 @@
 {
   "skillId": "sg.amazon-sg",
   "input": {
-    "request": "fixture request for Amazon Singapore",
+    "request": "Amazon Singapore: printer ink under 60 SGD",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "product_and_budget": "printer ink under 60 SGD"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.purchase",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["amazon-sg.source", "amazon-sg.prepare"],
+    "evidence": [
+      "browser:open:Amazon.sg source state",
+      "browser:prepare:the Amazon.sg order receipt preparation"
+    ]
   }
 }

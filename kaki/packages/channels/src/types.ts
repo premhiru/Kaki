@@ -47,6 +47,7 @@ export const REACTION_EMOJI: Readonly<Record<Reaction, string>> = {
 export interface OutboundMessage {
   text?: string;
   markdownLite?: string;
+  audio?: MediaRef;
   image?: MediaRef;
   doc?: MediaRef;
   buttons?: Array<{ id: string; label: string }>;

@@ -11,6 +11,14 @@ describe("security defaults", () => {
       policy.decide({ category: "money.transfer", amountSgd: 10, knownPayee: true }).action,
     ).toBe("auto");
     expect(policy.decide({ category: "gov.singpass" }).action).toBe("ask");
+    expect(
+      new PolicyEngine({ walletCapMinor: 20_000, quietHours: { start: 23, end: 7 } }).decide({
+        category: "money.purchase",
+        amount: { currency: "SGD", minorUnits: 20_001 },
+        paymentRail: "wallet",
+        knownPayee: true,
+      }),
+    ).toMatchObject({ action: "deny", reasonCode: "wallet_hard_limit" });
   });
   it("enforces quiet hours and daily caps", () => {
     expect(

@@ -18,7 +18,16 @@ describe.each(catalogue.skills)("fixture runner $id", (skill) => {
     const run = defineSkill(pathToFileURL(modulePath).href, skill.id);
     const first = await run({ fixturePath });
     const second = await run({ fixturePath });
+    const fixture = JSON.parse(readFileSync(fixturePath, "utf8")) as {
+      expect: {
+        status: string;
+        approval: string;
+        actionIds: readonly string[];
+        evidence: readonly string[];
+      };
+    };
     expect(second).toEqual(first);
     expect(first).toMatchObject({ skillId: skill.id, fixture: true, sideEffects: 0 });
+    expect(first).toMatchObject(fixture.expect);
   });
 });

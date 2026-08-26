@@ -1,9 +1,10 @@
 {
   "skillId": "sg.household-ops",
   "input": {
-    "request": "fixture request for Household operations",
+    "request": "Household operations: weekly groceries under 120 SGD",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "household_task": "weekly groceries under 120 SGD"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.purchase",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["household-ops.source", "household-ops.prepare"],
+    "evidence": [
+      "browser:open:household task and grocery services source state",
+      "browser:prepare:the updated task board or grocery receipt preparation"
+    ]
   }
 }

@@ -32,6 +32,10 @@ export interface RegionalQrInput {
   readonly reference?: string;
   readonly dynamic?: boolean;
 }
+export interface CertifiedRegionalQrEncoder {
+  /** Returns an institution-issued payload using the operator's enrolled merchant/account data. */
+  encode(input: RegionalQrInput): string;
+}
 
 const rails: Readonly<Record<QrRail, { guid: string; templateTag: string }>> = {
   duitnow: { guid: "A0000006150001", templateTag: "26" },
@@ -45,15 +49,19 @@ const get = (fields: readonly EmvField[], tag: string) =>
 const accounts = (fields: readonly EmvField[]) =>
   fields.filter((item) => Number(item.tag) >= 26 && Number(item.tag) <= 51);
 function detectRail(fields: readonly EmvField[]): QrRail | undefined {
+  const detected = new Set<QrRail>();
   for (const account of accounts(fields)) {
     try {
       const guid = get(nestedEmv(account), "00")?.toUpperCase();
       const match = Object.entries(rails).find(([, config]) => guid === config.guid);
-      if (match) return match[0] as QrRail;
+      if (match) detected.add(match[0] as QrRail);
     } catch {
       /* Some EMV merchant templates are not nested TLV. */
     }
   }
+  if (detected.size > 1) throw new Error("ambiguous-regional-qr-rail");
+  const explicit = [...detected][0];
+  if (explicit) return explicit;
   const currency = get(fields, "53");
   return Object.values(COUNTRY_PROFILES).find((profile) => profile.numericCurrency === currency)
     ?.rail;
@@ -106,14 +114,42 @@ export function decodeRegionalQr(raw: string, railHint?: QrRail, strict = false)
     fields,
     ...(merchant ? { merchant } : {}),
     ...(proxy ? { proxy: maskProxy(proxy) } : {}),
-    ...(amount !== undefined ? { amount, amountMinor: Math.round(amount * 100) } : {}),
+    ...(amount !== undefined
+      ? { amount, amountMinor: Math.round(amount * 10 ** profile.minorUnits) }
+      : {}),
     ...(reference ? { reference } : {}),
     ...(city ? { merchantCity: city } : {}),
   };
 }
 
-export function encodeRegionalQr(input: RegionalQrInput): string {
+export function encodeRegionalQr(
+  input: RegionalQrInput,
+  encoder: CertifiedRegionalQrEncoder,
+): string {
+  const raw = encoder.encode(input).trim();
+  const decoded = decodeRegionalQr(raw, input.rail, true);
+  if (input.amount !== undefined && decoded.amount !== input.amount) {
+    throw new Error(`certified-${input.rail}-encoder-amount-mismatch`);
+  }
+  if (decoded.merchant !== input.merchant.trim().slice(0, 25)) {
+    throw new Error(`certified-${input.rail}-encoder-merchant-mismatch`);
+  }
+  if (input.reference && decoded.reference !== input.reference.slice(0, 25)) {
+    throw new Error(`certified-${input.rail}-encoder-reference-mismatch`);
+  }
+  return raw;
+}
+
+/**
+ * Produces conspicuously marked, structurally valid EMV test material. It is not a
+ * scheme-certified payable QR and must never be presented for payment. Production callers must
+ * use encodeRegionalQr with an enrolled institution adapter.
+ */
+export function encodeRegionalQrFixture(input: RegionalQrInput): string {
   const profile = COUNTRY_PROFILES[countryForRail(input.rail)];
+  if (!input.proxy.startsWith("FIXTURE_") || !input.merchant.startsWith("KAKI FIXTURE")) {
+    throw new Error("regional-qr-fixture-markers-required");
+  }
   if (!input.proxy.trim() || input.proxy.length > 32)
     throw new Error(`invalid-${input.rail}-proxy`);
   if (!input.merchant.trim()) throw new Error(`invalid-${input.rail}-merchant`);

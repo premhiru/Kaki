@@ -4,6 +4,7 @@ export interface HttpRequest {
   readonly headers?: Readonly<Record<string, string>>;
   readonly body?: string;
   readonly signal?: AbortSignal;
+  readonly maxResponseBytes?: number;
 }
 
 export interface HttpResponse {
@@ -50,14 +51,46 @@ export const fetchTransport: HttpTransport = async (request) => {
     ...(request.headers ? { headers: request.headers } : {}),
     ...(request.body ? { body: request.body } : {}),
     ...(request.signal ? { signal: request.signal } : {}),
+    redirect: "error",
   });
+  const body = await readBoundedBody(response, request.maxResponseBytes ?? 25 * 1024 * 1024);
   return {
     status: response.status,
     headers: Object.fromEntries(response.headers.entries()),
-    json: () => response.json(),
-    text: () => response.text(),
+    json: async () => JSON.parse(body) as unknown,
+    text: async () => body,
   };
 };
+
+async function readBoundedBody(response: Response, maxBytes: number): Promise<string> {
+  const declaredLength = Number(response.headers.get("content-length"));
+  if (Number.isFinite(declaredLength) && declaredLength > maxBytes) {
+    throw new SingaporeApiError("invalid-response", "Singapore API response exceeded size limit");
+  }
+  if (!response.body) return "";
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  for await (const chunk of response.body) {
+    if (!(chunk instanceof Uint8Array)) {
+      throw new SingaporeApiError(
+        "invalid-response",
+        "Singapore API returned an invalid body chunk",
+      );
+    }
+    total += chunk.byteLength;
+    if (total > maxBytes) {
+      throw new SingaporeApiError("invalid-response", "Singapore API response exceeded size limit");
+    }
+    chunks.push(chunk);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder().decode(bytes);
+}
 
 export interface CacheEntry<T> {
   readonly value: T;
@@ -154,6 +187,7 @@ export abstract class CachedHttpClient {
       readonly headers?: Readonly<Record<string, string>>;
       readonly ttlMs: number;
       readonly cacheKey?: string;
+      readonly limiter?: FixedWindowRateLimiter;
       readonly signal?: AbortSignal;
       readonly validate: (value: unknown) => T;
     },
@@ -163,9 +197,10 @@ export abstract class CachedHttpClient {
     if (cached && cached.expiresAt > this.clock.now()) return cached.value;
     if (cached) await this.cache.delete(key);
 
-    await this.limiter.acquire(options.signal);
+    await (options.limiter ?? this.limiter).acquire(options.signal);
     const response = await this.transport({
       url: url.toString(),
+      maxResponseBytes: 25 * 1024 * 1024,
       ...(options.headers ? { headers: options.headers } : {}),
       ...(options.signal ? { signal: options.signal } : {}),
     });
@@ -189,11 +224,11 @@ export abstract class CachedHttpClient {
   }
 }
 
-export function asRecord(value: unknown, label = "response"): Record<string, unknown> {
-  if (!value || typeof value !== "object" || Array.isArray(value)) {
+export function requireApiRecord(value: unknown, label = "response"): Record<string, unknown> {
+  if (!isRecord(value)) {
     throw new SingaporeApiError("invalid-response", `${label} must be an object`);
   }
-  return value as Record<string, unknown>;
+  return value;
 }
 
 export function asArray(value: unknown, label: string): unknown[] {
@@ -201,3 +236,4 @@ export function asArray(value: unknown, label: string): unknown[] {
     throw new SingaporeApiError("invalid-response", `${label} must be an array`);
   return value;
 }
+import { isRecord } from "@openclaw/normalization-core/record-coerce";

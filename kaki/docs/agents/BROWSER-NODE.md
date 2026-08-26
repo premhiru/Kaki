@@ -1,40 +1,38 @@
-# BROWSER-NODE
+# BROWSER-NODE handoff
 
-## Delivered
+## Implemented owner surface
 
-- Expanded `@kaki/browser-node` into an injectable managed-browser contract suitable for a Playwright persistent-context adapter in production and deterministic pages in CI.
-- Added one persistent Chrome profile per validated household under `~/.kaki/chrome/<household>`, with Singapore locale/timezone defaults and guaranteed session cleanup.
-- Applied resilient selector chains to click, fill, wait, and extraction operations, using reviewed alternatives before an injected screenshot/vision selector.
-- Added layout-drift annotations whenever an alternative or vision selector repairs a failed primary selector. File annotations are grouped by portal host for nightly consolidation into learned skills.
-- Added Singpass, bank-token, generic OTP, and captcha handoffs with screenshot evidence. Detection runs before and after each executed step.
-- Added dry-run mode, bounded retry with exponential backoff, redacted in-memory/file traces, failure screenshots, and extracted-data results. Fill values are never written to traces.
-- Added fixture coverage for portal selector drift and all four handoff classes.
+- `ManagedBrowserNode` creates one persistent profile per validated household under
+  `~/.kaki/chrome/<household>`, sets `en-SG` and `Asia/Singapore`, closes sessions on
+  every exit, and prevents concurrent use of one cookie profile.
+- `PlaywrightManagedBrowserAdapter` is a production adapter for OpenClaw's pinned
+  `playwright-core` Chromium object. It launches a persistent context, reuses or opens
+  a page, starts Playwright tracing when available, and implements navigation,
+  selector actions, extraction, screenshots, and cleanup.
+- `OpenClawManagedBrowserAdapter` delegates lifecycle to OpenClaw's supervised managed
+  browser control, preserving OpenClaw process/profile ownership instead of launching
+  a competing Chrome.
+- The runtime applies reviewed selector alternatives before screenshot/vision
+  fallback, bounded exponential retry, dry-run mutation suppression, redacted trace
+  artifacts, failure/handoff screenshots, and learned layout annotations.
+- Singpass, bank-token, generic OTP, PayNow, and captcha pages stop at evidence-backed
+  human handoff cards. Captchas are never solved automatically.
 
-## Production adapter contract
+## Verification
 
-Implement `ManagedBrowserAdapter.launchPersistent()` using Playwright's `chromium.launchPersistentContext(userDataDir, options)` and return a `BrowserPage` wrapper plus `close()`. The core package deliberately does not import or download Playwright, so CI and unit tests do not require Chrome.
+- `pnpm --dir kaki --filter @kaki/browser-node typecheck` — passed.
+- `pnpm --dir kaki --filter @kaki/browser-node build` — passed.
+- `pnpm --dir kaki --filter @kaki/browser-node test` — passed: 5 files, 15 tests.
+- Fixtures cover selector drift and every handoff class; adapter tests cover the
+  Playwright launch contract, OpenClaw ownership/cleanup, and household concurrency.
 
-The adapter must:
+## External live gates
 
-1. Use the supplied persistent profile directory, locale, timezone, headless, and download settings.
-2. Keep profiles household-isolated and never share pages or cookies across household IDs.
-3. Implement locator actions without evaluating untrusted page-provided JavaScript.
-4. Preserve screenshots for captcha, OTP, Singpass, failure, and explicit approval handoffs.
-5. Route vision results back as a selector understood by the page adapter, such as a coordinate-backed synthetic selector.
-
-## Test
-
-```sh
-corepack pnpm --filter @kaki/browser-node typecheck
-corepack pnpm --filter @kaki/browser-node test
-corepack pnpm --filter @kaki/browser-node test:e2e
-```
-
-All current tests use injectable page/adapter fixtures and do not launch a browser.
-
-## Open issues
-
-- Live Chrome/Playwright installation and process supervision belong to deployment wiring; this lane defines and tests the complete adapter boundary.
-- Captcha solving is intentionally not automated. The runtime returns evidence and waits for a human handoff.
-- A Singpass or bank-token resume coordinator must resume the remaining steps after the approval node confirms authentication.
-- Visual selection quality depends on the model adapter supplied by the models package; failed vision resolution remains fail-closed.
+- The host must supply OpenClaw's pinned Chromium object or managed-browser control
+  when constructing the adapter. No second Playwright/Chrome dependency is bundled.
+- A live browser account run is still required for NLB, ActiveSG, Singpass, and bank
+  flows. No authenticated household profile or approval callback was available in
+  this checkout, so fixture evidence is not represented as live evidence.
+- Captcha, Singpass, OTP, and bank-token continuation resumes only after the approval
+  owner confirms the exact pending task; the browser runtime correctly stops and
+  returns evidence but does not mint approval authority.

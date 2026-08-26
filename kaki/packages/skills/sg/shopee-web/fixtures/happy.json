@@ -1,9 +1,10 @@
 {
   "skillId": "sg.shopee-web",
   "input": {
-    "request": "fixture request for Shopee Singapore",
+    "request": "Shopee Singapore: USB fan under 25 SGD",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "product_and_budget": "USB fan under 25 SGD"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.purchase",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["shopee-web.source", "shopee-web.prepare"],
+    "evidence": [
+      "browser:open:Shopee Singapore source state",
+      "browser:prepare:the Shopee order receipt preparation"
+    ]
   }
 }

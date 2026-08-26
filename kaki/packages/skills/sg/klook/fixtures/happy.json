@@ -1,9 +1,10 @@
 {
   "skillId": "sg.klook",
   "input": {
-    "request": "fixture request for Klook",
+    "request": "Klook: Universal Studios SG 2026-09-10 two adults",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "activity_request": "Universal Studios SG 2026-09-10 two adults"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "booking",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["klook.source", "klook.prepare"],
+    "evidence": [
+      "browser:open:Klook source state",
+      "browser:prepare:the Klook voucher reference preparation"
+    ]
   }
 }

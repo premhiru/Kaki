@@ -1,9 +1,10 @@
 {
   "skillId": "sg.enrichment-booking",
   "input": {
-    "request": "fixture request for Enrichment booking",
+    "request": "Enrichment booking: child alias swim Saturday 10am",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "child_activity_slot": "child alias swim Saturday 10am"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "booking",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["enrichment-booking.source", "enrichment-booking.prepare"],
+    "evidence": [
+      "browser:open:selected enrichment provider source state",
+      "browser:prepare:the class booking and first-session checklist preparation"
+    ]
   }
 }

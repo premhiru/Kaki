@@ -40,6 +40,9 @@ const INTENTS: ReadonlyArray<[string, RegExp]> = [
   ],
 ];
 
+const AUDIENCE_PREFIX =
+  /^(?:bank officer|pegawai bank|petugas bank|kawani ng bangko|nhân viên ngân hàng|银行职员|வங்கி அதிகாரி|เจ้าหน้าที่ธนาคาร|teacher|cikgu|guru|pak guru|guro|thầy|cô|老师|ஆசிரியர்|คุณครู|hr|hrd|employer|majikan|phòng nhân sự|雇主|மனிதவள அதிகாரி|ฝ่ายบุคคล|kid|child|adik|anak|em|le|หนู|小朋友|குழந்தை|ah ma|ah gong|mak|ayah|ibu|bapa|lola|lolo|auntie|uncle|khun yai|simbah|bà|ông|阿嬷|阿公|அம்மா|அப்பா|คุณยาย|คุณตา|boss|bos|tukang|pak tukang|kontratista|nhà thầu|sếp|ช่าง|หัวหน้า|老板|师傅|ஒப்பந்தக்காரர்|sir|madam|tuan|puan|encik|bapak|khun|kính gửi cán bộ|ginoo|ginang|政府官员|அய்யா|அம்மையீர்|அதிகாரி|เจ้าหน้าที่)\s*[,，]\s*(?:(?:formally|secara rasmi|secara resmi)\s*)?/iu;
+
 export function normaliseLocaleMessage(text: string, pack: LocalePack): NormalisedLocaleMessage {
   const lower = text.toLocaleLowerCase();
   const matched = pack.lexicon.entries
@@ -52,7 +55,7 @@ export function normaliseLocaleMessage(text: string, pack: LocalePack): Normalis
     intentText = intentText.replaceAll(entry.term.toLocaleLowerCase(), entry.normalised);
   }
   return {
-    intent: detectIntent(text),
+    intent: detectIntent(stripAudiencePrefix(text)),
     intentText,
     language: detectLanguage(text, pack.code),
     register: detectRegister(text),
@@ -64,12 +67,50 @@ export function detectIntent(text: string): string {
   return INTENTS.find(([, pattern]) => pattern.test(text))?.[0] ?? "general.help";
 }
 
+function stripAudiencePrefix(text: string): string {
+  return text.replace(AUDIENCE_PREFIX, "");
+}
+
 export function detectLanguage(text: string, locale: LocaleCode): string {
   if (/[\u0b80-\u0bff]/u.test(text)) return "ta";
   if (/[\u0e00-\u0e7f]/u.test(text)) return "th";
   if (/[\u1000-\u109f]/u.test(text)) return "my";
   if (/[\u1780-\u17ff]/u.test(text)) return "km";
   if (/[\u4e00-\u9fff]/u.test(text)) return "zh";
+  if (
+    locale === "id" &&
+    /\b(monggo|matur nuwun|saiki|sesuk|piye|ora|nggih|simbah|pak guru)\b/iu.test(text)
+  )
+    return "jv";
+  if (
+    (locale === "my" || locale === "sg") &&
+    /\b(semak|bas|tempah|cukai|kerajaan|sediakan|ingatkan saya|klinik doktor|cuti sekolah|pegawai bank|majikan)\b/iu.test(
+      text,
+    )
+  )
+    return "ms";
+  if (
+    locale === "id" &&
+    /\b(cek|pesan|pajak|pemerintah|siapkan|ingatkan aku|libur|petugas bank|hrd)\b/iu.test(text)
+  )
+    return "id";
+  if (
+    locale === "vn" &&
+    /\b(xem|bây giờ|ngày mai|đồ ăn|đặt lịch|thuế|thanh toán|nhắc|phòng khám|nghỉ lễ|nhân viên ngân hàng|phòng nhân sự)\b/iu.test(
+      text,
+    )
+  )
+    return "vi";
+  if (
+    locale === "ph" &&
+    /\b(tingnan|ngayon|sakay|pagkain|buwis|bayad|ipaalala|klinika|bakasyon|kawani ng bangko)\b/iu.test(
+      text,
+    )
+  )
+    return "fil";
+  if (/\b(lah|leh|lor|sia|hor|walao|paiseh|jialat|can or not)\b/iu.test(text)) return "singlish";
+  if (/\b(please|could you|can you|check|prepare|find|show|book|order|remind)\b/iu.test(text))
+    return "en";
   if (locale === "vn") return "vi";
   if (locale === "ph") return "fil";
   if (locale === "id") return "id";
@@ -81,23 +122,43 @@ export function detectLanguage(text: string, locale: LocaleCode): string {
     )
   )
     return "ms";
-  if (/\b(lah|leh|lor|sia|hor|walao|paiseh|jialat|can or not)\b/iu.test(text)) return "singlish";
   return "en";
 }
 
 export function detectRegister(text: string): Register {
+  // Specific audiences precede broad formal honorifics so their policy survives projection.
   if (
-    /\b(ah ma|ah gong|mak|ayah|ibu|bapa|lola|lolo|auntie|uncle|khun yai)\b|^(bà|ông)\s*[,，]|阿嬷|阿公|அம்மா|அப்பா|คุณยาย|คุณตา/iu.test(
+    /^(bank officer|pegawai bank|petugas bank|kawani ng bangko|nhân viên ngân hàng)\s*[,，]|^(银行职员|வங்கி அதிகாரி|เจ้าหน้าที่ธนาคาร)\s*[,，]?/iu.test(
+      text,
+    )
+  )
+    return "bank";
+  if (
+    /^(teacher|cikgu|guru|pak guru|guro|thầy|cô)\s*[,，]|^(老师|ஆசிரியர்|คุณครู)\s*[,，]?/iu.test(text)
+  )
+    return "school";
+  if (
+    /^(hr|hrd|employer|majikan|phòng nhân sự)\s*[,，]|^(雇主|மனிதவள அதிகாரி|ฝ่ายบุคคล)\s*[,，]?/iu.test(
+      text,
+    )
+  )
+    return "employer";
+  if (/^(kid|child|adik|anak|em|le|หนู)\s*[,，]|^(小朋友|குழந்தை)\s*[,，]?/iu.test(text))
+    return "child";
+  if (
+    /\b(ah ma|ah gong|mak|ayah|ibu|bapa|lola|lolo|auntie|uncle|khun yai|simbah)\b|^(bà|ông)\s*[,，]|阿嬷|阿公|அம்மா|அப்பா|คุณยาย|คุณตา/iu.test(
       text,
     )
   )
     return "elder";
   if (
-    /^(boss|bos|tukang|kontratista|nhà thầu|sếp|หัวหน้า)\s*[,，]|^(老板|முதலாளி)\s*[,，]/iu.test(text)
+    /^(boss|bos|tukang|pak tukang|kontratista|nhà thầu|sếp|ช่าง|หัวหน้า)\s*[,，]|^(老板|师傅|ஒப்பந்தக்காரர்)\s*[,，]/iu.test(
+      text,
+    )
   )
     return "contractor";
   if (
-    /\b(formally|official|sir|madam|tuan|puan|encik|bapak|khun|kính gửi|ginoo|ginang)\b|尊敬|敬启|அய்யா|அம்மையீர்/iu.test(
+    /\b(formally|official|sir|madam|tuan|puan|encik|bapak|khun|kính gửi|ginoo|ginang|cán bộ)\b|尊敬|敬启|政府官员|அய்யா|அம்மையீர்|அதிகாரி|เจ้าหน้าที่/iu.test(
       text,
     )
   )

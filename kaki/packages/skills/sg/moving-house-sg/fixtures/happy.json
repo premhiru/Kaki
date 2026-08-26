@@ -1,9 +1,10 @@
 {
   "skillId": "sg.moving-house-sg",
   "input": {
-    "request": "fixture request for Moving house Singapore",
+    "request": "Moving house Singapore: home alias to new home on 2026-10-01",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "move_details": "home alias to new home on 2026-10-01"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "account.change",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["moving-house-sg.source", "moving-house-sg.prepare"],
+    "evidence": [
+      "browser:open:HDB, utilities, and address-change services source state",
+      "browser:prepare:a sequenced moving checklist with references preparation"
+    ]
   }
 }

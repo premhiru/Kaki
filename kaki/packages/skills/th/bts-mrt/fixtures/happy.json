@@ -1,9 +1,10 @@
 {
   "skillId": "th.bts-mrt",
   "input": {
-    "request": "fixture request for Bangkok BTS and MRT",
+    "request": "Bangkok BTS and MRT: Asok to Chatuchak now",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "origin_and_destination": "Asok to Chatuchak now"
   },
   "context": {
     "locale": "th",
@@ -12,6 +13,11 @@
   "expect": {
     "status": "completed",
     "approval": "none",
-    "evidence": ["redacted-trace", "verified-result"]
+    "actionIds": ["bts-mrt.source", "bts-mrt.prepare", "bts-mrt.verify"],
+    "evidence": [
+      "data:query:BTS, MRT, and Bangkok transit sources source state",
+      "data:normalize:a bilingual Bangkok rail itinerary preparation",
+      "data:verify:a bilingual Bangkok rail itinerary"
+    ]
   }
 }

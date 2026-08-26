@@ -492,7 +492,30 @@ jobs:
             node scripts/ci-changed-scope.mjs --base "$BASE" --head HEAD
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
             BASE="${{ steps.diff_base.outputs.sha }}"
-            node scripts/ci-changed-scope.mjs --base "$BASE" --head HEAD --merge-head-first-parent
+            FIRST_IMPORT=false
+            if ! git cat-file -e "${BASE}:package.json" 2>/dev/null && [ -f UPSTREAM.md ]; then
+              # Classify a first-import hard fork against its documented
+              # upstream pin. Comparing against the tiny bootstrap base makes
+              # every inherited generated artifact look newly edited.
+              upstream_sha="$(sed -n 's/^- Commit: `\([0-9a-f]\{40\}\)`$/\1/p' UPSTREAM.md)"
+              if ! [[ "$upstream_sha" =~ ^[0-9a-f]{40}$ ]]; then
+                echo "UPSTREAM.md does not contain one valid pinned commit." >&2
+                exit 1
+              fi
+              timeout --signal=TERM --kill-after=10s 120s git \
+                -c protocol.version=2 \
+                fetch --no-tags --no-recurse-submodules --depth=1 origin \
+                "+${upstream_sha}:refs/remotes/origin/changed-scope-upstream"
+              BASE="$upstream_sha"
+              FIRST_IMPORT=true
+            fi
+            if [ "$FIRST_IMPORT" = "true" ]; then
+              node scripts/ci-changed-scope.mjs \
+                --base "$BASE" \
+                --head "${{ github.event.pull_request.head.sha }}"
+            else
+              node scripts/ci-changed-scope.mjs --base "$BASE" --head HEAD --merge-head-first-parent
+            fi
           else
             BASE="${{ steps.diff_base.outputs.sha }}"
             HEAD_SHA="${{ steps.diff_base.outputs.head_sha }}"
@@ -1136,9 +1159,11 @@ jobs:
           base-sha: ${{ steps.diff_base.outputs.sha }}
           fetch-ref: ${{ github.event_name == 'push' && github.ref_name || github.event.pull_request.base.ref }}
 
-      - name: Fetch pull request scan history
+      - name: Prepare pull request scan range
+        id: pr_scan_range
         if: github.event_name == 'pull_request'
         env:
+          DIFF_BASE_SHA: ${{ steps.diff_base.outputs.sha }}
           PR_COMMIT_COUNT: ${{ github.event.pull_request.commits }}
           PR_MERGE_SHA: ${{ github.sha }}
         run: |
@@ -1147,19 +1172,40 @@ jobs:
             echo "::error::Invalid pull request commit count: $PR_COMMIT_COUNT"
             exit 2
           fi
-          # Include the synthetic merge, every pull request commit, and one
-          # ancestor so TruffleHog can clone and resolve the bounded range.
-          fetch_depth=$((PR_COMMIT_COUNT + 2))
-          timeout --signal=TERM --kill-after=10s 120s git \
-            -c protocol.version=2 \
-            fetch --no-tags --no-recurse-submodules --depth="$fetch_depth" origin "$PR_MERGE_SHA"
+          if (( PR_COMMIT_COUNT >= 1000 )) &&
+            ! git cat-file -e "${DIFF_BASE_SHA}:package.json" 2>/dev/null; then
+            # A first-import hard fork can intentionally attach an upstream
+            # history with thousands of commits to an otherwise empty base.
+            # Scan the complete resulting tree in a synthetic root commit;
+            # later PRs retain the normal bounded history scan.
+            export GIT_AUTHOR_NAME="OpenClaw Security"
+            export GIT_AUTHOR_EMAIL="security@openclaw.local"
+            export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+            export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+            tree_sha="$(git rev-parse "${PR_MERGE_SHA}^{tree}")"
+            empty_snapshot_sha="$(printf '%s\n' 'empty security baseline' | git commit-tree 4b825dc642cb6eb9a060e54bf8d69288fbee4904)"
+            snapshot_sha="$(printf '%s\n' 'security snapshot for first-import hard fork' | git commit-tree "$tree_sha" -p "$empty_snapshot_sha")"
+            git update-ref refs/heads/openclaw-security-snapshot "$snapshot_sha"
+            echo "base=$empty_snapshot_sha" >> "$GITHUB_OUTPUT"
+            echo "head=$snapshot_sha" >> "$GITHUB_OUTPUT"
+            echo "Using a one-commit full-tree secret scan for the first-import hard fork."
+          else
+            # Include the synthetic merge, every pull request commit, and one
+            # ancestor so TruffleHog can clone and resolve the bounded range.
+            fetch_depth=$((PR_COMMIT_COUNT + 2))
+            timeout --signal=TERM --kill-after=10s 120s git \
+              -c protocol.version=2 \
+              fetch --no-tags --no-recurse-submodules --depth="$fetch_depth" origin "$PR_MERGE_SHA"
+            echo "base=$DIFF_BASE_SHA" >> "$GITHUB_OUTPUT"
+            echo "head=$PR_MERGE_SHA" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Scan pull request for leaked credentials
         if: github.event_name == 'pull_request'
         uses: trufflesecurity/trufflehog@27b0417c16317ca9a472a9a8092acce143b49c55 # v3.95.9
         with:
-          base: ${{ steps.diff_base.outputs.sha }}
-          head: ${{ github.sha }}
+          base: ${{ steps.pr_scan_range.outputs.base }}
+          head: ${{ steps.pr_scan_range.outputs.head }}
           version: "3.95.9@sha256:59b244249d1a1aef4baa24fe73d3c931616264482580d806d77f6c74d26b3e42"
           extra_args: --results=verified,unknown --fail-on-scan-errors
 
@@ -2000,6 +2046,20 @@ jobs:
               pnpm test:bundled
               git fetch --no-tags --no-recurse-submodules --depth=1 origin \
                 "+${PROTOCOL_SINCE_BASE_SHA}:refs/remotes/origin/protocol-since-base"
+              if ! git cat-file -e "${PROTOCOL_SINCE_BASE_SHA}:src/gateway/methods/core-descriptors.ts" 2>/dev/null &&
+                ! git cat-file -e "${PROTOCOL_SINCE_BASE_SHA}:package.json" 2>/dev/null; then
+                # The bootstrap base of a first-import hard fork has no
+                # protocol registry. Compare against the documented upstream
+                # pin instead of treating every inherited method as new.
+                upstream_sha="$(sed -n 's/^- Commit: `\([0-9a-f]\{40\}\)`$/\1/p' UPSTREAM.md)"
+                if ! [[ "$upstream_sha" =~ ^[0-9a-f]{40}$ ]]; then
+                  echo "UPSTREAM.md does not contain one valid pinned commit." >&2
+                  exit 1
+                fi
+                git fetch --no-tags --no-recurse-submodules --depth=1 origin \
+                  "+${upstream_sha}:refs/remotes/origin/protocol-since-upstream"
+                export PROTOCOL_SINCE_BASE_SHA="$upstream_sha"
+              fi
               pnpm protocol:check
               ;;
             contracts-plugins-ci-routing)

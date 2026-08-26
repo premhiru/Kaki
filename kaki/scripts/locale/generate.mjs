@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 import fs from "node:fs/promises";
 import path from "node:path";
+import { setTimeout as delay } from "node:timers/promises";
+import { format, resolveConfig } from "prettier";
 
 const root = path.resolve(import.meta.dirname, "../..");
 const localeRoot = path.join(root, "packages", "locale");
 const evalRoot = path.join(root, "evals", "locales");
+const prettierOptions = (await resolveConfig(path.join(root, "package.json"))) ?? {};
 
 function buildPacks() {
   return {
@@ -82,9 +85,10 @@ function pack(timezone, channelPriority, languages, persona, holidays, entries) 
 async function writePack(code, data) {
   const directory = path.join(localeRoot, code);
   await fs.mkdir(path.join(directory, "eval"), { recursive: true });
-  await fs.writeFile(
+  const persona = `# ${code.toUpperCase()} locale persona\n\n${data.persona}\n\n## Register matrix\n\n| Audience | Register |\n| --- | --- |\n| Elder | gentle, short, respectful |\n| Peer | mirror language and informality |\n| Child | age-appropriate; hide financial and medical detail |\n| Contractor | concise, polite, price/availability/warranty |\n| Official/school/bank/employer | formal standard language |\n`;
+  await writeGeneratedFile(
     path.join(directory, "persona.md"),
-    `# ${code.toUpperCase()} locale persona\n\n${data.persona}\n\n## Register matrix\n\n| Audience | Register |\n| --- | --- |\n| Elder | gentle, short, respectful |\n| Peer | mirror language and informality |\n| Child | age-appropriate; hide financial and medical detail |\n| Contractor | concise, polite, price/availability/warranty |\n| Official/school/bank/employer | formal standard language |\n`,
+    await format(persona, { ...prettierOptions, filepath: path.join(directory, "persona.md") }),
     "utf8",
   );
   await writeJson(path.join(directory, "lexicon.json"), {
@@ -112,6 +116,7 @@ async function writePack(code, data) {
     priority: data.channelPriority,
     languages: data.languages,
     dataTools: [`${code}-public-data`, "regional-holidays", "currency-remittance"],
+    defaultModels: defaultModels(code),
     fixtureModeAvailable: true,
   });
   await writeJson(path.join(directory, "eval", "manifest.json"), {
@@ -119,10 +124,34 @@ async function writePack(code, data) {
     generatedBy: "scripts/locale/generate.mjs",
     datasets: evalSpecifications()
       .filter((item) => item.locale === code)
-      .map((item) => `../../../../evals/locales/${item.locale}-${item.language}.jsonl`),
+      .map((item) => `../../../evals/locales/${item.locale}-${item.language}.jsonl`),
     contract:
-      "expected labels are template truth; actual labels are independently produced by the deterministic locale normaliser rules",
+      "expected labels are deterministic template truth without native-speaker review; the locale scorer and package test execute the public normalizer for every row",
   });
+}
+
+function defaultModels(code) {
+  const generation = {
+    sg: ["sea-lion/SEA-LION-v4.5", "openai/gpt-5-mini"],
+    my: ["mallam/MaLLaM", "ilmu/ILMU", "sea-lion/SEA-LION-v4.5"],
+    id: ["sahabat-ai/sahabat-70b", "sea-lion/SEA-LION-v4.5"],
+    th: ["typhoon/typhoon-v2.5", "sea-lion/SEA-LION-v4.5"],
+    vn: ["sea-lion/SEA-LION-v4.5", "openai/gpt-5-mini"],
+    ph: ["sea-lion/SEA-LION-v4.5", "openai/gpt-5-mini"],
+    mm: ["sea-lion/SEA-LION-v4.5", "openai/gpt-5-mini"],
+    kh: ["sea-lion/SEA-LION-v4.5", "openai/gpt-5-mini"],
+  }[code];
+  return {
+    planner: ["anthropic/claude-sonnet", "openai/gpt-5"],
+    tool: ["anthropic/claude-sonnet", "openai/gpt-5"],
+    vision: ["anthropic/claude-sonnet", "openai/gpt-5"],
+    normalise: ["ollama/qwen3:8b", "openrouter/qwen/qwen3-8b"],
+    generate: generation,
+    safety: ["sea-guard/SEA-Guard"],
+    embedding: ["vllm/bge-m3", "ollama/bge-m3"],
+    heartbeat: ["ollama/qwen3:4b", "openai/gpt-5-nano"],
+    asr: ["meralion/MERaLiON-2", "openai/whisper-large-v3-turbo"],
+  };
 }
 
 function formats(code) {
@@ -781,6 +810,31 @@ function evalSpecifications() {
       "semak klinik doktor",
       "semak cuti sekolah",
     ]),
+    spec("my", "en", englishEvalPhrases()),
+    spec("my", "zh", [
+      "查今天的天气",
+      "查巴士交通",
+      "帮我点咖啡吃的",
+      "预约明天时段",
+      "查看政府税务",
+      "准备DuitNow付款",
+      "提醒我明天",
+      "找空调维修供应商",
+      "查诊所医生时间",
+      "查看学校假期",
+    ]),
+    spec("my", "ta", [
+      "இன்றைய மழை பார்க்கவும்",
+      "பேருந்து நிலை பார்க்கவும்",
+      "சாப்பாடு ஆர்டர் செய்யவும்",
+      "முன்பதிவு செய்யவும்",
+      "அரசு வரி பார்க்கவும்",
+      "பணம் செலுத்த தயார்",
+      "நினைவூட்டு நாளை",
+      "ஒப்பந்தக்காரர் தேடவும்",
+      "மருத்துவர் நேரம் பார்க்கவும்",
+      "விடுமுறை பார்க்கவும்",
+    ]),
     spec("id", "id", [
       "cek cuaca hari ini",
       "cek bus sekarang",
@@ -793,6 +847,19 @@ function evalSpecifications() {
       "cek klinik dokter",
       "cek libur sekolah",
     ]),
+    spec("id", "jv", [
+      "monggo cek cuaca saiki",
+      "monggo cek bus saiki",
+      "monggo pesan makan kanggo kulawarga",
+      "monggo booking appointment sesuk",
+      "monggo cek pajak pemerintah",
+      "monggo siapkan bayar QRIS",
+      "monggo ingatkan aku sesuk",
+      "monggo cari tukang aircon",
+      "monggo cek klinik dokter",
+      "monggo cek libur sekolah",
+    ]),
+    spec("id", "en", englishEvalPhrases()),
     spec("th", "th", [
       "เช็กอากาศวันนี้",
       "เช็กรถตอนนี้",
@@ -805,6 +872,7 @@ function evalSpecifications() {
       "เช็กคลินิกหมอ",
       "เช็กวันหยุดโรงเรียน",
     ]),
+    spec("th", "en", englishEvalPhrases()),
     spec("vn", "vi", [
       "xem thời tiết hôm nay",
       "xem xe buýt bây giờ",
@@ -817,6 +885,7 @@ function evalSpecifications() {
       "xem phòng khám bác sĩ",
       "xem nghỉ lễ trường học",
     ]),
+    spec("vn", "en", englishEvalPhrases()),
     spec("ph", "fil", [
       "tingnan ang panahon ngayon",
       "tingnan ang sakay at trapiko",
@@ -829,6 +898,22 @@ function evalSpecifications() {
       "oras ng klinika at doktor",
       "school holiday at bakasyon",
     ]),
+    spec("ph", "en", englishEvalPhrases()),
+  ];
+}
+
+function englishEvalPhrases() {
+  return [
+    "please check today's weather",
+    "please check the bus status",
+    "please order food for us",
+    "please book tomorrow's appointment",
+    "please check the government tax",
+    "please prepare the payment",
+    "please remind me tomorrow",
+    "please find an aircon contractor",
+    "please check the clinic doctor's hours",
+    "please check the school holiday dates",
   ];
 }
 
@@ -851,24 +936,33 @@ const intentOrder = [
 
 function buildEval(specification) {
   const rows = [];
+  const registers = [
+    "peer",
+    "elder",
+    "child",
+    "contractor",
+    "official",
+    "school",
+    "bank",
+    "employer",
+  ];
   for (let intentIndex = 0; intentIndex < intentOrder.length; intentIndex += 1) {
     for (let variation = 0; variation < 20; variation += 1) {
-      const register = ["peer", "elder", "contractor", "official"][variation % 4];
+      const register = registers[variation % registers.length];
       const utterance = `${prefix(specification.language, register)}${specification.phrases[intentIndex]} #${variation + 1}`;
       const expected = {
         intent: intentOrder[intentIndex],
         language: specification.language,
         register,
       };
-      const actual = classify(utterance, specification.locale);
       rows.push({
         id: `${specification.locale}-${specification.language}-${String(rows.length + 1).padStart(4, "0")}`,
         locale: specification.locale,
         language: specification.language,
         utterance,
         expected,
-        actual,
-        classifierVersion: "locale-rules-v1",
+        provenance: "deterministic-template-v2",
+        humanReviewed: false,
       });
     }
   }
@@ -877,102 +971,125 @@ function buildEval(specification) {
 
 function prefix(language, register) {
   const prefixes = {
-    en: { peer: "", elder: "Ah Ma, ", contractor: "Boss, ", official: "Sir, formally " },
-    singlish: { peer: "", elder: "Ah Ma, ", contractor: "Boss, ", official: "Sir, formally " },
-    zh: { peer: "", elder: "阿嬷，", contractor: "老板，", official: "尊敬的先生，" },
-    ms: { peer: "", elder: "Mak, ", contractor: "Boss, ", official: "Tuan, secara rasmi " },
-    ta: { peer: "", elder: "அம்மா, ", contractor: "முதலாளி, ", official: "அய்யா, " },
-    id: { peer: "", elder: "Ibu, ", contractor: "Bos, ", official: "Bapak, secara resmi " },
-    th: { peer: "", elder: "คุณยาย ", contractor: "หัวหน้า, ", official: "Khun, formally " },
-    vi: { peer: "", elder: "Bà, ", contractor: "Sếp, ", official: "Kính gửi, formally " },
-    fil: { peer: "", elder: "Lola, ", contractor: "Boss, ", official: "Ginoo, formally " },
+    en: englishPrefixes(),
+    singlish: englishPrefixes(),
+    zh: {
+      peer: "",
+      elder: "阿嬷，",
+      child: "小朋友，",
+      contractor: "师傅，",
+      official: "政府官员，",
+      school: "老师，",
+      bank: "银行职员，",
+      employer: "雇主，",
+    },
+    ms: {
+      peer: "",
+      elder: "Mak, ",
+      child: "Adik, ",
+      contractor: "Tukang, ",
+      official: "Tuan, secara rasmi ",
+      school: "Cikgu, ",
+      bank: "Pegawai bank, ",
+      employer: "Majikan, ",
+    },
+    ta: {
+      peer: "",
+      elder: "அம்மா, ",
+      child: "குழந்தை, ",
+      contractor: "ஒப்பந்தக்காரர், ",
+      official: "அதிகாரி, ",
+      school: "ஆசிரியர், ",
+      bank: "வங்கி அதிகாரி, ",
+      employer: "மனிதவள அதிகாரி, ",
+    },
+    id: {
+      peer: "",
+      elder: "Ibu, ",
+      child: "Adik, ",
+      contractor: "Tukang, ",
+      official: "Bapak, secara resmi ",
+      school: "Guru, ",
+      bank: "Petugas bank, ",
+      employer: "HRD, ",
+    },
+    jv: {
+      peer: "",
+      elder: "Simbah, ",
+      child: "Le, ",
+      contractor: "Pak tukang, ",
+      official: "Bapak, ",
+      school: "Pak guru, ",
+      bank: "Petugas bank, ",
+      employer: "HRD, ",
+    },
+    th: {
+      peer: "",
+      elder: "คุณยาย, ",
+      child: "หนู, ",
+      contractor: "ช่าง, ",
+      official: "เจ้าหน้าที่, ",
+      school: "คุณครู, ",
+      bank: "เจ้าหน้าที่ธนาคาร, ",
+      employer: "ฝ่ายบุคคล, ",
+    },
+    vi: {
+      peer: "",
+      elder: "Bà, ",
+      child: "Em, ",
+      contractor: "Nhà thầu, ",
+      official: "Kính gửi cán bộ, ",
+      school: "Thầy, ",
+      bank: "Nhân viên ngân hàng, ",
+      employer: "Phòng nhân sự, ",
+    },
+    fil: {
+      peer: "",
+      elder: "Lola, ",
+      child: "Anak, ",
+      contractor: "Kontratista, ",
+      official: "Ginoo, formally ",
+      school: "Guro, ",
+      bank: "Kawani ng bangko, ",
+      employer: "HR, ",
+    },
   };
   return prefixes[language][register];
 }
 
-const intentMatchers = [
-  [
-    "weather.check",
-    /(weather|rain|forecast|haze|cuaca|hujan|天气|下雨|மழை|อากาศ|ฝน|thời tiết|mưa|panahon|ulan)/iu,
-  ],
-  [
-    "transport.status",
-    /(bus|mrt|train|traffic|grab|causeway|bas|tren|交通|巴士|地铁|பேருந்து|รถ|bts|giao thông|xe buýt|trapiko|sakay)/iu,
-  ],
-  [
-    "food.order",
-    /(food|order|kopi|teh|makan|nasi|hawker|吃|咖啡|சாப்பாடு|อาหาร|กิน|đồ ăn|cà phê|pagkain|kape)/iu,
-  ],
-  [
-    "booking.create",
-    /(book|booking|reserve|appointment|tempah|pesan|预约|预订|முன்பதிவு|จอง|đặt lịch|đặt chỗ|reserba)/iu,
-  ],
-  [
-    "government.check",
-    /(iras|cpf|hdb|singpass|government|cukai|kerajaan|pajak|政府|税|அரசு|வரி|รัฐบาล|ภาษี|chính phủ|thuế|gobyerno|buwis)/iu,
-  ],
-  [
-    "payment.prepare",
-    /(pay|payment|paynow|duitnow|qris|promptpay|vietqr|gcash|bayar|支付|付款|பணம்|จ่าย|thanh toán|bayad)/iu,
-  ],
-  ["reminder.create", /(remind|reminder|ingatkan|提醒|நினைவூட்டு|เตือน|nhắc|paalala|ipaalala)/iu],
-  [
-    "vendor.find",
-    /(vendor|contractor|aircon|repair|service|tukang|供应商|维修|ஒப்பந்தக்காரர்|ช่าง|nhà cung cấp|sửa|kontratista|ayos)/iu,
-  ],
-  [
-    "health.check",
-    /(health|clinic|doctor|medicine|polyclinic|klinik|dokter|诊所|医生|மருத்துவர்|คลินิก|หมอ|phòng khám|bác sĩ|klinika|doktor)/iu,
-  ],
-  [
-    "holiday.check",
-    /(holiday|school break|cny|raya|deepavali|ramadan|cuti|libur|假期|节日|விடுமுறை|วันหยุด|nghỉ lễ|pista|bakasyon)/iu,
-  ],
-];
-
-function classify(text, locale) {
-  const intent = intentMatchers.find(([, matcher]) => matcher.test(text))?.[0] ?? "general.help";
-  return { intent, language: languageOf(text, locale), register: registerOf(text) };
-}
-function languageOf(text, locale) {
-  if (/[\u0b80-\u0bff]/u.test(text)) return "ta";
-  if (/[\u0e00-\u0e7f]/u.test(text)) return "th";
-  if (/[\u4e00-\u9fff]/u.test(text)) return "zh";
-  if (locale === "vn") return "vi";
-  if (locale === "ph") return "fil";
-  if (locale === "id") return "id";
-  if (locale === "my") return "ms";
-  if (
-    /\b(saya|boleh|tolong|makan|hujan|bas|klinik|cuti|semak|pesan|tempah|cukai|bayar|ingatkan|tukang)\b/iu.test(
-      text,
-    )
-  )
-    return "ms";
-  if (/\b(lah|leh|lor|sia|hor|walao|paiseh|jialat|can or not)\b/iu.test(text)) return "singlish";
-  return "en";
-}
-function registerOf(text) {
-  if (
-    /\b(ah ma|ah gong|mak|ayah|ibu|bapa|lola|lolo|auntie|uncle|khun yai)\b|^(bà|ông)\s*[,，]|阿嬷|阿公|அம்மா|அப்பா|คุณยาย|คุณตา/iu.test(
-      text,
-    )
-  )
-    return "elder";
-  if (
-    /^(boss|bos|tukang|kontratista|nhà thầu|sếp|หัวหน้า)\s*[,，]|^(老板|முதலாளி)\s*[,，]/iu.test(text)
-  )
-    return "contractor";
-  if (
-    /\b(formally|official|sir|madam|tuan|puan|encik|bapak|khun|kính gửi|ginoo|ginang)\b|尊敬|敬启|அய்யா|அம்மையீர்/iu.test(
-      text,
-    )
-  )
-    return "official";
-  return "peer";
+function englishPrefixes() {
+  return {
+    peer: "",
+    elder: "Uncle, ",
+    child: "Kid, ",
+    contractor: "Boss, ",
+    official: "Sir, formally ",
+    school: "Teacher, ",
+    bank: "Bank officer, ",
+    employer: "HR, ",
+  };
 }
 
 async function writeJson(file, value) {
-  await fs.writeFile(file, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  await writeGeneratedFile(
+    file,
+    await format(JSON.stringify(value), { ...prettierOptions, filepath: file }),
+    "utf8",
+  );
+}
+
+async function writeGeneratedFile(file, contents, encoding = "utf8") {
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      await fs.writeFile(file, contents, encoding);
+      return;
+    } catch (error) {
+      const code = error instanceof Error && "code" in error ? error.code : undefined;
+      // OneDrive briefly locks generated files while syncing; bounded retries keep regeneration atomic.
+      if (!new Set(["UNKNOWN", "EBUSY", "EPERM"]).has(code) || attempt === 8) throw error;
+      await delay(attempt * 100);
+    }
+  }
 }
 
 const packs = buildPacks();
@@ -980,12 +1097,12 @@ for (const [code, data] of Object.entries(packs)) await writePack(code, data);
 await fs.mkdir(evalRoot, { recursive: true });
 for (const specification of evalSpecifications()) {
   const rows = buildEval(specification);
-  await fs.writeFile(
+  await writeGeneratedFile(
     path.join(evalRoot, `${specification.locale}-${specification.language}.jsonl`),
     `${rows.map((row) => JSON.stringify(row)).join("\n")}\n`,
     "utf8",
   );
 }
 process.stdout.write(
-  `Generated ${Object.keys(packs).length} locale packs and 2,000 deterministic eval cases.\n`,
+  `Generated ${Object.keys(packs).length} locale packs and ${evalSpecifications().length * 200} deterministic eval cases.\n`,
 );

@@ -4,11 +4,18 @@ export type MonitorKind =
   | "haze"
   | "hawker-closure"
   | "cpf-deadline"
+  | "srs-deadline"
+  | "iras-window"
   | "dengue-near-home"
   | "erp-change"
   | "vehicle-expiry"
+  | "road-tax-expiry"
+  | "season-parking-expiry"
+  | "insurance-expiry"
   | "coe-result"
-  | "housing-match";
+  | "housing-match"
+  | "bto-match"
+  | "resale-match";
 export interface MonitorSignal {
   kind: MonitorKind;
   shouldNotify: boolean;
@@ -68,15 +75,29 @@ export function evaluateMonitor(kind: MonitorKind, data: Record<string, unknown>
         dedupeKey: `${kind}:${scalar(data.name)}:${scalar(data.when)}`,
       };
     }
-    case "cpf-deadline": {
+    case "cpf-deadline":
+    case "srs-deadline": {
       const days = Number(data.daysRemaining ?? 999);
       return {
         kind,
         shouldNotify: days >= 0 && days <= 14,
         ...(days >= 0 && days <= 14
-          ? { message: `CPF/SRS year-end deadline in ${days} days.` }
+          ? {
+              message: `${kind === "cpf-deadline" ? "CPF" : "SRS"} year-end deadline in ${days} days.`,
+            }
           : {}),
         dedupeKey: `${kind}:${scalar(data.year, String(new Date().getFullYear()))}`,
+      };
+    }
+    case "iras-window": {
+      const open = Boolean(data.open);
+      const days = Number(data.daysRemaining ?? Infinity);
+      const notify = open && days >= 0 && days <= Number(data.noticeDays ?? 30);
+      return {
+        kind,
+        shouldNotify: notify,
+        ...(notify ? { message: `IRAS filing window closes in ${days} days.` } : {}),
+        dedupeKey: `${kind}:${scalar(data.year)}:${scalar(data.closeDate)}`,
       };
     }
     case "dengue-near-home": {
@@ -108,14 +129,28 @@ export function evaluateMonitor(kind: MonitorKind, data: Record<string, unknown>
         dedupeKey: `${kind}:${scalar(data.gantryId ?? data.route)}:${scalar(data.effective)}`,
       };
     }
-    case "vehicle-expiry": {
+    case "vehicle-expiry":
+    case "road-tax-expiry":
+    case "season-parking-expiry":
+    case "insurance-expiry": {
       const days = Number(data.daysRemaining ?? Infinity);
       const notify = days >= 0 && days <= Number(data.noticeDays ?? 30);
       return {
         kind,
         shouldNotify: notify,
         ...(notify
-          ? { message: `${scalar(data.item, "Vehicle renewal")} is due in ${days} days.` }
+          ? {
+              message: `${scalar(
+                data.item,
+                kind === "road-tax-expiry"
+                  ? "Road tax"
+                  : kind === "season-parking-expiry"
+                    ? "Season parking"
+                    : kind === "insurance-expiry"
+                      ? "Vehicle insurance"
+                      : "Vehicle renewal",
+              )} is due in ${days} days.`,
+            }
           : {}),
         dedupeKey: `${kind}:${scalar(data.vehicleId, "vehicle")}:${scalar(data.item)}:${scalar(data.expiryDate)}`,
       };
@@ -133,7 +168,9 @@ export function evaluateMonitor(kind: MonitorKind, data: Record<string, unknown>
         dedupeKey: `${kind}:${scalar(data.exerciseId ?? data.date)}:${scalar(data.category)}`,
       };
     }
-    case "housing-match": {
+    case "housing-match":
+    case "bto-match":
+    case "resale-match": {
       const count = Number(data.newMatches ?? 0);
       return {
         kind,

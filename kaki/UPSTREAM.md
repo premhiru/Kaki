@@ -2,10 +2,10 @@
 
 Kaki is a hard-fork project. Reproducible imports must use immutable revisions and preserve the corresponding license notices in `THIRD_PARTY_NOTICES.md`.
 
-| Upstream                                                     | Role                                                       | Pinned revision                            | Checked    |
-| ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------ | ---------- |
-| [OpenClaw](https://github.com/openclaw/openclaw)             | Gateway, plugin and node architecture                      | `24c463749fb124f3bb95493ca8f96bbf78996ab1` | 2026-08-24 |
-| [Hermes Agent](https://github.com/NousResearch/hermes-agent) | Learning, recall, delegation and delivery design reference | `9ab056d4e8b892fccb797cc5cd5dffd090ac827e` | 2026-08-24 |
+| Upstream                                                     | Role                                                         | Pinned revision                            | Checked    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------ | ---------- |
+| [OpenClaw](https://github.com/openclaw/openclaw)             | Complete forked runtime, Gateway, plugins, channels and apps | `ccc10bf0983219b63c09078987cb02222147e0a1` | 2026-08-26 |
+| [Hermes Agent](https://github.com/NousResearch/hermes-agent) | Learning, recall, delegation and delivery design reference   | `9ab056d4e8b892fccb797cc5cd5dffd090ac827e` | 2026-08-24 |
 
 ## Update procedure
 
@@ -14,4 +14,8 @@ Kaki is a hard-fork project. Reproducible imports must use immutable revisions a
 3. Port selected changes into the owning Kaki package. Do not restore telemetry, automatic third-party skill installation, or removed channel defaults.
 4. Run `pnpm check` and fixture e2e tests, update this table and `THIRD_PARTY_NOTICES.md`, and record behavior-changing choices in `docs/DECISIONS.md`.
 
-The initial shared workspace did not contain an OpenClaw Git history to preserve. The pinned revision above is the import boundary; importing the complete upstream history remains a release-engineering task and must not be simulated by claiming provenance for newly authored Kaki files.
+The repository now contains the complete OpenClaw history reachable from the pinned
+revision. The Kaki integration commit descends from that immutable revision, so
+`git merge-base --is-ancestor ccc10bf0983219b63c09078987cb02222147e0a1 HEAD`
+must pass. The additive Kaki product source is retained under `kaki/` while the
+repository root remains the canonical OpenClaw-derived runtime.

@@ -6,11 +6,14 @@ export interface CountryProfile {
   readonly rail: QrRail;
   readonly currency: string;
   readonly numericCurrency: string;
+  readonly minorUnits: number;
   readonly countryCode: string;
   readonly weather: string;
   readonly identity: string;
   readonly primaryChannel: string;
   readonly phoneApps: readonly string[];
+  readonly transit: readonly string[];
+  readonly paymentApps: readonly string[];
   readonly holidays: readonly string[];
 }
 
@@ -20,11 +23,14 @@ export const COUNTRY_PROFILES: Readonly<Record<SeaCountry, CountryProfile>> = {
     rail: "duitnow",
     currency: "MYR",
     numericCurrency: "458",
+    minorUnits: 2,
     countryCode: "MY",
     weather: "MET Malaysia",
     identity: "MyDigital ID",
     primaryChannel: "whatsapp",
-    phoneApps: ["Touch 'n Go", "Grab"],
+    phoneApps: ["Touch 'n Go eWallet"],
+    transit: ["Causeway", "VEP"],
+    paymentApps: ["Touch 'n Go eWallet"],
     holidays: ["Hari Raya", "Chinese New Year", "Deepavali"],
   },
   id: {
@@ -32,11 +38,14 @@ export const COUNTRY_PROFILES: Readonly<Record<SeaCountry, CountryProfile>> = {
     rail: "qris",
     currency: "IDR",
     numericCurrency: "360",
+    minorUnits: 2,
     countryCode: "ID",
     weather: "BMKG",
     identity: "IKD",
     primaryChannel: "whatsapp",
     phoneApps: ["Gojek", "Tokopedia"],
+    transit: ["KRL Commuter Line", "TransJakarta"],
+    paymentApps: ["Gojek"],
     holidays: ["Lebaran", "Nyepi"],
   },
   th: {
@@ -44,11 +53,14 @@ export const COUNTRY_PROFILES: Readonly<Record<SeaCountry, CountryProfile>> = {
     rail: "promptpay",
     currency: "THB",
     numericCurrency: "764",
+    minorUnits: 2,
     countryCode: "TH",
     weather: "TMD",
     identity: "ThaID",
     primaryChannel: "line",
     phoneApps: ["LINE MAN"],
+    transit: ["BTS", "MRT"],
+    paymentApps: [],
     holidays: ["Songkran", "Buddhist holy days"],
   },
   vn: {
@@ -56,11 +68,14 @@ export const COUNTRY_PROFILES: Readonly<Record<SeaCountry, CountryProfile>> = {
     rail: "vietqr",
     currency: "VND",
     numericCurrency: "704",
+    minorUnits: 0,
     countryCode: "VN",
     weather: "NCHMF",
     identity: "VNeID",
     primaryChannel: "zalo",
     phoneApps: ["MoMo", "ZaloPay"],
+    transit: [],
+    paymentApps: ["MoMo", "ZaloPay"],
     holidays: ["Tết"],
   },
   ph: {
@@ -68,11 +83,14 @@ export const COUNTRY_PROFILES: Readonly<Record<SeaCountry, CountryProfile>> = {
     rail: "qrph",
     currency: "PHP",
     numericCurrency: "608",
+    minorUnits: 2,
     countryCode: "PH",
     weather: "PAGASA",
     identity: "eGovPH",
     primaryChannel: "messenger",
-    phoneApps: ["GCash", "Maya"],
+    phoneApps: ["GCash", "Maya", "Viber"],
+    transit: [],
+    paymentApps: ["GCash", "Maya"],
     holidays: ["Holy Week", "Undas"],
   },
 };

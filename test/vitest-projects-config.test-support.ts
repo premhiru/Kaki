@@ -75,7 +75,14 @@ function listNormalFullSuiteTestFiles(): string[] {
   ]);
   return globSync(["**/*.{test,spec}.{ts,tsx,mts,cts,js,jsx,mjs,cjs}"], {
     cwd: process.cwd(),
-    exclude: ["**/.*/**", "**/dist/**", "**/node_modules/**", "**/vendor/**"],
+    exclude: [
+      "**/.*/**",
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/node_modules.*/**",
+      "**/vendor/**",
+      "kaki/**",
+    ],
   })
     .map(toRepoPath)
     .filter(

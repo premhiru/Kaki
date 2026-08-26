@@ -1,9 +1,10 @@
 {
   "skillId": "sg.bus-mrt-now",
   "input": {
-    "request": "fixture request for Bus and MRT now",
+    "request": "Bus and MRT now: 560123 to Raffles Place",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "origin_and_destination": "560123 to Raffles Place"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,11 @@
   "expect": {
     "status": "completed",
     "approval": "none",
-    "evidence": ["redacted-trace", "verified-result"]
+    "actionIds": ["bus-mrt-now.source", "bus-mrt-now.prepare", "bus-mrt-now.verify"],
+    "evidence": [
+      "data:query:LTA DataMall source state",
+      "data:normalize:a live bus and MRT itinerary preparation",
+      "data:verify:a live bus and MRT itinerary"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 import type { ModelCache } from "./cache.js";
 import { modelCacheKey } from "./cache.js";
-import type { Pricing, BudgetManager, CostLedger } from "./cost.js";
+import type { Pricing, BudgetManager, CostLedgerContract } from "./cost.js";
 import { calculateCost } from "./cost.js";
 import { routeModel, type RoutingConfig } from "./routing.js";
 import type {
@@ -21,7 +21,7 @@ export class ModelRuntime {
   readonly #providers = new Map<ProviderName, ModelProvider>();
   constructor(
     providers: ModelProvider[],
-    private readonly ledger: CostLedger,
+    private readonly ledger: CostLedgerContract,
     private readonly budget: BudgetManager,
     private readonly pricing: Partial<Record<ProviderName, Pricing>>,
     private readonly cache?: ModelCache,
@@ -34,10 +34,11 @@ export class ModelRuntime {
     const available = new Set(this.#providers.keys());
     const route = routeModel(request.task, request.locale, available, this.routing);
     const key = modelCacheKey(route, request);
-    if (request.cacheable && this.cache) {
+    const cacheAllowed = isCacheAllowed(request);
+    if (cacheAllowed && this.cache) {
       const cached = await this.cache.get(key);
       if (cached) {
-        this.ledger.record({
+        await this.ledger.record({
           timestamp: new Date(),
           task: request.task,
           provider: cached.provider,
@@ -49,26 +50,29 @@ export class ModelRuntime {
         return { response: cached, route, costUsd: 0, cacheHit: true };
       }
     }
-    this.budget.assertCanSpend(request.task, route.maxCostUsd);
-    const selected = await this.completeWithFallback(route, request);
-    const rates = this.pricing[selected.response.provider] ?? {
-      inputPerMillionUsd: 0,
-      outputPerMillionUsd: 0,
-    };
-    const costUsd = calculateCost(selected.response.usage, rates);
-    this.ledger.record({
-      timestamp: new Date(),
-      task: request.task,
-      provider: selected.response.provider,
-      model: selected.response.model,
-      usage: selected.response.usage,
-      costUsd,
-      cacheHit: false,
-    });
-    if (costUsd > selected.route.maxCostUsd) throw new Error("model-response-cost-exceeded");
-    if (request.cacheable && this.cache)
-      await this.cache.set(key, selected.response, this.cacheTtlMs);
-    return { response: selected.response, route: selected.route, costUsd, cacheHit: false };
+    const reservation = await this.budget.reserve(request.task, route.maxCostUsd);
+    try {
+      const selected = await this.completeWithFallback(route, request);
+      const rates = this.pricing[selected.response.provider] ?? {
+        inputPerMillionUsd: 0,
+        outputPerMillionUsd: 0,
+      };
+      const costUsd = selected.response.costUsd ?? calculateCost(selected.response.usage, rates);
+      await this.ledger.record({
+        timestamp: new Date(),
+        task: request.task,
+        provider: selected.response.provider,
+        model: selected.response.model,
+        usage: selected.response.usage,
+        costUsd,
+        cacheHit: false,
+      });
+      if (costUsd > selected.route.maxCostUsd) throw new Error("model-response-cost-exceeded");
+      if (cacheAllowed && this.cache) await this.cache.set(key, selected.response, this.cacheTtlMs);
+      return { response: selected.response, route: selected.route, costUsd, cacheHit: false };
+    } finally {
+      await reservation.release();
+    }
   }
   private async completeWithFallback(
     route: ModelRoute,
@@ -88,4 +92,15 @@ export class ModelRuntime {
       };
     }
   }
+}
+
+function isCacheAllowed(request: ModelRequest): boolean {
+  return (
+    request.cacheable === true &&
+    request.dataClass === "public" &&
+    request.task !== "safety" &&
+    request.task !== "asr" &&
+    request.task !== "tts" &&
+    request.task !== "vision"
+  );
 }

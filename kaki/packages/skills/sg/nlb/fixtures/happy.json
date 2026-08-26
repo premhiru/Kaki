@@ -1,9 +1,10 @@
 {
   "skillId": "sg.nlb",
   "input": {
-    "request": "fixture request for National Library Board",
+    "request": "National Library Board: book title at Bishan library",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "title_and_library": "book title at Bishan library"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "booking",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["nlb.source", "nlb.prepare"],
+    "evidence": [
+      "browser:open:NLB catalogue source state",
+      "browser:prepare:the NLB reservation reference preparation"
+    ]
   }
 }

@@ -1,9 +1,10 @@
 {
   "skillId": "sg.ica-passport-renewal",
   "input": {
-    "request": "fixture request for ICA passport renewal",
+    "request": "ICA passport renewal: self passport expires 2027-02",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "traveller_and_expiry": "self passport expires 2027-02"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "gov.singpass",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["ica-passport-renewal.source", "ica-passport-renewal.prepare"],
+    "evidence": [
+      "browser:open:ICA e-Service source state",
+      "browser:prepare:the passport application acknowledgement preparation"
+    ]
   }
 }

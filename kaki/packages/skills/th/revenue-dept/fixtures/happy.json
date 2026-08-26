@@ -1,9 +1,10 @@
 {
   "skillId": "th.revenue-dept",
   "input": {
-    "request": "fixture request for Thailand Revenue Department",
+    "request": "Thailand Revenue Department: tax year 2568 refund status",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "tax_year_and_service": "tax year 2568 refund status"
   },
   "context": {
     "locale": "th",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "data.share",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["revenue-dept.source", "revenue-dept.prepare"],
+    "evidence": [
+      "browser:open:Thai Revenue Department e-Filing source state",
+      "browser:prepare:the Revenue Department status or acknowledgement preparation"
+    ]
   }
 }

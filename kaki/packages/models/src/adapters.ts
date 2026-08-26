@@ -1,3 +1,8 @@
+import {
+  asFiniteNumber,
+  asOptionalRecord,
+  readStringValue,
+} from "openclaw/plugin-sdk/string-coerce-runtime";
 import type {
   HttpClient,
   ModelProvider,
@@ -9,7 +14,15 @@ import type {
 export interface OpenAiCompatibleConfig {
   name: Extract<
     ProviderName,
-    "openai" | "openrouter" | "ollama" | "vllm" | "sea-lion" | "typhoon" | "sahabat-ai"
+    | "openai"
+    | "openrouter"
+    | "ollama"
+    | "vllm"
+    | "sea-lion"
+    | "typhoon"
+    | "sahabat-ai"
+    | "mallam"
+    | "ilmu"
   >;
   baseUrl: string;
   apiKey?: string;
@@ -55,16 +68,16 @@ export class OpenAiCompatibleAdapter implements ModelProvider {
       throw new Error(`${this.name}-http-${response.status}`);
     const body = parseJson(response.body);
     const choice = firstObject(body.choices);
-    const message = asObject(choice.message);
-    const usage = asObject(body.usage);
-    const finishReason = optionalString(choice.finish_reason);
+    const message = requireProviderObject(choice.message);
+    const usage = requireProviderObject(body.usage);
+    const finishReason = readStringValue(choice.finish_reason);
     return {
-      text: asString(message.content),
-      model: optionalString(body.model) ?? model,
+      text: requireProviderString(message.content),
+      model: readStringValue(body.model) ?? model,
       provider: this.name,
       usage: {
-        inputTokens: optionalNumber(usage.prompt_tokens) ?? 0,
-        outputTokens: optionalNumber(usage.completion_tokens) ?? 0,
+        inputTokens: asFiniteNumber(usage.prompt_tokens) ?? 0,
+        outputTokens: asFiniteNumber(usage.completion_tokens) ?? 0,
       },
       ...(finishReason ? { finishReason } : {}),
     };
@@ -115,15 +128,15 @@ export class AnthropicAdapter implements ModelProvider {
       throw new Error(`anthropic-http-${response.status}`);
     const body = parseJson(response.body);
     const content = firstObject(body.content);
-    const usage = asObject(body.usage);
-    const finishReason = optionalString(body.stop_reason);
+    const usage = requireProviderObject(body.usage);
+    const finishReason = readStringValue(body.stop_reason);
     return {
-      text: asString(content.text),
-      model: optionalString(body.model) ?? model,
+      text: requireProviderString(content.text),
+      model: readStringValue(body.model) ?? model,
       provider: this.name,
       usage: {
-        inputTokens: optionalNumber(usage.input_tokens) ?? 0,
-        outputTokens: optionalNumber(usage.output_tokens) ?? 0,
+        inputTokens: asFiniteNumber(usage.input_tokens) ?? 0,
+        outputTokens: asFiniteNumber(usage.output_tokens) ?? 0,
       },
       ...(finishReason ? { finishReason } : {}),
     };
@@ -131,26 +144,21 @@ export class AnthropicAdapter implements ModelProvider {
 }
 
 function parseJson(value: Uint8Array | string): Record<string, unknown> {
-  return asObject(
+  return requireProviderObject(
     JSON.parse(typeof value === "string" ? value : new TextDecoder().decode(value)) as unknown,
   );
 }
-function asObject(value: unknown): Record<string, unknown> {
-  if (!value || typeof value !== "object" || Array.isArray(value))
-    throw new Error("provider-invalid-object");
-  return value as Record<string, unknown>;
+function requireProviderObject(value: unknown): Record<string, unknown> {
+  const record = asOptionalRecord(value);
+  if (!record) throw new Error("provider-invalid-object");
+  return record;
 }
 function firstObject(value: unknown): Record<string, unknown> {
   if (!Array.isArray(value) || !value[0]) throw new Error("provider-invalid-array");
-  return asObject(value[0]);
+  return requireProviderObject(value[0]);
 }
-function asString(value: unknown): string {
-  if (typeof value !== "string") throw new Error("provider-invalid-string");
-  return value;
-}
-function optionalString(value: unknown): string | undefined {
-  return typeof value === "string" ? value : undefined;
-}
-function optionalNumber(value: unknown): number | undefined {
-  return typeof value === "number" && Number.isFinite(value) ? value : undefined;
+function requireProviderString(value: unknown): string {
+  const text = readStringValue(value);
+  if (text === undefined) throw new Error("provider-invalid-string");
+  return text;
 }

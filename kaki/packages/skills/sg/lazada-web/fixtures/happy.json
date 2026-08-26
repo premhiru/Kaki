@@ -1,9 +1,10 @@
 {
   "skillId": "sg.lazada-web",
   "input": {
-    "request": "fixture request for Lazada Singapore",
+    "request": "Lazada Singapore: rice cooker under 100 SGD",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "product_and_budget": "rice cooker under 100 SGD"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.purchase",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["lazada-web.source", "lazada-web.prepare"],
+    "evidence": [
+      "browser:open:Lazada Singapore source state",
+      "browser:prepare:the Lazada order receipt preparation"
+    ]
   }
 }

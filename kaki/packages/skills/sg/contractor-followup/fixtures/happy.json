@@ -1,9 +1,10 @@
 {
   "skillId": "sg.contractor-followup",
   "input": {
-    "request": "fixture request for Contractor follow-up",
+    "request": "Contractor follow-up: contractor alias repair leak by Friday",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "contractor_job_deadline": "contractor alias repair leak by Friday"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "message.external",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["contractor-followup.source", "contractor-followup.prepare"],
+    "evidence": [
+      "browser:open:contractor conversation channel source state",
+      "browser:prepare:the delivered follow-up and response deadline preparation"
+    ]
   }
 }

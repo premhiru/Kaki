@@ -35,6 +35,23 @@ export interface PhoneGateway {
 export interface PhoneTaskRequest {
   readonly taskId: string;
   readonly goal: string;
+  readonly claim: PhoneExecutionClaim;
+}
+
+export interface PhoneExecutionClaim {
+  readonly householdId: string;
+  readonly sessionId: string;
+  readonly runId: string;
+  readonly generation: number;
+}
+
+export interface PhoneAuthorityLease {
+  assertCurrent(): void;
+  release(): void;
+}
+
+export interface PhoneAuthority {
+  acquire(request: PhoneTaskRequest): Promise<PhoneAuthorityLease>;
 }
 
 export interface PhoneTaskResult {
@@ -55,6 +72,7 @@ export class PhoneNodeDaemon extends EventEmitter {
       planner: VisionPlanner;
       traces: TraceSink;
       gateway?: PhoneGateway;
+      authority?: PhoneAuthority;
       healthIntervalMs?: number;
       stepBudget?: number;
     },
@@ -64,6 +82,8 @@ export class PhoneNodeDaemon extends EventEmitter {
 
   public async start(): Promise<void> {
     if (this.running) return;
+    if (this.options.gateway && !this.options.authority)
+      throw new Error("phone-authority-required");
     this.running = true;
     await this.ensureHealthy();
     await this.options.transport.screenOn();
@@ -72,21 +92,7 @@ export class PhoneNodeDaemon extends EventEmitter {
         {
           id: this.options.nodeId,
           kind: "phone",
-          capabilities: [
-            "screenshot",
-            "tap",
-            "long_press",
-            "swipe",
-            "type",
-            "key",
-            "launch",
-            "intent",
-            "clipboard",
-            "dump_ui",
-            "wait_for",
-            "notifications",
-            "back_to_home",
-          ],
+          capabilities: ["kaki.phone.task.execute"],
         },
         (request) => this.execute(request),
       );
@@ -103,18 +109,30 @@ export class PhoneNodeDaemon extends EventEmitter {
   }
 
   public async execute(request: PhoneTaskRequest): Promise<PhoneTaskResult> {
-    await this.ensureHealthy();
-    const agent = new PhoneAgent(
-      this.options.transport,
-      this.options.planner,
-      this.options.traces,
-      this.options.stepBudget ?? 40,
-    );
-    this.emit("task:start", request);
-    const decision = await agent.execute(request.taskId, request.goal);
-    const result = { taskId: request.taskId, decision, traceId: request.taskId };
-    this.emit("task:complete", result);
-    return result;
+    if (!this.options.authority) throw new Error("phone-authority-required");
+    const lease = await this.options.authority.acquire(request);
+    try {
+      lease.assertCurrent();
+      await this.ensureHealthy();
+      lease.assertCurrent();
+      const agent = new PhoneAgent(
+        this.options.transport,
+        this.options.planner,
+        this.options.traces,
+        this.options.stepBudget ?? 40,
+      );
+      // Execution claims are transient authority input and must never enter events or traces.
+      this.emit("task:start", { taskId: request.taskId });
+      const decision = await agent.execute(request.taskId, request.goal, () =>
+        lease.assertCurrent(),
+      );
+      lease.assertCurrent();
+      const result = { taskId: request.taskId, decision, traceId: request.taskId };
+      this.emit("task:complete", result);
+      return result;
+    } finally {
+      lease.release();
+    }
   }
 
   public async health(): Promise<AdbHealth> {

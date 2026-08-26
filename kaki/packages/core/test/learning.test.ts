@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, readFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import {
   LearnedSkillStore,
+  memoryNudge,
   NightlyConsolidator,
   planReplay,
   repeatUsesFewerSteps,
@@ -88,10 +89,81 @@ test("failure annotation preserves the last screen and nightly consolidation is 
       ],
     },
   ];
-  const first = consolidator.run(traces, () => "book-court").skills[0]!;
+  let slugCalls = 0;
+  const slugFor = (): string => {
+    slugCalls += 1;
+    return "book-court";
+  };
+  const first = consolidator.run(traces, slugFor).skills[0]!;
+  assert.equal(slugCalls, traces.length);
   assert.equal(first.failureAnnotations[0]?.screenshot, "fixture://changed.png");
   assert.equal(first.version, 2);
-  const second = consolidator.run(traces, () => "book-court").skills[0]!;
+  const second = consolidator.run(traces, slugFor).skills[0]!;
   assert.equal(second.version, 2);
   assert.equal(second.provenance.length, 2);
+});
+
+test("learning writes reject secrets, arbitrary screenshot paths and accessor-backed traces", () => {
+  const root = mkdtempSync(join(tmpdir(), "kaki-learning-schema-"));
+  const store = new LearnedSkillStore(root);
+  assert.throws(
+    () =>
+      store.learn("unsafe", {
+        id: "unsafe",
+        goal: "login password=hunter2",
+        locale: "sg",
+        outcome: "success",
+        steps: [],
+      }),
+    /secret-rejected/u,
+  );
+  assert.throws(
+    () =>
+      store.learn("unsafe-screen", {
+        id: "unsafe-screen",
+        goal: "open portal",
+        locale: "sg",
+        outcome: "failure",
+        failure: "changed",
+        steps: [
+          { surface: "browser", action: "click", screenshot: "C:\\Users\\person\\secret.png" },
+        ],
+      }),
+    /screenshot-reference/u,
+  );
+  const trace = Object.defineProperty(
+    { id: "getter", goal: "open portal", locale: "sg", outcome: "success" },
+    "steps",
+    { enumerable: true, get: () => [] },
+  );
+  assert.throws(() => store.learn("getter", trace), /learning-trace-invalid/u);
+});
+
+test("restart validates persisted learned-skill schema before replay", () => {
+  const root = mkdtempSync(join(tmpdir(), "kaki-learning-restart-"));
+  const store = new LearnedSkillStore(root);
+  store.learn("restart-safe", {
+    id: "restart-safe",
+    goal: "download bill",
+    locale: "sg",
+    outcome: "success",
+    steps: [{ surface: "browser", action: "open", target: "portal" }],
+  });
+  assert.equal(new LearnedSkillStore(root).load("restart-safe")?.version, 1);
+  const file = join(root, "restart-safe", "skill.json");
+  const corrupted = JSON.parse(readFileSync(file, "utf8")) as Record<string, unknown>;
+  corrupted.version = "one";
+  writeFileSync(file, JSON.stringify(corrupted), "utf8");
+  assert.throws(() => new LearnedSkillStore(root).load("restart-safe"), /version-invalid/u);
+});
+
+test("memory nudge bounds model-visible recall and rejects credential-shaped text", () => {
+  const nudge = memoryNudge(
+    "x".repeat(500),
+    Array.from({ length: 20 }, (_, index) => `fact-${index}-${"y".repeat(500)}`),
+  );
+  assert.ok(nudge.length < 1_200);
+  assert.match(nudge, /fact-7/u);
+  assert.doesNotMatch(nudge, /fact-8/u);
+  assert.throws(() => memoryNudge("login", ["password=hunter2"]), /secret-rejected/u);
 });

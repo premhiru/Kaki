@@ -6,7 +6,6 @@ import type {
   EvidenceRef,
   JsonObject,
   Money,
-  PolicyDecision,
   RiskCategory,
 } from "@kaki/core";
 import { hashMaterialFacts, PolicyEngine, type PolicyContext } from "@kaki/security";
@@ -29,7 +28,8 @@ export type ApprovalAuditAction =
   | "repinged"
   | "grant_consumed"
   | "replay_rejected"
-  | "mutation_rejected";
+  | "mutation_rejected"
+  | "unauthorized_rejected";
 export interface ApprovalAuditEvent {
   readonly id: string;
   readonly cardId: string;
@@ -119,18 +119,16 @@ export interface ApprovalCreateInput {
   readonly category: RiskCategory;
   readonly traceId?: string;
   readonly stepId?: string;
-  readonly requestedByPersonId?: string;
+  readonly requestedByPersonId: string;
   readonly materialFacts?: JsonObject;
   readonly evidence?:
     | readonly EvidenceRef[]
     | readonly { readonly kind: "image" | "link" | "text"; readonly value: string }[];
-  readonly amount?: Money | { readonly currency: string; readonly value: number };
+  readonly amount?: Money;
   readonly choices?: readonly ApprovalChoice[];
   readonly knownPayee?: boolean;
   readonly allowlisted?: boolean;
   readonly threadApproved?: boolean;
-  /** Compatibility only. Policy is always recalculated by the authoritative engine. */
-  readonly policy?: Partial<PolicyDecision>;
 }
 export interface ApprovalDecisionRequest {
   readonly choiceId: string;
@@ -138,6 +136,9 @@ export interface ApprovalDecisionRequest {
   readonly factsHash: string;
 }
 export type ApprovalResponse = ApprovalCard & { readonly grant?: ApprovalGrant };
+export type ApprovalAuthorization =
+  | { readonly status: "approval_required"; readonly card: ApprovalCard }
+  | { readonly status: "authorized"; readonly card: ApprovalCard; readonly grant: ApprovalGrant };
 export interface GrantBinding {
   readonly householdId: string;
   readonly taskId: string;
@@ -148,25 +149,67 @@ export interface ApprovalEngineOptions {
   readonly defaultExpiryMs?: number;
   readonly policy?: PolicyEngine;
   readonly id?: () => string;
+  readonly authorizeDecision?: (input: { card: ApprovalCard; personId: string }) => boolean;
 }
 
 export class ApprovalEngine {
   private readonly defaultExpiryMs: number;
   private readonly policy: PolicyEngine;
   private readonly id: () => string;
+  private readonly authorizeDecision: NonNullable<ApprovalEngineOptions["authorizeDecision"]>;
   constructor(
     private readonly ledger: ApprovalLedger,
-    options: number | ApprovalEngineOptions = {},
+    options: ApprovalEngineOptions = {},
   ) {
-    const config = typeof options === "number" ? { defaultExpiryMs: options } : options;
-    this.defaultExpiryMs = config.defaultExpiryMs ?? 2 * 60 * 60 * 1000;
-    this.policy = config.policy ?? new PolicyEngine();
-    this.id = config.id ?? (() => crypto.randomUUID());
+    this.defaultExpiryMs = options.defaultExpiryMs ?? 2 * 60 * 60 * 1000;
+    this.policy = options.policy ?? new PolicyEngine();
+    this.id = options.id ?? (() => crypto.randomUUID());
+    this.authorizeDecision =
+      options.authorizeDecision ?? (({ card, personId }) => personId === card.requestedByPersonId);
     if (!Number.isSafeInteger(this.defaultExpiryMs) || this.defaultExpiryMs <= 0)
       throw new Error("invalid-approval-expiry");
   }
 
   async create(input: ApprovalCreateInput, now = new Date()): Promise<ApprovalCard> {
+    const card = this.buildCard(input, now);
+    if (card.policy.action === "deny")
+      throw new Error(`approval-policy-denied:${card.policy.reasonCode}`);
+    if (card.policy.action === "auto")
+      throw new Error(`approval-not-required:${card.policy.reasonCode}`);
+    await this.ledger.put(card);
+    await this.log(card, "created", now);
+    return card;
+  }
+
+  /**
+   * Creates the authoritative pending card for an ask decision, or a durable single-use grant for
+   * an auto decision. Both outcomes retain the same exact material binding and policy evidence.
+   */
+  async authorize(input: ApprovalCreateInput, now = new Date()): Promise<ApprovalAuthorization> {
+    const card = this.buildCard(input, now);
+    if (card.policy.action === "deny")
+      throw new Error(`approval-policy-denied:${card.policy.reasonCode}`);
+    if (card.policy.action === "ask") {
+      await this.ledger.put(card);
+      await this.log(card, "created", now);
+      return { status: "approval_required", card };
+    }
+    const policyActor = `policy:${card.policy.ruleId}`;
+    const approved: ApprovalCard = {
+      ...card,
+      status: "approved",
+      decidedAt: now.toISOString(),
+      decidedByPersonId: policyActor,
+    };
+    const grant = this.createGrant(approved, policyActor, now);
+    await this.ledger.put(approved);
+    await this.log(approved, "created", now);
+    await this.log(approved, "approved", now, policyActor);
+    await this.ledger.putGrant({ grant });
+    return { status: "authorized", card: approved, grant };
+  }
+
+  private buildCard(input: ApprovalCreateInput, now: Date): ApprovalCard {
     const amount = normaliseMoney(input.amount);
     const facts: JsonObject = {
       ...(input.materialFacts ?? {}),
@@ -185,8 +228,6 @@ export class ApprovalEngine {
       ...(input.threadApproved !== undefined ? { threadApproved: input.threadApproved } : {}),
     };
     const policy = this.policy.decide(context);
-    if (policy.action === "deny") throw new Error(`approval-policy-denied:${policy.reasonCode}`);
-    if (policy.action === "auto") throw new Error(`approval-not-required:${policy.reasonCode}`);
     const cardId = this.id();
     const createdAt = now.toISOString();
     const card: ApprovalCard = {
@@ -195,7 +236,7 @@ export class ApprovalEngine {
       traceId: input.traceId ?? input.taskId,
       stepId: input.stepId ?? `${input.taskId}:approval`,
       householdId: input.householdId,
-      requestedByPersonId: input.requestedByPersonId ?? "legacy-requester",
+      requestedByPersonId: input.requestedByPersonId,
       category: input.category,
       title: input.title,
       summary: input.summary,
@@ -209,38 +250,37 @@ export class ApprovalEngine {
       createdAt,
       expiresAt: new Date(now.getTime() + this.defaultExpiryMs).toISOString(),
     };
-    await this.ledger.put(card);
-    await this.log(card, "created", now);
     return card;
   }
 
   async respond(
     id: string,
-    request: string | ApprovalDecisionRequest,
+    request: ApprovalDecisionRequest,
     now = new Date(),
   ): Promise<ApprovalResponse> {
     const card = await this.requiredCard(id);
+    validateDecisionRequest(request);
+    if (!request.personId.trim()) throw new Error("approval-actor-required");
+    if (!this.authorizeDecision({ card, personId: request.personId })) {
+      await this.log(card, "unauthorized_rejected", now, request.personId);
+      throw new Error("approval-actor-unauthorized");
+    }
     if (card.status !== "pending") {
-      await this.log(card, "replay_rejected", now, undefined, card.status);
+      await this.log(card, "replay_rejected", now, request.personId, card.status);
       throw new Error(`approval-replay:${card.status}`);
     }
     if (now >= new Date(card.expiresAt)) {
       const expired = { ...card, status: "expired" as const };
       await this.ledger.compareAndSwap(card.id, "pending", expired);
-      await this.log(expired, "expired", now);
+      await this.log(expired, "expired", now, request.personId);
       throw new Error("approval-expired");
     }
-    const decision: ApprovalDecisionRequest =
-      typeof request === "string"
-        ? { choiceId: request, personId: card.requestedByPersonId, factsHash: card.factsHash }
-        : request;
-    if (!decision.personId.trim()) throw new Error("approval-actor-required");
-    if (decision.factsHash !== card.factsHash) {
-      await this.log(card, "mutation_rejected", now, decision.personId, "facts-hash-mismatch");
+    if (request.factsHash !== card.factsHash) {
+      await this.log(card, "mutation_rejected", now, request.personId, "facts-hash-mismatch");
       throw new Error("approval-material-facts-changed");
     }
     const selected = card.choices.find(
-      (item) => item.id === decision.choiceId || item.label === decision.choiceId,
+      (item) => item.id === request.choiceId || item.label === request.choiceId,
     );
     if (!selected) throw new Error("approval-choice-invalid");
     if (selected.action === "edit") return card;
@@ -249,28 +289,44 @@ export class ApprovalEngine {
       ...card,
       status,
       decidedAt: now.toISOString(),
-      decidedByPersonId: decision.personId,
+      decidedByPersonId: request.personId,
     };
     if (!(await this.ledger.compareAndSwap(card.id, "pending", next))) {
-      await this.log(card, "replay_rejected", now, decision.personId, "concurrent-decision");
+      await this.log(card, "replay_rejected", now, request.personId, "concurrent-decision");
       throw new Error("approval-replay:concurrent");
     }
-    await this.log(next, status, now, decision.personId);
+    await this.log(next, status, now, request.personId);
     if (status === "denied") return next;
-    const grant: ApprovalGrant = {
-      id: this.id(),
-      approvalCardId: card.id,
-      taskId: card.taskId,
-      stepId: card.stepId,
-      householdId: card.householdId,
-      approvedByPersonId: decision.personId,
-      factsHash: card.factsHash,
-      issuedAt: now.toISOString(),
-      expiresAt: card.expiresAt,
-      singleUse: true,
-    };
+    const grant = this.createGrant(card, request.personId, now);
     await this.ledger.putGrant({ grant });
     return { ...next, grant };
+  }
+
+  async respondFromTelegramCallback(
+    callbackData: string,
+    personId: string,
+    now = new Date(),
+  ): Promise<ApprovalResponse> {
+    const match = /^approval:([^:]+):([^:]+)$/u.exec(callbackData);
+    if (!match?.[1] || !match[2]) throw new Error("approval-callback-invalid");
+    const card = await this.requiredCard(match[1]);
+    return this.respond(card.id, { choiceId: match[2], personId, factsHash: card.factsHash }, now);
+  }
+
+  async respondFromWhatsAppReply(
+    cardId: string,
+    reply: string,
+    personId: string,
+    now = new Date(),
+  ): Promise<ApprovalResponse> {
+    const card = await this.requiredCard(cardId);
+    const value = reply.trim();
+    const numbered = /^\d+$/u.test(value) ? card.choices[Number(value) - 1]?.id : undefined;
+    return this.respond(
+      card.id,
+      { choiceId: numbered ?? value, personId, factsHash: card.factsHash },
+      now,
+    );
   }
 
   async consumeGrant(
@@ -338,6 +394,20 @@ export class ApprovalEngine {
     if (!card) throw new Error("approval-not-found");
     return card;
   }
+  private createGrant(card: ApprovalCard, approvedByPersonId: string, now: Date): ApprovalGrant {
+    return {
+      id: this.id(),
+      approvalCardId: card.id,
+      taskId: card.taskId,
+      stepId: card.stepId,
+      householdId: card.householdId,
+      approvedByPersonId,
+      factsHash: card.factsHash,
+      issuedAt: now.toISOString(),
+      expiresAt: card.expiresAt,
+      singleUse: true,
+    };
+  }
   private async log(
     card: ApprovalCard,
     action: ApprovalAuditAction,
@@ -359,16 +429,36 @@ export class ApprovalEngine {
   }
 }
 
+function validateDecisionRequest(value: unknown): asserts value is ApprovalDecisionRequest {
+  if (
+    typeof value !== "object" ||
+    value === null ||
+    !("choiceId" in value) ||
+    typeof value.choiceId !== "string" ||
+    value.choiceId.length > 256 ||
+    !("personId" in value) ||
+    typeof value.personId !== "string" ||
+    value.personId.length > 256 ||
+    !("factsHash" in value) ||
+    typeof value.factsHash !== "string" ||
+    !/^[a-f\d]{64}$/u.test(value.factsHash)
+  )
+    throw new Error("approval-decision-invalid");
+}
+
 const defaultChoices: readonly ApprovalChoice[] = [
   { id: "approve", label: "Approve", action: "approve" },
   { id: "deny", label: "Deny", action: "deny" },
 ];
 function normaliseMoney(amount: ApprovalCreateInput["amount"]): Money | undefined {
   if (!amount) return undefined;
-  const minorUnits = "minorUnits" in amount ? amount.minorUnits : Math.round(amount.value * 100);
-  if (!/^[A-Z]{3}$/.test(amount.currency) || !Number.isSafeInteger(minorUnits) || minorUnits < 0)
+  if (
+    !/^[A-Z]{3}$/.test(amount.currency) ||
+    !Number.isSafeInteger(amount.minorUnits) ||
+    amount.minorUnits < 0
+  )
     throw new Error("approval-money-invalid");
-  return { currency: amount.currency, minorUnits };
+  return amount;
 }
 function normaliseEvidence(
   evidence: ApprovalCreateInput["evidence"],
@@ -418,7 +508,7 @@ export function renderTelegram(card: ApprovalCard): TelegramApprovalModel {
     inlineKeyboard: [
       card.choices.map((choice) => ({
         text: choice.label,
-        callbackData: `approval:${card.id}:${choice.id}:${card.factsHash.slice(0, 12)}`,
+        callbackData: `approval:${card.id}:${choice.id}`,
       })),
     ],
   };
@@ -514,4 +604,24 @@ export function buildHandoff(kind: HandoffKind): HandoffModel {
     },
   };
   return models[kind];
+}
+
+export type PaymentRail = "paynow" | "duitnow" | "promptpay" | "qris" | "vietqr" | "qrph";
+export interface PaymentHandoffModel {
+  readonly rail: PaymentRail;
+  readonly category: "money.transfer";
+  readonly requiresApproval: true;
+  readonly requiresBankConfirmation: true;
+  readonly receiptRequired: true;
+  readonly qrFallback: "regenerate-for-user-scan";
+}
+export function buildPaymentHandoff(rail: PaymentRail): PaymentHandoffModel {
+  return {
+    rail,
+    category: "money.transfer",
+    requiresApproval: true,
+    requiresBankConfirmation: true,
+    receiptRequired: true,
+    qrFallback: "regenerate-for-user-scan",
+  };
 }

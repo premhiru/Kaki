@@ -1,9 +1,10 @@
 {
   "skillId": "sg.family-events",
   "input": {
-    "request": "fixture request for Family events",
+    "request": "Family events: CNY reunion dinner 2027 eight guests",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "festival_event": "CNY reunion dinner 2027 eight guests"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "booking",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["family-events.source", "family-events.prepare"],
+    "evidence": [
+      "browser:open:household calendar and venue services source state",
+      "browser:prepare:the family event plan and booking reference preparation"
+    ]
   }
 }

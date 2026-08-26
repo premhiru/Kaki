@@ -1,9 +1,10 @@
 {
   "skillId": "sg.ura-parking",
   "input": {
-    "request": "fixture request for URA parking",
+    "request": "URA parking: URA123 90 minutes",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "parking_session": "URA123 90 minutes"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "money.purchase",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["ura-parking.source", "ura-parking.prepare"],
+    "evidence": [
+      "browser:open:Parking.sg or URA carpark service source state",
+      "browser:prepare:the active parking session and expiry time preparation"
+    ]
   }
 }

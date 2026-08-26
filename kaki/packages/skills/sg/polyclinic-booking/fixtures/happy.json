@@ -1,9 +1,10 @@
 {
   "skillId": "sg.polyclinic-booking",
   "input": {
-    "request": "fixture request for Polyclinic booking",
+    "request": "Polyclinic booking: AMK Polyclinic next Monday morning",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "clinic_and_slot": "AMK Polyclinic next Monday morning"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "booking",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["polyclinic-booking.source", "polyclinic-booking.prepare"],
+    "evidence": [
+      "browser:open:HealthHub appointment service source state",
+      "browser:prepare:the appointment reference and arrival instructions preparation"
+    ]
   }
 }

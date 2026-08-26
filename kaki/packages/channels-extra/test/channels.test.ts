@@ -1,4 +1,5 @@
 import { createHmac } from "node:crypto";
+import { HouseholdDirectory, type NormalisedInbound, type OutboundMessage } from "@kaki/channels";
 import { describe, expect, it, vi } from "vitest";
 import {
   LineChannel,
@@ -6,9 +7,10 @@ import {
   ViberChannel,
   WeChatChannel,
   ZaloChannel,
-  createFixtureTransport,
   hmacVerifier,
   type RegionalWebhookChannel,
+  type RegionalTransport,
+  type SignedRegionalWebhook,
 } from "../src/index.js";
 
 describe("regional fixture channels", () => {
@@ -20,26 +22,69 @@ describe("regional fixture channels", () => {
     WeChatChannel,
   ]) {
     it(`${ChannelType.name} normalises media and uses fixture transport`, async () => {
-      const inbound = vi.fn();
-      const transport = createFixtureTransport();
+      const inbound = vi.fn(async (_message: NormalisedInbound) => undefined);
+      const transport = new FixtureRegionalTransport();
       const channel: RegionalWebhookChannel = new ChannelType({
+        enabled: true,
         transport,
         onInbound: inbound,
         verifyWebhook: () => true,
+        directory: new HouseholdDirectory({
+          people: [{ jid: "user", personId: "owner", householdId: "home" }],
+          groups: [{ chatId: "family", householdId: "home" }],
+        }),
       });
-      const message = channel.normalise({
-        id: "1",
-        senderId: "user",
-        chatId: "family",
-        text: "hello",
-        attachments: [{ type: "audio", url: "fixture://voice.ogg", mimeType: "audio/ogg" }],
+      await channel.start();
+      await transport.emit({
+        signature: "valid",
+        body: "{}",
+        webhook: {
+          id: "1",
+          senderId: "user",
+          chatId: "family",
+          text: "hello",
+          attachments: [{ type: "audio", url: "fixture://voice.ogg", mimeType: "audio/ogg" }],
+        },
       });
-      expect(message.channel).toBe(channel.name);
-      expect(message.audio?.mimeType).toBe("audio/ogg");
+      const message = inbound.mock.calls[0]?.[0];
+      expect(message).toMatchObject({
+        channel: channel.name,
+        from: { personId: "owner" },
+        audio: { mimeType: "audio/ogg" },
+      });
       expect((await channel.send("family", { text: "ok" })).messageId).toContain("fixture");
       expect(transport.sent).toHaveLength(1);
     });
   }
+});
+
+it("verifies the signed transport envelope before household ingress", async () => {
+  const inbound = vi.fn();
+  const ignored = vi.fn();
+  const transport = new FixtureRegionalTransport();
+  const channel = new MessengerChannel({
+    enabled: true,
+    transport,
+    onInbound: inbound,
+    verifyWebhook: (signature) => signature === "valid",
+    directory: new HouseholdDirectory(),
+    onIgnored: ignored,
+  });
+  await channel.start();
+  await expect(
+    transport.emit({
+      signature: "invalid",
+      body: "{}",
+      webhook: { id: "bad", senderId: "attacker", chatId: "attacker", text: "hello" },
+    }),
+  ).rejects.toThrow("signature-invalid");
+  await transport.emit({
+    signature: "valid",
+    body: "{}",
+    webhook: { id: "unknown", senderId: "attacker", chatId: "attacker", text: "hello" },
+  });
+  expect(inbound).not.toHaveBeenCalled();
+  expect(ignored).toHaveBeenCalledWith(expect.objectContaining({ reason: "unknown-sender" }));
 });
 
 it("verifies provider signatures without ordinary string comparison", () => {
@@ -48,3 +93,21 @@ it("verifies provider signatures without ordinary string comparison", () => {
   expect(hmacVerifier("secret")(signature, body)).toBe(true);
   expect(hmacVerifier("secret")("bad", body)).toBe(false);
 });
+
+class FixtureRegionalTransport implements RegionalTransport {
+  readonly sent: Array<{ chatId: string; message: OutboundMessage }> = [];
+  private onWebhook?: (webhook: SignedRegionalWebhook) => Promise<void>;
+
+  async start(onWebhook: (webhook: SignedRegionalWebhook) => Promise<void>) {
+    this.onWebhook = onWebhook;
+  }
+  async stop() {}
+  async send(chatId: string, message: OutboundMessage) {
+    this.sent.push({ chatId, message });
+    return { messageId: `fixture:${chatId}:${this.sent.length}` };
+  }
+  async emit(webhook: SignedRegionalWebhook) {
+    if (!this.onWebhook) throw new Error("transport-not-started");
+    await this.onWebhook(webhook);
+  }
+}

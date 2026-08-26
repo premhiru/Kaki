@@ -1,30 +1,42 @@
-# SKILLS
+# Skills implementation evidence
 
 ## Delivered
 
-- Created the required maintained scopes under `packages/skills`: `sg`, `sea`, `my`, `id`, `th`, `vn`, `ph`, and `learned`.
-- Added 79 maintained playbooks covering every §16 skill. Thailand, Vietnam, and the Philippines each receive a fifth starter (`tmd-weather`, `vneid-handoff`, and `pagasa-weather`) so all five country packs have at least five fixtures.
-- Every maintained skill has agentskills-compatible front matter, safe steps, checks, failure modes, local-language handoff copy, an independently runnable `run.ts`, and a deterministic `fixtures/happy.json`.
-- Added a shared effect-free fixture runner. It validates identity and fixture mode, returns the expected policy boundary/evidence, and performs zero external calls or state changes.
-- Added a deterministic generator with drift-check mode and generated `docs/SKILLS.md`.
-- Catalogued all eleven phone-node skills at their existing owning paths rather than duplicating them.
+- The canonical generator owns all 79 maintained IDs and their provider, required task input,
+  provider-specific preparation, critical verification, approval category, final action, result, and
+  localized handoff copy.
+- Every maintained `SKILL.md` now names the real provider or owner and renders its exact declared
+  `browser`, `phone`, `data`, `channel`, and `approval` sequence. Duplicate generic bodies are a test
+  failure.
+- Thailand, Vietnam, and the Philippines include fifth starters (`tmd-weather`, `vneid-handoff`, and
+  `pagasa-weather`). All five country scopes therefore have five maintained fixtures.
+- The eleven phone playbooks remain owned by `packages/phone-node/skills`; this package audits their
+  IDs without copying or replacing their mobile flows.
+- Fixture execution is deterministic and side-effect-free. It validates task-specific required input
+  and derives its result from the generated action plan; it never reads `fixture.expect` to decide the
+  outcome.
+- `executeSkill` is the production contract. It calls an injected dispatcher for every declared live
+  browser, phone, data, or channel action and stops at the approval action. A matching, unexpired,
+  skill-scoped grant is required before the declared commit is dispatched.
 
-## Test
+## Verification
 
 ```sh
-corepack pnpm --filter @kaki/skills generate:check
-corepack pnpm --filter @kaki/skills typecheck
-corepack pnpm --filter @kaki/skills test
-corepack pnpm --filter @kaki/skills test:e2e
-corepack pnpm --filter @kaki/skills exec tsx sg/iras-noa/run.ts
+pnpm --filter @kaki/skills generate:check
+pnpm --filter @kaki/skills typecheck
+pnpm --filter @kaki/skills test
+pnpm --filter @kaki/skills build
 ```
 
-## Live integration boundary
+The tests cover exact catalogue membership, five starters in every country, generated-file drift,
+unique playbook bodies, substantive action declarations, meaningful fixture input, expected-output
+poisoning, missing required input, approval ordering, copied-grant rejection, and production dispatcher
+calls.
 
-The runner is deliberately fixture-only. Production orchestration reads the `surfaces` and `approvals` metadata, dispatches the plan through browser/phone/API/approval nodes, and supplies the resulting redacted trace. This prevents a standalone playbook test from accidentally sending messages, placing bookings, or moving money.
+## Evidence boundary
 
-## Open issues
-
-- Live portal fixtures must be recorded and reviewed by their owning surface/data agents before release; the deterministic fixtures currently test policy and delivery contracts.
-- Calendar dates, government requirements, fees, phone numbers, and vendor endpoints are live data and must never be copied into static playbook text without an expiry/update owner.
-- Learned skills remain quarantined until they gain a reviewed fixture and pass the same catalogue validation.
+These checks prove deterministic playbook contracts and executor policy. They do not prove a live
+booking, payment, government login, vendor message, or mobile-app run. Live execution depends on the
+OpenClaw workspace seeded by `kaki onboard`, configured surface dispatchers, a dedicated assistant
+phone where applicable, and the relevant household/provider credentials. Account-backed completion
+must be recorded by the release live-evidence workflow; fixture results must never be labelled live.

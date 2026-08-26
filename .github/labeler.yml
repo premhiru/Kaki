@@ -356,6 +356,11 @@
   - changed-files:
       - any-glob-to-any-file:
           - "extensions/admin-http-rpc/**"
+"plugin: kaki":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "extensions/kaki/**"
+          - "docs/agents/KAKI-RUNTIME.md"
 "extensions: copilot-proxy":
   - changed-files:
       - any-glob-to-any-file:

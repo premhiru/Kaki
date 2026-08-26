@@ -1,9 +1,10 @@
 {
   "skillId": "sg.healthhub-web",
   "input": {
-    "request": "fixture request for HealthHub web",
+    "request": "HealthHub web: latest lab result",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "record_request": "latest lab result"
   },
   "context": {
     "locale": "sg",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "data.share",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["healthhub-web.source", "healthhub-web.prepare"],
+    "evidence": [
+      "browser:open:HealthHub source state",
+      "browser:prepare:a plain-language record summary with source date preparation"
+    ]
   }
 }

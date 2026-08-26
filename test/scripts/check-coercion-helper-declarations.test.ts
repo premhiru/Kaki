@@ -178,6 +178,7 @@ describe("coercion helper declaration AST guard", () => {
     ).toBe(true);
     expect(isGovernedCoercionHelperPath("root.config.ts")).toBe(true);
     expect(isGovernedCoercionHelperPath(".github/actions/example/index.ts")).toBe(true);
+    expect(isGovernedCoercionHelperPath("kaki/packages/models/src/adapters.ts")).toBe(true);
   });
 
   it("finds directly exported callable declarations and export aliases", () => {

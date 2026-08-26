@@ -10,6 +10,7 @@
     "id/**/*.ts",
     "th/**/*.ts",
     "vn/**/*.ts",
-    "ph/**/*.ts"
+    "ph/**/*.ts",
+    "vitest.config.ts"
   ]
 }

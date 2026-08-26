@@ -38,12 +38,7 @@
       "category": "local",
       "languages": ["my"]
     },
-    {
-      "term": "LHDN",
-      "normalised": "tax authority",
-      "category": "local",
-      "languages": ["my"]
-    },
+    { "term": "LHDN", "normalised": "tax authority", "category": "local", "languages": ["my"] },
     {
       "term": "balik kampung",
       "normalised": "return to hometown",
@@ -56,12 +51,7 @@
       "category": "local",
       "languages": ["my"]
     },
-    {
-      "term": "tapau",
-      "normalised": "take away",
-      "category": "local",
-      "languages": ["my"]
-    },
+    { "term": "tapau", "normalised": "take away", "category": "local", "languages": ["my"] },
     {
       "term": "cuaca sekarang",
       "normalised": "cuaca: sekarang",
@@ -188,12 +178,7 @@
       "category": "phrase",
       "languages": ["my"]
     },
-    {
-      "term": "bas esok",
-      "normalised": "bas: esok",
-      "category": "phrase",
-      "languages": ["my"]
-    },
+    { "term": "bas esok", "normalised": "bas: esok", "category": "phrase", "languages": ["my"] },
     {
       "term": "bas dekat sini",
       "normalised": "bas: dekat sini",
@@ -206,36 +191,16 @@
       "category": "phrase",
       "languages": ["my"]
     },
-    {
-      "term": "bas murah",
-      "normalised": "bas: murah",
-      "category": "phrase",
-      "languages": ["my"]
-    },
-    {
-      "term": "bas halal",
-      "normalised": "bas: halal",
-      "category": "phrase",
-      "languages": ["my"]
-    },
+    { "term": "bas murah", "normalised": "bas: murah", "category": "phrase", "languages": ["my"] },
+    { "term": "bas halal", "normalised": "bas: halal", "category": "phrase", "languages": ["my"] },
     {
       "term": "bas hujung minggu",
       "normalised": "bas: hujung minggu",
       "category": "phrase",
       "languages": ["my"]
     },
-    {
-      "term": "bas pagi",
-      "normalised": "bas: pagi",
-      "category": "phrase",
-      "languages": ["my"]
-    },
-    {
-      "term": "bas malam",
-      "normalised": "bas: malam",
-      "category": "phrase",
-      "languages": ["my"]
-    },
+    { "term": "bas pagi", "normalised": "bas: pagi", "category": "phrase", "languages": ["my"] },
+    { "term": "bas malam", "normalised": "bas: malam", "category": "phrase", "languages": ["my"] },
     {
       "term": "bas segera",
       "normalised": "bas: segera",
@@ -248,12 +213,7 @@
       "category": "phrase",
       "languages": ["my"]
     },
-    {
-      "term": "tren esok",
-      "normalised": "tren: esok",
-      "category": "phrase",
-      "languages": ["my"]
-    },
+    { "term": "tren esok", "normalised": "tren: esok", "category": "phrase", "languages": ["my"] },
     {
       "term": "tren dekat sini",
       "normalised": "tren: dekat sini",
@@ -284,12 +244,7 @@
       "category": "phrase",
       "languages": ["my"]
     },
-    {
-      "term": "tren pagi",
-      "normalised": "tren: pagi",
-      "category": "phrase",
-      "languages": ["my"]
-    },
+    { "term": "tren pagi", "normalised": "tren: pagi", "category": "phrase", "languages": ["my"] },
     {
       "term": "tren malam",
       "normalised": "tren: malam",
@@ -728,12 +683,7 @@
       "category": "phrase",
       "languages": ["my"]
     },
-    {
-      "term": "cuti esok",
-      "normalised": "cuti: esok",
-      "category": "phrase",
-      "languages": ["my"]
-    },
+    { "term": "cuti esok", "normalised": "cuti: esok", "category": "phrase", "languages": ["my"] },
     {
       "term": "cuti dekat sini",
       "normalised": "cuti: dekat sini",
@@ -764,12 +714,7 @@
       "category": "phrase",
       "languages": ["my"]
     },
-    {
-      "term": "cuti pagi",
-      "normalised": "cuti: pagi",
-      "category": "phrase",
-      "languages": ["my"]
-    },
+    { "term": "cuti pagi", "normalised": "cuti: pagi", "category": "phrase", "languages": ["my"] },
     {
       "term": "cuti malam",
       "normalised": "cuti: malam",
@@ -908,12 +853,7 @@
       "category": "phrase",
       "languages": ["my"]
     },
-    {
-      "term": "bank esok",
-      "normalised": "bank: esok",
-      "category": "phrase",
-      "languages": ["my"]
-    },
+    { "term": "bank esok", "normalised": "bank: esok", "category": "phrase", "languages": ["my"] },
     {
       "term": "bank dekat sini",
       "normalised": "bank: dekat sini",
@@ -944,12 +884,7 @@
       "category": "phrase",
       "languages": ["my"]
     },
-    {
-      "term": "bank pagi",
-      "normalised": "bank: pagi",
-      "category": "phrase",
-      "languages": ["my"]
-    },
+    { "term": "bank pagi", "normalised": "bank: pagi", "category": "phrase", "languages": ["my"] },
     {
       "term": "bank malam",
       "normalised": "bank: malam",

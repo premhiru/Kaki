@@ -1,9 +1,10 @@
 {
   "skillId": "id.bpjs",
   "input": {
-    "request": "fixture request for BPJS services",
+    "request": "BPJS services: member alias contribution status",
     "household_id": "fixture-household",
-    "person_id": "fixture-person"
+    "person_id": "fixture-person",
+    "member_service": "member alias contribution status"
   },
   "context": {
     "locale": "id",
@@ -12,6 +13,10 @@
   "expect": {
     "status": "needs_approval",
     "approval": "data.share",
-    "evidence": ["redacted-trace", "final-step-summary"]
+    "actionIds": ["bpjs.source", "bpjs.prepare"],
+    "evidence": [
+      "browser:open:BPJS Kesehatan or Ketenagakerjaan source state",
+      "browser:prepare:the BPJS status or service reference preparation"
+    ]
   }
 }
