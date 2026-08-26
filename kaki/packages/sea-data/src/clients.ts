@@ -245,7 +245,7 @@ export class RegionalPublicClient {
     this.now = options.now ?? (() => Date.now());
   }
   weather(location: string, signal?: AbortSignal) {
-    return this.query(`${this.config.country}.weather` as RegionalSourceId, { location }, signal);
+    return this.query(`${this.config.country}.weather`, { location }, signal);
   }
   holidays(year: number, signal?: AbortSignal) {
     if (!Number.isInteger(year) || year < 2000 || year > 2100)

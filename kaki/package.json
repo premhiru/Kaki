@@ -10,7 +10,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "pnpm --filter \"@kaki/*\" --if-present build",
+    "build": "pnpm --filter @openclaw/normalization-core build && pnpm --filter \"@kaki/*\" --if-present build",
     "check": "pnpm lint && pnpm typecheck && pnpm test",
     "lint": "eslint . && pnpm --filter @kaki/control-ui lint",
     "format": "oxfmt .",
