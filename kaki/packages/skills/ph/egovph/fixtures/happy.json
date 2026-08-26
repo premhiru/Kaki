@@ -1,0 +1,22 @@
+{
+  "skillId": "ph.egovph",
+  "input": {
+    "request": "eGovPH services: eVerify credential status",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "service_and_fields": "eVerify credential status"
+  },
+  "context": {
+    "locale": "ph",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "data.share",
+    "actionIds": ["egovph.source", "egovph.prepare"],
+    "evidence": [
+      "browser:open:eGovPH source state",
+      "browser:prepare:the eGovPH verification or service reference preparation"
+    ]
+  }
+}

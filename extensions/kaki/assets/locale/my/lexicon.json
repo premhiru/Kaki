@@ -1,0 +1,1201 @@
+{
+  "locale": "my",
+  "version": 1,
+  "entries": [
+    {
+      "term": "DuitNow",
+      "normalised": "instant payment rail",
+      "category": "local",
+      "languages": ["my"]
+    },
+    {
+      "term": "Touch 'n Go",
+      "normalised": "stored-value wallet",
+      "category": "local",
+      "languages": ["my"]
+    },
+    {
+      "term": "VEP",
+      "normalised": "Vehicle Entry Permit",
+      "category": "local",
+      "languages": ["my"]
+    },
+    {
+      "term": "MyDigital ID",
+      "normalised": "digital identity",
+      "category": "local",
+      "languages": ["my"]
+    },
+    {
+      "term": "JAKIM",
+      "normalised": "Islamic affairs authority",
+      "category": "local",
+      "languages": ["my"]
+    },
+    {
+      "term": "JPJ",
+      "normalised": "Road Transport Department",
+      "category": "local",
+      "languages": ["my"]
+    },
+    { "term": "LHDN", "normalised": "tax authority", "category": "local", "languages": ["my"] },
+    {
+      "term": "balik kampung",
+      "normalised": "return to hometown",
+      "category": "local",
+      "languages": ["my"]
+    },
+    {
+      "term": "mamak",
+      "normalised": "Indian Muslim eatery",
+      "category": "local",
+      "languages": ["my"]
+    },
+    { "term": "tapau", "normalised": "take away", "category": "local", "languages": ["my"] },
+    {
+      "term": "cuaca sekarang",
+      "normalised": "cuaca: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuaca esok",
+      "normalised": "cuaca: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuaca dekat sini",
+      "normalised": "cuaca: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuaca untuk keluarga",
+      "normalised": "cuaca: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuaca murah",
+      "normalised": "cuaca: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuaca halal",
+      "normalised": "cuaca: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuaca hujung minggu",
+      "normalised": "cuaca: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuaca pagi",
+      "normalised": "cuaca: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuaca malam",
+      "normalised": "cuaca: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuaca segera",
+      "normalised": "cuaca: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan sekarang",
+      "normalised": "hujan: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan esok",
+      "normalised": "hujan: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan dekat sini",
+      "normalised": "hujan: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan untuk keluarga",
+      "normalised": "hujan: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan murah",
+      "normalised": "hujan: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan halal",
+      "normalised": "hujan: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan hujung minggu",
+      "normalised": "hujan: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan pagi",
+      "normalised": "hujan: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan malam",
+      "normalised": "hujan: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "hujan segera",
+      "normalised": "hujan: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bas sekarang",
+      "normalised": "bas: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    { "term": "bas esok", "normalised": "bas: esok", "category": "phrase", "languages": ["my"] },
+    {
+      "term": "bas dekat sini",
+      "normalised": "bas: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bas untuk keluarga",
+      "normalised": "bas: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    { "term": "bas murah", "normalised": "bas: murah", "category": "phrase", "languages": ["my"] },
+    { "term": "bas halal", "normalised": "bas: halal", "category": "phrase", "languages": ["my"] },
+    {
+      "term": "bas hujung minggu",
+      "normalised": "bas: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    { "term": "bas pagi", "normalised": "bas: pagi", "category": "phrase", "languages": ["my"] },
+    { "term": "bas malam", "normalised": "bas: malam", "category": "phrase", "languages": ["my"] },
+    {
+      "term": "bas segera",
+      "normalised": "bas: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tren sekarang",
+      "normalised": "tren: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    { "term": "tren esok", "normalised": "tren: esok", "category": "phrase", "languages": ["my"] },
+    {
+      "term": "tren dekat sini",
+      "normalised": "tren: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tren untuk keluarga",
+      "normalised": "tren: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tren murah",
+      "normalised": "tren: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tren halal",
+      "normalised": "tren: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tren hujung minggu",
+      "normalised": "tren: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    { "term": "tren pagi", "normalised": "tren: pagi", "category": "phrase", "languages": ["my"] },
+    {
+      "term": "tren malam",
+      "normalised": "tren: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tren segera",
+      "normalised": "tren: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan sekarang",
+      "normalised": "makan: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan esok",
+      "normalised": "makan: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan dekat sini",
+      "normalised": "makan: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan untuk keluarga",
+      "normalised": "makan: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan murah",
+      "normalised": "makan: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan halal",
+      "normalised": "makan: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan hujung minggu",
+      "normalised": "makan: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan pagi",
+      "normalised": "makan: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan malam",
+      "normalised": "makan: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "makan segera",
+      "normalised": "makan: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah sekarang",
+      "normalised": "tempah: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah esok",
+      "normalised": "tempah: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah dekat sini",
+      "normalised": "tempah: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah untuk keluarga",
+      "normalised": "tempah: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah murah",
+      "normalised": "tempah: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah halal",
+      "normalised": "tempah: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah hujung minggu",
+      "normalised": "tempah: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah pagi",
+      "normalised": "tempah: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah malam",
+      "normalised": "tempah: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tempah segera",
+      "normalised": "tempah: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai sekarang",
+      "normalised": "cukai: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai esok",
+      "normalised": "cukai: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai dekat sini",
+      "normalised": "cukai: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai untuk keluarga",
+      "normalised": "cukai: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai murah",
+      "normalised": "cukai: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai halal",
+      "normalised": "cukai: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai hujung minggu",
+      "normalised": "cukai: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai pagi",
+      "normalised": "cukai: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai malam",
+      "normalised": "cukai: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cukai segera",
+      "normalised": "cukai: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar sekarang",
+      "normalised": "bayar: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar esok",
+      "normalised": "bayar: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar dekat sini",
+      "normalised": "bayar: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar untuk keluarga",
+      "normalised": "bayar: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar murah",
+      "normalised": "bayar: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar halal",
+      "normalised": "bayar: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar hujung minggu",
+      "normalised": "bayar: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar pagi",
+      "normalised": "bayar: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar malam",
+      "normalised": "bayar: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bayar segera",
+      "normalised": "bayar: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan sekarang",
+      "normalised": "ingatkan: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan esok",
+      "normalised": "ingatkan: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan dekat sini",
+      "normalised": "ingatkan: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan untuk keluarga",
+      "normalised": "ingatkan: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan murah",
+      "normalised": "ingatkan: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan halal",
+      "normalised": "ingatkan: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan hujung minggu",
+      "normalised": "ingatkan: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan pagi",
+      "normalised": "ingatkan: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan malam",
+      "normalised": "ingatkan: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "ingatkan segera",
+      "normalised": "ingatkan: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang sekarang",
+      "normalised": "tukang: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang esok",
+      "normalised": "tukang: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang dekat sini",
+      "normalised": "tukang: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang untuk keluarga",
+      "normalised": "tukang: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang murah",
+      "normalised": "tukang: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang halal",
+      "normalised": "tukang: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang hujung minggu",
+      "normalised": "tukang: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang pagi",
+      "normalised": "tukang: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang malam",
+      "normalised": "tukang: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "tukang segera",
+      "normalised": "tukang: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik sekarang",
+      "normalised": "klinik: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik esok",
+      "normalised": "klinik: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik dekat sini",
+      "normalised": "klinik: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik untuk keluarga",
+      "normalised": "klinik: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik murah",
+      "normalised": "klinik: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik halal",
+      "normalised": "klinik: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik hujung minggu",
+      "normalised": "klinik: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik pagi",
+      "normalised": "klinik: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik malam",
+      "normalised": "klinik: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "klinik segera",
+      "normalised": "klinik: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuti sekarang",
+      "normalised": "cuti: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    { "term": "cuti esok", "normalised": "cuti: esok", "category": "phrase", "languages": ["my"] },
+    {
+      "term": "cuti dekat sini",
+      "normalised": "cuti: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuti untuk keluarga",
+      "normalised": "cuti: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuti murah",
+      "normalised": "cuti: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuti halal",
+      "normalised": "cuti: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuti hujung minggu",
+      "normalised": "cuti: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    { "term": "cuti pagi", "normalised": "cuti: pagi", "category": "phrase", "languages": ["my"] },
+    {
+      "term": "cuti malam",
+      "normalised": "cuti: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "cuti segera",
+      "normalised": "cuti: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan sekarang",
+      "normalised": "jalan: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan esok",
+      "normalised": "jalan: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan dekat sini",
+      "normalised": "jalan: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan untuk keluarga",
+      "normalised": "jalan: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan murah",
+      "normalised": "jalan: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan halal",
+      "normalised": "jalan: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan hujung minggu",
+      "normalised": "jalan: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan pagi",
+      "normalised": "jalan: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan malam",
+      "normalised": "jalan: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "jalan segera",
+      "normalised": "jalan: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah sekarang",
+      "normalised": "sekolah: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah esok",
+      "normalised": "sekolah: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah dekat sini",
+      "normalised": "sekolah: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah untuk keluarga",
+      "normalised": "sekolah: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah murah",
+      "normalised": "sekolah: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah halal",
+      "normalised": "sekolah: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah hujung minggu",
+      "normalised": "sekolah: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah pagi",
+      "normalised": "sekolah: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah malam",
+      "normalised": "sekolah: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "sekolah segera",
+      "normalised": "sekolah: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bank sekarang",
+      "normalised": "bank: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    { "term": "bank esok", "normalised": "bank: esok", "category": "phrase", "languages": ["my"] },
+    {
+      "term": "bank dekat sini",
+      "normalised": "bank: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bank untuk keluarga",
+      "normalised": "bank: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bank murah",
+      "normalised": "bank: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bank halal",
+      "normalised": "bank: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bank hujung minggu",
+      "normalised": "bank: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    { "term": "bank pagi", "normalised": "bank: pagi", "category": "phrase", "languages": ["my"] },
+    {
+      "term": "bank malam",
+      "normalised": "bank: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "bank segera",
+      "normalised": "bank: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar sekarang",
+      "normalised": "pasar: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar esok",
+      "normalised": "pasar: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar dekat sini",
+      "normalised": "pasar: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar untuk keluarga",
+      "normalised": "pasar: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar murah",
+      "normalised": "pasar: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar halal",
+      "normalised": "pasar: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar hujung minggu",
+      "normalised": "pasar: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar pagi",
+      "normalised": "pasar: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar malam",
+      "normalised": "pasar: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "pasar segera",
+      "normalised": "pasar: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau sekarang",
+      "normalised": "surau: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau esok",
+      "normalised": "surau: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau dekat sini",
+      "normalised": "surau: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau untuk keluarga",
+      "normalised": "surau: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau murah",
+      "normalised": "surau: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau halal",
+      "normalised": "surau: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau hujung minggu",
+      "normalised": "surau: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau pagi",
+      "normalised": "surau: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau malam",
+      "normalised": "surau: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "surau segera",
+      "normalised": "surau: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya sekarang",
+      "normalised": "lebuhraya: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya esok",
+      "normalised": "lebuhraya: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya dekat sini",
+      "normalised": "lebuhraya: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya untuk keluarga",
+      "normalised": "lebuhraya: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya murah",
+      "normalised": "lebuhraya: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya halal",
+      "normalised": "lebuhraya: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya hujung minggu",
+      "normalised": "lebuhraya: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya pagi",
+      "normalised": "lebuhraya: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya malam",
+      "normalised": "lebuhraya: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "lebuhraya segera",
+      "normalised": "lebuhraya: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi sekarang",
+      "normalised": "farmasi: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi esok",
+      "normalised": "farmasi: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi dekat sini",
+      "normalised": "farmasi: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi untuk keluarga",
+      "normalised": "farmasi: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi murah",
+      "normalised": "farmasi: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi halal",
+      "normalised": "farmasi: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi hujung minggu",
+      "normalised": "farmasi: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi pagi",
+      "normalised": "farmasi: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi malam",
+      "normalised": "farmasi: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "farmasi segera",
+      "normalised": "farmasi: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor sekarang",
+      "normalised": "doktor: sekarang",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor esok",
+      "normalised": "doktor: esok",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor dekat sini",
+      "normalised": "doktor: dekat sini",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor untuk keluarga",
+      "normalised": "doktor: untuk keluarga",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor murah",
+      "normalised": "doktor: murah",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor halal",
+      "normalised": "doktor: halal",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor hujung minggu",
+      "normalised": "doktor: hujung minggu",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor pagi",
+      "normalised": "doktor: pagi",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor malam",
+      "normalised": "doktor: malam",
+      "category": "phrase",
+      "languages": ["my"]
+    },
+    {
+      "term": "doktor segera",
+      "normalised": "doktor: segera",
+      "category": "phrase",
+      "languages": ["my"]
+    }
+  ]
+}

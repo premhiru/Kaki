@@ -1,0 +1,27 @@
+{
+  "name": "@kaki/phone-node",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./adb": "./src/adb-transport.ts",
+    "./companion": "./src/companion-transport.ts",
+    "./daemon": "./src/daemon.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "vitest run test/skills.test.ts"
+  },
+  "dependencies": {
+    "@kaki/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}

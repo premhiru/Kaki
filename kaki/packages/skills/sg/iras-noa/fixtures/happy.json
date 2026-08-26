@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.iras-noa",
+  "input": {
+    "request": "IRAS Notice of Assessment: 2025",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "assessment_year": "2025"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "gov.singpass",
+    "actionIds": ["iras-noa.source", "iras-noa.prepare"],
+    "evidence": [
+      "browser:open:IRAS myTax Portal source state",
+      "browser:prepare:a cited NOA summary with payment deadline preparation"
+    ]
+  }
+}

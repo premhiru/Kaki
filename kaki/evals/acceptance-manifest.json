@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "liveEvidenceMaxAgeHours": 168,
+  "definition": "CODEX MASTER PROMPT v2 section 20",
+  "criteria": [
+    {
+      "id": 1,
+      "name": "Install, onboard, deep status",
+      "ciRequired": true,
+      "liveRequired": true,
+      "fixtures": [],
+      "evidence": ["scripts/install.sh", "scripts/kaki.ts"],
+      "liveId": "install-status"
+    },
+    {
+      "id": 2,
+      "name": "WhatsApp to Grab ride",
+      "ciRequired": true,
+      "liveRequired": true,
+      "fixtures": ["dod02.grab-ride"],
+      "liveId": "grab-ride"
+    },
+    {
+      "id": 3,
+      "name": "PayNow SGQR and bank 2FA",
+      "ciRequired": true,
+      "liveRequired": true,
+      "fixtures": ["dod03.paynow-2fa"],
+      "liveId": "paynow-2fa"
+    },
+    {
+      "id": 4,
+      "name": "IRAS NOA Singpass handoff",
+      "ciRequired": true,
+      "liveRequired": true,
+      "fixtures": ["dod04.iras-noa"],
+      "liveId": "iras-singpass"
+    },
+    {
+      "id": 5,
+      "name": "Singlish kopitiam voice note",
+      "ciRequired": true,
+      "liveRequired": false,
+      "fixtures": ["dod05.voice-kopitiam"]
+    },
+    {
+      "id": 6,
+      "name": "Ah Ma Mandarin voice note",
+      "ciRequired": true,
+      "liveRequired": false,
+      "fixtures": ["dod06.voice-ah-ma"]
+    },
+    {
+      "id": 7,
+      "name": "Vendor outreach",
+      "ciRequired": true,
+      "liveRequired": true,
+      "fixtures": ["dod07.vendor-outreach"],
+      "liveId": "vendor-outreach"
+    },
+    {
+      "id": 8,
+      "name": "Parents Gateway notice",
+      "ciRequired": true,
+      "liveRequired": true,
+      "fixtures": ["dod08.parents-gateway"],
+      "liveId": "parents-gateway"
+    },
+    {
+      "id": 9,
+      "name": "Singapore monitors",
+      "ciRequired": true,
+      "liveRequired": false,
+      "fixtures": ["dod09.sg-monitors"]
+    },
+    {
+      "id": 10,
+      "name": "Learning loop improves replay",
+      "ciRequired": true,
+      "liveRequired": false,
+      "fixtures": ["dod10.learning-loop"]
+    },
+    {
+      "id": 11,
+      "name": "Locale and register thresholds",
+      "ciRequired": true,
+      "liveRequired": false,
+      "fixtures": [],
+      "evidence": ["evals/results/locale-summary.json"]
+    },
+    {
+      "id": 12,
+      "name": "Security invariants",
+      "ciRequired": true,
+      "liveRequired": false,
+      "fixtures": [
+        "security.money.unapproved",
+        "security.channel.unknown-wa",
+        "security.pacing.new-contact",
+        "security.injection.image-ocr",
+        "security.injection.pdf",
+        "security.injection.vendor-reply"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "SEA starter skills and channels",
+      "ciRequired": true,
+      "liveRequired": false,
+      "fixtures": ["dod13.sea-starters"]
+    },
+    {
+      "id": 14,
+      "name": "Docs and CI complete",
+      "ciRequired": true,
+      "liveRequired": false,
+      "fixtures": [],
+      "evidence": [
+        "README.md",
+        "docs/ARCHITECTURE.md",
+        "docs/INTERFACES.md",
+        "docs/DECISIONS.md",
+        "docs/PERSONAS.md",
+        "docs/VERIFY.md",
+        "docs/RUNBOOK.md",
+        "docs/SKILLS.md",
+        "docs/LOCALE.md",
+        "CONTRIBUTING.md",
+        ".github/workflows/ci.yml"
+      ]
+    }
+  ]
+}

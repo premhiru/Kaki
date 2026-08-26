@@ -1,0 +1,42 @@
+{
+  "name": "kaki",
+  "version": "0.9.0",
+  "private": true,
+  "description": "A self-hosted household agent for Southeast Asia",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@11.15.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "pnpm --filter @openclaw/normalization-core build && pnpm --filter \"@kaki/*\" --if-present build",
+    "check": "pnpm lint && pnpm typecheck && pnpm test",
+    "lint": "eslint . && pnpm --filter @kaki/control-ui lint",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "typecheck": "pnpm --filter \"@kaki/*\" --if-present typecheck",
+    "test": "pnpm --workspace-concurrency=1 --filter \"@kaki/*\" --if-present test",
+    "test:qa": "node --import tsx --test tests/qa/*.test.mjs",
+    "coverage": "node scripts/qa/coverage.mjs",
+    "test:e2e": "node scripts/qa/validate-fixtures.mjs && tsx scripts/qa/replay-fixtures.mjs --adapter evals/runtime-adapter.ts --strict-runtime && pnpm --filter \"@kaki/*\" --if-present test:e2e",
+    "evals": "tsx scripts/qa/locale-score.mjs --dir evals/locales --out evals/results/locale-summary.json",
+    "security:scan": "node scripts/qa/secrets-scan.mjs",
+    "docs:check": "node scripts/qa/check-doc-links.mjs && node scripts/qa/requirements-ledger.mjs --check",
+    "requirements:check": "node scripts/qa/requirements-ledger.mjs --check",
+    "requirements:write": "node scripts/qa/requirements-ledger.mjs --write",
+    "acceptance": "tsx scripts/qa/acceptance-report.mjs --adapter evals/runtime-adapter.ts",
+    "acceptance:release": "tsx scripts/qa/acceptance-report.mjs --adapter evals/runtime-adapter.ts --release",
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm coverage && pnpm test:qa && pnpm test:e2e && pnpm evals && pnpm security:scan && pnpm docs:check && pnpm acceptance",
+    "kaki": "tsx scripts/kaki.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.34.0",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.41.0"
+  }
+}

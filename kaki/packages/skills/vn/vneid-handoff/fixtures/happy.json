@@ -1,0 +1,22 @@
+{
+  "skillId": "vn.vneid-handoff",
+  "input": {
+    "request": "VNeID handoff: residence confirmation fields",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "service_and_fields": "residence confirmation fields"
+  },
+  "context": {
+    "locale": "vn",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "data.share",
+    "actionIds": ["vneid-handoff.source", "vneid-handoff.prepare"],
+    "evidence": [
+      "data:query:VNeID source state",
+      "data:normalize:a VNeID handoff and consent record preparation"
+    ]
+  }
+}

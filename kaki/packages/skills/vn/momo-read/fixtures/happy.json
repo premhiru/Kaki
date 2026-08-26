@@ -1,0 +1,23 @@
+{
+  "skillId": "vn.momo-read",
+  "input": {
+    "request": "MoMo read-only: assistant wallet recent transactions",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "wallet_view": "assistant wallet recent transactions"
+  },
+  "context": {
+    "locale": "vn",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["momo-read.source", "momo-read.prepare", "momo-read.verify"],
+    "evidence": [
+      "phone:launch:MoMo source state",
+      "phone:inspect:a redacted MoMo balance or transaction summary preparation",
+      "phone:verify:a redacted MoMo balance or transaction summary"
+    ]
+  }
+}

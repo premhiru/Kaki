@@ -1,7 +1,0 @@
-{
-  "locale": "th",
-  "priority": ["line", "telegram"],
-  "languages": ["th", "en"],
-  "dataTools": ["th-public-data", "regional-holidays", "currency-remittance"],
-  "fixtureModeAvailable": true
-}

@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.sp-group",
+  "input": {
+    "request": "SP utilities: check July bill",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "utility_request": "check July bill"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "actionIds": ["sp-group.source", "sp-group.prepare"],
+    "evidence": [
+      "browser:open:SP Utilities portal source state",
+      "browser:prepare:the bill analysis or payment receipt preparation"
+    ]
+  }
+}

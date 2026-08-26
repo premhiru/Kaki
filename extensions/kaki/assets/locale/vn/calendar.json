@@ -1,0 +1,36 @@
+{
+  "locale": "vn",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "events": [
+    {
+      "id": "vn-holiday-1",
+      "name": "Tết",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "vn-holiday-2",
+      "name": "Reunification Day",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "vn-holiday-3",
+      "name": "National Day",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "vn-holiday-4",
+      "name": "Hùng Kings Festival",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "vn-tet-window",
+      "name": "Tết operating and travel window",
+      "type": "cultural",
+      "rule": "Refresh annually"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "locale": "ph",
+  "generatedBy": "scripts/locale/generate.mjs",
+  "datasets": ["../../../evals/locales/ph-fil.jsonl", "../../../evals/locales/ph-en.jsonl"],
+  "contract": "expected labels are deterministic template truth without native-speaker review; the locale scorer and package test execute the public normalizer for every row"
+}

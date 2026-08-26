@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.lta-vehicle",
+  "input": {
+    "request": "LTA vehicle services: road tax status",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "vehicle_service": "road tax status"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "gov.singpass",
+    "actionIds": ["lta-vehicle.source", "lta-vehicle.prepare"],
+    "evidence": [
+      "browser:open:OneMotoring source state",
+      "browser:prepare:a vehicle-service status with official reference preparation"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "locale": "id",
+  "priority": ["whatsapp", "telegram"],
+  "languages": ["id", "jv", "en"],
+  "dataTools": ["id-public-data", "regional-holidays", "currency-remittance"],
+  "defaultModels": {
+    "planner": ["anthropic/claude-sonnet", "openai/gpt-5"],
+    "tool": ["anthropic/claude-sonnet", "openai/gpt-5"],
+    "vision": ["anthropic/claude-sonnet", "openai/gpt-5"],
+    "normalise": ["ollama/qwen3:8b", "openrouter/qwen/qwen3-8b"],
+    "generate": ["sahabat-ai/sahabat-70b", "sea-lion/SEA-LION-v4.5"],
+    "safety": ["sea-guard/SEA-Guard"],
+    "embedding": ["vllm/bge-m3", "ollama/bge-m3"],
+    "heartbeat": ["ollama/qwen3:4b", "openai/gpt-5-nano"],
+    "asr": ["meralion/MERaLiON-2", "openai/whisper-large-v3-turbo"]
+  },
+  "fixtureModeAvailable": true
+}

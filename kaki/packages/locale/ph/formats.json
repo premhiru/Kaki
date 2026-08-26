@@ -1,0 +1,9 @@
+{
+  "locale": "ph",
+  "currency": "PHP",
+  "date": "MM/DD/YYYY",
+  "time": "HH:mm",
+  "phone": { "storage": "E.164", "display": "national" },
+  "address": { "preserveUnit": true, "preservePostalCode": true },
+  "idMasking": { "mode": "show-last-4", "patterns": ["national-id", "passport"] }
+}

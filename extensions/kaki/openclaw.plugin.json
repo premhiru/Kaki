@@ -1,0 +1,102 @@
+{
+  "id": "kaki",
+  "name": "Kaki",
+  "description": "Authenticated household control routes and operator commands for Kaki.",
+  "enabledByDefault": false,
+  "activation": {
+    "onStartup": false,
+    "onConfigPaths": ["plugins.entries.kaki"],
+    "onCommands": [
+      "kaki-bootstrap",
+      "deny",
+      "relink-wa",
+      "journey",
+      "household",
+      "phone",
+      "skills",
+      "cron",
+      "locale",
+      "pause",
+      "resume",
+      "cost"
+    ]
+  },
+  "contracts": {
+    "tools": ["kaki_skill"]
+  },
+  "commandAliases": [
+    { "name": "deny", "kind": "runtime-slash" },
+    { "name": "relink-wa", "kind": "runtime-slash" },
+    { "name": "journey", "kind": "runtime-slash" },
+    { "name": "household", "kind": "runtime-slash" },
+    { "name": "phone", "kind": "runtime-slash" },
+    { "name": "skills", "kind": "runtime-slash" },
+    { "name": "cron", "kind": "runtime-slash" },
+    { "name": "locale", "kind": "runtime-slash" },
+    { "name": "pause", "kind": "runtime-slash" },
+    { "name": "resume", "kind": "runtime-slash" },
+    { "name": "cost", "kind": "runtime-slash" }
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "oneOf": [
+      { "maxProperties": 0 },
+      {
+        "required": [
+          "householdProfileId",
+          "operatorPersonId",
+          "addressBookProfileId",
+          "approvalPolicyProfileId",
+          "dataProfileId",
+          "phoneNodeId",
+          "whatsappAccountId",
+          "telegramAccountId",
+          "modelProfileId",
+          "asrProfileId",
+          "locale"
+        ]
+      }
+    ],
+    "properties": {
+      "householdProfileId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "operatorPersonId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "addressBookProfileId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "approvalPolicyProfileId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "dataProfileId": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "phoneNodeId": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "whatsappAccountId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "telegramAccountId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "modelProfileId": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "asrProfileId": { "type": "string", "minLength": 1, "maxLength": 128 },
+      "locale": {
+        "type": "string",
+        "enum": ["sg", "my", "id", "th", "vn", "ph", "mm", "kh"]
+      }
+    }
+  }
+}

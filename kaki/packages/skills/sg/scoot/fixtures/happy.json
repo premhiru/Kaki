@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.scoot",
+  "input": {
+    "request": "Scoot: SIN to DPS 2026-10-12 one adult",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "flight_request": "SIN to DPS 2026-10-12 one adult"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "booking",
+    "actionIds": ["scoot.source", "scoot.prepare"],
+    "evidence": [
+      "browser:open:Scoot source state",
+      "browser:prepare:the Scoot booking reference preparation"
+    ]
+  }
+}

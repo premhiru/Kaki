@@ -1,0 +1,22 @@
+{
+  "skillId": "my.myeg",
+  "input": {
+    "request": "MyEG services: vehicle alias summons check",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "service_and_record": "vehicle alias summons check"
+  },
+  "context": {
+    "locale": "my",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "actionIds": ["myeg.source", "myeg.prepare"],
+    "evidence": [
+      "browser:open:MyEG source state",
+      "browser:prepare:the MyEG service receipt preparation"
+    ]
+  }
+}

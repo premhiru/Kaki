@@ -1,0 +1,13 @@
+[
+  {
+    "location": { "location_id": "Ds090", "location_name": "Johor Bahru" },
+    "date": "2026-09-01",
+    "morning_forecast": "Tiada Hujan",
+    "afternoon_forecast": "Hujan di satu dua tempat",
+    "night_forecast": "Tiada Hujan",
+    "summary_forecast": "Hujan di satu dua tempat",
+    "summary_when": "Petang",
+    "min_temp": 24,
+    "max_temp": 33
+  }
+]

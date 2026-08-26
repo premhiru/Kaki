@@ -1,0 +1,46 @@
+{
+  "BusRoutes": [
+    {
+      "ServiceNo": "12",
+      "Operator": "SBST",
+      "Direction": 1,
+      "StopSequence": 2,
+      "BusStopCode": "01019",
+      "Distance": 1.4,
+      "WD_FirstBus": "0530"
+    }
+  ],
+  "CarParkAvailabilityv2": [
+    {
+      "CarParkID": "A1",
+      "Area": "Marina",
+      "Development": "Example",
+      "Location": "1.280,103.850",
+      "AvailableLots": 42,
+      "LotType": "C"
+    }
+  ],
+  "ERPRates": [
+    {
+      "VehicleType": "Passenger Cars",
+      "DayType": "Weekdays",
+      "StartTime": "08:00",
+      "EndTime": "08:30",
+      "ZoneID": "AY1",
+      "ChargeAmount": 2
+    }
+  ],
+  "Taxi-Availability": [{ "Latitude": 1.3, "Longitude": 103.8 }],
+  "TrafficIncidents": [
+    { "Type": "Accident", "Latitude": 1.31, "Longitude": 103.81, "Message": "Lane blocked" }
+  ],
+  "EstTravelTimes": [{ "Name": "AYE", "Direction": "Changi", "FarEndPoint": "ECP", "EstTime": 18 }],
+  "Traffic-Imagesv2": [
+    {
+      "CameraID": "1001",
+      "Latitude": 1.32,
+      "Longitude": 103.82,
+      "ImageLink": "https://example.invalid/camera.jpg"
+    }
+  ]
+}

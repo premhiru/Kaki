@@ -1,0 +1,22 @@
+[Unit]
+Description=Verify that Kaki's configured phone node is paired and connected
+Documentation=https://docs.openclaw.ai/cli/nodes
+After=kaki.service
+Requires=kaki.service
+
+[Service]
+Type=oneshot
+User=kaki
+Group=kaki
+WorkingDirectory=/opt/kaki
+Environment=HOME=/var/lib/kaki
+Environment=KAKI_HOME=/var/lib/kaki
+EnvironmentFile=-/etc/kaki/kaki.env
+ExecStart=/usr/bin/node /opt/kaki/kaki/scripts/phone-health.mjs
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/kaki
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6

@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "rootDir": "." },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "sg/**/*.ts",
+    "sea/**/*.ts",
+    "my/**/*.ts",
+    "id/**/*.ts",
+    "th/**/*.ts",
+    "vn/**/*.ts",
+    "ph/**/*.ts",
+    "vitest.config.ts"
+  ]
+}

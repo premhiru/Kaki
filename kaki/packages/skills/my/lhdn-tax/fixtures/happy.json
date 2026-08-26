@@ -1,0 +1,22 @@
+{
+  "skillId": "my.lhdn-tax",
+  "input": {
+    "request": "LHDN tax: YA 2025 filing status",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "tax_year_and_service": "YA 2025 filing status"
+  },
+  "context": {
+    "locale": "my",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "gov.singpass",
+    "actionIds": ["lhdn-tax.source", "lhdn-tax.prepare"],
+    "evidence": [
+      "browser:open:MyTax LHDN source state",
+      "browser:prepare:the LHDN status or acknowledgement preparation"
+    ]
+  }
+}

@@ -1,0 +1,1161 @@
+{
+  "locale": "th",
+  "version": 1,
+  "entries": [
+    {
+      "term": "PromptPay",
+      "normalised": "instant payment rail",
+      "category": "local",
+      "languages": ["th"]
+    },
+    {
+      "term": "LINE MAN",
+      "normalised": "delivery service",
+      "category": "local",
+      "languages": ["th"]
+    },
+    {
+      "term": "BTS",
+      "normalised": "Bangkok elevated rail",
+      "category": "local",
+      "languages": ["th"]
+    },
+    { "term": "MRT", "normalised": "metropolitan rail", "category": "local", "languages": ["th"] },
+    {
+      "term": "TMD",
+      "normalised": "meteorological department",
+      "category": "local",
+      "languages": ["th"]
+    },
+    { "term": "ThaID", "normalised": "digital identity", "category": "local", "languages": ["th"] },
+    { "term": "Songkran", "normalised": "Thai New Year", "category": "local", "languages": ["th"] },
+    {
+      "term": "วันพระ",
+      "normalised": "Buddhist holy day",
+      "category": "local",
+      "languages": ["th"]
+    },
+    { "term": "เจ", "normalised": "Thai vegan diet", "category": "local", "languages": ["th"] },
+    {
+      "term": "วินมอเตอร์ไซค์",
+      "normalised": "motorcycle taxi",
+      "category": "local",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ ตอนนี้",
+      "normalised": "อากาศ: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ พรุ่งนี้",
+      "normalised": "อากาศ: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ ใกล้ฉัน",
+      "normalised": "อากาศ: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ สำหรับครอบครัว",
+      "normalised": "อากาศ: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ ราคาถูก",
+      "normalised": "อากาศ: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ ฮาลาล",
+      "normalised": "อากาศ: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ สุดสัปดาห์",
+      "normalised": "อากาศ: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ ตอนเช้า",
+      "normalised": "อากาศ: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ ตอนกลางคืน",
+      "normalised": "อากาศ: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อากาศ ด่วน",
+      "normalised": "อากาศ: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "ฝน ตอนนี้", "normalised": "ฝน: ตอนนี้", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "ฝน พรุ่งนี้",
+      "normalised": "ฝน: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ฝน ใกล้ฉัน",
+      "normalised": "ฝน: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ฝน สำหรับครอบครัว",
+      "normalised": "ฝน: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ฝน ราคาถูก",
+      "normalised": "ฝน: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "ฝน ฮาลาล", "normalised": "ฝน: ฮาลาล", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "ฝน สุดสัปดาห์",
+      "normalised": "ฝน: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ฝน ตอนเช้า",
+      "normalised": "ฝน: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ฝน ตอนกลางคืน",
+      "normalised": "ฝน: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "ฝน ด่วน", "normalised": "ฝน: ด่วน", "category": "phrase", "languages": ["th"] },
+    { "term": "รถ ตอนนี้", "normalised": "รถ: ตอนนี้", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "รถ พรุ่งนี้",
+      "normalised": "รถ: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถ ใกล้ฉัน",
+      "normalised": "รถ: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถ สำหรับครอบครัว",
+      "normalised": "รถ: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถ ราคาถูก",
+      "normalised": "รถ: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "รถ ฮาลาล", "normalised": "รถ: ฮาลาล", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "รถ สุดสัปดาห์",
+      "normalised": "รถ: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถ ตอนเช้า",
+      "normalised": "รถ: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถ ตอนกลางคืน",
+      "normalised": "รถ: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "รถ ด่วน", "normalised": "รถ: ด่วน", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "รถไฟ ตอนนี้",
+      "normalised": "รถไฟ: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถไฟ พรุ่งนี้",
+      "normalised": "รถไฟ: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถไฟ ใกล้ฉัน",
+      "normalised": "รถไฟ: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถไฟ สำหรับครอบครัว",
+      "normalised": "รถไฟ: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถไฟ ราคาถูก",
+      "normalised": "รถไฟ: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถไฟ ฮาลาล",
+      "normalised": "รถไฟ: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถไฟ สุดสัปดาห์",
+      "normalised": "รถไฟ: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถไฟ ตอนเช้า",
+      "normalised": "รถไฟ: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "รถไฟ ตอนกลางคืน",
+      "normalised": "รถไฟ: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "รถไฟ ด่วน", "normalised": "รถไฟ: ด่วน", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "อาหาร ตอนนี้",
+      "normalised": "อาหาร: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อาหาร พรุ่งนี้",
+      "normalised": "อาหาร: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อาหาร ใกล้ฉัน",
+      "normalised": "อาหาร: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อาหาร สำหรับครอบครัว",
+      "normalised": "อาหาร: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อาหาร ราคาถูก",
+      "normalised": "อาหาร: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อาหาร ฮาลาล",
+      "normalised": "อาหาร: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อาหาร สุดสัปดาห์",
+      "normalised": "อาหาร: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อาหาร ตอนเช้า",
+      "normalised": "อาหาร: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อาหาร ตอนกลางคืน",
+      "normalised": "อาหาร: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "อาหาร ด่วน",
+      "normalised": "อาหาร: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จอง ตอนนี้",
+      "normalised": "จอง: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จอง พรุ่งนี้",
+      "normalised": "จอง: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จอง ใกล้ฉัน",
+      "normalised": "จอง: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จอง สำหรับครอบครัว",
+      "normalised": "จอง: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จอง ราคาถูก",
+      "normalised": "จอง: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "จอง ฮาลาล", "normalised": "จอง: ฮาลาล", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "จอง สุดสัปดาห์",
+      "normalised": "จอง: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จอง ตอนเช้า",
+      "normalised": "จอง: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จอง ตอนกลางคืน",
+      "normalised": "จอง: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "จอง ด่วน", "normalised": "จอง: ด่วน", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "ภาษี ตอนนี้",
+      "normalised": "ภาษี: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ภาษี พรุ่งนี้",
+      "normalised": "ภาษี: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ภาษี ใกล้ฉัน",
+      "normalised": "ภาษี: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ภาษี สำหรับครอบครัว",
+      "normalised": "ภาษี: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ภาษี ราคาถูก",
+      "normalised": "ภาษี: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ภาษี ฮาลาล",
+      "normalised": "ภาษี: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ภาษี สุดสัปดาห์",
+      "normalised": "ภาษี: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ภาษี ตอนเช้า",
+      "normalised": "ภาษี: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ภาษี ตอนกลางคืน",
+      "normalised": "ภาษี: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "ภาษี ด่วน", "normalised": "ภาษี: ด่วน", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "จ่าย ตอนนี้",
+      "normalised": "จ่าย: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จ่าย พรุ่งนี้",
+      "normalised": "จ่าย: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จ่าย ใกล้ฉัน",
+      "normalised": "จ่าย: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จ่าย สำหรับครอบครัว",
+      "normalised": "จ่าย: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จ่าย ราคาถูก",
+      "normalised": "จ่าย: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จ่าย ฮาลาล",
+      "normalised": "จ่าย: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จ่าย สุดสัปดาห์",
+      "normalised": "จ่าย: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จ่าย ตอนเช้า",
+      "normalised": "จ่าย: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "จ่าย ตอนกลางคืน",
+      "normalised": "จ่าย: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "จ่าย ด่วน", "normalised": "จ่าย: ด่วน", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "เตือน ตอนนี้",
+      "normalised": "เตือน: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "เตือน พรุ่งนี้",
+      "normalised": "เตือน: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "เตือน ใกล้ฉัน",
+      "normalised": "เตือน: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "เตือน สำหรับครอบครัว",
+      "normalised": "เตือน: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "เตือน ราคาถูก",
+      "normalised": "เตือน: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "เตือน ฮาลาล",
+      "normalised": "เตือน: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "เตือน สุดสัปดาห์",
+      "normalised": "เตือน: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "เตือน ตอนเช้า",
+      "normalised": "เตือน: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "เตือน ตอนกลางคืน",
+      "normalised": "เตือน: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "เตือน ด่วน",
+      "normalised": "เตือน: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ช่าง ตอนนี้",
+      "normalised": "ช่าง: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ช่าง พรุ่งนี้",
+      "normalised": "ช่าง: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ช่าง ใกล้ฉัน",
+      "normalised": "ช่าง: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ช่าง สำหรับครอบครัว",
+      "normalised": "ช่าง: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ช่าง ราคาถูก",
+      "normalised": "ช่าง: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ช่าง ฮาลาล",
+      "normalised": "ช่าง: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ช่าง สุดสัปดาห์",
+      "normalised": "ช่าง: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ช่าง ตอนเช้า",
+      "normalised": "ช่าง: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ช่าง ตอนกลางคืน",
+      "normalised": "ช่าง: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "ช่าง ด่วน", "normalised": "ช่าง: ด่วน", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "คลินิก ตอนนี้",
+      "normalised": "คลินิก: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "คลินิก พรุ่งนี้",
+      "normalised": "คลินิก: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "คลินิก ใกล้ฉัน",
+      "normalised": "คลินิก: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "คลินิก สำหรับครอบครัว",
+      "normalised": "คลินิก: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "คลินิก ราคาถูก",
+      "normalised": "คลินิก: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "คลินิก ฮาลาล",
+      "normalised": "คลินิก: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "คลินิก สุดสัปดาห์",
+      "normalised": "คลินิก: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "คลินิก ตอนเช้า",
+      "normalised": "คลินิก: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "คลินิก ตอนกลางคืน",
+      "normalised": "คลินิก: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "คลินิก ด่วน",
+      "normalised": "คลินิก: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด ตอนนี้",
+      "normalised": "วันหยุด: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด พรุ่งนี้",
+      "normalised": "วันหยุด: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด ใกล้ฉัน",
+      "normalised": "วันหยุด: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด สำหรับครอบครัว",
+      "normalised": "วันหยุด: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด ราคาถูก",
+      "normalised": "วันหยุด: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด ฮาลาล",
+      "normalised": "วันหยุด: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด สุดสัปดาห์",
+      "normalised": "วันหยุด: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด ตอนเช้า",
+      "normalised": "วันหยุด: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด ตอนกลางคืน",
+      "normalised": "วันหยุด: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "วันหยุด ด่วน",
+      "normalised": "วันหยุด: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ถนน ตอนนี้",
+      "normalised": "ถนน: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ถนน พรุ่งนี้",
+      "normalised": "ถนน: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ถนน ใกล้ฉัน",
+      "normalised": "ถนน: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ถนน สำหรับครอบครัว",
+      "normalised": "ถนน: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ถนน ราคาถูก",
+      "normalised": "ถนน: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "ถนน ฮาลาล", "normalised": "ถนน: ฮาลาล", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "ถนน สุดสัปดาห์",
+      "normalised": "ถนน: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ถนน ตอนเช้า",
+      "normalised": "ถนน: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ถนน ตอนกลางคืน",
+      "normalised": "ถนน: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "ถนน ด่วน", "normalised": "ถนน: ด่วน", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "โรงเรียน ตอนนี้",
+      "normalised": "โรงเรียน: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "โรงเรียน พรุ่งนี้",
+      "normalised": "โรงเรียน: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "โรงเรียน ใกล้ฉัน",
+      "normalised": "โรงเรียน: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "โรงเรียน สำหรับครอบครัว",
+      "normalised": "โรงเรียน: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "โรงเรียน ราคาถูก",
+      "normalised": "โรงเรียน: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "โรงเรียน ฮาลาล",
+      "normalised": "โรงเรียน: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "โรงเรียน สุดสัปดาห์",
+      "normalised": "โรงเรียน: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "โรงเรียน ตอนเช้า",
+      "normalised": "โรงเรียน: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "โรงเรียน ตอนกลางคืน",
+      "normalised": "โรงเรียน: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "โรงเรียน ด่วน",
+      "normalised": "โรงเรียน: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร ตอนนี้",
+      "normalised": "ธนาคาร: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร พรุ่งนี้",
+      "normalised": "ธนาคาร: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร ใกล้ฉัน",
+      "normalised": "ธนาคาร: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร สำหรับครอบครัว",
+      "normalised": "ธนาคาร: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร ราคาถูก",
+      "normalised": "ธนาคาร: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร ฮาลาล",
+      "normalised": "ธนาคาร: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร สุดสัปดาห์",
+      "normalised": "ธนาคาร: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร ตอนเช้า",
+      "normalised": "ธนาคาร: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร ตอนกลางคืน",
+      "normalised": "ธนาคาร: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ธนาคาร ด่วน",
+      "normalised": "ธนาคาร: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ตลาด ตอนนี้",
+      "normalised": "ตลาด: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ตลาด พรุ่งนี้",
+      "normalised": "ตลาด: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ตลาด ใกล้ฉัน",
+      "normalised": "ตลาด: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ตลาด สำหรับครอบครัว",
+      "normalised": "ตลาด: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ตลาด ราคาถูก",
+      "normalised": "ตลาด: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ตลาด ฮาลาล",
+      "normalised": "ตลาด: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ตลาด สุดสัปดาห์",
+      "normalised": "ตลาด: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ตลาด ตอนเช้า",
+      "normalised": "ตลาด: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ตลาด ตอนกลางคืน",
+      "normalised": "ตลาด: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "ตลาด ด่วน", "normalised": "ตลาด: ด่วน", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "มัสยิด ตอนนี้",
+      "normalised": "มัสยิด: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "มัสยิด พรุ่งนี้",
+      "normalised": "มัสยิด: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "มัสยิด ใกล้ฉัน",
+      "normalised": "มัสยิด: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "มัสยิด สำหรับครอบครัว",
+      "normalised": "มัสยิด: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "มัสยิด ราคาถูก",
+      "normalised": "มัสยิด: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "มัสยิด ฮาลาล",
+      "normalised": "มัสยิด: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "มัสยิด สุดสัปดาห์",
+      "normalised": "มัสยิด: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "มัสยิด ตอนเช้า",
+      "normalised": "มัสยิด: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "มัสยิด ตอนกลางคืน",
+      "normalised": "มัสยิด: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "มัสยิด ด่วน",
+      "normalised": "มัสยิด: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน ตอนนี้",
+      "normalised": "ทางด่วน: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน พรุ่งนี้",
+      "normalised": "ทางด่วน: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน ใกล้ฉัน",
+      "normalised": "ทางด่วน: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน สำหรับครอบครัว",
+      "normalised": "ทางด่วน: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน ราคาถูก",
+      "normalised": "ทางด่วน: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน ฮาลาล",
+      "normalised": "ทางด่วน: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน สุดสัปดาห์",
+      "normalised": "ทางด่วน: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน ตอนเช้า",
+      "normalised": "ทางด่วน: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน ตอนกลางคืน",
+      "normalised": "ทางด่วน: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ทางด่วน ด่วน",
+      "normalised": "ทางด่วน: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา ตอนนี้",
+      "normalised": "ร้านยา: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา พรุ่งนี้",
+      "normalised": "ร้านยา: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา ใกล้ฉัน",
+      "normalised": "ร้านยา: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา สำหรับครอบครัว",
+      "normalised": "ร้านยา: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา ราคาถูก",
+      "normalised": "ร้านยา: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา ฮาลาล",
+      "normalised": "ร้านยา: ฮาลาล",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา สุดสัปดาห์",
+      "normalised": "ร้านยา: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา ตอนเช้า",
+      "normalised": "ร้านยา: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา ตอนกลางคืน",
+      "normalised": "ร้านยา: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "ร้านยา ด่วน",
+      "normalised": "ร้านยา: ด่วน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "หมอ ตอนนี้",
+      "normalised": "หมอ: ตอนนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "หมอ พรุ่งนี้",
+      "normalised": "หมอ: พรุ่งนี้",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "หมอ ใกล้ฉัน",
+      "normalised": "หมอ: ใกล้ฉัน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "หมอ สำหรับครอบครัว",
+      "normalised": "หมอ: สำหรับครอบครัว",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "หมอ ราคาถูก",
+      "normalised": "หมอ: ราคาถูก",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "หมอ ฮาลาล", "normalised": "หมอ: ฮาลาล", "category": "phrase", "languages": ["th"] },
+    {
+      "term": "หมอ สุดสัปดาห์",
+      "normalised": "หมอ: สุดสัปดาห์",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "หมอ ตอนเช้า",
+      "normalised": "หมอ: ตอนเช้า",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    {
+      "term": "หมอ ตอนกลางคืน",
+      "normalised": "หมอ: ตอนกลางคืน",
+      "category": "phrase",
+      "languages": ["th"]
+    },
+    { "term": "หมอ ด่วน", "normalised": "หมอ: ด่วน", "category": "phrase", "languages": ["th"] }
+  ]
+}

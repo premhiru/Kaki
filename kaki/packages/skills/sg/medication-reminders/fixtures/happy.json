@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.medication-reminders",
+  "input": {
+    "request": "Medication reminders: medicine alias after breakfast daily",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "medication_schedule": "medicine alias after breakfast daily"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "data.share",
+    "actionIds": ["medication-reminders.source", "medication-reminders.prepare"],
+    "evidence": [
+      "data:query:household reminder scheduler source state",
+      "data:normalize:a reminder schedule with edit and stop controls preparation"
+    ]
+  }
+}

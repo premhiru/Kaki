@@ -1,0 +1,1216 @@
+{
+  "locale": "vn",
+  "version": 1,
+  "entries": [
+    {
+      "term": "VietQR",
+      "normalised": "national QR standard",
+      "category": "local",
+      "languages": ["vi"]
+    },
+    {
+      "term": "Zalo",
+      "normalised": "messaging platform",
+      "category": "local",
+      "languages": ["vi"]
+    },
+    { "term": "MoMo", "normalised": "mobile wallet", "category": "local", "languages": ["vi"] },
+    { "term": "VNeID", "normalised": "digital identity", "category": "local", "languages": ["vi"] },
+    { "term": "Tết", "normalised": "Lunar New Year", "category": "local", "languages": ["vi"] },
+    { "term": "xe ôm", "normalised": "motorcycle taxi", "category": "local", "languages": ["vi"] },
+    { "term": "quán cơm", "normalised": "rice eatery", "category": "local", "languages": ["vi"] },
+    {
+      "term": "ăn chay",
+      "normalised": "vegetarian eating",
+      "category": "local",
+      "languages": ["vi"]
+    },
+    {
+      "term": "EVN",
+      "normalised": "electricity utility",
+      "category": "local",
+      "languages": ["vi"]
+    },
+    { "term": "phường", "normalised": "urban ward", "category": "local", "languages": ["vi"] },
+    {
+      "term": "thời tiết bây giờ",
+      "normalised": "thời tiết: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thời tiết ngày mai",
+      "normalised": "thời tiết: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thời tiết gần đây",
+      "normalised": "thời tiết: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thời tiết cho gia đình",
+      "normalised": "thời tiết: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thời tiết giá rẻ",
+      "normalised": "thời tiết: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thời tiết halal",
+      "normalised": "thời tiết: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thời tiết cuối tuần",
+      "normalised": "thời tiết: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thời tiết buổi sáng",
+      "normalised": "thời tiết: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thời tiết buổi tối",
+      "normalised": "thời tiết: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thời tiết khẩn cấp",
+      "normalised": "thời tiết: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "mưa bây giờ",
+      "normalised": "mưa: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "mưa ngày mai",
+      "normalised": "mưa: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "mưa gần đây",
+      "normalised": "mưa: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "mưa cho gia đình",
+      "normalised": "mưa: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "mưa giá rẻ",
+      "normalised": "mưa: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    { "term": "mưa halal", "normalised": "mưa: halal", "category": "phrase", "languages": ["vi"] },
+    {
+      "term": "mưa cuối tuần",
+      "normalised": "mưa: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "mưa buổi sáng",
+      "normalised": "mưa: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "mưa buổi tối",
+      "normalised": "mưa: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "mưa khẩn cấp",
+      "normalised": "mưa: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt bây giờ",
+      "normalised": "xe buýt: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt ngày mai",
+      "normalised": "xe buýt: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt gần đây",
+      "normalised": "xe buýt: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt cho gia đình",
+      "normalised": "xe buýt: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt giá rẻ",
+      "normalised": "xe buýt: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt halal",
+      "normalised": "xe buýt: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt cuối tuần",
+      "normalised": "xe buýt: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt buổi sáng",
+      "normalised": "xe buýt: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt buổi tối",
+      "normalised": "xe buýt: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "xe buýt khẩn cấp",
+      "normalised": "xe buýt: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "tàu bây giờ",
+      "normalised": "tàu: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "tàu ngày mai",
+      "normalised": "tàu: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "tàu gần đây",
+      "normalised": "tàu: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "tàu cho gia đình",
+      "normalised": "tàu: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "tàu giá rẻ",
+      "normalised": "tàu: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    { "term": "tàu halal", "normalised": "tàu: halal", "category": "phrase", "languages": ["vi"] },
+    {
+      "term": "tàu cuối tuần",
+      "normalised": "tàu: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "tàu buổi sáng",
+      "normalised": "tàu: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "tàu buổi tối",
+      "normalised": "tàu: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "tàu khẩn cấp",
+      "normalised": "tàu: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn bây giờ",
+      "normalised": "đồ ăn: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn ngày mai",
+      "normalised": "đồ ăn: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn gần đây",
+      "normalised": "đồ ăn: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn cho gia đình",
+      "normalised": "đồ ăn: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn giá rẻ",
+      "normalised": "đồ ăn: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn halal",
+      "normalised": "đồ ăn: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn cuối tuần",
+      "normalised": "đồ ăn: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn buổi sáng",
+      "normalised": "đồ ăn: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn buổi tối",
+      "normalised": "đồ ăn: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đồ ăn khẩn cấp",
+      "normalised": "đồ ăn: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch bây giờ",
+      "normalised": "đặt lịch: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch ngày mai",
+      "normalised": "đặt lịch: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch gần đây",
+      "normalised": "đặt lịch: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch cho gia đình",
+      "normalised": "đặt lịch: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch giá rẻ",
+      "normalised": "đặt lịch: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch halal",
+      "normalised": "đặt lịch: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch cuối tuần",
+      "normalised": "đặt lịch: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch buổi sáng",
+      "normalised": "đặt lịch: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch buổi tối",
+      "normalised": "đặt lịch: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đặt lịch khẩn cấp",
+      "normalised": "đặt lịch: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế bây giờ",
+      "normalised": "thuế: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế ngày mai",
+      "normalised": "thuế: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế gần đây",
+      "normalised": "thuế: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế cho gia đình",
+      "normalised": "thuế: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế giá rẻ",
+      "normalised": "thuế: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế halal",
+      "normalised": "thuế: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế cuối tuần",
+      "normalised": "thuế: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế buổi sáng",
+      "normalised": "thuế: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế buổi tối",
+      "normalised": "thuế: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thuế khẩn cấp",
+      "normalised": "thuế: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán bây giờ",
+      "normalised": "thanh toán: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán ngày mai",
+      "normalised": "thanh toán: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán gần đây",
+      "normalised": "thanh toán: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán cho gia đình",
+      "normalised": "thanh toán: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán giá rẻ",
+      "normalised": "thanh toán: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán halal",
+      "normalised": "thanh toán: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán cuối tuần",
+      "normalised": "thanh toán: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán buổi sáng",
+      "normalised": "thanh toán: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán buổi tối",
+      "normalised": "thanh toán: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "thanh toán khẩn cấp",
+      "normalised": "thanh toán: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc bây giờ",
+      "normalised": "nhắc: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc ngày mai",
+      "normalised": "nhắc: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc gần đây",
+      "normalised": "nhắc: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc cho gia đình",
+      "normalised": "nhắc: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc giá rẻ",
+      "normalised": "nhắc: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc halal",
+      "normalised": "nhắc: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc cuối tuần",
+      "normalised": "nhắc: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc buổi sáng",
+      "normalised": "nhắc: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc buổi tối",
+      "normalised": "nhắc: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhắc khẩn cấp",
+      "normalised": "nhắc: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "sửa bây giờ",
+      "normalised": "sửa: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "sửa ngày mai",
+      "normalised": "sửa: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "sửa gần đây",
+      "normalised": "sửa: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "sửa cho gia đình",
+      "normalised": "sửa: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "sửa giá rẻ",
+      "normalised": "sửa: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    { "term": "sửa halal", "normalised": "sửa: halal", "category": "phrase", "languages": ["vi"] },
+    {
+      "term": "sửa cuối tuần",
+      "normalised": "sửa: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "sửa buổi sáng",
+      "normalised": "sửa: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "sửa buổi tối",
+      "normalised": "sửa: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "sửa khẩn cấp",
+      "normalised": "sửa: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám bây giờ",
+      "normalised": "phòng khám: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám ngày mai",
+      "normalised": "phòng khám: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám gần đây",
+      "normalised": "phòng khám: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám cho gia đình",
+      "normalised": "phòng khám: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám giá rẻ",
+      "normalised": "phòng khám: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám halal",
+      "normalised": "phòng khám: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám cuối tuần",
+      "normalised": "phòng khám: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám buổi sáng",
+      "normalised": "phòng khám: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám buổi tối",
+      "normalised": "phòng khám: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "phòng khám khẩn cấp",
+      "normalised": "phòng khám: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ bây giờ",
+      "normalised": "nghỉ lễ: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ ngày mai",
+      "normalised": "nghỉ lễ: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ gần đây",
+      "normalised": "nghỉ lễ: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ cho gia đình",
+      "normalised": "nghỉ lễ: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ giá rẻ",
+      "normalised": "nghỉ lễ: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ halal",
+      "normalised": "nghỉ lễ: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ cuối tuần",
+      "normalised": "nghỉ lễ: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ buổi sáng",
+      "normalised": "nghỉ lễ: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ buổi tối",
+      "normalised": "nghỉ lễ: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nghỉ lễ khẩn cấp",
+      "normalised": "nghỉ lễ: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường bây giờ",
+      "normalised": "đường: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường ngày mai",
+      "normalised": "đường: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường gần đây",
+      "normalised": "đường: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường cho gia đình",
+      "normalised": "đường: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường giá rẻ",
+      "normalised": "đường: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường halal",
+      "normalised": "đường: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường cuối tuần",
+      "normalised": "đường: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường buổi sáng",
+      "normalised": "đường: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường buổi tối",
+      "normalised": "đường: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "đường khẩn cấp",
+      "normalised": "đường: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học bây giờ",
+      "normalised": "trường học: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học ngày mai",
+      "normalised": "trường học: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học gần đây",
+      "normalised": "trường học: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học cho gia đình",
+      "normalised": "trường học: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học giá rẻ",
+      "normalised": "trường học: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học halal",
+      "normalised": "trường học: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học cuối tuần",
+      "normalised": "trường học: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học buổi sáng",
+      "normalised": "trường học: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học buổi tối",
+      "normalised": "trường học: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "trường học khẩn cấp",
+      "normalised": "trường học: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng bây giờ",
+      "normalised": "ngân hàng: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng ngày mai",
+      "normalised": "ngân hàng: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng gần đây",
+      "normalised": "ngân hàng: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng cho gia đình",
+      "normalised": "ngân hàng: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng giá rẻ",
+      "normalised": "ngân hàng: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng halal",
+      "normalised": "ngân hàng: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng cuối tuần",
+      "normalised": "ngân hàng: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng buổi sáng",
+      "normalised": "ngân hàng: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng buổi tối",
+      "normalised": "ngân hàng: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "ngân hàng khẩn cấp",
+      "normalised": "ngân hàng: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "chợ bây giờ",
+      "normalised": "chợ: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "chợ ngày mai",
+      "normalised": "chợ: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "chợ gần đây",
+      "normalised": "chợ: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "chợ cho gia đình",
+      "normalised": "chợ: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "chợ giá rẻ",
+      "normalised": "chợ: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    { "term": "chợ halal", "normalised": "chợ: halal", "category": "phrase", "languages": ["vi"] },
+    {
+      "term": "chợ cuối tuần",
+      "normalised": "chợ: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "chợ buổi sáng",
+      "normalised": "chợ: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "chợ buổi tối",
+      "normalised": "chợ: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "chợ khẩn cấp",
+      "normalised": "chợ: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ bây giờ",
+      "normalised": "nhà thờ: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ ngày mai",
+      "normalised": "nhà thờ: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ gần đây",
+      "normalised": "nhà thờ: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ cho gia đình",
+      "normalised": "nhà thờ: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ giá rẻ",
+      "normalised": "nhà thờ: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ halal",
+      "normalised": "nhà thờ: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ cuối tuần",
+      "normalised": "nhà thờ: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ buổi sáng",
+      "normalised": "nhà thờ: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ buổi tối",
+      "normalised": "nhà thờ: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thờ khẩn cấp",
+      "normalised": "nhà thờ: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc bây giờ",
+      "normalised": "cao tốc: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc ngày mai",
+      "normalised": "cao tốc: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc gần đây",
+      "normalised": "cao tốc: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc cho gia đình",
+      "normalised": "cao tốc: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc giá rẻ",
+      "normalised": "cao tốc: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc halal",
+      "normalised": "cao tốc: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc cuối tuần",
+      "normalised": "cao tốc: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc buổi sáng",
+      "normalised": "cao tốc: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc buổi tối",
+      "normalised": "cao tốc: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "cao tốc khẩn cấp",
+      "normalised": "cao tốc: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc bây giờ",
+      "normalised": "nhà thuốc: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc ngày mai",
+      "normalised": "nhà thuốc: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc gần đây",
+      "normalised": "nhà thuốc: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc cho gia đình",
+      "normalised": "nhà thuốc: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc giá rẻ",
+      "normalised": "nhà thuốc: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc halal",
+      "normalised": "nhà thuốc: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc cuối tuần",
+      "normalised": "nhà thuốc: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc buổi sáng",
+      "normalised": "nhà thuốc: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc buổi tối",
+      "normalised": "nhà thuốc: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "nhà thuốc khẩn cấp",
+      "normalised": "nhà thuốc: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ bây giờ",
+      "normalised": "bác sĩ: bây giờ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ ngày mai",
+      "normalised": "bác sĩ: ngày mai",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ gần đây",
+      "normalised": "bác sĩ: gần đây",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ cho gia đình",
+      "normalised": "bác sĩ: cho gia đình",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ giá rẻ",
+      "normalised": "bác sĩ: giá rẻ",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ halal",
+      "normalised": "bác sĩ: halal",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ cuối tuần",
+      "normalised": "bác sĩ: cuối tuần",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ buổi sáng",
+      "normalised": "bác sĩ: buổi sáng",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ buổi tối",
+      "normalised": "bác sĩ: buổi tối",
+      "category": "phrase",
+      "languages": ["vi"]
+    },
+    {
+      "term": "bác sĩ khẩn cấp",
+      "normalised": "bác sĩ: khẩn cấp",
+      "category": "phrase",
+      "languages": ["vi"]
+    }
+  ]
+}

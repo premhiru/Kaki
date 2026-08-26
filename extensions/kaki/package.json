@@ -1,0 +1,331 @@
+{
+  "name": "@openclaw/kaki",
+  "version": "2026.8.1",
+  "private": true,
+  "description": "Authenticated Kaki household control runtime",
+  "type": "module",
+  "dependencies": {
+    "@kaki/approval-node": "workspace:*",
+    "@kaki/locale": "workspace:*",
+    "@kaki/memory": "workspace:*",
+    "@kaki/models": "workspace:*",
+    "@kaki/security": "workspace:*",
+    "@kaki/sg-data": "workspace:*",
+    "@kaki/skills": "workspace:*",
+    "commander": "15.0.0",
+    "typebox": "1.3.6"
+  },
+  "devDependencies": {
+    "@openclaw/plugin-sdk": "workspace:*",
+    "openclaw": "workspace:*"
+  },
+  "scripts": {
+    "test": "vitest run --config ../../test/vitest/vitest.extensions.config.ts kaki",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.8.1"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "build": {
+      "staticAssets": [
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_buildManifest.js",
+          "output": "assets/control-ui/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_buildManifest.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_ssgManifest.js",
+          "output": "assets/control-ui/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_ssgManifest.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/framework-DTZGTDtF.js",
+          "output": "assets/control-ui/_next/static/chunks/framework-DTZGTDtF.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/index-BvS5XIaz.js",
+          "output": "assets/control-ui/_next/static/chunks/index-BvS5XIaz.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/layout-segment-context-Dyra1u0a.js",
+          "output": "assets/control-ui/_next/static/chunks/layout-segment-context-Dyra1u0a.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/page-DnVAR6R9.js",
+          "output": "assets/control-ui/_next/static/chunks/page-DnVAR6R9.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/rolldown-runtime-hePW80VL.js",
+          "output": "assets/control-ui/_next/static/chunks/rolldown-runtime-hePW80VL.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/vinext-GKXD7CvX.js",
+          "output": "assets/control-ui/_next/static/chunks/vinext-GKXD7CvX.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/css/index.GHpfQJ5h.css",
+          "output": "assets/control-ui/_next/static/css/index.GHpfQJ5h.css"
+        },
+        {
+          "source": "./assets/control-ui/favicon.svg",
+          "output": "assets/control-ui/favicon.svg"
+        },
+        {
+          "source": "./assets/control-ui/index.html",
+          "output": "assets/control-ui/index.html"
+        },
+        {
+          "source": "./assets/control-ui/manifest.json",
+          "output": "assets/control-ui/manifest.json"
+        },
+        {
+          "source": "./assets/control-ui/og.png",
+          "output": "assets/control-ui/og.png"
+        },
+        {
+          "source": "./assets/locale/id/calendar.json",
+          "output": "assets/locale/id/calendar.json"
+        },
+        {
+          "source": "./assets/locale/id/channels.json",
+          "output": "assets/locale/id/channels.json"
+        },
+        {
+          "source": "./assets/locale/id/dietary.json",
+          "output": "assets/locale/id/dietary.json"
+        },
+        {
+          "source": "./assets/locale/id/formats.json",
+          "output": "assets/locale/id/formats.json"
+        },
+        {
+          "source": "./assets/locale/id/lexicon.json",
+          "output": "assets/locale/id/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/id/persona.md",
+          "output": "assets/locale/id/persona.md"
+        },
+        {
+          "source": "./assets/locale/kh/calendar.json",
+          "output": "assets/locale/kh/calendar.json"
+        },
+        {
+          "source": "./assets/locale/kh/channels.json",
+          "output": "assets/locale/kh/channels.json"
+        },
+        {
+          "source": "./assets/locale/kh/dietary.json",
+          "output": "assets/locale/kh/dietary.json"
+        },
+        {
+          "source": "./assets/locale/kh/formats.json",
+          "output": "assets/locale/kh/formats.json"
+        },
+        {
+          "source": "./assets/locale/kh/lexicon.json",
+          "output": "assets/locale/kh/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/kh/persona.md",
+          "output": "assets/locale/kh/persona.md"
+        },
+        {
+          "source": "./assets/locale/mm/calendar.json",
+          "output": "assets/locale/mm/calendar.json"
+        },
+        {
+          "source": "./assets/locale/mm/channels.json",
+          "output": "assets/locale/mm/channels.json"
+        },
+        {
+          "source": "./assets/locale/mm/dietary.json",
+          "output": "assets/locale/mm/dietary.json"
+        },
+        {
+          "source": "./assets/locale/mm/formats.json",
+          "output": "assets/locale/mm/formats.json"
+        },
+        {
+          "source": "./assets/locale/mm/lexicon.json",
+          "output": "assets/locale/mm/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/mm/persona.md",
+          "output": "assets/locale/mm/persona.md"
+        },
+        {
+          "source": "./assets/locale/my/calendar.json",
+          "output": "assets/locale/my/calendar.json"
+        },
+        {
+          "source": "./assets/locale/my/channels.json",
+          "output": "assets/locale/my/channels.json"
+        },
+        {
+          "source": "./assets/locale/my/dietary.json",
+          "output": "assets/locale/my/dietary.json"
+        },
+        {
+          "source": "./assets/locale/my/formats.json",
+          "output": "assets/locale/my/formats.json"
+        },
+        {
+          "source": "./assets/locale/my/lexicon.json",
+          "output": "assets/locale/my/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/my/persona.md",
+          "output": "assets/locale/my/persona.md"
+        },
+        {
+          "source": "./assets/locale/ph/calendar.json",
+          "output": "assets/locale/ph/calendar.json"
+        },
+        {
+          "source": "./assets/locale/ph/channels.json",
+          "output": "assets/locale/ph/channels.json"
+        },
+        {
+          "source": "./assets/locale/ph/dietary.json",
+          "output": "assets/locale/ph/dietary.json"
+        },
+        {
+          "source": "./assets/locale/ph/formats.json",
+          "output": "assets/locale/ph/formats.json"
+        },
+        {
+          "source": "./assets/locale/ph/lexicon.json",
+          "output": "assets/locale/ph/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/ph/persona.md",
+          "output": "assets/locale/ph/persona.md"
+        },
+        {
+          "source": "./assets/locale/sg/calendar.json",
+          "output": "assets/locale/sg/calendar.json"
+        },
+        {
+          "source": "./assets/locale/sg/channels.json",
+          "output": "assets/locale/sg/channels.json"
+        },
+        {
+          "source": "./assets/locale/sg/dietary.json",
+          "output": "assets/locale/sg/dietary.json"
+        },
+        {
+          "source": "./assets/locale/sg/formats.json",
+          "output": "assets/locale/sg/formats.json"
+        },
+        {
+          "source": "./assets/locale/sg/lexicon.json",
+          "output": "assets/locale/sg/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/sg/persona.md",
+          "output": "assets/locale/sg/persona.md"
+        },
+        {
+          "source": "./assets/locale/th/calendar.json",
+          "output": "assets/locale/th/calendar.json"
+        },
+        {
+          "source": "./assets/locale/th/channels.json",
+          "output": "assets/locale/th/channels.json"
+        },
+        {
+          "source": "./assets/locale/th/dietary.json",
+          "output": "assets/locale/th/dietary.json"
+        },
+        {
+          "source": "./assets/locale/th/formats.json",
+          "output": "assets/locale/th/formats.json"
+        },
+        {
+          "source": "./assets/locale/th/lexicon.json",
+          "output": "assets/locale/th/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/th/persona.md",
+          "output": "assets/locale/th/persona.md"
+        },
+        {
+          "source": "./assets/locale/vn/calendar.json",
+          "output": "assets/locale/vn/calendar.json"
+        },
+        {
+          "source": "./assets/locale/vn/channels.json",
+          "output": "assets/locale/vn/channels.json"
+        },
+        {
+          "source": "./assets/locale/vn/dietary.json",
+          "output": "assets/locale/vn/dietary.json"
+        },
+        {
+          "source": "./assets/locale/vn/formats.json",
+          "output": "assets/locale/vn/formats.json"
+        },
+        {
+          "source": "./assets/locale/vn/lexicon.json",
+          "output": "assets/locale/vn/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/vn/persona.md",
+          "output": "assets/locale/vn/persona.md"
+        }
+      ]
+    }
+  }
+}

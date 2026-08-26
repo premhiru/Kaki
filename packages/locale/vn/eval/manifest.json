@@ -1,6 +1,0 @@
-{
-  "locale": "vn",
-  "generatedBy": "scripts/locale/generate.mjs",
-  "datasets": ["../../../../evals/locales/vn-vi.jsonl"],
-  "contract": "expected labels are template truth; actual labels are independently produced by the deterministic locale normaliser rules"
-}

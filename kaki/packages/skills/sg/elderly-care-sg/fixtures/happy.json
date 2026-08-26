@@ -1,0 +1,23 @@
+{
+  "skillId": "sg.elderly-care-sg",
+  "input": {
+    "request": "Elderly care Singapore: home respite near 560123",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "care_need": "home respite near 560123"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["elderly-care-sg.source", "elderly-care-sg.prepare", "elderly-care-sg.verify"],
+    "evidence": [
+      "data:query:AIC and Silver Generation directories source state",
+      "data:normalize:a care-options shortlist with next calls preparation",
+      "data:verify:a care-options shortlist with next calls"
+    ]
+  }
+}

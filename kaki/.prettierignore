@@ -1,0 +1,13 @@
+**/node_modules/**
+**/node_modules.stale/**
+**/.venv/**
+**/.next/**
+**/.vinext/**
+**/.wrangler/**
+**/dist/**
+**/coverage/**
+**/package-lock.json
+evals/results/**
+artifacts/live/**
+SOUL*.md
+docs/REQUIREMENTS.md

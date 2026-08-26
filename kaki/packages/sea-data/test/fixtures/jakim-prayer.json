@@ -1,0 +1,17 @@
+{
+  "prayerTime": [
+    {
+      "hijri": "1448-03-13",
+      "date": "26-Ogos-2026",
+      "day": "Wednesday",
+      "fajr": "06:01:00",
+      "syuruk": "07:09:00",
+      "dhuhr": "13:18:00",
+      "asr": "16:29:00",
+      "maghrib": "19:23:00",
+      "isha": "20:33:00"
+    }
+  ],
+  "status": "OK!",
+  "zone": "WLY01"
+}

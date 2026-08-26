@@ -1,0 +1,27 @@
+{
+  "skillId": "sea.regional-holidays",
+  "input": {
+    "request": "Regional holidays: SG MY ID 2027",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "countries_and_year": "SG MY ID 2027"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": [
+      "regional-holidays.source",
+      "regional-holidays.prepare",
+      "regional-holidays.verify"
+    ],
+    "evidence": [
+      "data:query:official Southeast Asian holiday calendars source state",
+      "data:normalize:a jurisdiction-aware holiday matrix preparation",
+      "data:verify:a jurisdiction-aware holiday matrix"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "skillId": "id.gojek-ride",
+  "input": {
+    "request": "Gojek ride: Monas to Gambir 08:00",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "ride_route_time": "Monas to Gambir 08:00"
+  },
+  "context": {
+    "locale": "id",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "booking",
+    "actionIds": ["gojek-ride.source", "gojek-ride.prepare"],
+    "evidence": [
+      "phone:launch:Gojek source state",
+      "phone:inspect:the driver, plate, pickup point, and ETA preparation"
+    ]
+  }
+}

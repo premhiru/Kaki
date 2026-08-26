@@ -1,0 +1,22 @@
+{
+  "skillId": "vn.evn-bill",
+  "input": {
+    "request": "EVN electricity bill: home EVN August 2026",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "customer_and_period": "home EVN August 2026"
+  },
+  "context": {
+    "locale": "vn",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "actionIds": ["evn-bill.source", "evn-bill.prepare"],
+    "evidence": [
+      "browser:open:regional EVN customer portal source state",
+      "browser:prepare:the EVN payment receipt preparation"
+    ]
+  }
+}

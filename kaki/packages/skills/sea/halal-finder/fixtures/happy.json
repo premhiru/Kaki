@@ -1,0 +1,23 @@
+{
+  "skillId": "sea.halal-finder",
+  "input": {
+    "request": "Halal finder: Bangkok halal dinner",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "location_and_food": "Bangkok halal dinner"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["halal-finder.source", "halal-finder.prepare", "halal-finder.verify"],
+    "evidence": [
+      "data:query:official national halal registries source state",
+      "data:normalize:a certification-backed halal shortlist preparation",
+      "data:verify:a certification-backed halal shortlist"
+    ]
+  }
+}

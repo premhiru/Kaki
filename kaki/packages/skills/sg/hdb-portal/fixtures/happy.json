@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.hdb-portal",
+  "input": {
+    "request": "HDB portal: HFE status",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "hdb_service": "HFE status"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "gov.singpass",
+    "actionIds": ["hdb-portal.source", "hdb-portal.prepare"],
+    "evidence": [
+      "browser:open:HDB Flat Portal source state",
+      "browser:prepare:the HDB status or appointment reference preparation"
+    ]
+  }
+}

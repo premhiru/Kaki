@@ -1,0 +1,18 @@
+{
+  "locale": "th",
+  "priority": ["line", "telegram"],
+  "languages": ["th", "en"],
+  "dataTools": ["th-public-data", "regional-holidays", "currency-remittance"],
+  "defaultModels": {
+    "planner": ["anthropic/claude-sonnet", "openai/gpt-5"],
+    "tool": ["anthropic/claude-sonnet", "openai/gpt-5"],
+    "vision": ["anthropic/claude-sonnet", "openai/gpt-5"],
+    "normalise": ["ollama/qwen3:8b", "openrouter/qwen/qwen3-8b"],
+    "generate": ["typhoon/typhoon-v2.5", "sea-lion/SEA-LION-v4.5"],
+    "safety": ["sea-guard/SEA-Guard"],
+    "embedding": ["vllm/bge-m3", "ollama/bge-m3"],
+    "heartbeat": ["ollama/qwen3:4b", "openai/gpt-5-nano"],
+    "asr": ["meralion/MERaLiON-2", "openai/whisper-large-v3-turbo"]
+  },
+  "fixtureModeAvailable": true
+}

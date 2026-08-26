@@ -1,0 +1,6 @@
+{
+  "locale": "mm",
+  "neverInfer": true,
+  "flags": ["halal", "vegetarian", "vegan", "no-pork", "no-beef", "allergy"],
+  "localTerms": ["ဟာလာလ်", "သက်သတ်လွတ်"]
+}

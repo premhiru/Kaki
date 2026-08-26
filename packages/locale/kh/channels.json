@@ -1,7 +1,0 @@
-{
-  "locale": "kh",
-  "priority": ["telegram", "messenger"],
-  "languages": ["km"],
-  "dataTools": ["kh-public-data", "regional-holidays", "currency-remittance"],
-  "fixtureModeAvailable": true
-}

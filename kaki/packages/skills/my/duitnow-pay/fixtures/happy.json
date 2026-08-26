@@ -1,0 +1,22 @@
+{
+  "skillId": "my.duitnow-pay",
+  "input": {
+    "request": "DuitNow payment: fixture DuitNow 42.00 MYR",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "qr_payload_and_amount": "fixture DuitNow 42.00 MYR"
+  },
+  "context": {
+    "locale": "my",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.transfer",
+    "actionIds": ["duitnow-pay.source", "duitnow-pay.prepare"],
+    "evidence": [
+      "data:query:DuitNow QR and configured bank source state",
+      "data:normalize:the DuitNow receipt preparation"
+    ]
+  }
+}

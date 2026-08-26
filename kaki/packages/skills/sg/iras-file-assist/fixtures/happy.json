@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.iras-file-assist",
+  "input": {
+    "request": "IRAS filing assistant: 2026",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "filing_year": "2026"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "gov.singpass",
+    "actionIds": ["iras-file-assist.source", "iras-file-assist.prepare"],
+    "evidence": [
+      "browser:open:IRAS myTax Portal source state",
+      "browser:prepare:a filing checklist and submission reference preparation"
+    ]
+  }
+}

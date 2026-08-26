@@ -1,0 +1,23 @@
+{
+  "skillId": "ph.pagasa-weather",
+  "input": {
+    "request": "PAGASA weather: Metro Manila tomorrow",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "province_and_date": "Metro Manila tomorrow"
+  },
+  "context": {
+    "locale": "ph",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["pagasa-weather.source", "pagasa-weather.prepare", "pagasa-weather.verify"],
+    "evidence": [
+      "data:query:PAGASA source state",
+      "data:normalize:a PAGASA-backed weather brief preparation",
+      "data:verify:a PAGASA-backed weather brief"
+    ]
+  }
+}

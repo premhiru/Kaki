@@ -1,0 +1,23 @@
+{
+  "skillId": "sg.haze-watch",
+  "input": {
+    "request": "Haze watch: east PSI 100",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "location_and_threshold": "east PSI 100"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["haze-watch.source", "haze-watch.prepare", "haze-watch.verify"],
+    "evidence": [
+      "data:query:NEA PSI and PM2.5 feeds source state",
+      "data:normalize:a haze status with one actionable recommendation preparation",
+      "data:verify:a haze status with one actionable recommendation"
+    ]
+  }
+}

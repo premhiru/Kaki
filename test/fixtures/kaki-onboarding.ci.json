@@ -1,0 +1,49 @@
+{
+  "config": {
+    "householdProfileId": "household-fixture",
+    "operatorPersonId": "person-fixture",
+    "addressBookProfileId": "address-fixture",
+    "approvalPolicyProfileId": "approval-fixture",
+    "dataProfileId": "data-fixture",
+    "phoneNodeId": "phone-fixture",
+    "whatsappAccountId": "assistant",
+    "telegramAccountId": "control",
+    "modelProfileId": "model-fixture",
+    "asrProfileId": "asr-fixture",
+    "locale": "sg"
+  },
+  "householdName": "Fixture Household",
+  "operatorName": "Fixture Operator",
+  "members": [
+    {
+      "id": "person-fixture",
+      "name": "Fixture Operator",
+      "relation": "self",
+      "languages": ["English", "Mandarin"],
+      "register": "casual Singapore English",
+      "dietary": ["no shellfish"],
+      "commute": ["MRT to office"]
+    }
+  ],
+  "addresses": [
+    {
+      "id": "home-fixture",
+      "label": "home",
+      "oneMapSearchValue": "1 Fusionopolis Place, Singapore 138522",
+      "postalCode": "138522",
+      "latitude": 1.2996,
+      "longitude": 103.7874
+    }
+  ],
+  "approvalAutoCap": 30,
+  "approvalCurrency": "SGD",
+  "monthlyModelBudgetUsd": 1,
+  "monitorSessionKey": "agent:main:main",
+  "secretRefs": {
+    "householdMemoryKey": { "source": "env", "provider": "default", "id": "KAKI_MEMORY_KEY" },
+    "model": { "source": "env", "provider": "default", "id": "OPENAI_API_KEY" },
+    "ltaDataMall": { "source": "env", "provider": "default", "id": "KAKI_LTA_KEY" },
+    "oneMap": { "source": "env", "provider": "default", "id": "KAKI_ONEMAP_KEY" },
+    "phonePairing": { "source": "env", "provider": "default", "id": "KAKI_PHONE_KEY" }
+  }
+}

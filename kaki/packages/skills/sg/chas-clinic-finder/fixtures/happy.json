@@ -1,0 +1,27 @@
+{
+  "skillId": "sg.chas-clinic-finder",
+  "input": {
+    "request": "CHAS clinic finder: 560123 dental",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "postcode_and_service": "560123 dental"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": [
+      "chas-clinic-finder.source",
+      "chas-clinic-finder.prepare",
+      "chas-clinic-finder.verify"
+    ],
+    "evidence": [
+      "data:query:MOH CHAS clinic directory source state",
+      "data:normalize:a distance-sorted CHAS clinic shortlist preparation",
+      "data:verify:a distance-sorted CHAS clinic shortlist"
+    ]
+  }
+}

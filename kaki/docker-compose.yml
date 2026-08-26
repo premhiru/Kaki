@@ -1,0 +1,200 @@
+name: kaki
+
+# Third-party images are immutable manifest digests verified on 2026-08-26.
+# Refresh them deliberately and rerun scripts/verify-deployment.mjs before release.
+x-kaki-gateway-environment: &kaki-gateway-environment
+  HOME: /home/node
+  KAKI_HOME: /home/node/.kaki
+  OPENCLAW_STATE_DIR: /home/node/.kaki
+  OPENCLAW_CONFIG_PATH: /home/node/.kaki/kaki.json
+  OPENCLAW_WORKSPACE_DIR: /home/node/.kaki/workspace
+  OPENCLAW_GATEWAY_TOKEN: ${OPENCLAW_GATEWAY_TOKEN:?set OPENCLAW_GATEWAY_TOKEN in kaki/.env}
+  KAKI_BROWSER_TOKEN: ${KAKI_BROWSER_TOKEN:?set KAKI_BROWSER_TOKEN in kaki/.env}
+  KAKI_ASR_BASE_URL: ${KAKI_ASR_BASE_URL:-http://asr:8000/v1}
+  OLLAMA_HOST: http://ollama:11434
+  TZ: ${KAKI_TIMEZONE:-Asia/Singapore}
+
+x-kaki-gateway-volumes: &kaki-gateway-volumes
+  - kaki-state:/home/node/.kaki
+  - kaki-auth-secrets:/home/node/.config/openclaw
+
+services:
+  gateway:
+    image: kaki-gateway:${KAKI_IMAGE_TAG:-local}
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        OPENCLAW_EXTENSIONS: kaki
+    env_file:
+      - path: .env
+        required: false
+    environment: *kaki-gateway-environment
+    volumes: *kaki-gateway-volumes
+    ports:
+      - 127.0.0.1:${KAKI_GATEWAY_PORT:-18789}:18789
+    depends_on:
+      chrome:
+        condition: service_healthy
+    command: ["node", "kaki.mjs", "gateway", "run", "--bind", "lan", "--port", "18789"]
+    init: true
+    restart: unless-stopped
+    cap_drop: [NET_ADMIN, NET_RAW]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: ["CMD", "node", "dist/docker-healthcheck.js"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  onboard:
+    image: kaki-gateway:${KAKI_IMAGE_TAG:-local}
+    env_file:
+      - path: .env
+        required: false
+    environment: *kaki-gateway-environment
+    volumes: *kaki-gateway-volumes
+    entrypoint: ["node", "kaki.mjs"]
+    stdin_open: true
+    tty: true
+    init: true
+    cap_drop: [NET_ADMIN, NET_RAW]
+    security_opt: [no-new-privileges:true]
+
+  cli:
+    image: kaki-gateway:${KAKI_IMAGE_TAG:-local}
+    env_file:
+      - path: .env
+        required: false
+    environment: *kaki-gateway-environment
+    volumes: *kaki-gateway-volumes
+    network_mode: service:gateway
+    entrypoint: ["node", "kaki.mjs"]
+    stdin_open: true
+    tty: true
+    init: true
+    cap_drop: [NET_ADMIN, NET_RAW]
+    security_opt: [no-new-privileges:true]
+    depends_on:
+      gateway:
+        condition: service_healthy
+
+  chrome:
+    image: ghcr.io/browserless/chromium:v2.55.1@sha256:611b88859cb367a0bfd8d34fbd510d9783b7cede6729cfa8e7f6e19677084fbf
+    environment:
+      CONCURRENT: "2"
+      DATA_DIR: /data
+      HEALTH: "true"
+      HOST: 0.0.0.0
+      EXTERNAL: ws://chrome:3000
+      MAX_CPU_PERCENT: "90"
+      MAX_MEMORY_PERCENT: "90"
+      QUEUED: "4"
+      TIMEOUT: "300000"
+      TOKEN: ${KAKI_BROWSER_TOKEN:?set KAKI_BROWSER_TOKEN in kaki/.env}
+    expose: ["3000"]
+    volumes:
+      - chrome-data:/data
+    shm_size: 2gb
+    restart: unless-stopped
+    cap_drop: [NET_ADMIN, NET_RAW]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'node -e "fetch(`http://127.0.0.1:3000/active?token=$${TOKEN}`).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"',
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # Optional OpenAI-compatible local ASR. Model downloads persist in asr-models.
+  # Start with: docker compose --profile local-asr up -d
+  asr:
+    profiles: [local-asr]
+    image: ghcr.io/speaches-ai/speaches@sha256:21e3df06d842fb7802ab470dd77c25f0e8c0d22950e8d8c6ae886e851af53ef8
+    environment:
+      API_KEY: ${KAKI_ASR_API_KEY:-}
+      ENABLE_UI: "false"
+      WHISPER__COMPUTE_TYPE: ${KAKI_ASR_COMPUTE_TYPE:-int8}
+      WHISPER__INFERENCE_DEVICE: cpu
+    expose: ["8000"]
+    volumes:
+      - asr-models:/home/ubuntu/.cache/huggingface/hub
+    restart: unless-stopped
+    cap_drop: [NET_ADMIN, NET_RAW]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1:8000/docs"]
+      interval: 30s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  # Optional CPU/local-model path. Pull a model explicitly after first start.
+  # Start with: docker compose --profile local-ollama up -d
+  ollama:
+    profiles: [local-ollama]
+    image: ollama/ollama:0.30.8@sha256:05b6fe5143ed006d6d4abd39bdd575f962a5822bdf81e6fbb5e6894eb984ab9c
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+    expose: ["11434"]
+    volumes:
+      - ollama-models:/root/.ollama
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  # Optional NVIDIA GPU alternative to Ollama.
+  # Start with: docker compose --profile local-vllm up -d
+  vllm:
+    profiles: [local-vllm]
+    image: vllm/vllm-openai:v0.23.0@sha256:6d8429e38e3747723ca07ee1b17972e09bb9c51c4032b266f24fb1cc3b22ed8f
+    command:
+      - --model
+      - ${KAKI_VLLM_MODEL:-Qwen/Qwen2.5-3B-Instruct}
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+    expose: ["8000"]
+    volumes:
+      - vllm-models:/root/.cache/huggingface
+      - vllm-compile-cache:/root/.cache/vllm
+    ipc: host
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python3",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 20
+      start_period: 5m
+
+volumes:
+  asr-models:
+  chrome-data:
+  kaki-auth-secrets:
+  kaki-state:
+  ollama-models:
+  vllm-compile-cache:
+  vllm-models:

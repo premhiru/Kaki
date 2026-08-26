@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.singpass-myinfo-self",
+  "input": {
+    "request": "Singpass Myinfo self-service: name,address for HDB application",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "requested_fields": "name,address for HDB application"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "data.share",
+    "actionIds": ["singpass-myinfo-self.source", "singpass-myinfo-self.prepare"],
+    "evidence": [
+      "browser:open:Singpass Myinfo source state",
+      "browser:prepare:a consent receipt listing disclosed fields preparation"
+    ]
+  }
+}

@@ -1,0 +1,290 @@
+name: Kaki CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/kaki-ci.yml"
+      - "Dockerfile"
+      - "docs/agents/KAKI-RUNTIME.md"
+      - "extensions/kaki/**"
+      - "kaki/**"
+      - "kaki.mjs"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - ".github/workflows/kaki-ci.yml"
+      - "Dockerfile"
+      - "docs/agents/KAKI-RUNTIME.md"
+      - "extensions/kaki/**"
+      - "kaki/**"
+      - "kaki.mjs"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('{0}-pr-{1}', github.workflow, github.event.pull_request.number) || format('{0}-{1}', github.workflow, github.run_id) }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  NODE_VERSION: "24.x"
+
+jobs:
+  clean-install-onboard:
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 35
+    defaults:
+      run:
+        shell: bash
+    env:
+      OPENAI_API_KEY: fixture-model-ref
+      OPENCLAW_GATEWAY_TOKEN: fixture-gateway-token
+      KAKI_MEMORY_KEY: BwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwc
+      KAKI_LTA_KEY: fixture-lta-ref
+      KAKI_ONEMAP_KEY: fixture-onemap-ref
+      KAKI_PHONE_KEY: fixture-phone-ref
+    steps:
+      - name: Check out exact candidate
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Set up canonical workspace pnpm
+        uses: ./.github/actions/setup-pnpm-store-cache
+        with:
+          cache-mode: restore
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install launcher from a clean checkout
+        run: |
+          bash kaki/scripts/install.sh --bin-dir "$RUNNER_TEMP/kaki-bin"
+          echo "$RUNNER_TEMP/kaki-bin" >> "$GITHUB_PATH"
+
+      - name: Complete noninteractive fixture onboarding
+        run: |
+          export PATH="$RUNNER_TEMP/kaki-bin:$PATH"
+          export KAKI_HOME="$RUNNER_TEMP/kaki-home"
+          kaki onboard \
+            --non-interactive \
+            --accept-risk \
+            --skip-health \
+            --skip-channels \
+            --mode local \
+            --auth-choice openai-api-key \
+            --secret-input-mode ref \
+            --gateway-auth token \
+            --gateway-token-ref-env OPENCLAW_GATEWAY_TOKEN \
+            --workspace "$RUNNER_TEMP/kaki-workspace" \
+            --kaki-profile "$GITHUB_WORKSPACE/test/fixtures/kaki-onboarding.ci.json" \
+            | tee "$RUNNER_TEMP/kaki-onboard.txt"
+          grep -Fq "Kaki onboarding complete" "$RUNNER_TEMP/kaki-onboard.txt"
+          test -s "$RUNNER_TEMP/kaki-workspace/SOUL.md"
+          test "$(find "$RUNNER_TEMP/kaki-workspace/skills" -name SKILL.md -type f | wc -l | tr -d ' ')" = 90
+
+      - name: Validate provisioned references and activation
+        run: |
+          export PATH="$RUNNER_TEMP/kaki-bin:$PATH"
+          export KAKI_HOME="$RUNNER_TEMP/kaki-home"
+          kaki config validate --json > "$RUNNER_TEMP/kaki-config-validation.json"
+          kaki config get plugins.entries.kaki.enabled --json > "$RUNNER_TEMP/kaki-enabled.json"
+          kaki config get plugins.entries.kaki.config --json > "$RUNNER_TEMP/kaki-config.json"
+          node --input-type=module - "$RUNNER_TEMP/kaki-enabled.json" "$RUNNER_TEMP/kaki-config.json" test/fixtures/kaki-onboarding.ci.json <<'NODE'
+          import fs from "node:fs";
+          import assert from "node:assert/strict";
+          const [enabledPath, configPath, fixturePath] = process.argv.slice(2);
+          assert.equal(JSON.parse(fs.readFileSync(enabledPath, "utf8")), true);
+          const actual = JSON.parse(fs.readFileSync(configPath, "utf8"));
+          const expected = JSON.parse(fs.readFileSync(fixturePath, "utf8")).config;
+          assert.deepEqual(actual, expected);
+          NODE
+
+      - name: Prove real Gateway owner activation
+        run: |
+          export PATH="$RUNNER_TEMP/kaki-bin:$PATH"
+          export KAKI_HOME="$RUNNER_TEMP/kaki-home"
+          kaki gateway run > "$RUNNER_TEMP/kaki-gateway.log" 2>&1 &
+          gateway_pid=$!
+          trap 'kill "$gateway_pid" 2>/dev/null || true; wait "$gateway_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for _ in $(seq 1 30); do
+            if kaki status --deep --json > "$RUNNER_TEMP/kaki-status.json" 2> "$RUNNER_TEMP/kaki-status.err"; then
+              ready=true
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" != true ]; then
+            cat "$RUNNER_TEMP/kaki-status.err" >&2
+            cat "$RUNNER_TEMP/kaki-gateway.log" >&2
+            exit 1
+          fi
+          node --input-type=module - "$RUNNER_TEMP/kaki-status.json" <<'NODE'
+          import fs from "node:fs";
+          import assert from "node:assert/strict";
+          const status = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+          assert.equal(status.openclaw?.ok, true);
+          assert.equal(status.kaki?.ok, true);
+          assert.equal(status.kaki?.snapshotStatus, 200);
+          assert.equal(status.kaki?.actionRouteStatus, 405);
+          assert.doesNotMatch(JSON.stringify(status), /runtime owners? (?:are )?unavailable/iu);
+          NODE
+
+  verify:
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out exact candidate
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.11"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Set up canonical workspace pnpm
+        uses: ./.github/actions/setup-pnpm-store-cache
+        with:
+          cache-mode: restore
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Record exact candidate SHA
+        id: candidate
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Install canonical workspace
+        run: pnpm install --frozen-lockfile --prefer-offline
+
+      - name: Install locked phone-vision environment
+        run: uv sync --directory kaki/packages/phone-node/vision --locked --extra test
+
+      - name: Audit JavaScript dependencies
+        run: pnpm audit --audit-level high
+
+      - name: Audit locked Python dependencies
+        run: |
+          uv export --directory kaki/packages/phone-node/vision --locked --extra test --no-emit-project --output-file "${RUNNER_TEMP}/kaki-phone-vision-requirements.txt"
+          uv run --directory kaki/packages/phone-node/vision pip-audit --requirement "${RUNNER_TEMP}/kaki-phone-vision-requirements.txt" --disable-pip --no-deps --vulnerability-service pypi --timeout 10 --progress-spinner off
+
+      - name: Check Kaki container definition
+        run: docker build --check --build-arg OPENCLAW_EXTENSIONS=kaki .
+
+      - name: Build OpenClaw runtime and Kaki packages
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
+        run: |
+          pnpm build:ci-artifacts
+          pnpm --dir kaki build
+
+      - name: Probe native Kaki command activation
+        env:
+          KAKI_HOME: ${{ runner.temp }}/kaki-native-command-probe
+        run: |
+          node kaki.mjs kaki-bootstrap --help
+          node --input-type=module <<'NODE'
+          import path from "node:path";
+          import assert from "node:assert/strict";
+          import { createKakiLocaleOwner } from "./dist/extensions/kaki/api.js";
+          let active = "sg";
+          const owner = createKakiLocaleOwner({
+            getActive: async () => active,
+            setActive: async (locale) => { active = locale; },
+            packagesRoot: path.resolve("dist/extensions/kaki/assets/locale"),
+          });
+          for (const locale of ["sg", "my", "id", "th", "vn", "ph", "mm", "kh"]) {
+            await owner.set(locale, AbortSignal.timeout(1_000));
+            assert.equal((await owner.snapshot(AbortSignal.timeout(1_000))).active, locale);
+          }
+          NODE
+
+      - name: Check formatting
+        run: pnpm --dir kaki format:check
+
+      - name: Lint
+        run: pnpm --dir kaki lint
+
+      - name: Typecheck
+        run: |
+          pnpm --dir kaki typecheck
+          pnpm --filter @openclaw/kaki typecheck
+
+      - name: Run package tests
+        run: |
+          pnpm --dir kaki test
+          pnpm --filter @openclaw/kaki test
+
+      - name: Enforce Kaki TypeScript coverage
+        run: pnpm --dir kaki coverage
+
+      - name: Upload Kaki coverage evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: kaki-typescript-coverage-${{ steps.candidate.outputs.sha }}
+          path: .artifacts/kaki-coverage
+          if-no-files-found: warn
+
+      - name: Lint and test phone vision
+        run: |
+          uv run --directory kaki/packages/phone-node/vision ruff check .
+          uv run --directory kaki/packages/phone-node/vision pytest --cov=kaki_phone_vision --cov-report=term-missing --cov-fail-under=80
+
+      - name: Run QA harness tests
+        run: pnpm --dir kaki test:qa
+
+      - name: Validate fixtures
+        run: node kaki/scripts/qa/validate-fixtures.mjs
+
+      - name: Replay fixtures against production owners
+        run: pnpm --dir kaki exec tsx scripts/qa/replay-fixtures.mjs --adapter evals/runtime-adapter.ts --strict-runtime
+
+      - name: Run locale evaluations
+        run: pnpm --dir kaki evals
+
+      - name: Scan for committed secrets
+        run: pnpm --dir kaki security:scan
+
+      - name: Check documentation
+        run: pnpm --dir kaki docs:check
+
+      - name: Verify acceptance contracts against production owners
+        env:
+          KAKI_BUILD_SHA: ${{ steps.candidate.outputs.sha }}
+        run: pnpm --dir kaki exec tsx scripts/qa/acceptance-report.mjs --adapter evals/runtime-adapter.ts

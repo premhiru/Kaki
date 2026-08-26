@@ -1,0 +1,27 @@
+{
+  "skillId": "sg.school-calendar-sg",
+  "input": {
+    "request": "Singapore school calendar: primary school 2026",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "school_and_year": "primary school 2026"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": [
+      "school-calendar-sg.source",
+      "school-calendar-sg.prepare",
+      "school-calendar-sg.verify"
+    ],
+    "evidence": [
+      "data:query:MOE school calendar source state",
+      "data:normalize:a deduplicated student calendar preparation",
+      "data:verify:a deduplicated student calendar"
+    ]
+  }
+}

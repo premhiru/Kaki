@@ -1,0 +1,23 @@
+{
+  "lokasi": {
+    "adm4": "31.71.01.1001",
+    "desa": "Gambir",
+    "timezone": "Asia/Jakarta"
+  },
+  "data": [
+    {
+      "cuaca": [
+        [
+          {
+            "datetime": "2026-08-26T01:00:00Z",
+            "weather_desc": "Cerah Berawan",
+            "t": 29,
+            "hu": 70,
+            "ws": 5.1,
+            "tp": 0
+          }
+        ]
+      ]
+    }
+  ]
+}

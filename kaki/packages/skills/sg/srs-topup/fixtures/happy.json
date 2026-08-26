@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.srs-topup",
+  "input": {
+    "request": "SRS top-up: 500.00 SGD",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "topup_amount": "500.00 SGD"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.transfer",
+    "actionIds": ["srs-topup.source", "srs-topup.prepare"],
+    "evidence": [
+      "browser:open:configured SRS bank portal source state",
+      "browser:prepare:the SRS contribution receipt preparation"
+    ]
+  }
+}

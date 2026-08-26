@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.birthday-gift-sg",
+  "input": {
+    "request": "Birthday gifts Singapore: Auntie likes gardening under 80 SGD by 2026-09-01",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "recipient_interests_budget": "Auntie likes gardening under 80 SGD by 2026-09-01"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "actionIds": ["birthday-gift-sg.source", "birthday-gift-sg.prepare"],
+    "evidence": [
+      "browser:open:Singapore gift merchants source state",
+      "browser:prepare:the gift order and delivery window preparation"
+    ]
+  }
+}

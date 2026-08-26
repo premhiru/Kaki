@@ -1,0 +1,23 @@
+{
+  "skillId": "sg.hawker-finder",
+  "input": {
+    "request": "Hawker finder: Bugis halal dinner",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "location_and_dietary": "Bugis halal dinner"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["hawker-finder.source", "hawker-finder.prepare", "hawker-finder.verify"],
+    "evidence": [
+      "data:query:NEA hawker directory and closure feed source state",
+      "data:normalize:a dietary-safe hawker shortlist preparation",
+      "data:verify:a dietary-safe hawker shortlist"
+    ]
+  }
+}

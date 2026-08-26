@@ -1,0 +1,22 @@
+{
+  "skillId": "id.qris-pay",
+  "input": {
+    "request": "QRIS payment: fixture QRIS 75000 IDR",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "qr_payload_and_amount": "fixture QRIS 75000 IDR"
+  },
+  "context": {
+    "locale": "id",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.transfer",
+    "actionIds": ["qris-pay.source", "qris-pay.prepare"],
+    "evidence": [
+      "data:query:QRIS and configured bank or wallet source state",
+      "data:normalize:the QRIS payment receipt preparation"
+    ]
+  }
+}

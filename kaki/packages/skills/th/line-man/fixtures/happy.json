@@ -1,0 +1,22 @@
+{
+  "skillId": "th.line-man",
+  "input": {
+    "request": "LINE MAN: pad kra pao no pork to home under 200 THB",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "order_and_address": "pad kra pao no pork to home under 200 THB"
+  },
+  "context": {
+    "locale": "th",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "actionIds": ["line-man.source", "line-man.prepare"],
+    "evidence": [
+      "phone:launch:LINE MAN source state",
+      "phone:inspect:the LINE MAN order and ETA preparation"
+    ]
+  }
+}

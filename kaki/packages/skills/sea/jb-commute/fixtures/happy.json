@@ -1,0 +1,23 @@
+{
+  "skillId": "sea.jb-commute",
+  "input": {
+    "request": "Johor Bahru commute: Woodlands to JB Sentral Saturday 08:00",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "route_and_departure": "Woodlands to JB Sentral Saturday 08:00"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["jb-commute.source", "jb-commute.prepare", "jb-commute.verify"],
+    "evidence": [
+      "data:query:LTA, Causeway camera, immigration, and VEP sources source state",
+      "data:normalize:a time-boxed JB commute plan preparation",
+      "data:verify:a time-boxed JB commute plan"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "locale": "mm",
+  "version": 1,
+  "entries": [
+    { "term": "မိုး", "normalised": "stub-term-1", "category": "stub", "languages": ["my"] },
+    { "term": "ဘတ်စ်ကား", "normalised": "stub-term-2", "category": "stub", "languages": ["my"] },
+    { "term": "အစားအစာ", "normalised": "stub-term-3", "category": "stub", "languages": ["my"] },
+    { "term": "ဆေးခန်း", "normalised": "stub-term-4", "category": "stub", "languages": ["my"] },
+    { "term": "ငွေပေး", "normalised": "stub-term-5", "category": "stub", "languages": ["my"] },
+    { "term": "အားလပ်ရက်", "normalised": "stub-term-6", "category": "stub", "languages": ["my"] },
+    { "term": "ကျောင်း", "normalised": "stub-term-7", "category": "stub", "languages": ["my"] },
+    { "term": "ဘဏ်", "normalised": "stub-term-8", "category": "stub", "languages": ["my"] },
+    { "term": "ဈေး", "normalised": "stub-term-9", "category": "stub", "languages": ["my"] },
+    { "term": "ဆရာဝန်", "normalised": "stub-term-10", "category": "stub", "languages": ["my"] }
+  ]
+}

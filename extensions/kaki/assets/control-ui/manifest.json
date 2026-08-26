@@ -1,0 +1,97 @@
+{
+  "routePrefix": "/plugins/kaki/control",
+  "files": {
+    "/index.html": {
+      "bytes": 24657,
+      "sha256": "84d9a3cca2bb343331778de2c2582dcf10ffc4f1802f56a3f9cf2983a794a794"
+    },
+    "/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_buildManifest.js": {
+      "bytes": 159,
+      "sha256": "47f02b34be6dc481257b6efce4c19e19111f37ef5c437f8ffed44f0da97fa9bb"
+    },
+    "/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_ssgManifest.js": {
+      "bytes": 76,
+      "sha256": "653f3e53e89b4f8548ff86c19e92bb3c6b84b6be7485a320b1e00893ed877479"
+    },
+    "/_next/static/chunks/framework-DTZGTDtF.js": {
+      "bytes": 190109,
+      "sha256": "2a1edf81f32a49b1eacafc3546b371bca024c82a9191836e274d90890212e9df"
+    },
+    "/_next/static/chunks/index-BvS5XIaz.js": {
+      "bytes": 108656,
+      "sha256": "971abd391238ded903e015b95c94fb2e29b165d843e755f09bbc84f33b8febe0"
+    },
+    "/_next/static/chunks/layout-segment-context-Dyra1u0a.js": {
+      "bytes": 496,
+      "sha256": "5044cb4c4457ba09225d162fbcb8317dc052c6db56f0a8dad53a5702bc10a939"
+    },
+    "/_next/static/chunks/page-DnVAR6R9.js": {
+      "bytes": 19671,
+      "sha256": "9ac8a3b88bc4df249751d35f8eb7d5f8312db4522f698560a97fbe456db56c72"
+    },
+    "/_next/static/chunks/rolldown-runtime-hePW80VL.js": {
+      "bytes": 716,
+      "sha256": "580ad8c58061a4dde99bde0a56905e382f0568516ee2f5b84dbfb52085709021"
+    },
+    "/_next/static/chunks/vinext-GKXD7CvX.js": {
+      "bytes": 110107,
+      "sha256": "d63b71d7a48cebbd0a7b764dd596658b4a6de3c2b5cefe41bece5c022b1026ac"
+    },
+    "/_next/static/css/index.GHpfQJ5h.css": {
+      "bytes": 17924,
+      "sha256": "2e07e93a77cb5407a0cdaed82ef513814d7bfaf4aab29e411888d223ceaa7733"
+    },
+    "/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2": {
+      "bytes": 16540,
+      "sha256": "58a6b173d5ca1dec92166ea3c6cb1a84a4144556d10928ac14e8e6b40e4787bd"
+    },
+    "/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2": {
+      "bytes": 7968,
+      "sha256": "f689f638f29fff460a2d5749edb5d5c38d7bef0389f32032d871f23fc6ebb008"
+    },
+    "/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2": {
+      "bytes": 14900,
+      "sha256": "6129fc8571c3e0cb0a4c41f5160c974a843b055009dc4ad8858bd808e18a2d86"
+    },
+    "/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2": {
+      "bytes": 29288,
+      "sha256": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608"
+    },
+    "/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2": {
+      "bytes": 7252,
+      "sha256": "b7a545bbb08256bd809f11cfe66d88da3e22d169ea4407737b1ef0ec1ed3d791"
+    },
+    "/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2": {
+      "bytes": 23108,
+      "sha256": "5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b"
+    },
+    "/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2": {
+      "bytes": 5892,
+      "sha256": "d67e4a94ba498635f764ddca7d1ec4271f5642f032eb24b426764480f66f8497"
+    },
+    "/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2": {
+      "bytes": 14712,
+      "sha256": "745994b5cd950ec201b66526375f057d540847cccfc70f4f24f5f571d26d3923"
+    },
+    "/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2": {
+      "bytes": 12872,
+      "sha256": "75b3bedbebc35f347c0ae3b416aa871941555357e7b0f83767eb5987875589ed"
+    },
+    "/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2": {
+      "bytes": 7728,
+      "sha256": "16e1d48b6dd29eb240aec5db36184eb182933c082cd43de7f35af686d58087d2"
+    },
+    "/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2": {
+      "bytes": 6204,
+      "sha256": "e27f657e38d52887baa3b6b2f812bef93dfdd356f0810e40edd4ee284cc7e9f6"
+    },
+    "/favicon.svg": {
+      "bytes": 712,
+      "sha256": "e6d2e59b7b5bbb0342e0fb496dfc262decbfe4426bbb7b047aec8d467d1dc6f7"
+    },
+    "/og.png": {
+      "bytes": 2156516,
+      "sha256": "e6342d8d2039d157db686cef00c45a3f25f237f3c8e4bf97657243c0b0781a8e"
+    }
+  }
+}

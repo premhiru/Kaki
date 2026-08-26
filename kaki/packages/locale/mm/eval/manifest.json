@@ -1,0 +1,6 @@
+{
+  "locale": "mm",
+  "generatedBy": "scripts/locale/generate.mjs",
+  "datasets": [],
+  "contract": "expected labels are deterministic template truth without native-speaker review; the locale scorer and package test execute the public normalizer for every row"
+}

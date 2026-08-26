@@ -1,0 +1,17 @@
+{
+  "name": "@kaki/locale",
+  "version": "1.0.0-sg",
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "generate": "node ../../scripts/locale/generate.mjs",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}

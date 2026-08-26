@@ -1,0 +1,23 @@
+{
+  "skillId": "ph.gcash-read",
+  "input": {
+    "request": "GCash read-only: assistant wallet balance and latest five transactions",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "wallet_view": "assistant wallet balance and latest five transactions"
+  },
+  "context": {
+    "locale": "ph",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["gcash-read.source", "gcash-read.prepare", "gcash-read.verify"],
+    "evidence": [
+      "phone:launch:GCash source state",
+      "phone:inspect:a redacted GCash balance or transaction summary preparation",
+      "phone:verify:a redacted GCash balance or transaction summary"
+    ]
+  }
+}

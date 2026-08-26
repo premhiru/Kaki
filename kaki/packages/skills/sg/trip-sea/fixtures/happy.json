@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.trip-sea",
+  "input": {
+    "request": "Southeast Asia trip: Singapore Bangkok Hanoi 2026-12-01 to 2026-12-10",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "cities_and_dates": "Singapore Bangkok Hanoi 2026-12-01 to 2026-12-10"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "booking",
+    "actionIds": ["trip-sea.source", "trip-sea.prepare"],
+    "evidence": [
+      "browser:open:airline, hotel, visa, and holiday sources source state",
+      "browser:prepare:a multi-city itinerary with booking references preparation"
+    ]
+  }
+}

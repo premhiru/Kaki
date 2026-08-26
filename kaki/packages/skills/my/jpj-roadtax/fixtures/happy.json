@@ -1,0 +1,22 @@
+{
+  "skillId": "my.jpj-roadtax",
+  "input": {
+    "request": "JPJ road tax: vehicle alias road tax renewal",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "vehicle_and_service": "vehicle alias road tax renewal"
+  },
+  "context": {
+    "locale": "my",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "gov.singpass",
+    "actionIds": ["jpj-roadtax.source", "jpj-roadtax.prepare"],
+    "evidence": [
+      "browser:open:JPJ or MyJPJ source state",
+      "browser:prepare:the JPJ renewal reference preparation"
+    ]
+  }
+}

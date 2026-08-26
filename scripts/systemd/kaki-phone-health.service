@@ -1,7 +1,0 @@
-[Unit]
-Description=Kaki phone node health check
-
-[Service]
-Type=oneshot
-WorkingDirectory=/opt/kaki
-ExecStart=/usr/bin/corepack pnpm kaki status --deep

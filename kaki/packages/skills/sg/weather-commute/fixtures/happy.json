@@ -1,0 +1,23 @@
+{
+  "skillId": "sg.weather-commute",
+  "input": {
+    "request": "Weather commute: home to school 07:30",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "route_and_departure": "home to school 07:30"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["weather-commute.source", "weather-commute.prepare", "weather-commute.verify"],
+    "evidence": [
+      "data:query:data.gov.sg weather and OneMap routing source state",
+      "data:normalize:a weather-aware commute plan preparation",
+      "data:verify:a weather-aware commute plan"
+    ]
+  }
+}

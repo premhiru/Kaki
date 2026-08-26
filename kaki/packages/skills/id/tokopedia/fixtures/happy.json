@@ -1,0 +1,22 @@
+{
+  "skillId": "id.tokopedia",
+  "input": {
+    "request": "Tokopedia: rice cooker under 800000 IDR",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "product_and_budget": "rice cooker under 800000 IDR"
+  },
+  "context": {
+    "locale": "id",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "actionIds": ["tokopedia.source", "tokopedia.prepare"],
+    "evidence": [
+      "phone:launch:Tokopedia source state",
+      "phone:inspect:the Tokopedia order receipt preparation"
+    ]
+  }
+}

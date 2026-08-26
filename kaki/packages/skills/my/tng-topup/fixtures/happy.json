@@ -1,0 +1,22 @@
+{
+  "skillId": "my.tng-topup",
+  "input": {
+    "request": "Touch 'n Go top-up: assistant wallet 30.00 MYR",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "wallet_and_amount": "assistant wallet 30.00 MYR"
+  },
+  "context": {
+    "locale": "my",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "actionIds": ["tng-topup.source", "tng-topup.prepare"],
+    "evidence": [
+      "phone:launch:Touch 'n Go eWallet source state",
+      "phone:inspect:the Touch n Go receipt preparation"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.carousell-buy-sell",
+  "input": {
+    "request": "Carousell buying and selling: used bicycle under 180 SGD",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "listing_and_target": "used bicycle under 180 SGD"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "message.external",
+    "actionIds": ["carousell-buy-sell.source", "carousell-buy-sell.prepare"],
+    "evidence": [
+      "browser:open:Carousell source state",
+      "browser:prepare:the chat outcome and deal status preparation"
+    ]
+  }
+}

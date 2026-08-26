@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.kopi-order",
+  "input": {
+    "request": "Kopitiam order: kopi-C siew dai peng and teh-o kosong",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "drink_order": "kopi-C siew dai peng and teh-o kosong"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "actionIds": ["kopi-order.source", "kopi-order.prepare"],
+    "evidence": [
+      "data:query:kopitiam order translator source state",
+      "data:normalize:a kopitiam order receipt preparation"
+    ]
+  }
+}

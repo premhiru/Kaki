@@ -1,0 +1,22 @@
+{
+  "skillId": "ph.qrph-pay",
+  "input": {
+    "request": "QR Ph payment: fixture QR Ph 480 PHP",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "qr_payload_and_amount": "fixture QR Ph 480 PHP"
+  },
+  "context": {
+    "locale": "ph",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.transfer",
+    "actionIds": ["qrph-pay.source", "qrph-pay.prepare"],
+    "evidence": [
+      "data:query:QR Ph and configured bank or wallet source state",
+      "data:normalize:the QR Ph receipt preparation"
+    ]
+  }
+}

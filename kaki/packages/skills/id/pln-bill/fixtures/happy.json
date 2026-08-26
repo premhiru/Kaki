@@ -1,0 +1,22 @@
+{
+  "skillId": "id.pln-bill",
+  "input": {
+    "request": "PLN electricity bill: home PLN August 2026",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "customer_and_period": "home PLN August 2026"
+  },
+  "context": {
+    "locale": "id",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.purchase",
+    "actionIds": ["pln-bill.source", "pln-bill.prepare"],
+    "evidence": [
+      "browser:open:PLN Mobile or payment portal source state",
+      "browser:prepare:the PLN receipt or prepaid token preparation"
+    ]
+  }
+}

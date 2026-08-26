@@ -1,0 +1,21 @@
+{
+  "locale": "kh",
+  "version": 1,
+  "entries": [
+    { "term": "ភ្លៀង", "normalised": "stub-term-1", "category": "stub", "languages": ["km"] },
+    { "term": "ឡានក្រុង", "normalised": "stub-term-2", "category": "stub", "languages": ["km"] },
+    { "term": "អាហារ", "normalised": "stub-term-3", "category": "stub", "languages": ["km"] },
+    { "term": "គ្លីនិក", "normalised": "stub-term-4", "category": "stub", "languages": ["km"] },
+    { "term": "បង់ប្រាក់", "normalised": "stub-term-5", "category": "stub", "languages": ["km"] },
+    {
+      "term": "ថ្ងៃឈប់សម្រាក",
+      "normalised": "stub-term-6",
+      "category": "stub",
+      "languages": ["km"]
+    },
+    { "term": "សាលា", "normalised": "stub-term-7", "category": "stub", "languages": ["km"] },
+    { "term": "ធនាគារ", "normalised": "stub-term-8", "category": "stub", "languages": ["km"] },
+    { "term": "ផ្សារ", "normalised": "stub-term-9", "category": "stub", "languages": ["km"] },
+    { "term": "វេជ្ជបណ្ឌិត", "normalised": "stub-term-10", "category": "stub", "languages": ["km"] }
+  ]
+}

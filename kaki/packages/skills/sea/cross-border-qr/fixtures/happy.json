@@ -1,0 +1,22 @@
+{
+  "skillId": "sea.cross-border-qr",
+  "input": {
+    "request": "Cross-border QR: fixture QR 28.50 SGD",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "qr_payload_and_amount": "fixture QR 28.50 SGD"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "money.transfer",
+    "actionIds": ["cross-border-qr.source", "cross-border-qr.prepare"],
+    "evidence": [
+      "data:query:PayNow, DuitNow, PromptPay, QRIS, VietQR, or QR Ph source state",
+      "data:normalize:the cross-border payment receipt preparation"
+    ]
+  }
+}

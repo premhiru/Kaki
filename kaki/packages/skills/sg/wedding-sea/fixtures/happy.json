@@ -1,0 +1,22 @@
+{
+  "skillId": "sg.wedding-sea",
+  "input": {
+    "request": "Southeast Asia wedding: Malay wedding guest in Johor 2026-10-10",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "wedding_context": "Malay wedding guest in Johor 2026-10-10"
+  },
+  "context": {
+    "locale": "sg",
+    "fixture": true
+  },
+  "expect": {
+    "status": "needs_approval",
+    "approval": "booking",
+    "actionIds": ["wedding-sea.source", "wedding-sea.prepare"],
+    "evidence": [
+      "browser:open:regional wedding vendors and etiquette sources source state",
+      "browser:prepare:a culturally aware wedding plan and reference preparation"
+    ]
+  }
+}

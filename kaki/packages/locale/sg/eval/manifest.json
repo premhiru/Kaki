@@ -1,0 +1,12 @@
+{
+  "locale": "sg",
+  "generatedBy": "scripts/locale/generate.mjs",
+  "datasets": [
+    "../../../evals/locales/sg-en.jsonl",
+    "../../../evals/locales/sg-singlish.jsonl",
+    "../../../evals/locales/sg-zh.jsonl",
+    "../../../evals/locales/sg-ms.jsonl",
+    "../../../evals/locales/sg-ta.jsonl"
+  ],
+  "contract": "expected labels are deterministic template truth without native-speaker review; the locale scorer and package test execute the public normalizer for every row"
+}

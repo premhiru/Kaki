@@ -1,0 +1,23 @@
+{
+  "skillId": "th.tmd-weather",
+  "input": {
+    "request": "Thailand weather: Bangkok tomorrow",
+    "household_id": "fixture-household",
+    "person_id": "fixture-person",
+    "province_and_date": "Bangkok tomorrow"
+  },
+  "context": {
+    "locale": "th",
+    "fixture": true
+  },
+  "expect": {
+    "status": "completed",
+    "approval": "none",
+    "actionIds": ["tmd-weather.source", "tmd-weather.prepare", "tmd-weather.verify"],
+    "evidence": [
+      "data:query:Thai Meteorological Department source state",
+      "data:normalize:a TMD-backed weather brief preparation",
+      "data:verify:a TMD-backed weather brief"
+    ]
+  }
+}
