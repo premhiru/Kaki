@@ -4,6 +4,7 @@ import { uniqueStrings } from "@openclaw/normalization-core/string-normalization
 import { collectUniqueCommandDescriptors } from "../cli/program/command-descriptor-utils.js";
 import type { OpenClawConfig } from "../config/types.openclaw.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
+import { withActivatedPluginIds } from "./activation-context.js";
 import { resolveManifestActivationPluginIds } from "./activation-planner.js";
 import { createPluginCliGatewayNodesRuntime } from "./cli-gateway-nodes-runtime.js";
 import type { PluginLoadOptions } from "./loader.js";
@@ -64,7 +65,22 @@ function buildPluginCliLoaderParams(
   loaderOptions?: PluginCliLoaderOptions,
 ) {
   const onlyPluginIds = resolvePrimaryCommandManifestPluginIds(context, params?.primaryCommand);
+  return buildPluginCliScopedLoadOptions(context, onlyPluginIds, loaderOptions);
+}
+
+function buildPluginCliScopedLoadOptions(
+  context: PluginCliLoadContext,
+  onlyPluginIds: string[] | undefined,
+  loaderOptions?: Partial<PluginLoadOptions>,
+) {
+  // A manifest-owned command is an activation trigger. Activate only its owner for this
+  // CLI process; the planner has already rejected explicit disables and policy blocks.
+  const config = onlyPluginIds?.length
+    ? (withActivatedPluginIds({ config: context.config, pluginIds: onlyPluginIds }) ??
+      context.config)
+    : context.config;
   return buildPluginRuntimeLoadOptions(context, {
+    config,
     ...loaderOptions,
     ...(onlyPluginIds && onlyPluginIds.length > 0 ? { onlyPluginIds } : {}),
   });
@@ -183,9 +199,8 @@ async function loadPluginCliCommandRegistryWithContext(params: {
   return {
     ...params.context,
     registry: loadPluginRegistryHandle(
-      buildPluginRuntimeLoadOptions(params.context, {
+      buildPluginCliScopedLoadOptions(params.context, onlyPluginIds, {
         ...params.loaderOptions,
-        ...(onlyPluginIds && onlyPluginIds.length > 0 ? { onlyPluginIds } : {}),
         cache: false,
         channelPluginLoadIntent: "full",
         runtimeOptions: {

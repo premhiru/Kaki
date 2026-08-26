@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const routePrefix = "/plugins/kaki/control";
 const distUrl = new URL("../dist/", import.meta.url);
 const outputUrl = new URL("../../../../extensions/kaki/assets/control-ui/", import.meta.url);
+const pluginPackageUrl = new URL("../../../../extensions/kaki/package.json", import.meta.url);
 const files = {};
 
 await rm(outputUrl, { recursive: true, force: true });
@@ -29,6 +30,7 @@ await writeFile(
   new URL("manifest.json", outputUrl),
   `${JSON.stringify({ routePrefix, files }, null, 2)}\n`,
 );
+await syncPluginPackageAssets();
 
 async function copy(sourceUrl, relativePath) {
   relativePath = relativePath.replace(/\/+$/u, "");
@@ -58,6 +60,19 @@ async function emit(relativePath, value) {
     bytes: bytes.byteLength,
     sha256: createHash("sha256").update(bytes).digest("hex"),
   };
+}
+
+async function syncPluginPackageAssets() {
+  const packageJson = JSON.parse(await readFile(pluginPackageUrl, "utf8"));
+  packageJson.openclaw ??= {};
+  packageJson.openclaw.build ??= {};
+  packageJson.openclaw.build.staticAssets = [...Object.keys(files), "/manifest.json"]
+    .toSorted((left, right) => left.localeCompare(right))
+    .map((assetPath) => ({
+      source: `./assets/control-ui${assetPath}`,
+      output: `assets/control-ui${assetPath}`,
+    }));
+  await writeFile(pluginPackageUrl, `${JSON.stringify(packageJson, null, 2)}\n`);
 }
 
 function rewrite(value) {

@@ -1,3 +1,4 @@
+import { validateJsonSchemaValue } from "openclaw/plugin-sdk/json-schema-runtime";
 import { describe, expect, it, vi } from "vitest";
 import manifest from "./openclaw.plugin.json" with { type: "json" };
 import { KAKI_CONTROL_COMMANDS } from "./src/commands.js";
@@ -52,7 +53,10 @@ describe("Kaki plugin entry", () => {
     expect(manifest.activation.onStartup).toBe(false);
     expect(manifest.activation.onConfigPaths).toEqual(["plugins.entries.kaki"]);
     expect(manifest.configSchema.additionalProperties).toBe(false);
-    expect(new Set(manifest.configSchema.required)).toEqual(
+    const fullConfigBranch = manifest.configSchema.oneOf.find(
+      (branch): branch is { required: string[] } => "required" in branch,
+    );
+    expect(new Set(fullConfigBranch?.required)).toEqual(
       new Set([
         "householdProfileId",
         "operatorPersonId",
@@ -67,6 +71,27 @@ describe("Kaki plugin entry", () => {
         "locale",
       ]),
     );
+    expect(
+      validateJsonSchemaValue({
+        schema: manifest.configSchema,
+        value: {},
+        cacheKey: "kaki.bootstrap-config",
+      }).ok,
+    ).toBe(true);
+    expect(
+      validateJsonSchemaValue({
+        schema: manifest.configSchema,
+        value: { householdProfileId: "partial" },
+        cacheKey: "kaki.partial-config",
+      }).ok,
+    ).toBe(false);
+    expect(
+      validateJsonSchemaValue({
+        schema: manifest.configSchema,
+        value: validPluginConfig,
+        cacheKey: "kaki.complete-config",
+      }).ok,
+    ).toBe(true);
   });
 
   it("registers exact Gateway-authenticated control routes", () => {

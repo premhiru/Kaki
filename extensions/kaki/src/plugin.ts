@@ -90,7 +90,7 @@ export function createKakiPlugin(
         auth: "gateway",
         match: "prefix",
         gatewayRuntimeScopeSurface: "trusted-operator",
-        handler: createKakiControlUiAssetHandler(),
+        handler: createKakiControlUiAssetHandler({ rootDir: api.rootDir }),
       });
       api.session.controls.registerControlUiDescriptor({
         surface: "tab",

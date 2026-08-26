@@ -34,6 +34,106 @@
   "openclaw": {
     "extensions": [
       "./index.ts"
-    ]
+    ],
+    "build": {
+      "staticAssets": [
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2",
+          "output": "assets/control-ui/_next/static/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_buildManifest.js",
+          "output": "assets/control-ui/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_buildManifest.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_ssgManifest.js",
+          "output": "assets/control-ui/_next/static/360cc3dc-9a0b-4951-8376-96e35cc5d986/_ssgManifest.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/framework-DTZGTDtF.js",
+          "output": "assets/control-ui/_next/static/chunks/framework-DTZGTDtF.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/index-BvS5XIaz.js",
+          "output": "assets/control-ui/_next/static/chunks/index-BvS5XIaz.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/layout-segment-context-Dyra1u0a.js",
+          "output": "assets/control-ui/_next/static/chunks/layout-segment-context-Dyra1u0a.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/page-DnVAR6R9.js",
+          "output": "assets/control-ui/_next/static/chunks/page-DnVAR6R9.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/rolldown-runtime-hePW80VL.js",
+          "output": "assets/control-ui/_next/static/chunks/rolldown-runtime-hePW80VL.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/chunks/vinext-GKXD7CvX.js",
+          "output": "assets/control-ui/_next/static/chunks/vinext-GKXD7CvX.js"
+        },
+        {
+          "source": "./assets/control-ui/_next/static/css/index.GHpfQJ5h.css",
+          "output": "assets/control-ui/_next/static/css/index.GHpfQJ5h.css"
+        },
+        {
+          "source": "./assets/control-ui/favicon.svg",
+          "output": "assets/control-ui/favicon.svg"
+        },
+        {
+          "source": "./assets/control-ui/index.html",
+          "output": "assets/control-ui/index.html"
+        },
+        {
+          "source": "./assets/control-ui/manifest.json",
+          "output": "assets/control-ui/manifest.json"
+        },
+        {
+          "source": "./assets/control-ui/og.png",
+          "output": "assets/control-ui/og.png"
+        }
+      ]
+    }
   }
 }

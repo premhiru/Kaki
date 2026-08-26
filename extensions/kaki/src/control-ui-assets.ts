@@ -1,5 +1,7 @@
 import { readFileSync } from "node:fs";
 import type { IncomingMessage, ServerResponse } from "node:http";
+import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { isRecord } from "openclaw/plugin-sdk/string-coerce-runtime";
 
 export const KAKI_CONTROL_UI_PATH = "/plugins/kaki/control";
@@ -31,26 +33,31 @@ function parseManifest(value: unknown): AssetManifest {
   return { routePrefix: value.routePrefix, files };
 }
 
-const assetsUrl = new URL("../assets/control-ui/", import.meta.url);
-const manifest = parseManifest(
-  JSON.parse(readFileSync(new URL("manifest.json", assetsUrl), "utf8")),
-);
-if (manifest.routePrefix !== KAKI_CONTROL_UI_PATH)
-  throw new Error("kaki-control-ui-route-mismatch");
+function loadAssets(rootDir?: string) {
+  const assetsUrl = rootDir
+    ? pathToFileURL(`${path.join(rootDir, "assets", "control-ui")}${path.sep}`)
+    : new URL("../assets/control-ui/", import.meta.url);
+  const manifest = parseManifest(
+    JSON.parse(readFileSync(new URL("manifest.json", assetsUrl), "utf8")),
+  );
+  if (manifest.routePrefix !== KAKI_CONTROL_UI_PATH) {
+    throw new Error("kaki-control-ui-route-mismatch");
+  }
+  return new Map(
+    Object.entries(manifest.files).map(([assetPath, metadata]) => [
+      assetPath,
+      {
+        body: readFileSync(new URL(assetPath.slice(1), assetsUrl)),
+        etag: `"${metadata.sha256}"`,
+      },
+    ]),
+  );
+}
 
-// Plugin assets are immutable for the process lifetime; loading once avoids
-// request-time filesystem discovery and keeps every served byte manifest-bound.
-const assets = new Map(
-  Object.entries(manifest.files).map(([path, metadata]) => [
-    path,
-    {
-      body: readFileSync(new URL(path.slice(1), assetsUrl)),
-      etag: `"${metadata.sha256}"`,
-    },
-  ]),
-);
-
-export function createKakiControlUiAssetHandler() {
+export function createKakiControlUiAssetHandler(options: { rootDir?: string } = {}) {
+  // Plugin assets are immutable for the process lifetime. Defer the bounded read until
+  // the HTTP surface is used so command-only activation does not depend on UI packaging.
+  let assets: ReturnType<typeof loadAssets> | undefined;
   return async (req: IncomingMessage, res: ServerResponse): Promise<boolean> => {
     if (req.method !== "GET" && req.method !== "HEAD") {
       res.statusCode = 405;
@@ -61,6 +68,7 @@ export function createKakiControlUiAssetHandler() {
     const pathname = new URL(req.url ?? "/", "http://localhost").pathname;
     const relative = pathname.slice(KAKI_CONTROL_UI_PATH.length);
     const key = relative === "" || relative === "/" ? "/index.html" : relative;
+    assets ??= loadAssets(options.rootDir);
     const asset = assets.get(key);
     if (!asset) {
       res.statusCode = 404;

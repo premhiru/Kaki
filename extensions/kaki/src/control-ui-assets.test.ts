@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import type { AddressInfo } from "node:net";
+import { fileURLToPath } from "node:url";
 import { afterEach, describe, expect, it } from "vitest";
 import { createKakiControlUiAssetHandler, KAKI_CONTROL_UI_PATH } from "./control-ui-assets.js";
 
@@ -14,8 +15,8 @@ afterEach(async () => {
   );
 });
 
-async function start() {
-  const handler = createKakiControlUiAssetHandler();
+async function start(rootDir?: string) {
+  const handler = createKakiControlUiAssetHandler({ rootDir });
   const server = createServer((req, res) => void handler(req, res));
   servers.push(server);
   await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
@@ -25,7 +26,7 @@ async function start() {
 
 describe("Kaki packaged control UI", () => {
   it("serves immutable manifest-bound assets with browser isolation headers", async () => {
-    const base = await start();
+    const base = await start(fileURLToPath(new URL("..", import.meta.url)));
     const index = await fetch(base);
     expect(index.status).toBe(200);
     expect(index.headers.get("content-type")).toBe("text/html; charset=utf-8");

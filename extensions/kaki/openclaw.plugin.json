@@ -37,18 +37,23 @@
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
-    "required": [
-      "householdProfileId",
-      "operatorPersonId",
-      "addressBookProfileId",
-      "approvalPolicyProfileId",
-      "dataProfileId",
-      "phoneNodeId",
-      "whatsappAccountId",
-      "telegramAccountId",
-      "modelProfileId",
-      "asrProfileId",
-      "locale"
+    "oneOf": [
+      { "maxProperties": 0 },
+      {
+        "required": [
+          "householdProfileId",
+          "operatorPersonId",
+          "addressBookProfileId",
+          "approvalPolicyProfileId",
+          "dataProfileId",
+          "phoneNodeId",
+          "whatsappAccountId",
+          "telegramAccountId",
+          "modelProfileId",
+          "asrProfileId",
+          "locale"
+        ]
+      }
     ],
     "properties": {
       "householdProfileId": {
