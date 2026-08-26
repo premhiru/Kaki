@@ -132,6 +132,198 @@
         {
           "source": "./assets/control-ui/og.png",
           "output": "assets/control-ui/og.png"
+        },
+        {
+          "source": "./assets/locale/id/calendar.json",
+          "output": "assets/locale/id/calendar.json"
+        },
+        {
+          "source": "./assets/locale/id/channels.json",
+          "output": "assets/locale/id/channels.json"
+        },
+        {
+          "source": "./assets/locale/id/dietary.json",
+          "output": "assets/locale/id/dietary.json"
+        },
+        {
+          "source": "./assets/locale/id/formats.json",
+          "output": "assets/locale/id/formats.json"
+        },
+        {
+          "source": "./assets/locale/id/lexicon.json",
+          "output": "assets/locale/id/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/id/persona.md",
+          "output": "assets/locale/id/persona.md"
+        },
+        {
+          "source": "./assets/locale/kh/calendar.json",
+          "output": "assets/locale/kh/calendar.json"
+        },
+        {
+          "source": "./assets/locale/kh/channels.json",
+          "output": "assets/locale/kh/channels.json"
+        },
+        {
+          "source": "./assets/locale/kh/dietary.json",
+          "output": "assets/locale/kh/dietary.json"
+        },
+        {
+          "source": "./assets/locale/kh/formats.json",
+          "output": "assets/locale/kh/formats.json"
+        },
+        {
+          "source": "./assets/locale/kh/lexicon.json",
+          "output": "assets/locale/kh/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/kh/persona.md",
+          "output": "assets/locale/kh/persona.md"
+        },
+        {
+          "source": "./assets/locale/mm/calendar.json",
+          "output": "assets/locale/mm/calendar.json"
+        },
+        {
+          "source": "./assets/locale/mm/channels.json",
+          "output": "assets/locale/mm/channels.json"
+        },
+        {
+          "source": "./assets/locale/mm/dietary.json",
+          "output": "assets/locale/mm/dietary.json"
+        },
+        {
+          "source": "./assets/locale/mm/formats.json",
+          "output": "assets/locale/mm/formats.json"
+        },
+        {
+          "source": "./assets/locale/mm/lexicon.json",
+          "output": "assets/locale/mm/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/mm/persona.md",
+          "output": "assets/locale/mm/persona.md"
+        },
+        {
+          "source": "./assets/locale/my/calendar.json",
+          "output": "assets/locale/my/calendar.json"
+        },
+        {
+          "source": "./assets/locale/my/channels.json",
+          "output": "assets/locale/my/channels.json"
+        },
+        {
+          "source": "./assets/locale/my/dietary.json",
+          "output": "assets/locale/my/dietary.json"
+        },
+        {
+          "source": "./assets/locale/my/formats.json",
+          "output": "assets/locale/my/formats.json"
+        },
+        {
+          "source": "./assets/locale/my/lexicon.json",
+          "output": "assets/locale/my/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/my/persona.md",
+          "output": "assets/locale/my/persona.md"
+        },
+        {
+          "source": "./assets/locale/ph/calendar.json",
+          "output": "assets/locale/ph/calendar.json"
+        },
+        {
+          "source": "./assets/locale/ph/channels.json",
+          "output": "assets/locale/ph/channels.json"
+        },
+        {
+          "source": "./assets/locale/ph/dietary.json",
+          "output": "assets/locale/ph/dietary.json"
+        },
+        {
+          "source": "./assets/locale/ph/formats.json",
+          "output": "assets/locale/ph/formats.json"
+        },
+        {
+          "source": "./assets/locale/ph/lexicon.json",
+          "output": "assets/locale/ph/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/ph/persona.md",
+          "output": "assets/locale/ph/persona.md"
+        },
+        {
+          "source": "./assets/locale/sg/calendar.json",
+          "output": "assets/locale/sg/calendar.json"
+        },
+        {
+          "source": "./assets/locale/sg/channels.json",
+          "output": "assets/locale/sg/channels.json"
+        },
+        {
+          "source": "./assets/locale/sg/dietary.json",
+          "output": "assets/locale/sg/dietary.json"
+        },
+        {
+          "source": "./assets/locale/sg/formats.json",
+          "output": "assets/locale/sg/formats.json"
+        },
+        {
+          "source": "./assets/locale/sg/lexicon.json",
+          "output": "assets/locale/sg/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/sg/persona.md",
+          "output": "assets/locale/sg/persona.md"
+        },
+        {
+          "source": "./assets/locale/th/calendar.json",
+          "output": "assets/locale/th/calendar.json"
+        },
+        {
+          "source": "./assets/locale/th/channels.json",
+          "output": "assets/locale/th/channels.json"
+        },
+        {
+          "source": "./assets/locale/th/dietary.json",
+          "output": "assets/locale/th/dietary.json"
+        },
+        {
+          "source": "./assets/locale/th/formats.json",
+          "output": "assets/locale/th/formats.json"
+        },
+        {
+          "source": "./assets/locale/th/lexicon.json",
+          "output": "assets/locale/th/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/th/persona.md",
+          "output": "assets/locale/th/persona.md"
+        },
+        {
+          "source": "./assets/locale/vn/calendar.json",
+          "output": "assets/locale/vn/calendar.json"
+        },
+        {
+          "source": "./assets/locale/vn/channels.json",
+          "output": "assets/locale/vn/channels.json"
+        },
+        {
+          "source": "./assets/locale/vn/dietary.json",
+          "output": "assets/locale/vn/dietary.json"
+        },
+        {
+          "source": "./assets/locale/vn/formats.json",
+          "output": "assets/locale/vn/formats.json"
+        },
+        {
+          "source": "./assets/locale/vn/lexicon.json",
+          "output": "assets/locale/vn/lexicon.json"
+        },
+        {
+          "source": "./assets/locale/vn/persona.md",
+          "output": "assets/locale/vn/persona.md"
         }
       ]
     }

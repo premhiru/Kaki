@@ -86,12 +86,13 @@ function localeCode(value: string): LocaleCode | undefined {
 export function createKakiLocaleOwner(options: {
   getActive(): Promise<LocaleCode>;
   setActive(locale: LocaleCode): Promise<void>;
+  packagesRoot?: string;
 }): LocaleOwner {
   return {
     async snapshot(signal) {
       throwIfAborted(signal);
       const active = await options.getActive();
-      const pack = await loadLocalePack(active);
+      const pack = await loadLocalePack(active, options.packagesRoot);
       throwIfAborted(signal);
       const currency = pack.formats.currency;
       if (typeof currency !== "string") throw new Error("locale-pack-currency-unavailable");
@@ -107,7 +108,7 @@ export function createKakiLocaleOwner(options: {
       const parsedLocale = localeCode(locale);
       if (!parsedLocale) throw new Error("locale-unsupported");
       throwIfAborted(signal);
-      await loadLocalePack(parsedLocale);
+      await loadLocalePack(parsedLocale, options.packagesRoot);
       await options.setActive(parsedLocale);
       throwIfAborted(signal);
       return { ok: true, message: `Kaki locale changed to ${locale}.` };

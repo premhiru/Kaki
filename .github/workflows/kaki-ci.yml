@@ -216,7 +216,23 @@ jobs:
       - name: Probe native Kaki command activation
         env:
           KAKI_HOME: ${{ runner.temp }}/kaki-native-command-probe
-        run: node kaki.mjs kaki-bootstrap --help
+        run: |
+          node kaki.mjs kaki-bootstrap --help
+          node --input-type=module <<'NODE'
+          import path from "node:path";
+          import assert from "node:assert/strict";
+          import { createKakiLocaleOwner } from "./dist/extensions/kaki/api.js";
+          let active = "sg";
+          const owner = createKakiLocaleOwner({
+            getActive: async () => active,
+            setActive: async (locale) => { active = locale; },
+            packagesRoot: path.resolve("dist/extensions/kaki/assets/locale"),
+          });
+          for (const locale of ["sg", "my", "id", "th", "vn", "ph", "mm", "kh"]) {
+            await owner.set(locale, AbortSignal.timeout(1_000));
+            assert.equal((await owner.snapshot(AbortSignal.timeout(1_000))).active, locale);
+          }
+          NODE
 
       - name: Check formatting
         run: pnpm --dir kaki format:check

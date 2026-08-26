@@ -1,0 +1,1186 @@
+{
+  "locale": "id",
+  "version": 1,
+  "entries": [
+    {
+      "term": "QRIS",
+      "normalised": "national QR payment",
+      "category": "local",
+      "languages": ["id"]
+    },
+    { "term": "Gojek", "normalised": "super-app", "category": "local", "languages": ["id"] },
+    { "term": "Tokopedia", "normalised": "marketplace", "category": "local", "languages": ["id"] },
+    { "term": "BMKG", "normalised": "weather agency", "category": "local", "languages": ["id"] },
+    { "term": "KRL", "normalised": "commuter rail", "category": "local", "languages": ["id"] },
+    {
+      "term": "TransJakarta",
+      "normalised": "bus rapid transit",
+      "category": "local",
+      "languages": ["id"]
+    },
+    {
+      "term": "IKD",
+      "normalised": "digital population identity",
+      "category": "local",
+      "languages": ["id"]
+    },
+    {
+      "term": "Lebaran",
+      "normalised": "Eid celebration",
+      "category": "local",
+      "languages": ["id"]
+    },
+    {
+      "term": "mudik",
+      "normalised": "holiday homecoming",
+      "category": "local",
+      "languages": ["id"]
+    },
+    { "term": "warung", "normalised": "small eatery", "category": "local", "languages": ["id"] },
+    {
+      "term": "cuaca sekarang",
+      "normalised": "cuaca: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "cuaca besok",
+      "normalised": "cuaca: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "cuaca dekat sini",
+      "normalised": "cuaca: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "cuaca untuk keluarga",
+      "normalised": "cuaca: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "cuaca murah",
+      "normalised": "cuaca: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "cuaca halal",
+      "normalised": "cuaca: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "cuaca akhir pekan",
+      "normalised": "cuaca: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "cuaca pagi",
+      "normalised": "cuaca: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "cuaca malam",
+      "normalised": "cuaca: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "cuaca segera",
+      "normalised": "cuaca: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan sekarang",
+      "normalised": "hujan: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan besok",
+      "normalised": "hujan: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan dekat sini",
+      "normalised": "hujan: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan untuk keluarga",
+      "normalised": "hujan: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan murah",
+      "normalised": "hujan: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan halal",
+      "normalised": "hujan: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan akhir pekan",
+      "normalised": "hujan: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan pagi",
+      "normalised": "hujan: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan malam",
+      "normalised": "hujan: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "hujan segera",
+      "normalised": "hujan: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bus sekarang",
+      "normalised": "bus: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    { "term": "bus besok", "normalised": "bus: besok", "category": "phrase", "languages": ["id"] },
+    {
+      "term": "bus dekat sini",
+      "normalised": "bus: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bus untuk keluarga",
+      "normalised": "bus: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    { "term": "bus murah", "normalised": "bus: murah", "category": "phrase", "languages": ["id"] },
+    { "term": "bus halal", "normalised": "bus: halal", "category": "phrase", "languages": ["id"] },
+    {
+      "term": "bus akhir pekan",
+      "normalised": "bus: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    { "term": "bus pagi", "normalised": "bus: pagi", "category": "phrase", "languages": ["id"] },
+    { "term": "bus malam", "normalised": "bus: malam", "category": "phrase", "languages": ["id"] },
+    {
+      "term": "bus segera",
+      "normalised": "bus: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta sekarang",
+      "normalised": "kereta: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta besok",
+      "normalised": "kereta: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta dekat sini",
+      "normalised": "kereta: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta untuk keluarga",
+      "normalised": "kereta: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta murah",
+      "normalised": "kereta: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta halal",
+      "normalised": "kereta: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta akhir pekan",
+      "normalised": "kereta: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta pagi",
+      "normalised": "kereta: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta malam",
+      "normalised": "kereta: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "kereta segera",
+      "normalised": "kereta: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan sekarang",
+      "normalised": "makan: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan besok",
+      "normalised": "makan: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan dekat sini",
+      "normalised": "makan: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan untuk keluarga",
+      "normalised": "makan: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan murah",
+      "normalised": "makan: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan halal",
+      "normalised": "makan: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan akhir pekan",
+      "normalised": "makan: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan pagi",
+      "normalised": "makan: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan malam",
+      "normalised": "makan: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "makan segera",
+      "normalised": "makan: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan sekarang",
+      "normalised": "pesan: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan besok",
+      "normalised": "pesan: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan dekat sini",
+      "normalised": "pesan: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan untuk keluarga",
+      "normalised": "pesan: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan murah",
+      "normalised": "pesan: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan halal",
+      "normalised": "pesan: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan akhir pekan",
+      "normalised": "pesan: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan pagi",
+      "normalised": "pesan: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan malam",
+      "normalised": "pesan: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pesan segera",
+      "normalised": "pesan: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak sekarang",
+      "normalised": "pajak: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak besok",
+      "normalised": "pajak: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak dekat sini",
+      "normalised": "pajak: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak untuk keluarga",
+      "normalised": "pajak: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak murah",
+      "normalised": "pajak: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak halal",
+      "normalised": "pajak: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak akhir pekan",
+      "normalised": "pajak: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak pagi",
+      "normalised": "pajak: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak malam",
+      "normalised": "pajak: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pajak segera",
+      "normalised": "pajak: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar sekarang",
+      "normalised": "bayar: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar besok",
+      "normalised": "bayar: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar dekat sini",
+      "normalised": "bayar: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar untuk keluarga",
+      "normalised": "bayar: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar murah",
+      "normalised": "bayar: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar halal",
+      "normalised": "bayar: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar akhir pekan",
+      "normalised": "bayar: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar pagi",
+      "normalised": "bayar: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar malam",
+      "normalised": "bayar: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bayar segera",
+      "normalised": "bayar: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan sekarang",
+      "normalised": "ingatkan: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan besok",
+      "normalised": "ingatkan: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan dekat sini",
+      "normalised": "ingatkan: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan untuk keluarga",
+      "normalised": "ingatkan: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan murah",
+      "normalised": "ingatkan: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan halal",
+      "normalised": "ingatkan: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan akhir pekan",
+      "normalised": "ingatkan: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan pagi",
+      "normalised": "ingatkan: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan malam",
+      "normalised": "ingatkan: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "ingatkan segera",
+      "normalised": "ingatkan: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang sekarang",
+      "normalised": "tukang: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang besok",
+      "normalised": "tukang: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang dekat sini",
+      "normalised": "tukang: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang untuk keluarga",
+      "normalised": "tukang: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang murah",
+      "normalised": "tukang: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang halal",
+      "normalised": "tukang: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang akhir pekan",
+      "normalised": "tukang: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang pagi",
+      "normalised": "tukang: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang malam",
+      "normalised": "tukang: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tukang segera",
+      "normalised": "tukang: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik sekarang",
+      "normalised": "klinik: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik besok",
+      "normalised": "klinik: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik dekat sini",
+      "normalised": "klinik: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik untuk keluarga",
+      "normalised": "klinik: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik murah",
+      "normalised": "klinik: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik halal",
+      "normalised": "klinik: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik akhir pekan",
+      "normalised": "klinik: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik pagi",
+      "normalised": "klinik: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik malam",
+      "normalised": "klinik: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "klinik segera",
+      "normalised": "klinik: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur sekarang",
+      "normalised": "libur: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur besok",
+      "normalised": "libur: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur dekat sini",
+      "normalised": "libur: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur untuk keluarga",
+      "normalised": "libur: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur murah",
+      "normalised": "libur: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur halal",
+      "normalised": "libur: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur akhir pekan",
+      "normalised": "libur: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur pagi",
+      "normalised": "libur: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur malam",
+      "normalised": "libur: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "libur segera",
+      "normalised": "libur: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan sekarang",
+      "normalised": "jalan: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan besok",
+      "normalised": "jalan: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan dekat sini",
+      "normalised": "jalan: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan untuk keluarga",
+      "normalised": "jalan: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan murah",
+      "normalised": "jalan: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan halal",
+      "normalised": "jalan: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan akhir pekan",
+      "normalised": "jalan: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan pagi",
+      "normalised": "jalan: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan malam",
+      "normalised": "jalan: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "jalan segera",
+      "normalised": "jalan: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah sekarang",
+      "normalised": "sekolah: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah besok",
+      "normalised": "sekolah: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah dekat sini",
+      "normalised": "sekolah: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah untuk keluarga",
+      "normalised": "sekolah: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah murah",
+      "normalised": "sekolah: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah halal",
+      "normalised": "sekolah: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah akhir pekan",
+      "normalised": "sekolah: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah pagi",
+      "normalised": "sekolah: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah malam",
+      "normalised": "sekolah: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "sekolah segera",
+      "normalised": "sekolah: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bank sekarang",
+      "normalised": "bank: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bank besok",
+      "normalised": "bank: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bank dekat sini",
+      "normalised": "bank: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bank untuk keluarga",
+      "normalised": "bank: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bank murah",
+      "normalised": "bank: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bank halal",
+      "normalised": "bank: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bank akhir pekan",
+      "normalised": "bank: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    { "term": "bank pagi", "normalised": "bank: pagi", "category": "phrase", "languages": ["id"] },
+    {
+      "term": "bank malam",
+      "normalised": "bank: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "bank segera",
+      "normalised": "bank: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar sekarang",
+      "normalised": "pasar: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar besok",
+      "normalised": "pasar: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar dekat sini",
+      "normalised": "pasar: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar untuk keluarga",
+      "normalised": "pasar: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar murah",
+      "normalised": "pasar: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar halal",
+      "normalised": "pasar: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar akhir pekan",
+      "normalised": "pasar: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar pagi",
+      "normalised": "pasar: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar malam",
+      "normalised": "pasar: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "pasar segera",
+      "normalised": "pasar: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid sekarang",
+      "normalised": "masjid: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid besok",
+      "normalised": "masjid: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid dekat sini",
+      "normalised": "masjid: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid untuk keluarga",
+      "normalised": "masjid: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid murah",
+      "normalised": "masjid: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid halal",
+      "normalised": "masjid: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid akhir pekan",
+      "normalised": "masjid: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid pagi",
+      "normalised": "masjid: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid malam",
+      "normalised": "masjid: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "masjid segera",
+      "normalised": "masjid: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tol sekarang",
+      "normalised": "tol: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    { "term": "tol besok", "normalised": "tol: besok", "category": "phrase", "languages": ["id"] },
+    {
+      "term": "tol dekat sini",
+      "normalised": "tol: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "tol untuk keluarga",
+      "normalised": "tol: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    { "term": "tol murah", "normalised": "tol: murah", "category": "phrase", "languages": ["id"] },
+    { "term": "tol halal", "normalised": "tol: halal", "category": "phrase", "languages": ["id"] },
+    {
+      "term": "tol akhir pekan",
+      "normalised": "tol: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    { "term": "tol pagi", "normalised": "tol: pagi", "category": "phrase", "languages": ["id"] },
+    { "term": "tol malam", "normalised": "tol: malam", "category": "phrase", "languages": ["id"] },
+    {
+      "term": "tol segera",
+      "normalised": "tol: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek sekarang",
+      "normalised": "apotek: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek besok",
+      "normalised": "apotek: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek dekat sini",
+      "normalised": "apotek: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek untuk keluarga",
+      "normalised": "apotek: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek murah",
+      "normalised": "apotek: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek halal",
+      "normalised": "apotek: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek akhir pekan",
+      "normalised": "apotek: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek pagi",
+      "normalised": "apotek: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek malam",
+      "normalised": "apotek: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "apotek segera",
+      "normalised": "apotek: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter sekarang",
+      "normalised": "dokter: sekarang",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter besok",
+      "normalised": "dokter: besok",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter dekat sini",
+      "normalised": "dokter: dekat sini",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter untuk keluarga",
+      "normalised": "dokter: untuk keluarga",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter murah",
+      "normalised": "dokter: murah",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter halal",
+      "normalised": "dokter: halal",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter akhir pekan",
+      "normalised": "dokter: akhir pekan",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter pagi",
+      "normalised": "dokter: pagi",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter malam",
+      "normalised": "dokter: malam",
+      "category": "phrase",
+      "languages": ["id"]
+    },
+    {
+      "term": "dokter segera",
+      "normalised": "dokter: segera",
+      "category": "phrase",
+      "languages": ["id"]
+    }
+  ]
+}

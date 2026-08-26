@@ -1,0 +1,12 @@
+{
+  "locale": "mm",
+  "timezone": "Asia/Yangon",
+  "events": [
+    {
+      "id": "mm-holiday-1",
+      "name": "Thingyan",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    }
+  ]
+}

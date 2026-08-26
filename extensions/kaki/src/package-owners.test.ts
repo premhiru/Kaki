@@ -1,4 +1,6 @@
+import { fileURLToPath } from "node:url";
 import { ApprovalEngine } from "@kaki/approval-node";
+import type { LocaleCode } from "@kaki/locale";
 import { CostLedger } from "@kaki/models";
 import { SingaporeMonitorRegistry } from "@kaki/sg-data";
 import type { PluginStateKeyedStore } from "openclaw/plugin-sdk/plugin-state-runtime";
@@ -123,6 +125,23 @@ describe("Kaki package-backed owners", () => {
       active: "my",
     });
     await expect(owner.set("xx", AbortSignal.timeout(1_000))).rejects.toThrow("locale-unsupported");
+  });
+
+  it("loads every locale from the plugin-owned production asset root", async () => {
+    let active: LocaleCode = "sg";
+    const owner = createKakiLocaleOwner({
+      getActive: async () => active,
+      setActive: async (locale) => {
+        active = locale;
+      },
+      packagesRoot: fileURLToPath(new URL("../assets/locale/", import.meta.url)),
+    });
+    for (const locale of ["sg", "my", "id", "th", "vn", "ph", "mm", "kh"] as const) {
+      await owner.set(locale, AbortSignal.timeout(1_000));
+      await expect(owner.snapshot(AbortSignal.timeout(1_000))).resolves.toMatchObject({
+        active: locale,
+      });
+    }
   });
 
   it("summarizes current durable model spend without exceeding the configured budget", async () => {

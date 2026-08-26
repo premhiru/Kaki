@@ -1,0 +1,42 @@
+{
+  "locale": "ph",
+  "timezone": "Asia/Manila",
+  "events": [
+    {
+      "id": "ph-holiday-1",
+      "name": "Araw ng Kalayaan",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "ph-holiday-2",
+      "name": "Holy Week",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "ph-holiday-3",
+      "name": "Undas",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "ph-holiday-4",
+      "name": "Christmas",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "ph-school-calendar",
+      "name": "DepEd school calendar",
+      "type": "school",
+      "rule": "Refresh annually from DepEd"
+    },
+    {
+      "id": "ph-typhoon-season",
+      "name": "Typhoon preparedness season",
+      "type": "cultural",
+      "rule": "Use live PAGASA advisories"
+    }
+  ]
+}

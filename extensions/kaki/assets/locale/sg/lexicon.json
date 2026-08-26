@@ -1,0 +1,4609 @@
+{
+  "locale": "sg",
+  "version": 1,
+  "entries": [
+    {
+      "term": "kopi",
+      "normalised": "coffee; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi peng",
+      "normalised": "coffee; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi poh",
+      "normalised": "coffee; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi gao",
+      "normalised": "coffee; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi di lo",
+      "normalised": "coffee; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi tarik",
+      "normalised": "coffee; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi packet",
+      "normalised": "coffee; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi kosong",
+      "normalised": "coffee; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi kosong peng",
+      "normalised": "coffee; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi kosong poh",
+      "normalised": "coffee; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi kosong gao",
+      "normalised": "coffee; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi kosong di lo",
+      "normalised": "coffee; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi kosong tarik",
+      "normalised": "coffee; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi kosong packet",
+      "normalised": "coffee; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi siew dai",
+      "normalised": "coffee; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi siew dai peng",
+      "normalised": "coffee; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi siew dai poh",
+      "normalised": "coffee; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi siew dai gao",
+      "normalised": "coffee; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi siew dai di lo",
+      "normalised": "coffee; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi siew dai tarik",
+      "normalised": "coffee; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi siew dai packet",
+      "normalised": "coffee; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi gah dai",
+      "normalised": "coffee; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi gah dai peng",
+      "normalised": "coffee; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi gah dai poh",
+      "normalised": "coffee; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi gah dai gao",
+      "normalised": "coffee; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi gah dai di lo",
+      "normalised": "coffee; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi gah dai tarik",
+      "normalised": "coffee; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi gah dai packet",
+      "normalised": "coffee; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi half sweet",
+      "normalised": "coffee; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi half sweet peng",
+      "normalised": "coffee; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi half sweet poh",
+      "normalised": "coffee; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi half sweet gao",
+      "normalised": "coffee; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi half sweet di lo",
+      "normalised": "coffee; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi half sweet tarik",
+      "normalised": "coffee; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi half sweet packet",
+      "normalised": "coffee; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi quarter sweet",
+      "normalised": "coffee; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi quarter sweet peng",
+      "normalised": "coffee; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi quarter sweet poh",
+      "normalised": "coffee; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi quarter sweet gao",
+      "normalised": "coffee; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi quarter sweet di lo",
+      "normalised": "coffee; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi quarter sweet tarik",
+      "normalised": "coffee; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi quarter sweet packet",
+      "normalised": "coffee; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi no condensed milk",
+      "normalised": "coffee; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi no condensed milk peng",
+      "normalised": "coffee; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi no condensed milk poh",
+      "normalised": "coffee; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi no condensed milk gao",
+      "normalised": "coffee; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi no condensed milk di lo",
+      "normalised": "coffee; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi no condensed milk tarik",
+      "normalised": "coffee; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi no condensed milk packet",
+      "normalised": "coffee; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi sugar separate",
+      "normalised": "coffee; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi sugar separate peng",
+      "normalised": "coffee; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi sugar separate poh",
+      "normalised": "coffee; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi sugar separate gao",
+      "normalised": "coffee; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi sugar separate di lo",
+      "normalised": "coffee; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi sugar separate tarik",
+      "normalised": "coffee; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi sugar separate packet",
+      "normalised": "coffee; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C",
+      "normalised": "coffee with evaporated milk; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C peng",
+      "normalised": "coffee with evaporated milk; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C poh",
+      "normalised": "coffee with evaporated milk; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C gao",
+      "normalised": "coffee with evaporated milk; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C di lo",
+      "normalised": "coffee with evaporated milk; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C tarik",
+      "normalised": "coffee with evaporated milk; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C packet",
+      "normalised": "coffee with evaporated milk; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C kosong",
+      "normalised": "coffee with evaporated milk; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C kosong peng",
+      "normalised": "coffee with evaporated milk; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C kosong poh",
+      "normalised": "coffee with evaporated milk; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C kosong gao",
+      "normalised": "coffee with evaporated milk; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C kosong di lo",
+      "normalised": "coffee with evaporated milk; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C kosong tarik",
+      "normalised": "coffee with evaporated milk; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C kosong packet",
+      "normalised": "coffee with evaporated milk; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C siew dai",
+      "normalised": "coffee with evaporated milk; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C siew dai peng",
+      "normalised": "coffee with evaporated milk; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C siew dai poh",
+      "normalised": "coffee with evaporated milk; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C siew dai gao",
+      "normalised": "coffee with evaporated milk; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C siew dai di lo",
+      "normalised": "coffee with evaporated milk; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C siew dai tarik",
+      "normalised": "coffee with evaporated milk; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C siew dai packet",
+      "normalised": "coffee with evaporated milk; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C gah dai",
+      "normalised": "coffee with evaporated milk; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C gah dai peng",
+      "normalised": "coffee with evaporated milk; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C gah dai poh",
+      "normalised": "coffee with evaporated milk; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C gah dai gao",
+      "normalised": "coffee with evaporated milk; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C gah dai di lo",
+      "normalised": "coffee with evaporated milk; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C gah dai tarik",
+      "normalised": "coffee with evaporated milk; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C gah dai packet",
+      "normalised": "coffee with evaporated milk; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C half sweet",
+      "normalised": "coffee with evaporated milk; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C half sweet peng",
+      "normalised": "coffee with evaporated milk; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C half sweet poh",
+      "normalised": "coffee with evaporated milk; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C half sweet gao",
+      "normalised": "coffee with evaporated milk; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C half sweet di lo",
+      "normalised": "coffee with evaporated milk; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C half sweet tarik",
+      "normalised": "coffee with evaporated milk; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C half sweet packet",
+      "normalised": "coffee with evaporated milk; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C quarter sweet",
+      "normalised": "coffee with evaporated milk; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C quarter sweet peng",
+      "normalised": "coffee with evaporated milk; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C quarter sweet poh",
+      "normalised": "coffee with evaporated milk; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C quarter sweet gao",
+      "normalised": "coffee with evaporated milk; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C quarter sweet di lo",
+      "normalised": "coffee with evaporated milk; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C quarter sweet tarik",
+      "normalised": "coffee with evaporated milk; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C quarter sweet packet",
+      "normalised": "coffee with evaporated milk; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C no condensed milk",
+      "normalised": "coffee with evaporated milk; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C no condensed milk peng",
+      "normalised": "coffee with evaporated milk; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C no condensed milk poh",
+      "normalised": "coffee with evaporated milk; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C no condensed milk gao",
+      "normalised": "coffee with evaporated milk; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C no condensed milk di lo",
+      "normalised": "coffee with evaporated milk; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C no condensed milk tarik",
+      "normalised": "coffee with evaporated milk; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C no condensed milk packet",
+      "normalised": "coffee with evaporated milk; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C sugar separate",
+      "normalised": "coffee with evaporated milk; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C sugar separate peng",
+      "normalised": "coffee with evaporated milk; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C sugar separate poh",
+      "normalised": "coffee with evaporated milk; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C sugar separate gao",
+      "normalised": "coffee with evaporated milk; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C sugar separate di lo",
+      "normalised": "coffee with evaporated milk; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C sugar separate tarik",
+      "normalised": "coffee with evaporated milk; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-C sugar separate packet",
+      "normalised": "coffee with evaporated milk; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O",
+      "normalised": "black coffee with sugar; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O peng",
+      "normalised": "black coffee with sugar; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O poh",
+      "normalised": "black coffee with sugar; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O gao",
+      "normalised": "black coffee with sugar; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O di lo",
+      "normalised": "black coffee with sugar; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O tarik",
+      "normalised": "black coffee with sugar; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O packet",
+      "normalised": "black coffee with sugar; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O kosong",
+      "normalised": "black coffee with sugar; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O kosong peng",
+      "normalised": "black coffee with sugar; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O kosong poh",
+      "normalised": "black coffee with sugar; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O kosong gao",
+      "normalised": "black coffee with sugar; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O kosong di lo",
+      "normalised": "black coffee with sugar; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O kosong tarik",
+      "normalised": "black coffee with sugar; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O kosong packet",
+      "normalised": "black coffee with sugar; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O siew dai",
+      "normalised": "black coffee with sugar; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O siew dai peng",
+      "normalised": "black coffee with sugar; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O siew dai poh",
+      "normalised": "black coffee with sugar; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O siew dai gao",
+      "normalised": "black coffee with sugar; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O siew dai di lo",
+      "normalised": "black coffee with sugar; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O siew dai tarik",
+      "normalised": "black coffee with sugar; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O siew dai packet",
+      "normalised": "black coffee with sugar; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O gah dai",
+      "normalised": "black coffee with sugar; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O gah dai peng",
+      "normalised": "black coffee with sugar; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O gah dai poh",
+      "normalised": "black coffee with sugar; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O gah dai gao",
+      "normalised": "black coffee with sugar; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O gah dai di lo",
+      "normalised": "black coffee with sugar; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O gah dai tarik",
+      "normalised": "black coffee with sugar; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O gah dai packet",
+      "normalised": "black coffee with sugar; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O half sweet",
+      "normalised": "black coffee with sugar; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O half sweet peng",
+      "normalised": "black coffee with sugar; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O half sweet poh",
+      "normalised": "black coffee with sugar; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O half sweet gao",
+      "normalised": "black coffee with sugar; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O half sweet di lo",
+      "normalised": "black coffee with sugar; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O half sweet tarik",
+      "normalised": "black coffee with sugar; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O half sweet packet",
+      "normalised": "black coffee with sugar; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O quarter sweet",
+      "normalised": "black coffee with sugar; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O quarter sweet peng",
+      "normalised": "black coffee with sugar; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O quarter sweet poh",
+      "normalised": "black coffee with sugar; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O quarter sweet gao",
+      "normalised": "black coffee with sugar; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O quarter sweet di lo",
+      "normalised": "black coffee with sugar; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O quarter sweet tarik",
+      "normalised": "black coffee with sugar; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O quarter sweet packet",
+      "normalised": "black coffee with sugar; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O no condensed milk",
+      "normalised": "black coffee with sugar; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O no condensed milk peng",
+      "normalised": "black coffee with sugar; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O no condensed milk poh",
+      "normalised": "black coffee with sugar; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O no condensed milk gao",
+      "normalised": "black coffee with sugar; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O no condensed milk di lo",
+      "normalised": "black coffee with sugar; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O no condensed milk tarik",
+      "normalised": "black coffee with sugar; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O no condensed milk packet",
+      "normalised": "black coffee with sugar; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O sugar separate",
+      "normalised": "black coffee with sugar; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O sugar separate peng",
+      "normalised": "black coffee with sugar; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O sugar separate poh",
+      "normalised": "black coffee with sugar; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O sugar separate gao",
+      "normalised": "black coffee with sugar; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O sugar separate di lo",
+      "normalised": "black coffee with sugar; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O sugar separate tarik",
+      "normalised": "black coffee with sugar; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "kopi-O sugar separate packet",
+      "normalised": "black coffee with sugar; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh",
+      "normalised": "tea with condensed milk; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh peng",
+      "normalised": "tea with condensed milk; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh poh",
+      "normalised": "tea with condensed milk; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh gao",
+      "normalised": "tea with condensed milk; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh di lo",
+      "normalised": "tea with condensed milk; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh tarik",
+      "normalised": "tea with condensed milk; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh packet",
+      "normalised": "tea with condensed milk; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh kosong",
+      "normalised": "tea with condensed milk; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh kosong peng",
+      "normalised": "tea with condensed milk; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh kosong poh",
+      "normalised": "tea with condensed milk; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh kosong gao",
+      "normalised": "tea with condensed milk; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh kosong di lo",
+      "normalised": "tea with condensed milk; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh kosong tarik",
+      "normalised": "tea with condensed milk; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh kosong packet",
+      "normalised": "tea with condensed milk; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh siew dai",
+      "normalised": "tea with condensed milk; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh siew dai peng",
+      "normalised": "tea with condensed milk; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh siew dai poh",
+      "normalised": "tea with condensed milk; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh siew dai gao",
+      "normalised": "tea with condensed milk; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh siew dai di lo",
+      "normalised": "tea with condensed milk; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh siew dai tarik",
+      "normalised": "tea with condensed milk; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh siew dai packet",
+      "normalised": "tea with condensed milk; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh gah dai",
+      "normalised": "tea with condensed milk; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh gah dai peng",
+      "normalised": "tea with condensed milk; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh gah dai poh",
+      "normalised": "tea with condensed milk; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh gah dai gao",
+      "normalised": "tea with condensed milk; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh gah dai di lo",
+      "normalised": "tea with condensed milk; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh gah dai tarik",
+      "normalised": "tea with condensed milk; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh gah dai packet",
+      "normalised": "tea with condensed milk; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh half sweet",
+      "normalised": "tea with condensed milk; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh half sweet peng",
+      "normalised": "tea with condensed milk; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh half sweet poh",
+      "normalised": "tea with condensed milk; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh half sweet gao",
+      "normalised": "tea with condensed milk; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh half sweet di lo",
+      "normalised": "tea with condensed milk; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh half sweet tarik",
+      "normalised": "tea with condensed milk; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh half sweet packet",
+      "normalised": "tea with condensed milk; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh quarter sweet",
+      "normalised": "tea with condensed milk; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh quarter sweet peng",
+      "normalised": "tea with condensed milk; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh quarter sweet poh",
+      "normalised": "tea with condensed milk; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh quarter sweet gao",
+      "normalised": "tea with condensed milk; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh quarter sweet di lo",
+      "normalised": "tea with condensed milk; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh quarter sweet tarik",
+      "normalised": "tea with condensed milk; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh quarter sweet packet",
+      "normalised": "tea with condensed milk; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh no condensed milk",
+      "normalised": "tea with condensed milk; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh no condensed milk peng",
+      "normalised": "tea with condensed milk; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh no condensed milk poh",
+      "normalised": "tea with condensed milk; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh no condensed milk gao",
+      "normalised": "tea with condensed milk; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh no condensed milk di lo",
+      "normalised": "tea with condensed milk; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh no condensed milk tarik",
+      "normalised": "tea with condensed milk; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh no condensed milk packet",
+      "normalised": "tea with condensed milk; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh sugar separate",
+      "normalised": "tea with condensed milk; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh sugar separate peng",
+      "normalised": "tea with condensed milk; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh sugar separate poh",
+      "normalised": "tea with condensed milk; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh sugar separate gao",
+      "normalised": "tea with condensed milk; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh sugar separate di lo",
+      "normalised": "tea with condensed milk; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh sugar separate tarik",
+      "normalised": "tea with condensed milk; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh sugar separate packet",
+      "normalised": "tea with condensed milk; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C",
+      "normalised": "tea with evaporated milk; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C peng",
+      "normalised": "tea with evaporated milk; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C poh",
+      "normalised": "tea with evaporated milk; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C gao",
+      "normalised": "tea with evaporated milk; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C di lo",
+      "normalised": "tea with evaporated milk; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C tarik",
+      "normalised": "tea with evaporated milk; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C packet",
+      "normalised": "tea with evaporated milk; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C kosong",
+      "normalised": "tea with evaporated milk; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C kosong peng",
+      "normalised": "tea with evaporated milk; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C kosong poh",
+      "normalised": "tea with evaporated milk; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C kosong gao",
+      "normalised": "tea with evaporated milk; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C kosong di lo",
+      "normalised": "tea with evaporated milk; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C kosong tarik",
+      "normalised": "tea with evaporated milk; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C kosong packet",
+      "normalised": "tea with evaporated milk; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C siew dai",
+      "normalised": "tea with evaporated milk; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C siew dai peng",
+      "normalised": "tea with evaporated milk; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C siew dai poh",
+      "normalised": "tea with evaporated milk; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C siew dai gao",
+      "normalised": "tea with evaporated milk; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C siew dai di lo",
+      "normalised": "tea with evaporated milk; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C siew dai tarik",
+      "normalised": "tea with evaporated milk; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C siew dai packet",
+      "normalised": "tea with evaporated milk; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C gah dai",
+      "normalised": "tea with evaporated milk; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C gah dai peng",
+      "normalised": "tea with evaporated milk; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C gah dai poh",
+      "normalised": "tea with evaporated milk; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C gah dai gao",
+      "normalised": "tea with evaporated milk; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C gah dai di lo",
+      "normalised": "tea with evaporated milk; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C gah dai tarik",
+      "normalised": "tea with evaporated milk; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C gah dai packet",
+      "normalised": "tea with evaporated milk; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C half sweet",
+      "normalised": "tea with evaporated milk; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C half sweet peng",
+      "normalised": "tea with evaporated milk; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C half sweet poh",
+      "normalised": "tea with evaporated milk; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C half sweet gao",
+      "normalised": "tea with evaporated milk; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C half sweet di lo",
+      "normalised": "tea with evaporated milk; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C half sweet tarik",
+      "normalised": "tea with evaporated milk; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C half sweet packet",
+      "normalised": "tea with evaporated milk; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C quarter sweet",
+      "normalised": "tea with evaporated milk; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C quarter sweet peng",
+      "normalised": "tea with evaporated milk; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C quarter sweet poh",
+      "normalised": "tea with evaporated milk; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C quarter sweet gao",
+      "normalised": "tea with evaporated milk; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C quarter sweet di lo",
+      "normalised": "tea with evaporated milk; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C quarter sweet tarik",
+      "normalised": "tea with evaporated milk; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C quarter sweet packet",
+      "normalised": "tea with evaporated milk; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C no condensed milk",
+      "normalised": "tea with evaporated milk; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C no condensed milk peng",
+      "normalised": "tea with evaporated milk; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C no condensed milk poh",
+      "normalised": "tea with evaporated milk; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C no condensed milk gao",
+      "normalised": "tea with evaporated milk; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C no condensed milk di lo",
+      "normalised": "tea with evaporated milk; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C no condensed milk tarik",
+      "normalised": "tea with evaporated milk; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C no condensed milk packet",
+      "normalised": "tea with evaporated milk; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C sugar separate",
+      "normalised": "tea with evaporated milk; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C sugar separate peng",
+      "normalised": "tea with evaporated milk; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C sugar separate poh",
+      "normalised": "tea with evaporated milk; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C sugar separate gao",
+      "normalised": "tea with evaporated milk; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C sugar separate di lo",
+      "normalised": "tea with evaporated milk; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C sugar separate tarik",
+      "normalised": "tea with evaporated milk; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-C sugar separate packet",
+      "normalised": "tea with evaporated milk; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O",
+      "normalised": "black tea with sugar; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O peng",
+      "normalised": "black tea with sugar; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O poh",
+      "normalised": "black tea with sugar; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O gao",
+      "normalised": "black tea with sugar; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O di lo",
+      "normalised": "black tea with sugar; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O tarik",
+      "normalised": "black tea with sugar; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O packet",
+      "normalised": "black tea with sugar; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O kosong",
+      "normalised": "black tea with sugar; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O kosong peng",
+      "normalised": "black tea with sugar; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O kosong poh",
+      "normalised": "black tea with sugar; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O kosong gao",
+      "normalised": "black tea with sugar; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O kosong di lo",
+      "normalised": "black tea with sugar; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O kosong tarik",
+      "normalised": "black tea with sugar; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O kosong packet",
+      "normalised": "black tea with sugar; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O siew dai",
+      "normalised": "black tea with sugar; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O siew dai peng",
+      "normalised": "black tea with sugar; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O siew dai poh",
+      "normalised": "black tea with sugar; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O siew dai gao",
+      "normalised": "black tea with sugar; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O siew dai di lo",
+      "normalised": "black tea with sugar; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O siew dai tarik",
+      "normalised": "black tea with sugar; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O siew dai packet",
+      "normalised": "black tea with sugar; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O gah dai",
+      "normalised": "black tea with sugar; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O gah dai peng",
+      "normalised": "black tea with sugar; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O gah dai poh",
+      "normalised": "black tea with sugar; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O gah dai gao",
+      "normalised": "black tea with sugar; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O gah dai di lo",
+      "normalised": "black tea with sugar; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O gah dai tarik",
+      "normalised": "black tea with sugar; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O gah dai packet",
+      "normalised": "black tea with sugar; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O half sweet",
+      "normalised": "black tea with sugar; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O half sweet peng",
+      "normalised": "black tea with sugar; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O half sweet poh",
+      "normalised": "black tea with sugar; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O half sweet gao",
+      "normalised": "black tea with sugar; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O half sweet di lo",
+      "normalised": "black tea with sugar; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O half sweet tarik",
+      "normalised": "black tea with sugar; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O half sweet packet",
+      "normalised": "black tea with sugar; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O quarter sweet",
+      "normalised": "black tea with sugar; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O quarter sweet peng",
+      "normalised": "black tea with sugar; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O quarter sweet poh",
+      "normalised": "black tea with sugar; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O quarter sweet gao",
+      "normalised": "black tea with sugar; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O quarter sweet di lo",
+      "normalised": "black tea with sugar; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O quarter sweet tarik",
+      "normalised": "black tea with sugar; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O quarter sweet packet",
+      "normalised": "black tea with sugar; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O no condensed milk",
+      "normalised": "black tea with sugar; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O no condensed milk peng",
+      "normalised": "black tea with sugar; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O no condensed milk poh",
+      "normalised": "black tea with sugar; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O no condensed milk gao",
+      "normalised": "black tea with sugar; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O no condensed milk di lo",
+      "normalised": "black tea with sugar; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O no condensed milk tarik",
+      "normalised": "black tea with sugar; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O no condensed milk packet",
+      "normalised": "black tea with sugar; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O sugar separate",
+      "normalised": "black tea with sugar; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O sugar separate peng",
+      "normalised": "black tea with sugar; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O sugar separate poh",
+      "normalised": "black tea with sugar; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O sugar separate gao",
+      "normalised": "black tea with sugar; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O sugar separate di lo",
+      "normalised": "black tea with sugar; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O sugar separate tarik",
+      "normalised": "black tea with sugar; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "teh-O sugar separate packet",
+      "normalised": "black tea with sugar; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang",
+      "normalised": "coffee and tea; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang peng",
+      "normalised": "coffee and tea; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang poh",
+      "normalised": "coffee and tea; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang gao",
+      "normalised": "coffee and tea; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang di lo",
+      "normalised": "coffee and tea; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang tarik",
+      "normalised": "coffee and tea; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang packet",
+      "normalised": "coffee and tea; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang kosong",
+      "normalised": "coffee and tea; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang kosong peng",
+      "normalised": "coffee and tea; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang kosong poh",
+      "normalised": "coffee and tea; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang kosong gao",
+      "normalised": "coffee and tea; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang kosong di lo",
+      "normalised": "coffee and tea; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang kosong tarik",
+      "normalised": "coffee and tea; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang kosong packet",
+      "normalised": "coffee and tea; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang siew dai",
+      "normalised": "coffee and tea; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang siew dai peng",
+      "normalised": "coffee and tea; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang siew dai poh",
+      "normalised": "coffee and tea; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang siew dai gao",
+      "normalised": "coffee and tea; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang siew dai di lo",
+      "normalised": "coffee and tea; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang siew dai tarik",
+      "normalised": "coffee and tea; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang siew dai packet",
+      "normalised": "coffee and tea; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang gah dai",
+      "normalised": "coffee and tea; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang gah dai peng",
+      "normalised": "coffee and tea; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang gah dai poh",
+      "normalised": "coffee and tea; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang gah dai gao",
+      "normalised": "coffee and tea; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang gah dai di lo",
+      "normalised": "coffee and tea; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang gah dai tarik",
+      "normalised": "coffee and tea; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang gah dai packet",
+      "normalised": "coffee and tea; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang half sweet",
+      "normalised": "coffee and tea; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang half sweet peng",
+      "normalised": "coffee and tea; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang half sweet poh",
+      "normalised": "coffee and tea; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang half sweet gao",
+      "normalised": "coffee and tea; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang half sweet di lo",
+      "normalised": "coffee and tea; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang half sweet tarik",
+      "normalised": "coffee and tea; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang half sweet packet",
+      "normalised": "coffee and tea; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang quarter sweet",
+      "normalised": "coffee and tea; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang quarter sweet peng",
+      "normalised": "coffee and tea; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang quarter sweet poh",
+      "normalised": "coffee and tea; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang quarter sweet gao",
+      "normalised": "coffee and tea; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang quarter sweet di lo",
+      "normalised": "coffee and tea; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang quarter sweet tarik",
+      "normalised": "coffee and tea; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang quarter sweet packet",
+      "normalised": "coffee and tea; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang no condensed milk",
+      "normalised": "coffee and tea; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang no condensed milk peng",
+      "normalised": "coffee and tea; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang no condensed milk poh",
+      "normalised": "coffee and tea; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang no condensed milk gao",
+      "normalised": "coffee and tea; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang no condensed milk di lo",
+      "normalised": "coffee and tea; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang no condensed milk tarik",
+      "normalised": "coffee and tea; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang no condensed milk packet",
+      "normalised": "coffee and tea; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang sugar separate",
+      "normalised": "coffee and tea; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang sugar separate peng",
+      "normalised": "coffee and tea; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang sugar separate poh",
+      "normalised": "coffee and tea; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang sugar separate gao",
+      "normalised": "coffee and tea; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang sugar separate di lo",
+      "normalised": "coffee and tea; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang sugar separate tarik",
+      "normalised": "coffee and tea; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "yuan yang sugar separate packet",
+      "normalised": "coffee and tea; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo",
+      "normalised": "malted chocolate drink; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo peng",
+      "normalised": "malted chocolate drink; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo poh",
+      "normalised": "malted chocolate drink; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo gao",
+      "normalised": "malted chocolate drink; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo di lo",
+      "normalised": "malted chocolate drink; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo tarik",
+      "normalised": "malted chocolate drink; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo packet",
+      "normalised": "malted chocolate drink; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo kosong",
+      "normalised": "malted chocolate drink; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo kosong peng",
+      "normalised": "malted chocolate drink; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo kosong poh",
+      "normalised": "malted chocolate drink; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo kosong gao",
+      "normalised": "malted chocolate drink; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo kosong di lo",
+      "normalised": "malted chocolate drink; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo kosong tarik",
+      "normalised": "malted chocolate drink; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo kosong packet",
+      "normalised": "malted chocolate drink; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo siew dai",
+      "normalised": "malted chocolate drink; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo siew dai peng",
+      "normalised": "malted chocolate drink; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo siew dai poh",
+      "normalised": "malted chocolate drink; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo siew dai gao",
+      "normalised": "malted chocolate drink; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo siew dai di lo",
+      "normalised": "malted chocolate drink; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo siew dai tarik",
+      "normalised": "malted chocolate drink; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo siew dai packet",
+      "normalised": "malted chocolate drink; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo gah dai",
+      "normalised": "malted chocolate drink; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo gah dai peng",
+      "normalised": "malted chocolate drink; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo gah dai poh",
+      "normalised": "malted chocolate drink; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo gah dai gao",
+      "normalised": "malted chocolate drink; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo gah dai di lo",
+      "normalised": "malted chocolate drink; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo gah dai tarik",
+      "normalised": "malted chocolate drink; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo gah dai packet",
+      "normalised": "malted chocolate drink; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo half sweet",
+      "normalised": "malted chocolate drink; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo half sweet peng",
+      "normalised": "malted chocolate drink; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo half sweet poh",
+      "normalised": "malted chocolate drink; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo half sweet gao",
+      "normalised": "malted chocolate drink; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo half sweet di lo",
+      "normalised": "malted chocolate drink; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo half sweet tarik",
+      "normalised": "malted chocolate drink; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo half sweet packet",
+      "normalised": "malted chocolate drink; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo quarter sweet",
+      "normalised": "malted chocolate drink; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo quarter sweet peng",
+      "normalised": "malted chocolate drink; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo quarter sweet poh",
+      "normalised": "malted chocolate drink; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo quarter sweet gao",
+      "normalised": "malted chocolate drink; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo quarter sweet di lo",
+      "normalised": "malted chocolate drink; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo quarter sweet tarik",
+      "normalised": "malted chocolate drink; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo quarter sweet packet",
+      "normalised": "malted chocolate drink; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo no condensed milk",
+      "normalised": "malted chocolate drink; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo no condensed milk peng",
+      "normalised": "malted chocolate drink; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo no condensed milk poh",
+      "normalised": "malted chocolate drink; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo no condensed milk gao",
+      "normalised": "malted chocolate drink; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo no condensed milk di lo",
+      "normalised": "malted chocolate drink; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo no condensed milk tarik",
+      "normalised": "malted chocolate drink; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo no condensed milk packet",
+      "normalised": "malted chocolate drink; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo sugar separate",
+      "normalised": "malted chocolate drink; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo sugar separate peng",
+      "normalised": "malted chocolate drink; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo sugar separate poh",
+      "normalised": "malted chocolate drink; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo sugar separate gao",
+      "normalised": "malted chocolate drink; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo sugar separate di lo",
+      "normalised": "malted chocolate drink; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo sugar separate tarik",
+      "normalised": "malted chocolate drink; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "milo sugar separate packet",
+      "normalised": "malted chocolate drink; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks",
+      "normalised": "malted drink; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks peng",
+      "normalised": "malted drink; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks poh",
+      "normalised": "malted drink; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks gao",
+      "normalised": "malted drink; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks di lo",
+      "normalised": "malted drink; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks tarik",
+      "normalised": "malted drink; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks packet",
+      "normalised": "malted drink; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks kosong",
+      "normalised": "malted drink; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks kosong peng",
+      "normalised": "malted drink; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks kosong poh",
+      "normalised": "malted drink; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks kosong gao",
+      "normalised": "malted drink; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks kosong di lo",
+      "normalised": "malted drink; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks kosong tarik",
+      "normalised": "malted drink; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks kosong packet",
+      "normalised": "malted drink; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks siew dai",
+      "normalised": "malted drink; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks siew dai peng",
+      "normalised": "malted drink; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks siew dai poh",
+      "normalised": "malted drink; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks siew dai gao",
+      "normalised": "malted drink; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks siew dai di lo",
+      "normalised": "malted drink; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks siew dai tarik",
+      "normalised": "malted drink; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks siew dai packet",
+      "normalised": "malted drink; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks gah dai",
+      "normalised": "malted drink; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks gah dai peng",
+      "normalised": "malted drink; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks gah dai poh",
+      "normalised": "malted drink; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks gah dai gao",
+      "normalised": "malted drink; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks gah dai di lo",
+      "normalised": "malted drink; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks gah dai tarik",
+      "normalised": "malted drink; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks gah dai packet",
+      "normalised": "malted drink; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks half sweet",
+      "normalised": "malted drink; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks half sweet peng",
+      "normalised": "malted drink; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks half sweet poh",
+      "normalised": "malted drink; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks half sweet gao",
+      "normalised": "malted drink; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks half sweet di lo",
+      "normalised": "malted drink; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks half sweet tarik",
+      "normalised": "malted drink; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks half sweet packet",
+      "normalised": "malted drink; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks quarter sweet",
+      "normalised": "malted drink; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks quarter sweet peng",
+      "normalised": "malted drink; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks quarter sweet poh",
+      "normalised": "malted drink; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks quarter sweet gao",
+      "normalised": "malted drink; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks quarter sweet di lo",
+      "normalised": "malted drink; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks quarter sweet tarik",
+      "normalised": "malted drink; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks quarter sweet packet",
+      "normalised": "malted drink; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks no condensed milk",
+      "normalised": "malted drink; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks no condensed milk peng",
+      "normalised": "malted drink; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks no condensed milk poh",
+      "normalised": "malted drink; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks no condensed milk gao",
+      "normalised": "malted drink; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks no condensed milk di lo",
+      "normalised": "malted drink; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks no condensed milk tarik",
+      "normalised": "malted drink; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks no condensed milk packet",
+      "normalised": "malted drink; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks sugar separate",
+      "normalised": "malted drink; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks sugar separate peng",
+      "normalised": "malted drink; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks sugar separate poh",
+      "normalised": "malted drink; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks sugar separate gao",
+      "normalised": "malted drink; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks sugar separate di lo",
+      "normalised": "malted drink; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks sugar separate tarik",
+      "normalised": "malted drink; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "horlicks sugar separate packet",
+      "normalised": "malted drink; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu",
+      "normalised": "Milo; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu peng",
+      "normalised": "Milo; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu poh",
+      "normalised": "Milo; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu gao",
+      "normalised": "Milo; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu di lo",
+      "normalised": "Milo; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu tarik",
+      "normalised": "Milo; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu packet",
+      "normalised": "Milo; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu kosong",
+      "normalised": "Milo; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu kosong peng",
+      "normalised": "Milo; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu kosong poh",
+      "normalised": "Milo; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu kosong gao",
+      "normalised": "Milo; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu kosong di lo",
+      "normalised": "Milo; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu kosong tarik",
+      "normalised": "Milo; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu kosong packet",
+      "normalised": "Milo; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu siew dai",
+      "normalised": "Milo; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu siew dai peng",
+      "normalised": "Milo; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu siew dai poh",
+      "normalised": "Milo; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu siew dai gao",
+      "normalised": "Milo; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu siew dai di lo",
+      "normalised": "Milo; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu siew dai tarik",
+      "normalised": "Milo; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu siew dai packet",
+      "normalised": "Milo; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu gah dai",
+      "normalised": "Milo; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu gah dai peng",
+      "normalised": "Milo; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu gah dai poh",
+      "normalised": "Milo; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu gah dai gao",
+      "normalised": "Milo; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu gah dai di lo",
+      "normalised": "Milo; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu gah dai tarik",
+      "normalised": "Milo; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu gah dai packet",
+      "normalised": "Milo; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu half sweet",
+      "normalised": "Milo; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu half sweet peng",
+      "normalised": "Milo; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu half sweet poh",
+      "normalised": "Milo; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu half sweet gao",
+      "normalised": "Milo; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu half sweet di lo",
+      "normalised": "Milo; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu half sweet tarik",
+      "normalised": "Milo; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu half sweet packet",
+      "normalised": "Milo; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu quarter sweet",
+      "normalised": "Milo; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu quarter sweet peng",
+      "normalised": "Milo; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu quarter sweet poh",
+      "normalised": "Milo; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu quarter sweet gao",
+      "normalised": "Milo; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu quarter sweet di lo",
+      "normalised": "Milo; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu quarter sweet tarik",
+      "normalised": "Milo; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu quarter sweet packet",
+      "normalised": "Milo; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu no condensed milk",
+      "normalised": "Milo; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu no condensed milk peng",
+      "normalised": "Milo; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu no condensed milk poh",
+      "normalised": "Milo; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu no condensed milk gao",
+      "normalised": "Milo; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu no condensed milk di lo",
+      "normalised": "Milo; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu no condensed milk tarik",
+      "normalised": "Milo; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu no condensed milk packet",
+      "normalised": "Milo; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu sugar separate",
+      "normalised": "Milo; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu sugar separate peng",
+      "normalised": "Milo; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu sugar separate poh",
+      "normalised": "Milo; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu sugar separate gao",
+      "normalised": "Milo; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu sugar separate di lo",
+      "normalised": "Milo; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu sugar separate tarik",
+      "normalised": "Milo; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "tak kiu sugar separate packet",
+      "normalised": "Milo; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu",
+      "normalised": "Chinese tea; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu peng",
+      "normalised": "Chinese tea; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu poh",
+      "normalised": "Chinese tea; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu gao",
+      "normalised": "Chinese tea; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu di lo",
+      "normalised": "Chinese tea; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu tarik",
+      "normalised": "Chinese tea; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu packet",
+      "normalised": "Chinese tea; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu kosong",
+      "normalised": "Chinese tea; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu kosong peng",
+      "normalised": "Chinese tea; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu kosong poh",
+      "normalised": "Chinese tea; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu kosong gao",
+      "normalised": "Chinese tea; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu kosong di lo",
+      "normalised": "Chinese tea; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu kosong tarik",
+      "normalised": "Chinese tea; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu kosong packet",
+      "normalised": "Chinese tea; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu siew dai",
+      "normalised": "Chinese tea; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu siew dai peng",
+      "normalised": "Chinese tea; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu siew dai poh",
+      "normalised": "Chinese tea; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu siew dai gao",
+      "normalised": "Chinese tea; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu siew dai di lo",
+      "normalised": "Chinese tea; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu siew dai tarik",
+      "normalised": "Chinese tea; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu siew dai packet",
+      "normalised": "Chinese tea; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu gah dai",
+      "normalised": "Chinese tea; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu gah dai peng",
+      "normalised": "Chinese tea; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu gah dai poh",
+      "normalised": "Chinese tea; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu gah dai gao",
+      "normalised": "Chinese tea; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu gah dai di lo",
+      "normalised": "Chinese tea; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu gah dai tarik",
+      "normalised": "Chinese tea; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu gah dai packet",
+      "normalised": "Chinese tea; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu half sweet",
+      "normalised": "Chinese tea; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu half sweet peng",
+      "normalised": "Chinese tea; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu half sweet poh",
+      "normalised": "Chinese tea; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu half sweet gao",
+      "normalised": "Chinese tea; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu half sweet di lo",
+      "normalised": "Chinese tea; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu half sweet tarik",
+      "normalised": "Chinese tea; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu half sweet packet",
+      "normalised": "Chinese tea; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu quarter sweet",
+      "normalised": "Chinese tea; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu quarter sweet peng",
+      "normalised": "Chinese tea; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu quarter sweet poh",
+      "normalised": "Chinese tea; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu quarter sweet gao",
+      "normalised": "Chinese tea; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu quarter sweet di lo",
+      "normalised": "Chinese tea; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu quarter sweet tarik",
+      "normalised": "Chinese tea; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu quarter sweet packet",
+      "normalised": "Chinese tea; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu no condensed milk",
+      "normalised": "Chinese tea; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu no condensed milk peng",
+      "normalised": "Chinese tea; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu no condensed milk poh",
+      "normalised": "Chinese tea; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu no condensed milk gao",
+      "normalised": "Chinese tea; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu no condensed milk di lo",
+      "normalised": "Chinese tea; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu no condensed milk tarik",
+      "normalised": "Chinese tea; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu no condensed milk packet",
+      "normalised": "Chinese tea; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu sugar separate",
+      "normalised": "Chinese tea; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu sugar separate peng",
+      "normalised": "Chinese tea; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu sugar separate poh",
+      "normalised": "Chinese tea; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu sugar separate gao",
+      "normalised": "Chinese tea; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu sugar separate di lo",
+      "normalised": "Chinese tea; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu sugar separate tarik",
+      "normalised": "Chinese tea; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "diao yu sugar separate packet",
+      "normalised": "Chinese tea; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson",
+      "normalised": "soy milk with grass jelly; standard sweetness; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson peng",
+      "normalised": "soy milk with grass jelly; standard sweetness; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson poh",
+      "normalised": "soy milk with grass jelly; standard sweetness; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson gao",
+      "normalised": "soy milk with grass jelly; standard sweetness; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson di lo",
+      "normalised": "soy milk with grass jelly; standard sweetness; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson tarik",
+      "normalised": "soy milk with grass jelly; standard sweetness; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson packet",
+      "normalised": "soy milk with grass jelly; standard sweetness; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson kosong",
+      "normalised": "soy milk with grass jelly; no sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson kosong peng",
+      "normalised": "soy milk with grass jelly; no sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson kosong poh",
+      "normalised": "soy milk with grass jelly; no sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson kosong gao",
+      "normalised": "soy milk with grass jelly; no sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson kosong di lo",
+      "normalised": "soy milk with grass jelly; no sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson kosong tarik",
+      "normalised": "soy milk with grass jelly; no sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson kosong packet",
+      "normalised": "soy milk with grass jelly; no sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson siew dai",
+      "normalised": "soy milk with grass jelly; less sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson siew dai peng",
+      "normalised": "soy milk with grass jelly; less sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson siew dai poh",
+      "normalised": "soy milk with grass jelly; less sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson siew dai gao",
+      "normalised": "soy milk with grass jelly; less sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson siew dai di lo",
+      "normalised": "soy milk with grass jelly; less sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson siew dai tarik",
+      "normalised": "soy milk with grass jelly; less sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson siew dai packet",
+      "normalised": "soy milk with grass jelly; less sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson gah dai",
+      "normalised": "soy milk with grass jelly; more sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson gah dai peng",
+      "normalised": "soy milk with grass jelly; more sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson gah dai poh",
+      "normalised": "soy milk with grass jelly; more sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson gah dai gao",
+      "normalised": "soy milk with grass jelly; more sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson gah dai di lo",
+      "normalised": "soy milk with grass jelly; more sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson gah dai tarik",
+      "normalised": "soy milk with grass jelly; more sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson gah dai packet",
+      "normalised": "soy milk with grass jelly; more sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson half sweet",
+      "normalised": "soy milk with grass jelly; half sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson half sweet peng",
+      "normalised": "soy milk with grass jelly; half sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson half sweet poh",
+      "normalised": "soy milk with grass jelly; half sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson half sweet gao",
+      "normalised": "soy milk with grass jelly; half sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson half sweet di lo",
+      "normalised": "soy milk with grass jelly; half sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson half sweet tarik",
+      "normalised": "soy milk with grass jelly; half sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson half sweet packet",
+      "normalised": "soy milk with grass jelly; half sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson quarter sweet",
+      "normalised": "soy milk with grass jelly; quarter sugar; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson quarter sweet peng",
+      "normalised": "soy milk with grass jelly; quarter sugar; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson quarter sweet poh",
+      "normalised": "soy milk with grass jelly; quarter sugar; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson quarter sweet gao",
+      "normalised": "soy milk with grass jelly; quarter sugar; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson quarter sweet di lo",
+      "normalised": "soy milk with grass jelly; quarter sugar; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson quarter sweet tarik",
+      "normalised": "soy milk with grass jelly; quarter sugar; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson quarter sweet packet",
+      "normalised": "soy milk with grass jelly; quarter sugar; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson no condensed milk",
+      "normalised": "soy milk with grass jelly; without condensed milk; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson no condensed milk peng",
+      "normalised": "soy milk with grass jelly; without condensed milk; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson no condensed milk poh",
+      "normalised": "soy milk with grass jelly; without condensed milk; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson no condensed milk gao",
+      "normalised": "soy milk with grass jelly; without condensed milk; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson no condensed milk di lo",
+      "normalised": "soy milk with grass jelly; without condensed milk; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson no condensed milk tarik",
+      "normalised": "soy milk with grass jelly; without condensed milk; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson no condensed milk packet",
+      "normalised": "soy milk with grass jelly; without condensed milk; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson sugar separate",
+      "normalised": "soy milk with grass jelly; sugar served separately; hot",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson sugar separate peng",
+      "normalised": "soy milk with grass jelly; sugar served separately; iced",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson sugar separate poh",
+      "normalised": "soy milk with grass jelly; sugar served separately; weak",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson sugar separate gao",
+      "normalised": "soy milk with grass jelly; sugar served separately; strong",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson sugar separate di lo",
+      "normalised": "soy milk with grass jelly; sugar served separately; extra concentrated",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson sugar separate tarik",
+      "normalised": "soy milk with grass jelly; sugar served separately; pulled",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "Michael Jackson sugar separate packet",
+      "normalised": "soy milk with grass jelly; sugar served separately; takeaway bag",
+      "category": "kopitiam",
+      "languages": ["singlish", "en", "zh", "ms"]
+    },
+    {
+      "term": "chope",
+      "normalised": "reserve a seat",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "bo jio",
+      "normalised": "did not invite",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "paiseh",
+      "normalised": "embarrassed or sorry",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "shiok",
+      "normalised": "very satisfying",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "sian",
+      "normalised": "weary or bored",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "kiasu",
+      "normalised": "afraid to lose out",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "jialat",
+      "normalised": "in trouble",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "alamak",
+      "normalised": "expression of surprise",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "walao",
+      "normalised": "expression of disbelief",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "steady",
+      "normalised": "reliable or agreed",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "on",
+      "normalised": "agreed",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "settle",
+      "normalised": "complete the task",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "can or not",
+      "normalised": "is this possible",
+      "category": "singlish",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "makan",
+      "normalised": "eat",
+      "category": "malay-loan",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "jalan",
+      "normalised": "walk or road",
+      "category": "malay-loan",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "kena",
+      "normalised": "was subjected to",
+      "category": "malay-loan",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "sayang",
+      "normalised": "dear or pity",
+      "category": "malay-loan",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "boleh",
+      "normalised": "can",
+      "category": "malay-loan",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "aiyo",
+      "normalised": "expression of concern",
+      "category": "loan",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "goondu",
+      "normalised": "foolish person",
+      "category": "loan",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "HDB",
+      "normalised": "Housing and Development Board",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "BTO",
+      "normalised": "Build-To-Order flat",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "HFE",
+      "normalised": "HDB Flat Eligibility letter",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "EC",
+      "normalised": "executive condominium",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "S&CC",
+      "normalised": "service and conservancy charges",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "void deck",
+      "normalised": "open ground floor of an HDB block",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "lift lobby",
+      "normalised": "area outside lifts",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "CPF OA",
+      "normalised": "CPF Ordinary Account",
+      "category": "finance",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "CPF SA",
+      "normalised": "CPF Special Account",
+      "category": "finance",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "CPF MA",
+      "normalised": "CPF MediSave Account",
+      "category": "finance",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "COE",
+      "normalised": "Certificate of Entitlement",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "ERP",
+      "normalised": "Electronic Road Pricing",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "PARF",
+      "normalised": "Preferential Additional Registration Fee",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "SimplyGo",
+      "normalised": "public transport fare account",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "MC",
+      "normalised": "medical certificate",
+      "category": "work",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "NS",
+      "normalised": "National Service",
+      "category": "national-service",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "ICT",
+      "normalised": "in-camp training",
+      "category": "national-service",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "IPPT",
+      "normalised": "Individual Physical Proficiency Test",
+      "category": "national-service",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "PSLE",
+      "normalised": "Primary School Leaving Examination",
+      "category": "school",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "DSA",
+      "normalised": "Direct School Admission",
+      "category": "school",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "CHAS",
+      "normalised": "Community Health Assist Scheme",
+      "category": "health",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "MediSave",
+      "normalised": "national medical savings account",
+      "category": "health",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "MediShield Life",
+      "normalised": "national basic health insurance",
+      "category": "health",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "NTUC",
+      "normalised": "National Trades Union Congress or FairPrice",
+      "category": "shopping",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "FairPrice",
+      "normalised": "supermarket",
+      "category": "shopping",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "Sheng Siong",
+      "normalised": "supermarket",
+      "category": "shopping",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "dabao",
+      "normalised": "take away food",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "hawker centre",
+      "normalised": "cooked-food centre",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "cai png",
+      "normalised": "economy rice",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "nasi padang",
+      "normalised": "Malay or Indonesian rice with dishes",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "roti prata",
+      "normalised": "South Indian flatbread",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "laksa",
+      "normalised": "spicy coconut noodle soup",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "bak chor mee",
+      "normalised": "minced meat noodles",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "chicken rice",
+      "normalised": "Hainanese chicken rice",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "char kway teow",
+      "normalised": "stir-fried rice noodles",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "mee rebus",
+      "normalised": "noodles in sweet savoury gravy",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "mee siam",
+      "normalised": "rice vermicelli in tangy gravy",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "thosai",
+      "normalised": "fermented rice and lentil crepe",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "ban mian",
+      "normalised": "handmade noodles",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "yong tau foo",
+      "normalised": "stuffed tofu selection",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "fishball noodles",
+      "normalised": "noodles with fishballs",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "kopitiam",
+      "normalised": "local coffee shop",
+      "category": "food",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "heartland",
+      "normalised": "residential neighbourhood",
+      "category": "place",
+      "languages": ["en", "singlish"]
+    },
+    { "term": "ulu", "normalised": "remote", "category": "place", "languages": ["en", "singlish"] },
+    {
+      "term": "town area",
+      "normalised": "central Singapore",
+      "category": "place",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "JB",
+      "normalised": "Johor Bahru",
+      "category": "place",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "Causeway",
+      "normalised": "Woodlands-Johor crossing",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "Second Link",
+      "normalised": "Tuas-Johor crossing",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "Parents Gateway",
+      "normalised": "Singapore school parent application",
+      "category": "school",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "HealthHub",
+      "normalised": "Singapore health portal",
+      "category": "health",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "Singpass",
+      "normalised": "Singapore digital identity",
+      "category": "government",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "IRAS",
+      "normalised": "Inland Revenue Authority of Singapore",
+      "category": "government",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "NLB",
+      "normalised": "National Library Board",
+      "category": "government",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "ActiveSG",
+      "normalised": "public sport booking service",
+      "category": "government",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "OneMap",
+      "normalised": "Singapore geospatial platform",
+      "category": "government",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "DataMall",
+      "normalised": "LTA transport data platform",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "2-room Flexi",
+      "normalised": "HDB flat type",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "4-room",
+      "normalised": "HDB four-room flat",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "5-room",
+      "normalised": "HDB five-room flat",
+      "category": "housing",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "season parking",
+      "normalised": "monthly HDB parking",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "ERP 2.0",
+      "normalised": "satellite road pricing system",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "school run",
+      "normalised": "trip taking children to school",
+      "category": "family",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "helper",
+      "normalised": "migrant domestic worker",
+      "category": "family",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "Ah Ma",
+      "normalised": "grandmother",
+      "category": "family",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "Ah Gong",
+      "normalised": "grandfather",
+      "category": "family",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "ang pow",
+      "normalised": "red packet",
+      "category": "culture",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "duit raya",
+      "normalised": "Hari Raya gift money",
+      "category": "culture",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "reunion dinner",
+      "normalised": "Chinese New Year eve family meal",
+      "category": "culture",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "Hungry Ghost",
+      "normalised": "seventh lunar month observance",
+      "category": "culture",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "NDP",
+      "normalised": "National Day Parade",
+      "category": "culture",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "F1 road closure",
+      "normalised": "Formula One road closure",
+      "category": "transport",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "PSI",
+      "normalised": "Pollutant Standards Index",
+      "category": "weather",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "PM2.5",
+      "normalised": "fine particulate concentration",
+      "category": "weather",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "NEA",
+      "normalised": "National Environment Agency",
+      "category": "government",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "MOH",
+      "normalised": "Ministry of Health",
+      "category": "government",
+      "languages": ["en", "singlish"]
+    },
+    {
+      "term": "LTA",
+      "normalised": "Land Transport Authority",
+      "category": "government",
+      "languages": ["en", "singlish"]
+    }
+  ]
+}

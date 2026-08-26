@@ -1,0 +1,84 @@
+{
+  "locale": "sg",
+  "timezone": "Asia/Singapore",
+  "events": [
+    {
+      "id": "sg-holiday-1",
+      "name": "New Year",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "sg-holiday-2",
+      "name": "Chinese New Year",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "sg-holiday-3",
+      "name": "Hari Raya Puasa",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "sg-holiday-4",
+      "name": "Deepavali",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "sg-holiday-5",
+      "name": "Vesak Day",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "sg-holiday-6",
+      "name": "National Day",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "sg-school-terms",
+      "name": "MOE school terms and vacations",
+      "type": "school",
+      "rule": "Refresh annually from MOE"
+    },
+    {
+      "id": "sg-iras-window",
+      "name": "Individual income tax filing window",
+      "type": "deadline",
+      "rule": "Refresh annually from IRAS"
+    },
+    {
+      "id": "sg-cpf-srs-year-end",
+      "name": "CPF and SRS year-end planning",
+      "type": "deadline",
+      "rule": "Notify before 31 December after policy refresh"
+    },
+    {
+      "id": "sg-ramadan",
+      "name": "Ramadan prayer and meal timings",
+      "type": "religious",
+      "rule": "Resolve through MUIS for the active year"
+    },
+    {
+      "id": "sg-hungry-ghost",
+      "name": "Hungry Ghost month",
+      "type": "cultural",
+      "rule": "Resolve seventh lunar month"
+    },
+    {
+      "id": "sg-ndp-closures",
+      "name": "NDP rehearsal and event closures",
+      "type": "cultural",
+      "rule": "Refresh from LTA and organisers"
+    },
+    {
+      "id": "sg-f1-closures",
+      "name": "Singapore Grand Prix closures",
+      "type": "cultural",
+      "rule": "Refresh from LTA and organisers"
+    }
+  ]
+}

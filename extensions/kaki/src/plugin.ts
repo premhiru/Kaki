@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { OpenClawPluginServiceContext } from "openclaw/plugin-sdk/core";
 import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
 import { createKakiControlCommands } from "./commands.js";
@@ -40,7 +41,12 @@ export function createKakiPlugin(
         const ownerFactory =
           options.ownerFactory ??
           ((context: OpenClawPluginServiceContext) =>
-            createHostBackedKakiOwners(api.runtime, config, api.session.workflow));
+            createHostBackedKakiOwners(
+              api.runtime,
+              config,
+              api.session.workflow,
+              api.rootDir ? path.join(api.rootDir, "assets", "locale") : undefined,
+            ));
         let release: (() => void) | undefined;
         api.registerService({
           id: "kaki-runtime-owners",

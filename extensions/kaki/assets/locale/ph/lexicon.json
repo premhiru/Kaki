@@ -1,0 +1,1226 @@
+{
+  "locale": "ph",
+  "version": 1,
+  "entries": [
+    {
+      "term": "QR Ph",
+      "normalised": "national QR standard",
+      "category": "local",
+      "languages": ["fil"]
+    },
+    { "term": "GCash", "normalised": "mobile wallet", "category": "local", "languages": ["fil"] },
+    {
+      "term": "Maya",
+      "normalised": "digital wallet and bank",
+      "category": "local",
+      "languages": ["fil"]
+    },
+    {
+      "term": "eGovPH",
+      "normalised": "government services app",
+      "category": "local",
+      "languages": ["fil"]
+    },
+    { "term": "PAGASA", "normalised": "weather agency", "category": "local", "languages": ["fil"] },
+    {
+      "term": "jeepney",
+      "normalised": "public utility vehicle",
+      "category": "local",
+      "languages": ["fil"]
+    },
+    {
+      "term": "barangay",
+      "normalised": "local administrative unit",
+      "category": "local",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sari-sari store",
+      "normalised": "neighbourhood shop",
+      "category": "local",
+      "languages": ["fil"]
+    },
+    {
+      "term": "Undas",
+      "normalised": "All Saints and Souls observance",
+      "category": "local",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pasalubong",
+      "normalised": "homecoming gift",
+      "category": "local",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon ngayon",
+      "normalised": "panahon: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon bukas",
+      "normalised": "panahon: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon malapit dito",
+      "normalised": "panahon: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon para sa pamilya",
+      "normalised": "panahon: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon mura",
+      "normalised": "panahon: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon halal",
+      "normalised": "panahon: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon weekend",
+      "normalised": "panahon: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon umaga",
+      "normalised": "panahon: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon gabi",
+      "normalised": "panahon: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "panahon kagyat",
+      "normalised": "panahon: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ulan ngayon",
+      "normalised": "ulan: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ulan bukas",
+      "normalised": "ulan: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ulan malapit dito",
+      "normalised": "ulan: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ulan para sa pamilya",
+      "normalised": "ulan: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    { "term": "ulan mura", "normalised": "ulan: mura", "category": "phrase", "languages": ["fil"] },
+    {
+      "term": "ulan halal",
+      "normalised": "ulan: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ulan weekend",
+      "normalised": "ulan: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ulan umaga",
+      "normalised": "ulan: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    { "term": "ulan gabi", "normalised": "ulan: gabi", "category": "phrase", "languages": ["fil"] },
+    {
+      "term": "ulan kagyat",
+      "normalised": "ulan: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay ngayon",
+      "normalised": "sakay: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay bukas",
+      "normalised": "sakay: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay malapit dito",
+      "normalised": "sakay: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay para sa pamilya",
+      "normalised": "sakay: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay mura",
+      "normalised": "sakay: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay halal",
+      "normalised": "sakay: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay weekend",
+      "normalised": "sakay: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay umaga",
+      "normalised": "sakay: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay gabi",
+      "normalised": "sakay: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "sakay kagyat",
+      "normalised": "sakay: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "tren ngayon",
+      "normalised": "tren: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "tren bukas",
+      "normalised": "tren: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "tren malapit dito",
+      "normalised": "tren: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "tren para sa pamilya",
+      "normalised": "tren: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    { "term": "tren mura", "normalised": "tren: mura", "category": "phrase", "languages": ["fil"] },
+    {
+      "term": "tren halal",
+      "normalised": "tren: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "tren weekend",
+      "normalised": "tren: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "tren umaga",
+      "normalised": "tren: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    { "term": "tren gabi", "normalised": "tren: gabi", "category": "phrase", "languages": ["fil"] },
+    {
+      "term": "tren kagyat",
+      "normalised": "tren: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain ngayon",
+      "normalised": "pagkain: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain bukas",
+      "normalised": "pagkain: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain malapit dito",
+      "normalised": "pagkain: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain para sa pamilya",
+      "normalised": "pagkain: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain mura",
+      "normalised": "pagkain: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain halal",
+      "normalised": "pagkain: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain weekend",
+      "normalised": "pagkain: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain umaga",
+      "normalised": "pagkain: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain gabi",
+      "normalised": "pagkain: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "pagkain kagyat",
+      "normalised": "pagkain: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking ngayon",
+      "normalised": "booking: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking bukas",
+      "normalised": "booking: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking malapit dito",
+      "normalised": "booking: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking para sa pamilya",
+      "normalised": "booking: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking mura",
+      "normalised": "booking: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking halal",
+      "normalised": "booking: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking weekend",
+      "normalised": "booking: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking umaga",
+      "normalised": "booking: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking gabi",
+      "normalised": "booking: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "booking kagyat",
+      "normalised": "booking: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis ngayon",
+      "normalised": "buwis: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis bukas",
+      "normalised": "buwis: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis malapit dito",
+      "normalised": "buwis: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis para sa pamilya",
+      "normalised": "buwis: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis mura",
+      "normalised": "buwis: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis halal",
+      "normalised": "buwis: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis weekend",
+      "normalised": "buwis: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis umaga",
+      "normalised": "buwis: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis gabi",
+      "normalised": "buwis: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "buwis kagyat",
+      "normalised": "buwis: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad ngayon",
+      "normalised": "bayad: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad bukas",
+      "normalised": "bayad: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad malapit dito",
+      "normalised": "bayad: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad para sa pamilya",
+      "normalised": "bayad: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad mura",
+      "normalised": "bayad: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad halal",
+      "normalised": "bayad: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad weekend",
+      "normalised": "bayad: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad umaga",
+      "normalised": "bayad: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad gabi",
+      "normalised": "bayad: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bayad kagyat",
+      "normalised": "bayad: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala ngayon",
+      "normalised": "paalala: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala bukas",
+      "normalised": "paalala: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala malapit dito",
+      "normalised": "paalala: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala para sa pamilya",
+      "normalised": "paalala: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala mura",
+      "normalised": "paalala: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala halal",
+      "normalised": "paalala: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala weekend",
+      "normalised": "paalala: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala umaga",
+      "normalised": "paalala: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala gabi",
+      "normalised": "paalala: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paalala kagyat",
+      "normalised": "paalala: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ayos ngayon",
+      "normalised": "ayos: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ayos bukas",
+      "normalised": "ayos: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ayos malapit dito",
+      "normalised": "ayos: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ayos para sa pamilya",
+      "normalised": "ayos: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    { "term": "ayos mura", "normalised": "ayos: mura", "category": "phrase", "languages": ["fil"] },
+    {
+      "term": "ayos halal",
+      "normalised": "ayos: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ayos weekend",
+      "normalised": "ayos: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "ayos umaga",
+      "normalised": "ayos: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    { "term": "ayos gabi", "normalised": "ayos: gabi", "category": "phrase", "languages": ["fil"] },
+    {
+      "term": "ayos kagyat",
+      "normalised": "ayos: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika ngayon",
+      "normalised": "klinika: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika bukas",
+      "normalised": "klinika: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika malapit dito",
+      "normalised": "klinika: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika para sa pamilya",
+      "normalised": "klinika: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika mura",
+      "normalised": "klinika: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika halal",
+      "normalised": "klinika: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika weekend",
+      "normalised": "klinika: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika umaga",
+      "normalised": "klinika: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika gabi",
+      "normalised": "klinika: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "klinika kagyat",
+      "normalised": "klinika: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon ngayon",
+      "normalised": "bakasyon: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon bukas",
+      "normalised": "bakasyon: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon malapit dito",
+      "normalised": "bakasyon: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon para sa pamilya",
+      "normalised": "bakasyon: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon mura",
+      "normalised": "bakasyon: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon halal",
+      "normalised": "bakasyon: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon weekend",
+      "normalised": "bakasyon: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon umaga",
+      "normalised": "bakasyon: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon gabi",
+      "normalised": "bakasyon: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bakasyon kagyat",
+      "normalised": "bakasyon: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada ngayon",
+      "normalised": "kalsada: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada bukas",
+      "normalised": "kalsada: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada malapit dito",
+      "normalised": "kalsada: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada para sa pamilya",
+      "normalised": "kalsada: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada mura",
+      "normalised": "kalsada: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada halal",
+      "normalised": "kalsada: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada weekend",
+      "normalised": "kalsada: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada umaga",
+      "normalised": "kalsada: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada gabi",
+      "normalised": "kalsada: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "kalsada kagyat",
+      "normalised": "kalsada: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan ngayon",
+      "normalised": "paaralan: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan bukas",
+      "normalised": "paaralan: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan malapit dito",
+      "normalised": "paaralan: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan para sa pamilya",
+      "normalised": "paaralan: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan mura",
+      "normalised": "paaralan: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan halal",
+      "normalised": "paaralan: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan weekend",
+      "normalised": "paaralan: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan umaga",
+      "normalised": "paaralan: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan gabi",
+      "normalised": "paaralan: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "paaralan kagyat",
+      "normalised": "paaralan: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko ngayon",
+      "normalised": "bangko: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko bukas",
+      "normalised": "bangko: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko malapit dito",
+      "normalised": "bangko: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko para sa pamilya",
+      "normalised": "bangko: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko mura",
+      "normalised": "bangko: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko halal",
+      "normalised": "bangko: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko weekend",
+      "normalised": "bangko: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko umaga",
+      "normalised": "bangko: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko gabi",
+      "normalised": "bangko: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "bangko kagyat",
+      "normalised": "bangko: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke ngayon",
+      "normalised": "palengke: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke bukas",
+      "normalised": "palengke: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke malapit dito",
+      "normalised": "palengke: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke para sa pamilya",
+      "normalised": "palengke: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke mura",
+      "normalised": "palengke: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke halal",
+      "normalised": "palengke: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke weekend",
+      "normalised": "palengke: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke umaga",
+      "normalised": "palengke: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke gabi",
+      "normalised": "palengke: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "palengke kagyat",
+      "normalised": "palengke: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan ngayon",
+      "normalised": "simbahan: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan bukas",
+      "normalised": "simbahan: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan malapit dito",
+      "normalised": "simbahan: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan para sa pamilya",
+      "normalised": "simbahan: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan mura",
+      "normalised": "simbahan: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan halal",
+      "normalised": "simbahan: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan weekend",
+      "normalised": "simbahan: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan umaga",
+      "normalised": "simbahan: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan gabi",
+      "normalised": "simbahan: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "simbahan kagyat",
+      "normalised": "simbahan: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway ngayon",
+      "normalised": "expressway: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway bukas",
+      "normalised": "expressway: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway malapit dito",
+      "normalised": "expressway: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway para sa pamilya",
+      "normalised": "expressway: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway mura",
+      "normalised": "expressway: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway halal",
+      "normalised": "expressway: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway weekend",
+      "normalised": "expressway: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway umaga",
+      "normalised": "expressway: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway gabi",
+      "normalised": "expressway: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "expressway kagyat",
+      "normalised": "expressway: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika ngayon",
+      "normalised": "botika: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika bukas",
+      "normalised": "botika: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika malapit dito",
+      "normalised": "botika: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika para sa pamilya",
+      "normalised": "botika: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika mura",
+      "normalised": "botika: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika halal",
+      "normalised": "botika: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika weekend",
+      "normalised": "botika: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika umaga",
+      "normalised": "botika: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika gabi",
+      "normalised": "botika: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "botika kagyat",
+      "normalised": "botika: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor ngayon",
+      "normalised": "doktor: ngayon",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor bukas",
+      "normalised": "doktor: bukas",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor malapit dito",
+      "normalised": "doktor: malapit dito",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor para sa pamilya",
+      "normalised": "doktor: para sa pamilya",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor mura",
+      "normalised": "doktor: mura",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor halal",
+      "normalised": "doktor: halal",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor weekend",
+      "normalised": "doktor: weekend",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor umaga",
+      "normalised": "doktor: umaga",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor gabi",
+      "normalised": "doktor: gabi",
+      "category": "phrase",
+      "languages": ["fil"]
+    },
+    {
+      "term": "doktor kagyat",
+      "normalised": "doktor: kagyat",
+      "category": "phrase",
+      "languages": ["fil"]
+    }
+  ]
+}

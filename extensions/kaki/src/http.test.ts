@@ -163,4 +163,33 @@ describe("Kaki authenticated HTTP handlers", () => {
     expect(response.status).toBe(503);
     expect(await response.text()).toContain("Finish `kaki onboard`");
   });
+
+  it("records the bounded owner failure reason without returning it to the browser", async () => {
+    const warn = vi.fn();
+    const baseOwners = createTestOwners();
+    const owners = {
+      ...baseOwners,
+      locale: {
+        ...baseOwners.locale,
+        snapshot: async () => {
+          throw new Error(`locale-assets-unavailable:${"x".repeat(1_000)}`);
+        },
+      },
+    };
+    const handlers = createKakiHttpHandlers({
+      resolveOwners: () => owners,
+      operatorPersonId: "person-1",
+      warn,
+    });
+    const server = createServer((req, res) => void handlers.snapshot(req, res));
+    servers.push(server);
+    await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+    const address = server.address() as AddressInfo;
+    const response = await fetch(`http://127.0.0.1:${address.port}/api/kaki/snapshot`);
+    expect(response.status).toBe(503);
+    expect(await response.text()).not.toContain("locale-assets-unavailable");
+    expect(warn).toHaveBeenCalledOnce();
+    expect(warn.mock.calls[0]?.[0]).toMatch(/^kaki: snapshot owner failed: locale-assets/u);
+    expect(warn.mock.calls[0]?.[0]).toHaveLength(529);
+  });
 });

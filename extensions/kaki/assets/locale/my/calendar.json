@@ -1,0 +1,48 @@
+{
+  "locale": "my",
+  "timezone": "Asia/Kuala_Lumpur",
+  "events": [
+    {
+      "id": "my-holiday-1",
+      "name": "Hari Merdeka",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "my-holiday-2",
+      "name": "Malaysia Day",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "my-holiday-3",
+      "name": "Hari Raya Aidilfitri",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "my-holiday-4",
+      "name": "Chinese New Year",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "my-holiday-5",
+      "name": "Deepavali",
+      "type": "public",
+      "rule": "Resolve yearly from an authoritative government calendar; fixture labels are not live dates."
+    },
+    {
+      "id": "my-school-terms",
+      "name": "Federal and state school terms",
+      "type": "school",
+      "rule": "Refresh by Kumpulan A/B and state"
+    },
+    {
+      "id": "my-ramadan",
+      "name": "Ramadan timings",
+      "type": "religious",
+      "rule": "Refresh from JAKIM/state authority"
+    }
+  ]
+}

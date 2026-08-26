@@ -1,4 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
+import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
 import {
   applyBasicWebhookRequestGuards,
   createWebhookInFlightLimiter,
@@ -69,8 +70,8 @@ export function createKakiHttpHandlers(options: {
         return true;
       }
       sendJson(res, 200, await withOwnerDeadline((signal) => readKakiSnapshot(owners, signal)));
-    } catch {
-      options.warn?.("kaki: snapshot owner failed");
+    } catch (error) {
+      options.warn?.(`kaki: snapshot owner failed: ${formatErrorMessage(error).slice(0, 500)}`);
       unavailable(res);
     } finally {
       inFlight.release("kaki-control");

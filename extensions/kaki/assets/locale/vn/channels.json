@@ -1,0 +1,18 @@
+{
+  "locale": "vn",
+  "priority": ["zalo", "telegram"],
+  "languages": ["vi", "en"],
+  "dataTools": ["vn-public-data", "regional-holidays", "currency-remittance"],
+  "defaultModels": {
+    "planner": ["anthropic/claude-sonnet", "openai/gpt-5"],
+    "tool": ["anthropic/claude-sonnet", "openai/gpt-5"],
+    "vision": ["anthropic/claude-sonnet", "openai/gpt-5"],
+    "normalise": ["ollama/qwen3:8b", "openrouter/qwen/qwen3-8b"],
+    "generate": ["sea-lion/SEA-LION-v4.5", "openai/gpt-5-mini"],
+    "safety": ["sea-guard/SEA-Guard"],
+    "embedding": ["vllm/bge-m3", "ollama/bge-m3"],
+    "heartbeat": ["ollama/qwen3:4b", "openai/gpt-5-nano"],
+    "asr": ["meralion/MERaLiON-2", "openai/whisper-large-v3-turbo"]
+  },
+  "fixtureModeAvailable": true
+}

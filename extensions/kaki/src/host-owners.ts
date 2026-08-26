@@ -192,6 +192,7 @@ export async function createHostBackedKakiOwners(
   runtime: Runtime,
   config: KakiPluginConfig,
   workflow?: Workflow,
+  localePackagesRoot?: string,
 ): Promise<KakiRuntimeOwners> {
   const bootstrapStore = runtime.state.openKeyedStore<KakiBootstrapRecord>({
     namespace: KAKI_BOOTSTRAP_NAMESPACE,
@@ -592,6 +593,7 @@ export async function createHostBackedKakiOwners(
     locale: createKakiLocaleOwner({
       getActive: async () => (await localeStore.lookup("active"))?.locale ?? config.locale,
       setActive: async (locale) => localeStore.register("active", { locale }),
+      ...(localePackagesRoot ? { packagesRoot: localePackagesRoot } : {}),
     }),
     costs: createKakiCostOwner({
       ledger: modelOwner.ledger,
