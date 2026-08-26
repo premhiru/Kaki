@@ -303,6 +303,7 @@ function shouldNeverBundleDeclarationDependency(id: string): boolean {
 
 function shouldAlwaysBundleDependency(id: string): boolean {
   return (
+    id.startsWith("@kaki/") ||
     id === "openclaw/plugin-sdk/ssrf-runtime-internal" ||
     id === "@openclaw/fs-safe" ||
     id.startsWith("@openclaw/fs-safe/") ||

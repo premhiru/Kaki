@@ -213,6 +213,11 @@ jobs:
           pnpm build:ci-artifacts
           pnpm --dir kaki build
 
+      - name: Probe native Kaki command activation
+        env:
+          KAKI_HOME: ${{ runner.temp }}/kaki-native-command-probe
+        run: node kaki.mjs kaki-bootstrap --help
+
       - name: Check formatting
         run: pnpm --dir kaki format:check
 
